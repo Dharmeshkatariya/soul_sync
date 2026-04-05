@@ -43,41 +43,46 @@ class MyApp extends StatelessWidget {
     if (!GetPlatform.isDesktop) Get.put(AppLinksController());
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
     return GetMaterialApp(
-        title: 'Harmony Music',
-        home: const Home(),
-        debugShowCheckedModeBanner: false,
-        translations: Languages(),
-        locale:
-        Locale(Hive.box("AppPrefs").get('currentAppLanguageCode') ?? "en"),
-        fallbackLocale: const Locale("en"),
-        builder: (context, child) {
-          final mQuery = MediaQuery.of(context);
-          final scale =
-          mQuery.textScaler.clamp(minScaleFactor: 1.0, maxScaleFactor: 1.1);
-          return Stack(
-            children: [
-              GetX<ThemeController>(
-                builder: (controller) => MediaQuery(
-                  data: mQuery.copyWith(textScaler: scale),
-                  child: AnimatedTheme(
-                      duration: const Duration(milliseconds: 700),
-                      data: controller.themedata.value!,
-                      child: child!),
+      title: 'Harmony Music',
+      home: const Home(),
+      debugShowCheckedModeBanner: false,
+      translations: Languages(),
+      locale: Locale(
+        Hive.box("AppPrefs").get('currentAppLanguageCode') ?? "en",
+      ),
+      fallbackLocale: const Locale("en"),
+      builder: (context, child) {
+        final mQuery = MediaQuery.of(context);
+        final scale = mQuery.textScaler.clamp(
+          minScaleFactor: 1.0,
+          maxScaleFactor: 1.1,
+        );
+        return Stack(
+          children: [
+            GetX<ThemeController>(
+              builder: (controller) => MediaQuery(
+                data: mQuery.copyWith(textScaler: scale),
+                child: AnimatedTheme(
+                  duration: const Duration(milliseconds: 700),
+                  data: controller.themedata.value!,
+                  child: child!,
                 ),
               ),
-              GestureDetector(
-                child: Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Container(
-                    color: Colors.transparent,
-                    height: mQuery.padding.bottom,
-                    width: mQuery.size.width,
-                  ),
+            ),
+            GestureDetector(
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: Container(
+                  color: Colors.transparent,
+                  height: mQuery.padding.bottom,
+                  width: mQuery.size.width,
                 ),
-              )
-            ],
-          );
-        });
+              ),
+            ),
+          ],
+        );
+      },
+    );
   }
 }
 
@@ -103,7 +108,7 @@ initHive() async {
   String applicationDataDirectoryPath;
   if (GetPlatform.isDesktop) {
     applicationDataDirectoryPath =
-    "${(await getApplicationSupportDirectory()).path}/db";
+        "${(await getApplicationSupportDirectory()).path}/db";
   } else {
     applicationDataDirectoryPath =
         (await getApplicationDocumentsDirectory()).path;
@@ -126,7 +131,7 @@ void _setAppInitPrefs() {
       'themePrimaryColor': 4278199603,
       'discoverContentType': "QP",
       'newVersionVisibility': updateCheckFlag,
-      "cacheHomeScreenData": true
+      "cacheHomeScreenData": true,
     });
   }
 }

@@ -4,17 +4,19 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../core/utils/color_file.dart';
 
 class BorderContainer extends StatelessWidget {
-  const BorderContainer(
-      {required this.child,
-        this.borderRadius,
-        this.padding,
-        this.margin,
-        this.width,
-        super.key,
-        this.border,
-        this.height,
-        this.color,
-        this.constraints, this.alignment});
+  const BorderContainer({
+    required this.child,
+    this.borderRadius,
+    this.padding,
+    this.margin,
+    this.width,
+    super.key,
+    this.border,
+    this.height,
+    this.color,
+    this.constraints,
+    this.alignment,
+  });
 
   final Widget child;
   final EdgeInsetsGeometry? padding;
@@ -30,7 +32,7 @@ class BorderContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding:
-      padding ?? EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.w),
+          padding ?? EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.w),
       margin: margin,
       alignment: alignment,
       constraints: constraints,
@@ -45,5 +47,3 @@ class BorderContainer extends StatelessWidget {
     );
   }
 }
-
-

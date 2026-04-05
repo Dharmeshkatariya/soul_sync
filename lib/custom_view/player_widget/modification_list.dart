@@ -8,8 +8,11 @@ import 'package:widget_marquee/widget_marquee.dart';
 import 'image_widget.dart';
 
 class ModificationList extends StatelessWidget {
-  const ModificationList(
-      {super.key, required this.mode, this.screenController});
+  const ModificationList({
+    super.key,
+    required this.mode,
+    this.screenController,
+  });
   final OperationMode mode;
   final dynamic screenController;
 
@@ -19,46 +22,41 @@ class ModificationList extends StatelessWidget {
     if (mode == OperationMode.arrange) {
       return Expanded(
         child: ReorderableListView.builder(
-            padding: const EdgeInsets.only(right: 5, bottom: 200),
-            itemBuilder: (context, index) => ListTile(
-                  key: Key('$index'),
-                  onTap: () {},
-                  contentPadding:
-                      const EdgeInsets.only(top: 0, left: 5, right: 40),
-                  leading: ImageWidget(
-                    size: 55,
-                    song: items[index],
-                  ),
-                  title: Marquee(
-                    delay: const Duration(milliseconds: 300),
-                    duration: const Duration(seconds: 5),
-                    id: items[index].title.hashCode.toString(),
-                    child: CustomTextView(
-                      items[index].title.length > 50
-                          ? items[index].title.substring(0, 50)
-                          : items[index].title,
-                      maxLines: 1,
-                      style: context.titleMedium  ,
-                    ),
-                  ),
-                  subtitle: CustomTextView(
-                    "${items[index].artist}",
-                    maxLines: 1,
-                    style: context.titleSmall,
-                  ),
-                ),
-            itemCount: items.length,
-            onReorder: (old_, new_) {
-              if (old_ < new_) {
-                new_--;
-              }
-              final list = items.toList();
-              final item = list.removeAt(
-                old_,
-              );
-              list.insert(new_, item);
-              screenController.additionalOperationTempList.value = list;
-            }),
+          padding: const EdgeInsets.only(right: 5, bottom: 200),
+          itemBuilder: (context, index) => ListTile(
+            key: Key('$index'),
+            onTap: () {},
+            contentPadding: const EdgeInsets.only(top: 0, left: 5, right: 40),
+            leading: ImageWidget(size: 55, song: items[index]),
+            title: Marquee(
+              delay: const Duration(milliseconds: 300),
+              duration: const Duration(seconds: 5),
+              id: items[index].title.hashCode.toString(),
+              child: CustomTextView(
+                items[index].title.length > 50
+                    ? items[index].title.substring(0, 50)
+                    : items[index].title,
+                maxLines: 1,
+                style: context.titleMedium,
+              ),
+            ),
+            subtitle: CustomTextView(
+              "${items[index].artist}",
+              maxLines: 1,
+              style: context.titleSmall,
+            ),
+          ),
+          itemCount: items.length,
+          onReorder: (old_, new_) {
+            if (old_ < new_) {
+              new_--;
+            }
+            final list = items.toList();
+            final item = list.removeAt(old_);
+            list.insert(new_, item);
+            screenController.additionalOperationTempList.value = list;
+          },
+        ),
       );
     } else if (mode == OperationMode.addToPlaylist ||
         mode == OperationMode.delete) {
@@ -87,16 +85,16 @@ class ModificationList extends StatelessWidget {
                             val!;
                         screenController.checkIfAllSelected();
                       },
-                      visualDensity:
-                          const VisualDensity(horizontal: -3, vertical: -3),
+                      visualDensity: const VisualDensity(
+                        horizontal: -3,
+                        vertical: -3,
+                      ),
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
                     ),
                   ),
-                  ImageWidget(
-                    size: 55,
-                    song: items[index],
-                  ),
+                  ImageWidget(size: 55, song: items[index]),
                 ],
               ),
             ),
@@ -109,7 +107,7 @@ class ModificationList extends StatelessWidget {
                     ? items[index].title.substring(0, 50)
                     : items[index].title,
                 maxLines: 1,
-                style: context.titleMedium  ,
+                style: context.titleMedium,
               ),
             ),
             subtitle: CustomTextView(

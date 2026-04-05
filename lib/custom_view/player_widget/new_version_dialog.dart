@@ -21,58 +21,65 @@ class NewVersionDialog extends StatelessWidget {
           children: [
             CustomTextView(
               "newVersionAvailable".tr,
-              style: context.titleMedium  ,
+              style: context.titleMedium,
             ),
             Padding(
-                padding: const EdgeInsets.symmetric(vertical: 20),
-                child: SizedBox.square(
-                  dimension: 100,
-                  child: FittedBox(
-                    child: FloatingActionButton(
-                      onPressed: () {
-                        launchUrl(
-                          Uri.parse(
-                            'https://github.com/anandnet/Harmony-Music/releases/latest',
-                          ),
-                          mode: LaunchMode.externalApplication,
-                        );
-                      },
-                      child: const Icon(
-                        Icons.download,
-                        size: 30,
-                      ),
-                    ),
+              padding: const EdgeInsets.symmetric(vertical: 20),
+              child: SizedBox.square(
+                dimension: 100,
+                child: FittedBox(
+                  child: FloatingActionButton(
+                    onPressed: () {
+                      launchUrl(
+                        Uri.parse(
+                          'https://github.com/anandnet/Harmony-Music/releases/latest',
+                        ),
+                        mode: LaunchMode.externalApplication,
+                      );
+                    },
+                    child: const Icon(Icons.download, size: 30),
                   ),
-                )),
+                ),
+              ),
+            ),
             Center(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  GetX<HomeScreenController>(builder: (controller) {
-                    return Checkbox(
+                  GetX<HomeScreenController>(
+                    builder: (controller) {
+                      return Checkbox(
                         value: controller.showVersionDialog.isFalse,
                         onChanged: (val) {
                           controller.onChangeVersionVisibility(val ?? false);
                         },
-                        shape: const CircleBorder());
-                  }),
-                  CustomTextView("dontShowInfoAgain".tr)
+                        shape: const CircleBorder(),
+                      );
+                    },
+                  ),
+                  CustomTextView("dontShowInfoAgain".tr),
                 ],
               ),
             ),
             Container(
-                decoration: BoxDecoration(
-                    color: context.titleLarge!.color,
-                    borderRadius: BorderRadius.circular(10)),
-                child: InkWell(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 15.0, vertical: 10),
-                    child: CustomTextView("dismiss".tr,
-                        style: TextStyle(color: Theme.of(context).canvasColor)),
+              decoration: BoxDecoration(
+                color: context.titleLarge!.color,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: InkWell(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 15.0,
+                    vertical: 10,
                   ),
-                  onTap: () => Navigator.of(context).pop(),
-                ))
+                  child: CustomTextView(
+                    "dismiss".tr,
+                    style: TextStyle(color: Theme.of(context).canvasColor),
+                  ),
+                ),
+                onTap: () => Navigator.of(context).pop(),
+              ),
+            ),
           ],
         ),
       ),

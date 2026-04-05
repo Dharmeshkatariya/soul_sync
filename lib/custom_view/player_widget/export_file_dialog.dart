@@ -35,7 +35,7 @@ class ExportFileDialog extends StatelessWidget {
                   padding: const EdgeInsets.only(bottom: 10.0, top: 10),
                   child: CustomTextView(
                     "exportDowloadedFiles".tr,
-                    style: context.titleMedium  ,
+                    style: context.titleMedium,
                   ),
                 ),
                 SizedBox(

@@ -9,16 +9,14 @@ enum AppLanguageType {
   final String? code;
 
   const AppLanguageType(this.name, this.code);
-
-
 }
 
-enum SupportedCountries{
-  usa('United States','US'),
-  india('India','IN');
+enum SupportedCountries {
+  usa('United States', 'US'),
+  india('India', 'IN');
 
   final String code;
   final String displayName;
 
-  const SupportedCountries(this.displayName,this.code);
+  const SupportedCountries(this.displayName, this.code);
 }

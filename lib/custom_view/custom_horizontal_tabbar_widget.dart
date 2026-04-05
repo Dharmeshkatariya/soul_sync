@@ -58,23 +58,21 @@ class CustomHorizontalTabBarWidget extends StatelessWidget {
           child: Container(
             padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
             decoration: BoxDecoration(
-              color:
-                  (item == selectedItem)
-                      ? ColorFile.whiteColor
-                      : ColorFile.greyColorOpaque20,
+              color: (item == selectedItem)
+                  ? ColorFile.whiteColor
+                  : ColorFile.greyColorOpaque20,
               borderRadius: BorderRadius.circular(8.r),
               border: Border.all(color: ColorFile.dividerColor, width: 1.0.w),
             ),
             child: CustomTextView(
               item.displayText ?? '',
-              style:
-                  (item == selectedItem)
-                      ? AppTextStyles.semiBoldBlack14.copyWith(
-                        color: ColorFile.webThemeColor,
-                      )
-                      : AppTextStyles.regularBlack14.copyWith(
-                        color: ColorFile.lightBlack1Color,
-                      ),
+              style: (item == selectedItem)
+                  ? AppTextStyles.semiBoldBlack14.copyWith(
+                      color: ColorFile.webThemeColor,
+                    )
+                  : AppTextStyles.regularBlack14.copyWith(
+                      color: ColorFile.lightBlack1Color,
+                    ),
             ),
           ),
         ),

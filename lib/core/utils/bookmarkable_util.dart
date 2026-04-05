@@ -21,8 +21,9 @@ class BookmarkUtils {
     queryParams[key] = value;
 
     // Reconstruct the fragment with the updated query parameters.
-    final newFragment =
-        fragmentUri.replace(queryParameters: queryParams).toString();
+    final newFragment = fragmentUri
+        .replace(queryParameters: queryParams)
+        .toString();
 
     // Construct the new URL.
     final newUrl = baseUrl + '#' + newFragment;
@@ -68,8 +69,9 @@ class BookmarkUtils {
     final fragmentUri = Uri.parse(hashFragment);
     final queryParams = Map<String, String>.from(fragmentUri.queryParameters);
     queryParams.remove(key);
-    final newFragment =
-        fragmentUri.replace(queryParameters: queryParams).toString();
+    final newFragment = fragmentUri
+        .replace(queryParameters: queryParams)
+        .toString();
     final newUrl = baseUrl + '#' + newFragment;
     html.window.history.pushState(null, '', newUrl);
   }
@@ -115,10 +117,9 @@ class BookmarkUtils {
       final isSelectedTab = BookmarkUtils.getQueryParams()[QueryParams.isTab];
       if (isSelectedTab != null && isSelectedTab.isNotEmpty) {
         final tabIndex = int.tryParse(isSelectedTab) ?? 0;
-        selectedPager.value =
-            tabIndex >= 0 && tabIndex < pagerList.length
-                ? pagerList[tabIndex]
-                : pagerList[0];
+        selectedPager.value = tabIndex >= 0 && tabIndex < pagerList.length
+            ? pagerList[tabIndex]
+            : pagerList[0];
       } else {
         selectedPager.value = pagerList[0];
       }

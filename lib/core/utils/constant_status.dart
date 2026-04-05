@@ -65,11 +65,12 @@ class ConstantStatus {
 
   static bool isGetUp({required String status}) {
     final normalizedStatus = status.toLowerCase();
-    return normalizedStatus == up.toLowerCase() ;
+    return normalizedStatus == up.toLowerCase();
   }
+
   static bool isUnChanged({required String status}) {
     final normalizedStatus = status.toLowerCase();
-    return normalizedStatus == unChanged.toLowerCase() ;
+    return normalizedStatus == unChanged.toLowerCase();
   }
 
   static bool isGetApprovedStatus({required String status}) {

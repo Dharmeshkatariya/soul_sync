@@ -36,7 +36,7 @@ class CustomSearchBarAndActionControlsWidget extends StatelessWidget {
     var unitWidth = ResponsiveUtil.screenWidth / 100;
     return Container(
       padding: padding ?? EdgeInsets.symmetric(horizontal: unitWidth * 1.5),
-      height: height ?? (( ResponsiveUtil.isWeb) ? 60.h : 40.h),
+      height: height ?? ((ResponsiveUtil.isWeb) ? 60.h : 40.h),
       decoration: BoxDecoration(
         border: Border.all(color: ColorFile.grayDDColor),
         borderRadius: BorderRadius.circular(8.r),

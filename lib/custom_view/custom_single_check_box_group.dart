@@ -42,34 +42,31 @@ class CustomSingleCheckboxGroup<T> extends StatelessWidget {
             borderRadius: BorderRadius.circular(8.r),
             border: Border.all(color: ColorFile.grayDDColor),
           ),
-          child:
-              alignment == GroupAlignment.vertical
-                  ? Column(
-                    children:
-                        values.map((e) {
-                          return _CustomSingleCheckbox<T>(
+          child: alignment == GroupAlignment.vertical
+              ? Column(
+                  children: values.map((e) {
+                    return _CustomSingleCheckbox<T>(
+                      value: e,
+                      isSelected: e == selectedValue,
+                      onChanged: onChanged,
+                      displayName: displayName,
+                    );
+                  }).toList(),
+                )
+              : Row(
+                  children: values
+                      .map(
+                        (e) => Expanded(
+                          child: _CustomSingleCheckbox<T>(
                             value: e,
                             isSelected: e == selectedValue,
                             onChanged: onChanged,
                             displayName: displayName,
-                          );
-                        }).toList(),
-                  )
-                  : Row(
-                    children:
-                        values
-                            .map(
-                              (e) => Expanded(
-                                child: _CustomSingleCheckbox<T>(
-                                  value: e,
-                                  isSelected: e == selectedValue,
-                                  onChanged: onChanged,
-                                  displayName: displayName,
-                                ),
-                              ),
-                            )
-                            .toList(),
-                  ),
+                          ),
+                        ),
+                      )
+                      .toList(),
+                ),
         ),
       ],
     );
@@ -96,10 +93,9 @@ class _CustomSingleCheckbox<T> extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 15.w),
         decoration: BoxDecoration(
-          color:
-              isSelected
-                  ? ColorFile.webThemeColorOpaque5
-                  : ColorFile.transparentColor,
+          color: isSelected
+              ? ColorFile.webThemeColorOpaque5
+              : ColorFile.transparentColor,
           border: const Border(
             left: BorderSide(color: ColorFile.grayDDColor, width: 0.5),
             right: BorderSide(color: ColorFile.grayDDColor, width: 0.5),
@@ -119,10 +115,9 @@ class _CustomSingleCheckbox<T> extends StatelessWidget {
               child: CustomTextView(
                 displayName(value),
                 style: AppTextStyles.regularBlack14.copyWith(
-                  color:
-                      isSelected
-                          ? ColorFile.webThemeColor
-                          : ColorFile.blackColorOpaque70,
+                  color: isSelected
+                      ? ColorFile.webThemeColor
+                      : ColorFile.blackColorOpaque70,
                 ),
               ),
             ),

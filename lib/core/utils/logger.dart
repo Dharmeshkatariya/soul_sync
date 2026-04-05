@@ -14,7 +14,7 @@ class LoggerUtil {
     level: kReleaseMode ? Level.off : Level.debug,
   );
 
-  static Logger get   logger => _logger;
+  static Logger get logger => _logger;
 
   printLog(String title, String log) {
     LoggerUtil.logger.d('("--------$title-------------$log');

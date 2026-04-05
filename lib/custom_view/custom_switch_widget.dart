@@ -28,12 +28,11 @@ class CustomSwitchWidget extends StatelessWidget {
         child: Obx(
           () => CupertinoSwitch(
             value: switchValue.value,
-            onChanged:
-                (enabled)
-                    ? (value) {
-                      onChangedCallBack(value);
-                    }
-                    : null,
+            onChanged: (enabled)
+                ? (value) {
+                    onChangedCallBack(value);
+                  }
+                : null,
             activeColor: activeColor,
           ),
         ),

@@ -53,12 +53,8 @@ class AssetsIcons {
   static const String icUploadFile = '${iconsPath}ic_upload_file.svg';
   static const String icLocation = '${iconsPath}icon_location.svg';
   static const String icCloseIcon = '${iconsPath}ic_close_icon.svg';
-  static const String icBuildingLocation = '${iconsPath}ic_building_location.svg';
-
-
-
-
-
+  static const String icBuildingLocation =
+      '${iconsPath}ic_building_location.svg';
 
   static const String icAddColored = '${iconsPath}icon_add_colored.svg';
   static const String icLocationFill = '${iconsPath}icon_location_fill.svg';

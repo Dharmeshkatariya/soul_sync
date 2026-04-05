@@ -65,96 +65,91 @@ class CustomButton extends StatelessWidget {
     if (!isTextbutton) {
       return Semantics(
         excludeSemantics: true,
-        child:
-            (minimal)
-                ? CustomGestureDetector(
-                  onTap: (isLoading) ? null : onTap,
-                  child: Container(
-                    height: height.h,
-                    width: width,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20.r),
-                      color: bgColor,
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(2.0),
-                      child: SvgPicture.asset(
-                        asset!,
-                        colorFilter: assetColorFilter,
-                      ),
-                    ),
-                  ),
-                )
-                : MaterialButton(
-                  shape: RoundedRectangleBorder(
-                    side: BorderSide(
-                      color:
-                          (hasBorder) ? textColor : ColorFile.transparentColor,
-                    ),
-                    borderRadius: BorderRadius.all(Radius.circular(radius)),
-                  ),
-                  padding: padding,
-                  onPressed: (isLoading) ? null : onTap,
-                  disabledColor: ColorFile.grayDDColor,
+        child: (minimal)
+            ? CustomGestureDetector(
+                onTap: (isLoading) ? null : onTap,
+                child: Container(
                   height: height.h,
-                  minWidth: width,
-                  color: bgColor,
-                  elevation: 0,
-                  child:
-                      (isLoading)
-                          ? Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            mainAxisSize: mainAxisSize,
-                            children: [
-                              SizedBox(
-                                width: 24.w,
-                                height: 24.h,
-                                child: CircularProgressIndicator(
-                                  color: textColor,
-                                ),
-                              ),
-                            ],
-                          )
-                          : Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisSize: mainAxisSize,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              if (asset != null && !isSuffixIcon!)
-                                SvgPicture.asset(
-                                  asset!,
-                                  width: assetSize ?? 24.w,
-                                  height: assetSize ?? 24.w,
-                                  colorFilter: assetColorFilter,
-                                ),
-                              if (asset != null && !isSuffixIcon!)
-                                SizedBox(width: 10.w),
-                              Flexible(
-                                fit: fit,
-                                child: CustomTextView(
-                                  text,
-                                  style:
-                                      textStyle ??
-                                      AppTextStyles.mediumBlack14.copyWith(
-                                        fontSize: textSize.sp,
-                                        color: textColor,
-                                        fontFamily: fontFamily,
-                                      ),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ),
-                              if (asset != null && isSuffixIcon!)
-                                SizedBox(width: 10.w),
-                              if (asset != null && isSuffixIcon!)
-                                SvgPicture.asset(
-                                  asset!,
-                                  width: assetSize ?? 24.w,
-                                  height: assetSize ?? 24.w,
-                                  colorFilter: assetColorFilter,
-                                ),
-                            ],
-                          ),
+                  width: width,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20.r),
+                    color: bgColor,
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(2.0),
+                    child: SvgPicture.asset(
+                      asset!,
+                      colorFilter: assetColorFilter,
+                    ),
+                  ),
                 ),
+              )
+            : MaterialButton(
+                shape: RoundedRectangleBorder(
+                  side: BorderSide(
+                    color: (hasBorder) ? textColor : ColorFile.transparentColor,
+                  ),
+                  borderRadius: BorderRadius.all(Radius.circular(radius)),
+                ),
+                padding: padding,
+                onPressed: (isLoading) ? null : onTap,
+                disabledColor: ColorFile.grayDDColor,
+                height: height.h,
+                minWidth: width,
+                color: bgColor,
+                elevation: 0,
+                child: (isLoading)
+                    ? Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: mainAxisSize,
+                        children: [
+                          SizedBox(
+                            width: 24.w,
+                            height: 24.h,
+                            child: CircularProgressIndicator(color: textColor),
+                          ),
+                        ],
+                      )
+                    : Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisSize: mainAxisSize,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          if (asset != null && !isSuffixIcon!)
+                            SvgPicture.asset(
+                              asset!,
+                              width: assetSize ?? 24.w,
+                              height: assetSize ?? 24.w,
+                              colorFilter: assetColorFilter,
+                            ),
+                          if (asset != null && !isSuffixIcon!)
+                            SizedBox(width: 10.w),
+                          Flexible(
+                            fit: fit,
+                            child: CustomTextView(
+                              text,
+                              style:
+                                  textStyle ??
+                                  AppTextStyles.mediumBlack14.copyWith(
+                                    fontSize: textSize.sp,
+                                    color: textColor,
+                                    fontFamily: fontFamily,
+                                  ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                          if (asset != null && isSuffixIcon!)
+                            SizedBox(width: 10.w),
+                          if (asset != null && isSuffixIcon!)
+                            SvgPicture.asset(
+                              asset!,
+                              width: assetSize ?? 24.w,
+                              height: assetSize ?? 24.w,
+                              colorFilter: assetColorFilter,
+                            ),
+                        ],
+                      ),
+              ),
       );
     } else {
       return TextButton(

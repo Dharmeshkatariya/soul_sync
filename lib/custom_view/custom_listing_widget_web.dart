@@ -105,86 +105,79 @@ class CustomListingWidgetWeb extends StatelessWidget {
         ? const Center(child: CircularProgressIndicatorWidget())
         : mList.isNotEmpty
         ? Column(
-          children: [
-            titles.isNotEmpty
-                ? Container(
-                  margin: isShowBorder! ? margin : EdgeInsets.zero,
-                  constraints: BoxConstraints(minHeight: 36.h),
-                  alignment: Alignment.center,
-                  padding:
-                      isShowBorder!
+            children: [
+              titles.isNotEmpty
+                  ? Container(
+                      margin: isShowBorder! ? margin : EdgeInsets.zero,
+                      constraints: BoxConstraints(minHeight: 36.h),
+                      alignment: Alignment.center,
+                      padding: isShowBorder!
                           ? EdgeInsets.symmetric(
-                            horizontal: ResponsiveUtil.unitWidth * 1.5,
-                            vertical: 6.w,
-                          )
+                              horizontal: ResponsiveUtil.unitWidth * 1.5,
+                              vertical: 6.w,
+                            )
                           : EdgeInsets.zero,
-                  decoration:
-                      listTheme == ListingTheme.primary
+                      decoration: listTheme == ListingTheme.primary
                           ? BoxDecoration(
-                            borderRadius:
-                                isShowBorder!
-                                    ? BorderRadius.circular(8.r)
-                                    : BorderRadius.zero,
+                              borderRadius: isShowBorder!
+                                  ? BorderRadius.circular(8.r)
+                                  : BorderRadius.zero,
 
-                            border:
-                                isShowBorder!
-                                    ? Border.all(color: ColorFile.grayDDColor)
-                                    : Border(
+                              border: isShowBorder!
+                                  ? Border.all(color: ColorFile.grayDDColor)
+                                  : Border(
                                       bottom: BorderSide(
                                         color: ColorFile.grayDDColor,
                                       ),
                                     ),
-                            color: ColorFile.whiteColor,
-                          )
+                              color: ColorFile.whiteColor,
+                            )
                           : BoxDecoration(
-                            border:
-                                isShowBorder!
-                                    ? Border.all(color: ColorFile.grayDDColor)
-                                    : Border(
+                              border: isShowBorder!
+                                  ? Border.all(color: ColorFile.grayDDColor)
+                                  : Border(
                                       bottom: BorderSide(
                                         color: ColorFile.grayDDColor,
                                       ),
                                     ),
-                            color: ColorFile.whiteColor,
-                          ),
-                  child: Padding(
-                    padding:
-                        isShowBorder!
+                              color: ColorFile.whiteColor,
+                            ),
+                      child: Padding(
+                        padding: isShowBorder!
                             ? EdgeInsets.zero
                             : EdgeInsets.symmetric(
-                              horizontal: 25.0,
-                              vertical: 8.w,
-                            ),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: titles.map((e) => e).toList(),
-                    ),
-                  ),
-                )
-                : Container(),
+                                horizontal: 25.0,
+                                vertical: 8.w,
+                              ),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: titles.map((e) => e).toList(),
+                        ),
+                      ),
+                    )
+                  : Container(),
 
-            if (titles.isNotEmpty &&
-                listTheme.name == ListingTheme.primary.name)
-              SizedBox(height: 14.h)
-            else
-              SizedBox(height: 0.h),
-            (isExpand!)
-                ? Expanded(
-                  child: SingleChildScrollView(
-                    physics:
-                        isScrollable!
+              if (titles.isNotEmpty &&
+                  listTheme.name == ListingTheme.primary.name)
+                SizedBox(height: 14.h)
+              else
+                SizedBox(height: 0.h),
+              (isExpand!)
+                  ? Expanded(
+                      child: SingleChildScrollView(
+                        physics: isScrollable!
                             ? const AlwaysScrollableScrollPhysics()
                             : const NeverScrollableScrollPhysics(),
-                    child: listingAndPaginationView(bottomTitlesVal),
-                  ),
-                )
-                : listingAndPaginationView(bottomTitlesVal),
-          ],
-        )
+                        child: listingAndPaginationView(bottomTitlesVal),
+                      ),
+                    )
+                  : listingAndPaginationView(bottomTitlesVal),
+            ],
+          )
         : CustomEmptyDataView(
-          moduleNameTitle: moduleName,
-          isSearchEmptyData: isSearchEmptyData,
-        );
+            moduleNameTitle: moduleName,
+            isSearchEmptyData: isSearchEmptyData,
+          );
   }
 
   Widget listingAndPaginationView(List<Widget> bottomTitlesVal) {
@@ -192,10 +185,9 @@ class CustomListingWidgetWeb extends StatelessWidget {
       children: [
         ListView.separated(
           shrinkWrap: true,
-          physics:
-              isScrollable!
-                  ? const AlwaysScrollableScrollPhysics()
-                  : const NeverScrollableScrollPhysics(),
+          physics: isScrollable!
+              ? const AlwaysScrollableScrollPhysics()
+              : const NeverScrollableScrollPhysics(),
           itemBuilder: (context, index) {
             var mData = mList[index];
             return listingItem(mData, index);
@@ -203,15 +195,15 @@ class CustomListingWidgetWeb extends StatelessWidget {
           separatorBuilder: (context, index) {
             return (isShowBorder!)
                 ? SizedBox(
-                  height: listTheme == ListingTheme.secondary ? 0.h : 10.h,
-                )
+                    height: listTheme == ListingTheme.secondary ? 0.h : 10.h,
+                  )
                 : Container(
-                  width: Get.width,
-                  height: 1,
-                  decoration: BoxDecoration(
-                    color: ColorFile.webBorderGrayColor,
-                  ),
-                );
+                    width: Get.width,
+                    height: 1,
+                    decoration: BoxDecoration(
+                      color: ColorFile.webBorderGrayColor,
+                    ),
+                  );
           },
           itemCount: mList.length,
         ),
@@ -222,47 +214,37 @@ class CustomListingWidgetWeb extends StatelessWidget {
             margin: isShowBorder! ? margin : EdgeInsets.zero,
             constraints: BoxConstraints(minHeight: 36.h),
             alignment: Alignment.center,
-            padding:
-                isShowBorder!
-                    ? EdgeInsets.symmetric(
-                      horizontal: ResponsiveUtil.unitWidth * 1.5,
-                      vertical: 6.w,
-                    )
-                    : EdgeInsets.zero,
-            decoration:
-                listTheme.name == ListingTheme.primary.name
-                    ? BoxDecoration(
-                      borderRadius:
-                          isShowBorder!
-                              ? BorderRadius.circular(8.r)
-                              : BorderRadius.zero,
+            padding: isShowBorder!
+                ? EdgeInsets.symmetric(
+                    horizontal: ResponsiveUtil.unitWidth * 1.5,
+                    vertical: 6.w,
+                  )
+                : EdgeInsets.zero,
+            decoration: listTheme.name == ListingTheme.primary.name
+                ? BoxDecoration(
+                    borderRadius: isShowBorder!
+                        ? BorderRadius.circular(8.r)
+                        : BorderRadius.zero,
 
-                      border:
-                          isShowBorder!
-                              ? Border.all(color: ColorFile.grayDDColor)
-                              : Border(
-                                bottom: BorderSide(
-                                  color: ColorFile.grayDDColor,
-                                ),
-                              ),
-                      color: ColorFile.whiteColor,
-                    )
-                    : BoxDecoration(
-                      border:
-                          isShowBorder!
-                              ? Border.all(color: ColorFile.grayDDColor)
-                              : Border(
-                                bottom: BorderSide(
-                                  color: ColorFile.grayDDColor,
-                                ),
-                              ),
-                      color: ColorFile.whiteColor,
-                    ),
+                    border: isShowBorder!
+                        ? Border.all(color: ColorFile.grayDDColor)
+                        : Border(
+                            bottom: BorderSide(color: ColorFile.grayDDColor),
+                          ),
+                    color: ColorFile.whiteColor,
+                  )
+                : BoxDecoration(
+                    border: isShowBorder!
+                        ? Border.all(color: ColorFile.grayDDColor)
+                        : Border(
+                            bottom: BorderSide(color: ColorFile.grayDDColor),
+                          ),
+                    color: ColorFile.whiteColor,
+                  ),
             child: Padding(
-              padding:
-                  isShowBorder!
-                      ? EdgeInsets.zero
-                      : EdgeInsets.symmetric(horizontal: 25.0, vertical: 8.w),
+              padding: isShowBorder!
+                  ? EdgeInsets.zero
+                  : EdgeInsets.symmetric(horizontal: 25.0, vertical: 8.w),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: bottomTitlesVal.map((e) => e).toList(),
@@ -356,80 +338,71 @@ class CustomListingItem extends StatelessWidget {
 
     return listTheme == ListingTheme.primary
         ? Container(
-          margin: isShowBorder! ? margin : EdgeInsets.zero,
-          padding:
-              isShowBorder
-                  ? EdgeInsets.symmetric(
-                    horizontal: horizontalPadding?.w ?? ResponsiveUtil.unitWidth * 1.5,
+            margin: isShowBorder! ? margin : EdgeInsets.zero,
+            padding: isShowBorder
+                ? EdgeInsets.symmetric(
+                    horizontal:
+                        horizontalPadding?.w ?? ResponsiveUtil.unitWidth * 1.5,
                     vertical: vertPadding!.w,
                   )
-                  : EdgeInsets.zero,
-          decoration:
-              isShowBorder
-                  ? BoxDecoration(
+                : EdgeInsets.zero,
+            decoration: isShowBorder
+                ? BoxDecoration(
                     borderRadius: BorderRadius.circular(8.r),
                     border: Border.all(color: ColorFile.grayDDColor),
                     color: ColorFile.whiteColor,
                   )
-                  : const BoxDecoration(),
-          child: Padding(
-            padding:
-                isShowBorder
-                    ? EdgeInsets.zero
-                    : EdgeInsets.symmetric(horizontal: 25.0, vertical: 8.w),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  crossAxisAlignment:
-                      (isShowBorder)
-                          ? CrossAxisAlignment.center
-                          : CrossAxisAlignment.start,
-                  children: children,
-                ),
-                if (onTapMoreWidget != null) onTapMoreWidget!,
-              ],
+                : const BoxDecoration(),
+            child: Padding(
+              padding: isShowBorder
+                  ? EdgeInsets.zero
+                  : EdgeInsets.symmetric(horizontal: 25.0, vertical: 8.w),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    crossAxisAlignment: (isShowBorder)
+                        ? CrossAxisAlignment.center
+                        : CrossAxisAlignment.start,
+                    children: children,
+                  ),
+                  if (onTapMoreWidget != null) onTapMoreWidget!,
+                ],
+              ),
             ),
-          ),
-        )
+          )
         : Container(
-          // margin: isShowBorder! ? margin : EdgeInsets.zero,
-          padding:
-              isShowBorder!
-                  ? EdgeInsets.symmetric(
+            // margin: isShowBorder! ? margin : EdgeInsets.zero,
+            padding: isShowBorder!
+                ? EdgeInsets.symmetric(
                     horizontal: ResponsiveUtil.unitWidth * 1.5,
                     vertical: vertPadding!.w,
                   )
-                  : EdgeInsets.zero,
-          decoration:
-              isShowBorder
-                  ? BoxDecoration(
+                : EdgeInsets.zero,
+            decoration: isShowBorder
+                ? BoxDecoration(
                     // borderRadius: BorderRadius.circular(8.r),
                     border: Border.all(color: ColorFile.grayDDColor),
                     color: ColorFile.whiteColor,
                   )
-                  : const BoxDecoration(),
-          child: Padding(
-            padding:
-                isShowBorder
-                    ? EdgeInsets.zero
-                    : EdgeInsets.symmetric(horizontal: 25.0, vertical: 8.w),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  crossAxisAlignment:
-                      (isShowBorder)
-                          ? CrossAxisAlignment.center
-                          : CrossAxisAlignment.start,
-                  children: children,
-                ),
-                if (onTapMoreWidget != null) onTapMoreWidget!,
-              ],
+                : const BoxDecoration(),
+            child: Padding(
+              padding: isShowBorder
+                  ? EdgeInsets.zero
+                  : EdgeInsets.symmetric(horizontal: 25.0, vertical: 8.w),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    crossAxisAlignment: (isShowBorder)
+                        ? CrossAxisAlignment.center
+                        : CrossAxisAlignment.start,
+                    children: children,
+                  ),
+                  if (onTapMoreWidget != null) onTapMoreWidget!,
+                ],
+              ),
             ),
-          ),
-        );
+          );
   }
 }
-
-

@@ -9,5 +9,3 @@ AppLocale get appLocale {
     return Get.put(AppLocale.initialize());
   }
 }
-
-

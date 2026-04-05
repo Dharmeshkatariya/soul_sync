@@ -29,8 +29,10 @@ mixin AdditionalOpeartionMixin on PlaylistAlbumScreenControllerBase {
   @override
   void onSearch(String value, String? tag) {
     final songlist = tempListContainer
-        .where((element) =>
-            element.title.toLowerCase().contains(value.toLowerCase()))
+        .where(
+          (element) =>
+              element.title.toLowerCase().contains(value.toLowerCase()),
+        )
         .toList();
     songList.value = songlist;
   }
@@ -48,7 +50,9 @@ mixin AdditionalOpeartionMixin on PlaylistAlbumScreenControllerBase {
 
   @override
   void startAdditionalOperation(
-      SortWidgetController sortWidgetController_, OperationMode mode) {
+    SortWidgetController sortWidgetController_,
+    OperationMode mode,
+  ) {
     sortWidgetController = sortWidgetController_;
     additionalOperationTempList.value = songList.toList();
     if (mode == OperationMode.addToPlaylist || mode == OperationMode.delete) {
@@ -60,8 +64,8 @@ mixin AdditionalOpeartionMixin on PlaylistAlbumScreenControllerBase {
   }
 
   void checkIfAllSelected() {
-    sortWidgetController!.isAllSelected.value =
-        !additionalOperationTempMap.containsValue(false);
+    sortWidgetController!.isAllSelected.value = !additionalOperationTempMap
+        .containsValue(false);
   }
 
   @override

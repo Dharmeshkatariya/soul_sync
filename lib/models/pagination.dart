@@ -1,4 +1,4 @@
-class Pagination{
+class Pagination {
   int page = 1;
   int perPage = 10;
   int total = 0;
@@ -6,7 +6,7 @@ class Pagination{
 
   Pagination();
 
-  Pagination.fromJson(Map<String, dynamic> json){
+  Pagination.fromJson(Map<String, dynamic> json) {
     if (json['page'] is String) {
       page = int.tryParse(json['page']) ?? 1;
     } else {
@@ -21,7 +21,6 @@ class Pagination{
     total = json['total'] ?? 0;
     more = json['more'] ?? false;
   }
-
 
   Map<String, dynamic> toJson() {
     final _data = <String, dynamic>{};

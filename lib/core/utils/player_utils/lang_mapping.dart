@@ -48,5 +48,5 @@ const langMap = {
   "ur": "Urdu",
   "vi": "Vietnamese",
   "zh-CN": "Chinese",
-  "zh-TW": "Chinese(Trad.)"
+  "zh-TW": "Chinese(Trad.)",
 };

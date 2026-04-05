@@ -19,41 +19,62 @@ class CustomHeaderView extends StatelessWidget {
   final Function(PagerModel pagerModel)? onPagerTap;
   final bool? isShowCount;
   final double? padding;
-  const CustomHeaderView({required this.title, this.pagerList, this.selectedPager, this.onPagerTap, this.isShowCount = true, this.padding, super.key});
+  const CustomHeaderView({
+    required this.title,
+    this.pagerList,
+    this.selectedPager,
+    this.onPagerTap,
+    this.isShowCount = true,
+    this.padding,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if(title.isNotEmpty) ...[
-        SizedBox(height: 24.w),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: padding ?? ResponsiveUtil.unitWidth * ConstantsFile.horizontalPaddingRatio),
-          child: CustomTextView(title, style: AppTextStyles.semiBoldBlack24,),
-        ),
-      ],
-        (pagerList != null && pagerList!.isNotEmpty)
-        ? Obx(
-              () => Container(
-            decoration: const BoxDecoration(
-              border:
-              Border(bottom: BorderSide(color: ColorFile.webBorderGrayColor)),
+        if (title.isNotEmpty) ...[
+          SizedBox(height: 24.w),
+          Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal:
+                  padding ??
+                  ResponsiveUtil.unitWidth *
+                      ConstantsFile.horizontalPaddingRatio,
             ),
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: padding ?? ResponsiveUtil.unitWidth * ConstantsFile.horizontalPaddingRatio),
-              child: CustomHorizontalPager(
-                mList: pagerList!,
-                selectedItem: selectedPager!.value,
-                onTap: (pagerModel) {
-                  onPagerTap!(pagerModel);
-                },
-                isShowCount: isShowCount ?? true,
-              ),
-            ),
+            child: CustomTextView(title, style: AppTextStyles.semiBoldBlack24),
           ),
-        )
-        :  ( ResponsiveUtil.isWeb) ? SizedBox(height: 20.w) : SizedBox(height: 12.w),
+        ],
+        (pagerList != null && pagerList!.isNotEmpty)
+            ? Obx(
+                () => Container(
+                  decoration: const BoxDecoration(
+                    border: Border(
+                      bottom: BorderSide(color: ColorFile.webBorderGrayColor),
+                    ),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal:
+                          padding ??
+                          ResponsiveUtil.unitWidth *
+                              ConstantsFile.horizontalPaddingRatio,
+                    ),
+                    child: CustomHorizontalPager(
+                      mList: pagerList!,
+                      selectedItem: selectedPager!.value,
+                      onTap: (pagerModel) {
+                        onPagerTap!(pagerModel);
+                      },
+                      isShowCount: isShowCount ?? true,
+                    ),
+                  ),
+                ),
+              )
+            : (ResponsiveUtil.isWeb)
+            ? SizedBox(height: 20.w)
+            : SizedBox(height: 12.w),
       ],
     );
   }

@@ -25,21 +25,20 @@ class ValidationMessageWidget extends StatelessWidget {
           transitionBuilder: (Widget child, Animation<double> animation) {
             return FadeTransition(opacity: animation, child: child);
           },
-          child:
-              (formValidationMessage.value.isNotEmpty)
-                  ? Container(
-                    width: Get.width,
-                    padding: EdgeInsets.only(left: 25.w),
-                    key: ValueKey<String>(formValidationMessage.value),
-                    color: ColorFile.errorColor,
-                    child: CustomTextView(
-                      formValidationMessage.value,
-                      style: AppTextStyles.mediumBlack14.copyWith(
-                        color: ColorFile.whiteColor,
-                      ),
+          child: (formValidationMessage.value.isNotEmpty)
+              ? Container(
+                  width: Get.width,
+                  padding: EdgeInsets.only(left: 25.w),
+                  key: ValueKey<String>(formValidationMessage.value),
+                  color: ColorFile.errorColor,
+                  child: CustomTextView(
+                    formValidationMessage.value,
+                    style: AppTextStyles.mediumBlack14.copyWith(
+                      color: ColorFile.whiteColor,
                     ),
-                  )
-                  : Container(),
+                  ),
+                )
+              : Container(),
         ),
       ),
     );
@@ -59,21 +58,20 @@ class SuccessMessageWidget extends StatelessWidget {
         transitionBuilder: (Widget child, Animation<double> animation) {
           return FadeTransition(opacity: animation, child: child);
         },
-        child:
-            (successMessage.value.isNotEmpty)
-                ? Container(
-                  width: Get.width,
-                  padding: EdgeInsets.only(left: 25.w),
-                  key: ValueKey<String>(successMessage.value),
-                  color: ColorFile.greenColor,
-                  child: CustomTextView(
-                    successMessage.value,
-                    style: AppTextStyles.mediumBlack14.copyWith(
-                      color: ColorFile.whiteColor,
-                    ),
+        child: (successMessage.value.isNotEmpty)
+            ? Container(
+                width: Get.width,
+                padding: EdgeInsets.only(left: 25.w),
+                key: ValueKey<String>(successMessage.value),
+                color: ColorFile.greenColor,
+                child: CustomTextView(
+                  successMessage.value,
+                  style: AppTextStyles.mediumBlack14.copyWith(
+                    color: ColorFile.whiteColor,
                   ),
-                )
-                : Container(),
+                ),
+              )
+            : Container(),
       ),
     );
   }
@@ -88,26 +86,29 @@ class ErrorTextWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return (errorText.isNotEmpty)
         ? Container(
-          padding: EdgeInsets.symmetric(vertical: 4.h, horizontal: 12.w),
-          width: Get.width,
-          decoration: BoxDecoration(
-            color: ColorFile.errorColor,
-            border: Border(top: BorderSide(color: ColorFile.errorColor)),
-            borderRadius: BorderRadius.only(
-              topLeft: (errorText.isEmpty) ? Radius.circular(6.r) : Radius.zero,
-              topRight:
-                  (errorText.isEmpty) ? Radius.circular(6.r) : Radius.zero,
-              bottomLeft: Radius.circular(6.r),
-              bottomRight: Radius.circular(6.r),
+            padding: EdgeInsets.symmetric(vertical: 4.h, horizontal: 12.w),
+            width: Get.width,
+            decoration: BoxDecoration(
+              color: ColorFile.errorColor,
+              border: Border(top: BorderSide(color: ColorFile.errorColor)),
+              borderRadius: BorderRadius.only(
+                topLeft: (errorText.isEmpty)
+                    ? Radius.circular(6.r)
+                    : Radius.zero,
+                topRight: (errorText.isEmpty)
+                    ? Radius.circular(6.r)
+                    : Radius.zero,
+                bottomLeft: Radius.circular(6.r),
+                bottomRight: Radius.circular(6.r),
+              ),
             ),
-          ),
-          child: CustomTextView(
-            errorText,
-            style: AppTextStyles.regularBlack12.copyWith(
-              color: ColorFile.whiteColor,
+            child: CustomTextView(
+              errorText,
+              style: AppTextStyles.regularBlack12.copyWith(
+                color: ColorFile.whiteColor,
+              ),
             ),
-          ),
-        )
+          )
         : Container();
   }
 }

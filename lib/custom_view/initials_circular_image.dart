@@ -8,7 +8,13 @@ import 'package:soul_sync/core/utils/common.dart';
 import 'package:soul_sync/custom_view/custom_text_view.dart';
 
 class InitialsCircularImage extends StatelessWidget {
-  const InitialsCircularImage(this.text, {super.key, this.width = 40, this.height = 40, this.textSize = 14});
+  const InitialsCircularImage(
+    this.text, {
+    super.key,
+    this.width = 40,
+    this.height = 40,
+    this.textSize = 14,
+  });
   final String text;
   final double textSize;
   final double width;
@@ -29,7 +35,6 @@ class InitialsCircularImage extends StatelessWidget {
           style: AppTextStyles.semiBoldBlack14.copyWith(fontSize: textSize),
         ),
       ),
-
     );
   }
 }

@@ -17,8 +17,9 @@ class ProceedButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: context.titleLarge!.color,
-          borderRadius: BorderRadius.circular(10)),
+        color: context.titleLarge!.color,
+        borderRadius: BorderRadius.circular(10),
+      ),
       child: InkWell(
         onTap: onPressed,
         child: Padding(
@@ -46,7 +47,7 @@ class CancelButton extends StatelessWidget {
       ),
       onTap: () {
         Navigator.of(context).pop();
-         if (onPressed != null) {
+        if (onPressed != null) {
           onPressed!();
         }
       },

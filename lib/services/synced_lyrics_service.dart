@@ -6,7 +6,9 @@ import '../core/utils/player_utils/helper.dart';
 
 class SyncedLyricsService {
   static Future<Map<String, dynamic>?> getSyncedLyrics(
-      MediaItem song, int durInSec) async {
+    MediaItem song,
+    int durInSec,
+  ) async {
     final lyricsBox = await Hive.openBox("lyrics");
     // check if lyrics available in local database
     if (lyricsBox.containsKey(song.id)) {
@@ -22,7 +24,7 @@ class SyncedLyricsService {
         printINFO("Synced Available");
         final lyricsData = {
           "synced": response["syncedLyrics"],
-          "plainLyrics": response["plainLyrics"]
+          "plainLyrics": response["plainLyrics"],
         };
         await lyricsBox.put(song.id, lyricsData);
         return lyricsData;

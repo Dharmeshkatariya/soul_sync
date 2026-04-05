@@ -126,10 +126,7 @@ class Body extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                CustomTextView(
-                  "nomatch".tr,
-                  style: context.titleMedium  ,
-                ),
+                CustomTextView("nomatch".tr, style: context.titleMedium),
                 CustomTextView("'${searchResScrController.queryString.value}'"),
               ],
             ),

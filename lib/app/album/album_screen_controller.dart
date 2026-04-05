@@ -11,13 +11,18 @@ import '../Library/library_controller.dart';
 import '../home/home_screen_controller.dart';
 import '../../../mixins/additional_opeartion_mixin.dart';
 import 'package:soul_sync/base_class/playlist_album_screen_con_base.dart';
+
 ///AlbumScreenController handles album screen
 ///
 ///album title,image,songs
 class AlbumScreenController extends PlaylistAlbumScreenControllerBase
     with AdditionalOpeartionMixin, GetSingleTickerProviderStateMixin {
-  final album =
-      Album(title: "", browseId: "", thumbnailUrl: "", artists: []).obs;
+  final album = Album(
+    title: "",
+    browseId: "",
+    thumbnailUrl: "",
+    artists: [],
+  ).obs;
   final isOfflineAlbum = false.obs;
 
   // Title animation
@@ -29,7 +34,6 @@ class AlbumScreenController extends PlaylistAlbumScreenControllerBase
   Animation<double> get scaleAnimation => _scaleAnimation;
   Animation<double> get heightAnimation => _heightAnimation;
 
-
   @override
   void onInit() {
     super.onInit();
@@ -38,16 +42,21 @@ class AlbumScreenController extends PlaylistAlbumScreenControllerBase
       duration: const Duration(milliseconds: 400),
     );
 
-    _scaleAnimation = Tween<double>(begin: 0, end: 1.0).animate(animationController);
+    _scaleAnimation = Tween<double>(
+      begin: 0,
+      end: 1.0,
+    ).animate(animationController);
 
     _heightAnimation = Tween<double>(begin: 10.0, end: 90.0).animate(
-        CurvedAnimation(
-            parent: animationController, curve: Curves.easeOutBack));
+      CurvedAnimation(parent: animationController, curve: Curves.easeOutBack),
+    );
 
     final args = Get.arguments as (Album?, String);
     fetchAlbumDetails(args.$1, args.$2);
-    Future.delayed(const Duration(milliseconds: 200),
-        () => Get.find<HomeScreenController>().whenHomeScreenOnTop());
+    Future.delayed(
+      const Duration(milliseconds: 200),
+      () => Get.find<HomeScreenController>().whenHomeScreenOnTop(),
+    );
   }
 
   @override
@@ -60,8 +69,9 @@ class AlbumScreenController extends PlaylistAlbumScreenControllerBase
       // Check if the album is offline
       if (!await checkIfAddedToLibrary(albumId)) {
         // Fetch album details online
-        final content =
-            await musicServices.getPlaylistOrAlbumSongs(albumId: albumId);
+        final content = await musicServices.getPlaylistOrAlbumSongs(
+          albumId: albumId,
+        );
         content['browseId'] = albumId;
         album.value = Album.fromJson(content);
         animationController.forward();

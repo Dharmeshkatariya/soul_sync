@@ -31,7 +31,7 @@ class Player extends StatelessWidget {
       /// SlidingUpPanel is used to create a panel that can slide up and down
       /// It is used to show the current queue panel in mobile
       body: Obx(
-            () => SlidingUpPanel(
+        () => SlidingUpPanel(
           boxShadow: const [],
           minHeight: settingsScreenController.playerUi.value == 0
               ? 65 + Get.mediaQuery.padding.bottom
@@ -54,20 +54,22 @@ class Player extends StatelessWidget {
               }
             },
             child: Container(
-                color: Theme.of(context).primaryColor,
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 65,
-                      child: Center(
-                          child: Icon(
-                            color: context.titleMedium  !.color,
-                            Icons.keyboard_arrow_up,
-                            size: 40,
-                          )),
+              color: Theme.of(context).primaryColor,
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 65,
+                    child: Center(
+                      child: Icon(
+                        color: context.titleMedium!.color,
+                        Icons.keyboard_arrow_up,
+                        size: 40,
+                      ),
                     ),
-                  ],
-                )),
+                  ),
+                ],
+              ),
+            ),
           ),
 
           /// Panel for queue
@@ -93,14 +95,19 @@ class Player extends StatelessWidget {
                       filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
                       child: Container(
                         padding: const EdgeInsets.only(
-                            top: 15, bottom: 10, left: 10, right: 10),
+                          top: 15,
+                          bottom: 10,
+                          left: 10,
+                          right: 10,
+                        ),
                         decoration: BoxDecoration(
-                            boxShadow: const [
-                              BoxShadow(blurRadius: 5, color: Colors.black54)
-                            ],
-                            color: Theme.of(context)
-                                .primaryColor
-                                .withOpacity(0.5)),
+                          boxShadow: const [
+                            BoxShadow(blurRadius: 5, color: Colors.black54),
+                          ],
+                          color: Theme.of(
+                            context,
+                          ).primaryColor.withOpacity(0.5),
+                        ),
                         height: 60 + Get.mediaQuery.padding.bottom,
                         child: Align(
                           alignment: Alignment.topCenter,
@@ -109,16 +116,14 @@ class Player extends StatelessWidget {
                             children: [
                               /// number of songs in queue
                               Obx(
-                                    () => CustomTextView(
+                                () => CustomTextView(
                                   "${playerController.currentQueue.length} ${"songs".tr}",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .titleSmall!
+                                  style: Theme.of(context).textTheme.titleSmall!
                                       .copyWith(
-                                      color: Theme.of(context)
-                                          .textTheme
-                                          .titleMedium!
-                                          .color),
+                                        color: Theme.of(
+                                          context,
+                                        ).textTheme.titleMedium!.color,
+                                      ),
                                 ),
                               ),
 
@@ -128,18 +133,23 @@ class Player extends StatelessWidget {
                                   playerController.toggleQueueLoopMode();
                                 },
                                 child: Obx(
-                                      () => Container(
+                                  () => Container(
                                     height: 30,
                                     padding: const EdgeInsets.symmetric(
-                                        horizontal: 15),
+                                      horizontal: 15,
+                                    ),
                                     decoration: BoxDecoration(
-                                      color: playerController
-                                          .isQueueLoopModeEnabled.isFalse
+                                      color:
+                                          playerController
+                                              .isQueueLoopModeEnabled
+                                              .isFalse
                                           ? Colors.white24
                                           : Colors.white.withOpacity(0.8),
                                       borderRadius: BorderRadius.circular(20),
                                     ),
-                                    child: Center(child: CustomTextView("queueLoop".tr)),
+                                    child: Center(
+                                      child: CustomTextView("queueLoop".tr),
+                                    ),
                                   ),
                                 ),
                               ),
@@ -148,11 +158,15 @@ class Player extends StatelessWidget {
                               InkWell(
                                 onTap: () {
                                   if (playerController
-                                      .isShuffleModeEnabled.isTrue) {
+                                      .isShuffleModeEnabled
+                                      .isTrue) {
                                     ScaffoldMessenger.of(context).showSnackBar(
-                                        snackbar(context,
-                                            "queueShufflingDeniedMsg".tr,
-                                            size: SanckBarSize.BIG));
+                                      snackbar(
+                                        context,
+                                        "queueShufflingDeniedMsg".tr,
+                                        size: SanckBarSize.BIG,
+                                      ),
+                                    );
                                     return;
                                   }
                                   playerController.shuffleQueue();
@@ -160,14 +174,18 @@ class Player extends StatelessWidget {
                                 child: Container(
                                   height: 30,
                                   padding: const EdgeInsets.symmetric(
-                                      horizontal: 15),
+                                    horizontal: 15,
+                                  ),
                                   decoration: BoxDecoration(
                                     color: Colors.white.withOpacity(0.8),
                                     borderRadius: BorderRadius.circular(20),
                                   ),
                                   child: const Center(
-                                      child: Icon(Icons.shuffle,
-                                          color: Colors.black)),
+                                    child: Icon(
+                                      Icons.shuffle,
+                                      color: Colors.black,
+                                    ),
+                                  ),
                                 ),
                               ),
 
@@ -179,14 +197,18 @@ class Player extends StatelessWidget {
                                 child: Container(
                                   height: 30,
                                   padding: const EdgeInsets.symmetric(
-                                      horizontal: 15),
+                                    horizontal: 15,
+                                  ),
                                   decoration: BoxDecoration(
                                     color: Colors.white.withOpacity(0.8),
                                     borderRadius: BorderRadius.circular(20),
                                   ),
                                   child: const Center(
-                                      child: Icon(Icons.playlist_remove,
-                                          color: Colors.black)),
+                                    child: Icon(
+                                      Icons.playlist_remove,
+                                      color: Colors.black,
+                                    ),
+                                  ),
                                 ),
                               ),
                             ],

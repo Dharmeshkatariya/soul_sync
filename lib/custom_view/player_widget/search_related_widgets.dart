@@ -25,31 +25,33 @@ class ResultWidget extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(0.0),
           child: SingleChildScrollView(
-            padding:
-                EdgeInsets.only(bottom: 200, top: isv2Used ? 0 : topPadding),
+            padding: EdgeInsets.only(
+              bottom: 200,
+              top: isv2Used ? 0 : topPadding,
+            ),
             child: searchResScrController.isResultContentFetced.value
-                ? Column(children: [
-                    if (!isv2Used)
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: CustomTextView(
-                          "searchRes".tr,
-                          style: context.titleLarge,
+                ? Column(
+                    children: [
+                      if (!isv2Used)
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: CustomTextView(
+                            "searchRes".tr,
+                            style: context.titleLarge,
+                          ),
                         ),
-                      ),
-                    if (!isv2Used)
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: CustomTextView(
-                          "${"for1".tr} \"${searchResScrController.queryString.value}\"",
-                          style: context.titleMedium  ,
+                      if (!isv2Used)
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: CustomTextView(
+                            "${"for1".tr} \"${searchResScrController.queryString.value}\"",
+                            style: context.titleMedium,
+                          ),
                         ),
-                      ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    ...generateWidgetList(searchResScrController),
-                  ])
+                      const SizedBox(height: 10),
+                      ...generateWidgetList(searchResScrController),
+                    ],
+                  )
                 : const SizedBox.shrink(),
           ),
         ),
@@ -58,22 +60,29 @@ class ResultWidget extends StatelessWidget {
   }
 
   List<Widget> generateWidgetList(
-      SearchResultScreenController searchResScrController) {
+    SearchResultScreenController searchResScrController,
+  ) {
     List<Widget> list = [];
     for (dynamic item in searchResScrController.resultContent.entries) {
       if (item.key == "Songs" || item.key == "Videos") {
-        list.add(SeparateTabItemWidget(
-          items: List<MediaItem>.from(item.value),
-          title: item.key,
-          isCompleteList: false,
-        ));
+        list.add(
+          SeparateTabItemWidget(
+            items: List<MediaItem>.from(item.value),
+            title: item.key,
+            isCompleteList: false,
+          ),
+        );
       } else if (item.key == "Albums") {
-        list.add(ContentListWidget(
-          content: AlbumContent(
-              title: item.key, albumList: List<Album>.from(item.value)),
-          isHomeContent: false,
-        ));
-      } 
+        list.add(
+          ContentListWidget(
+            content: AlbumContent(
+              title: item.key,
+              albumList: List<Album>.from(item.value),
+            ),
+            isHomeContent: false,
+          ),
+        );
+      }
       // else if (item.key.contains("playlist")) {
       //   list.add(ContentListWidget(
       //     content: PlaylistContent(
@@ -82,13 +91,15 @@ class ResultWidget extends StatelessWidget {
       //     ),
       //     isHomeContent: false,
       //   ));
-      // } 
+      // }
       else if (item.key.contains("Artist")) {
-        list.add(SeparateTabItemWidget(
-          items: List<Artist>.from(item.value),
-          title: item.key,
-          isCompleteList: false,
-        ));
+        list.add(
+          SeparateTabItemWidget(
+            items: List<Artist>.from(item.value),
+            title: item.key,
+            isCompleteList: false,
+          ),
+        );
       }
     }
 

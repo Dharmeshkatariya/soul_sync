@@ -19,99 +19,106 @@ class LinkPiped extends StatelessWidget {
   Widget build(BuildContext context) {
     final pipedLinkedController = Get.put(PipedLinkedController());
     return CommonDialog(
-        child: Obx(() => Container(
-              height: pipedLinkedController.selectedInst.value == "custom"
-                  ? 400
-                  : 365,
-              padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 30),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  CustomTextView(
-                    "Piped".tr,
-                    style: context.titleLarge,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 15.0, bottom: 10),
-                    child: Obx(() => DropdownButton(
-                        underline: const SizedBox.shrink(),
-                        value: pipedLinkedController.selectedInst.value,
-                        items: pipedLinkedController.pipedInstList
-                            .map(
-                              (element) => DropdownMenuItem(
-                                  value: element.apiUrl,
-                                  child: CustomTextView(element.name)),
-                            )
-                            .toList(),
-                        onChanged: (val) {
-                          pipedLinkedController.errorText.value = "";
-                          pipedLinkedController.selectedInst.value =
-                              val as String;
-                        })),
-                  ),
-                  Obx(() => pipedLinkedController.selectedInst.value == "custom"
-                      ? ModifiedTextField(
-                          controller:
-                              pipedLinkedController.instApiUrlInputController,
-                          cursorColor:
-                              context.titleSmall!.color,
-                          decoration:
-                              InputDecoration(hintText: "hintApiUrl".tr))
-                      : const SizedBox.shrink()),
-                  ModifiedTextField(
-                      controller: pipedLinkedController.usernameInputController,
-                      cursorColor:
-                          context.titleSmall!.color,
-                      decoration: InputDecoration(hintText: "username".tr)),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  Obx(() => ModifiedTextField(
-                        controller:
-                            pipedLinkedController.passwordInputController,
-                        cursorColor:
-                            context.titleSmall!.color,
-                        decoration: InputDecoration(
-                          hintText: "password".tr,
-                          suffixIcon: IconButton(
-                            color:
-                                context.titleSmall!.color,
-                            icon: pipedLinkedController.passwordVisible.value
-                                ? const Icon(Icons.visibility_off)
-                                : const Icon(Icons.visibility),
-                            onPressed: () => pipedLinkedController
-                                    .passwordVisible.value =
-                                !pipedLinkedController.passwordVisible.value,
+      child: Obx(
+        () => Container(
+          height: pipedLinkedController.selectedInst.value == "custom"
+              ? 400
+              : 365,
+          padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 30),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              CustomTextView("Piped".tr, style: context.titleLarge),
+              Padding(
+                padding: const EdgeInsets.only(top: 15.0, bottom: 10),
+                child: Obx(
+                  () => DropdownButton(
+                    underline: const SizedBox.shrink(),
+                    value: pipedLinkedController.selectedInst.value,
+                    items: pipedLinkedController.pipedInstList
+                        .map(
+                          (element) => DropdownMenuItem(
+                            value: element.apiUrl,
+                            child: CustomTextView(element.name),
                           ),
-                        ),
-                        obscureText:
-                            !pipedLinkedController.passwordVisible.value,
-                      )),
-                  Expanded(
-                      child: Obx(() => Center(
-                              child: CustomTextView(
-                            pipedLinkedController.errorText.value,
-                            textAlign: TextAlign.center,
-                          )))),
-                  Container(
-                      decoration: BoxDecoration(
-                          color: context.titleLarge!.color,
-                          borderRadius: BorderRadius.circular(10)),
-                      child: InkWell(
-                        onTap: pipedLinkedController.link,
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 20.0, vertical: 10),
-                          child: CustomTextView(
-                            "link".tr,
-                            style:
-                                TextStyle(color: Theme.of(context).canvasColor),
-                          ),
-                        ),
-                      )),
-                ],
+                        )
+                        .toList(),
+                    onChanged: (val) {
+                      pipedLinkedController.errorText.value = "";
+                      pipedLinkedController.selectedInst.value = val as String;
+                    },
+                  ),
+                ),
               ),
-            )));
+              Obx(
+                () => pipedLinkedController.selectedInst.value == "custom"
+                    ? ModifiedTextField(
+                        controller:
+                            pipedLinkedController.instApiUrlInputController,
+                        cursorColor: context.titleSmall!.color,
+                        decoration: InputDecoration(hintText: "hintApiUrl".tr),
+                      )
+                    : const SizedBox.shrink(),
+              ),
+              ModifiedTextField(
+                controller: pipedLinkedController.usernameInputController,
+                cursorColor: context.titleSmall!.color,
+                decoration: InputDecoration(hintText: "username".tr),
+              ),
+              const SizedBox(height: 15),
+              Obx(
+                () => ModifiedTextField(
+                  controller: pipedLinkedController.passwordInputController,
+                  cursorColor: context.titleSmall!.color,
+                  decoration: InputDecoration(
+                    hintText: "password".tr,
+                    suffixIcon: IconButton(
+                      color: context.titleSmall!.color,
+                      icon: pipedLinkedController.passwordVisible.value
+                          ? const Icon(Icons.visibility_off)
+                          : const Icon(Icons.visibility),
+                      onPressed: () =>
+                          pipedLinkedController.passwordVisible.value =
+                              !pipedLinkedController.passwordVisible.value,
+                    ),
+                  ),
+                  obscureText: !pipedLinkedController.passwordVisible.value,
+                ),
+              ),
+              Expanded(
+                child: Obx(
+                  () => Center(
+                    child: CustomTextView(
+                      pipedLinkedController.errorText.value,
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                decoration: BoxDecoration(
+                  color: context.titleLarge!.color,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: InkWell(
+                  onTap: pipedLinkedController.link,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 20.0,
+                      vertical: 10,
+                    ),
+                    child: CustomTextView(
+                      "link".tr,
+                      style: TextStyle(color: Theme.of(context).canvasColor),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
 
@@ -119,8 +126,9 @@ class PipedLinkedController extends GetxController {
   final instApiUrlInputController = TextEditingController();
   final usernameInputController = TextEditingController();
   final passwordInputController = TextEditingController();
-  final pipedInstList =
-      <PipedInstance>[PipedInstance(name: "selectAuthIns".tr, apiUrl: "")].obs;
+  final pipedInstList = <PipedInstance>[
+    PipedInstance(name: "selectAuthIns".tr, apiUrl: ""),
+  ].obs;
   final selectedInst = "".obs;
   final _pipedServices = Get.find<PipedServices>();
   final passwordVisible = false.obs;
@@ -135,13 +143,16 @@ class PipedLinkedController extends GetxController {
   Future<void> getAllInstList() async {
     _pipedServices.getAllInstanceList().then((res) {
       if (res.code == 1) {
-        pipedInstList.addAll(List<PipedInstance>.from(res.response) +
-            [PipedInstance(name: "customIns".tr, apiUrl: "custom")]);
+        pipedInstList.addAll(
+          List<PipedInstance>.from(res.response) +
+              [PipedInstance(name: "customIns".tr, apiUrl: "custom")],
+        );
       } else {
         errorText.value =
             "${res.errorMessage ?? "errorOccuredAlert".tr}! ${"customInsSelectMsg".tr}";
-        pipedInstList
-            .add(PipedInstance(name: "customIns".tr, apiUrl: "custom"));
+        pipedInstList.add(
+          PipedInstance(name: "customIns".tr, apiUrl: "custom"),
+        );
       }
     });
   }
@@ -164,23 +175,25 @@ class PipedLinkedController extends GetxController {
     }
     _pipedServices
         .login(
-            selectedInst.toString() == 'custom'
-                ? instApiUrlInputController.text
-                : selectedInst.toString(),
-            userName,
-            password)
+          selectedInst.toString() == 'custom'
+              ? instApiUrlInputController.text
+              : selectedInst.toString(),
+          userName,
+          password,
+        )
         .then((res) {
-      if (res.code == 1) {
-        printINFO("Login Successfull");
-        Get.find<SettingsScreenController>().isLinkedWithPiped.value = true;
-        Navigator.of(Get.context!).pop();
-        ScaffoldMessenger.of(Get.context!).showSnackBar(
-            snackbar(Get.context!, "linkAlert".tr, size: SanckBarSize.MEDIUM));
-        Get.find<LibraryPlaylistsController>().syncPipedPlaylist();
-      } else {
-        errorText.value = res.errorMessage ?? "errorOccuredAlert".tr;
-      }
-    });
+          if (res.code == 1) {
+            printINFO("Login Successfull");
+            Get.find<SettingsScreenController>().isLinkedWithPiped.value = true;
+            Navigator.of(Get.context!).pop();
+            ScaffoldMessenger.of(Get.context!).showSnackBar(
+              snackbar(Get.context!, "linkAlert".tr, size: SanckBarSize.MEDIUM),
+            );
+            Get.find<LibraryPlaylistsController>().syncPipedPlaylist();
+          } else {
+            errorText.value = res.errorMessage ?? "errorOccuredAlert".tr;
+          }
+        });
   }
 
   @override

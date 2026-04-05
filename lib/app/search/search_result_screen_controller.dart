@@ -31,8 +31,10 @@ class SearchResultScreenController extends GetxController
     super.onReady();
   }
 
-  Future<void> onDestinationSelected(int value,
-      {bool ignoreTabCommand = false}) async {
+  Future<void> onDestinationSelected(
+    int value, {
+    bool ignoreTabCommand = false,
+  }) async {
     if (railItems.isEmpty) {
       return;
     }
@@ -51,8 +53,12 @@ class SearchResultScreenController extends GetxController
             separatedResultContent[railItems[value - 1]].isEmpty)) {
       final tabName = railItems[value - 1];
       final itemCount = (tabName == 'Songs' || tabName == 'Videos') ? 25 : 10;
-      final x = await musicServices.search(queryString.value,
-          filter: tabName.replaceAll(" ", "_").toLowerCase(), limit: itemCount, filterParams: resultContent['searchEndpoint'][tabName]);
+      final x = await musicServices.search(
+        queryString.value,
+        filter: tabName.replaceAll(" ", "_").toLowerCase(),
+        limit: itemCount,
+        filterParams: resultContent['searchEndpoint'][tabName],
+      );
       separatedResultContent[tabName] = x[tabName];
       additionalParamNext[tabName] = x['params'];
       isSeparatedResultContentFetced.value = true;
@@ -77,8 +83,9 @@ class SearchResultScreenController extends GetxController
   Future<void> getContinuationContents() async {
     final tabName = railItems[navigationRailCurrentIndex.value - 1];
 
-    final x =
-        await musicServices.getSearchContinuation(additionalParamNext[tabName]);
+    final x = await musicServices.getSearchContinuation(
+      additionalParamNext[tabName],
+    );
     (separatedResultContent[tabName]).addAll(x[tabName]);
     additionalParamNext[tabName] = x['params'];
     separatedResultContent.refresh();
@@ -96,20 +103,24 @@ class SearchResultScreenController extends GetxController
     if (args != null) {
       queryString.value = args;
       resultContent.value = await musicServices.search(args);
-      final allKeys = resultContent.keys.where((element) => ([
-            "Songs",
-            "Videos",
-            "Albums",
-            "Featured playlists",
-            "Community playlists",
-            "artists"
-          ]).contains(element));
+      final allKeys = resultContent.keys.where(
+        (element) => ([
+          "Songs",
+          "Videos",
+          "Albums",
+          "Featured playlists",
+          "Community playlists",
+          "artists",
+        ]).contains(element),
+      );
       railItems.value = List<String>.from(allKeys);
-      final len =
-          railItems.where((element) => element.contains("playlists")).length;
+      final len = railItems
+          .where((element) => element.contains("playlists"))
+          .length;
       final calH = 30 + (railItems.length + 1 - len) * 123 + len * 150.0;
-      railitemHeight.value =
-          calH >= railitemHeight.value ? calH : railitemHeight.value;
+      railitemHeight.value = calH >= railitemHeight.value
+          ? calH
+          : railitemHeight.value;
 
       //ScrollControlers for list Continuation callback implementarion
       for (String item in railItems) {
@@ -125,8 +136,10 @@ class SearchResultScreenController extends GetxController
         }
 
         //tab controller for v2
-        tabController =
-            TabController(length: railItems.length + 1, vsync: this);
+        tabController = TabController(
+          length: railItems.length + 1,
+          vsync: this,
+        );
 
         tabController?.animation?.addListener(() {
           int indexChange = tabController!.offset.round();

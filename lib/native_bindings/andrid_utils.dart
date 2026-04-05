@@ -42,39 +42,41 @@ class Equalizer extends jni$_.JObject {
   final jni$_.JObjType<Equalizer> $type;
 
   @jni$_.internal
-  Equalizer.fromReference(
-    jni$_.JReference reference,
-  )   : $type = type,
-        super.fromReference(reference);
+  Equalizer.fromReference(jni$_.JReference reference)
+    : $type = type,
+      super.fromReference(reference);
 
-  static final _class =
-      jni$_.JClass.forName(r'com/anandnet/harmonymusic/Equalizer');
+  static final _class = jni$_.JClass.forName(
+    r'com/anandnet/harmonymusic/Equalizer',
+  );
 
   /// The type which includes information such as the signature of this class.
   static const nullableType = $Equalizer$NullableType();
   static const type = $Equalizer$Type();
-  static final _id_new$ = _class.constructorId(
-    r'()V',
-  );
+  static final _id_new$ = _class.constructorId(r'()V');
 
-  static final _new$ = jni$_.ProtectedJniExtensions.lookup<
-          jni$_.NativeFunction<
+  static final _new$ =
+      jni$_.ProtectedJniExtensions.lookup<
+            jni$_.NativeFunction<
               jni$_.JniResult Function(
                 jni$_.Pointer<jni$_.Void>,
                 jni$_.JMethodIDPtr,
-              )>>('globalEnv_NewObject')
-      .asFunction<
-          jni$_.JniResult Function(
-            jni$_.Pointer<jni$_.Void>,
-            jni$_.JMethodIDPtr,
-          )>();
+              )
+            >
+          >('globalEnv_NewObject')
+          .asFunction<
+            jni$_.JniResult Function(
+              jni$_.Pointer<jni$_.Void>,
+              jni$_.JMethodIDPtr,
+            )
+          >();
 
   /// from: `public void <init>()`
   /// The returned object must be released after use, by calling the [release] method.
   factory Equalizer() {
     return Equalizer.fromReference(
-        _new$(_class.reference.pointer, _id_new$ as jni$_.JMethodIDPtr)
-            .reference);
+      _new$(_class.reference.pointer, _id_new$ as jni$_.JMethodIDPtr).reference,
+    );
   }
 
   static final _id_openEqualizer = _class.instanceMethodId(
@@ -82,40 +84,43 @@ class Equalizer extends jni$_.JObject {
     r'(ILandroid/content/Context;Landroid/app/Activity;)Z',
   );
 
-  static final _openEqualizer = jni$_.ProtectedJniExtensions.lookup<
-          jni$_.NativeFunction<
+  static final _openEqualizer =
+      jni$_.ProtectedJniExtensions.lookup<
+            jni$_.NativeFunction<
               jni$_.JniResult Function(
-                  jni$_.Pointer<jni$_.Void>,
-                  jni$_.JMethodIDPtr,
-                  jni$_.VarArgs<
-                      (
-                        jni$_.Int32,
-                        jni$_.Pointer<jni$_.Void>,
-                        jni$_.Pointer<jni$_.Void>
-                      )>)>>('globalEnv_CallBooleanMethod')
-      .asFunction<
-          jni$_.JniResult Function(
+                jni$_.Pointer<jni$_.Void>,
+                jni$_.JMethodIDPtr,
+                jni$_.VarArgs<
+                  (
+                    jni$_.Int32,
+                    jni$_.Pointer<jni$_.Void>,
+                    jni$_.Pointer<jni$_.Void>,
+                  )
+                >,
+              )
+            >
+          >('globalEnv_CallBooleanMethod')
+          .asFunction<
+            jni$_.JniResult Function(
               jni$_.Pointer<jni$_.Void>,
               jni$_.JMethodIDPtr,
               int,
               jni$_.Pointer<jni$_.Void>,
-              jni$_.Pointer<jni$_.Void>)>();
+              jni$_.Pointer<jni$_.Void>,
+            )
+          >();
 
   /// from: `public final boolean openEqualizer(int i, android.content.Context context, android.app.Activity activity)`
-  bool openEqualizer(
-    int i,
-    jni$_.JObject context,
-    jni$_.JObject activity,
-  ) {
+  bool openEqualizer(int i, jni$_.JObject context, jni$_.JObject activity) {
     final _$context = context.reference;
     final _$activity = activity.reference;
     return _openEqualizer(
-            reference.pointer,
-            _id_openEqualizer as jni$_.JMethodIDPtr,
-            i,
-            _$context.pointer,
-            _$activity.pointer)
-        .boolean;
+      reference.pointer,
+      _id_openEqualizer as jni$_.JMethodIDPtr,
+      i,
+      _$context.pointer,
+      _$activity.pointer,
+    ).boolean;
   }
 
   static final _id_initAudioEffect = _class.instanceMethodId(
@@ -123,27 +128,34 @@ class Equalizer extends jni$_.JObject {
     r'(ILandroid/content/Context;)V',
   );
 
-  static final _initAudioEffect = jni$_.ProtectedJniExtensions.lookup<
-              jni$_.NativeFunction<
-                  jni$_.JThrowablePtr Function(
-                      jni$_.Pointer<jni$_.Void>,
-                      jni$_.JMethodIDPtr,
-                      jni$_
-                          .VarArgs<(jni$_.Int32, jni$_.Pointer<jni$_.Void>)>)>>(
-          'globalEnv_CallVoidMethod')
-      .asFunction<
-          jni$_.JThrowablePtr Function(jni$_.Pointer<jni$_.Void>,
-              jni$_.JMethodIDPtr, int, jni$_.Pointer<jni$_.Void>)>();
+  static final _initAudioEffect =
+      jni$_.ProtectedJniExtensions.lookup<
+            jni$_.NativeFunction<
+              jni$_.JThrowablePtr Function(
+                jni$_.Pointer<jni$_.Void>,
+                jni$_.JMethodIDPtr,
+                jni$_.VarArgs<(jni$_.Int32, jni$_.Pointer<jni$_.Void>)>,
+              )
+            >
+          >('globalEnv_CallVoidMethod')
+          .asFunction<
+            jni$_.JThrowablePtr Function(
+              jni$_.Pointer<jni$_.Void>,
+              jni$_.JMethodIDPtr,
+              int,
+              jni$_.Pointer<jni$_.Void>,
+            )
+          >();
 
   /// from: `public final void initAudioEffect(int i, android.content.Context context)`
-  void initAudioEffect(
-    int i,
-    jni$_.JObject context,
-  ) {
+  void initAudioEffect(int i, jni$_.JObject context) {
     final _$context = context.reference;
-    _initAudioEffect(reference.pointer,
-            _id_initAudioEffect as jni$_.JMethodIDPtr, i, _$context.pointer)
-        .check();
+    _initAudioEffect(
+      reference.pointer,
+      _id_initAudioEffect as jni$_.JMethodIDPtr,
+      i,
+      _$context.pointer,
+    ).check();
   }
 
   static final _id_endAudioEffect = _class.instanceMethodId(
@@ -151,27 +163,34 @@ class Equalizer extends jni$_.JObject {
     r'(ILandroid/content/Context;)V',
   );
 
-  static final _endAudioEffect = jni$_.ProtectedJniExtensions.lookup<
-              jni$_.NativeFunction<
-                  jni$_.JThrowablePtr Function(
-                      jni$_.Pointer<jni$_.Void>,
-                      jni$_.JMethodIDPtr,
-                      jni$_
-                          .VarArgs<(jni$_.Int32, jni$_.Pointer<jni$_.Void>)>)>>(
-          'globalEnv_CallVoidMethod')
-      .asFunction<
-          jni$_.JThrowablePtr Function(jni$_.Pointer<jni$_.Void>,
-              jni$_.JMethodIDPtr, int, jni$_.Pointer<jni$_.Void>)>();
+  static final _endAudioEffect =
+      jni$_.ProtectedJniExtensions.lookup<
+            jni$_.NativeFunction<
+              jni$_.JThrowablePtr Function(
+                jni$_.Pointer<jni$_.Void>,
+                jni$_.JMethodIDPtr,
+                jni$_.VarArgs<(jni$_.Int32, jni$_.Pointer<jni$_.Void>)>,
+              )
+            >
+          >('globalEnv_CallVoidMethod')
+          .asFunction<
+            jni$_.JThrowablePtr Function(
+              jni$_.Pointer<jni$_.Void>,
+              jni$_.JMethodIDPtr,
+              int,
+              jni$_.Pointer<jni$_.Void>,
+            )
+          >();
 
   /// from: `public final void endAudioEffect(int i, android.content.Context context)`
-  void endAudioEffect(
-    int i,
-    jni$_.JObject context,
-  ) {
+  void endAudioEffect(int i, jni$_.JObject context) {
     final _$context = context.reference;
-    _endAudioEffect(reference.pointer, _id_endAudioEffect as jni$_.JMethodIDPtr,
-            i, _$context.pointer)
-        .check();
+    _endAudioEffect(
+      reference.pointer,
+      _id_endAudioEffect as jni$_.JMethodIDPtr,
+      i,
+      _$context.pointer,
+    ).check();
   }
 }
 
@@ -185,11 +204,8 @@ final class $Equalizer$NullableType extends jni$_.JObjType<Equalizer?> {
 
   @jni$_.internal
   @core$_.override
-  Equalizer? fromReference(jni$_.JReference reference) => reference.isNull
-      ? null
-      : Equalizer.fromReference(
-          reference,
-        );
+  Equalizer? fromReference(jni$_.JReference reference) =>
+      reference.isNull ? null : Equalizer.fromReference(reference);
   @jni$_.internal
   @core$_.override
   jni$_.JObjType get superType => const jni$_.JObjectType();
@@ -223,9 +239,7 @@ final class $Equalizer$Type extends jni$_.JObjType<Equalizer> {
   @jni$_.internal
   @core$_.override
   Equalizer fromReference(jni$_.JReference reference) =>
-      Equalizer.fromReference(
-        reference,
-      );
+      Equalizer.fromReference(reference);
   @jni$_.internal
   @core$_.override
   jni$_.JObjType get superType => const jni$_.JObjectType();
@@ -255,65 +269,77 @@ class SDKInt$Companion extends jni$_.JObject {
   final jni$_.JObjType<SDKInt$Companion> $type;
 
   @jni$_.internal
-  SDKInt$Companion.fromReference(
-    jni$_.JReference reference,
-  )   : $type = type,
-        super.fromReference(reference);
+  SDKInt$Companion.fromReference(jni$_.JReference reference)
+    : $type = type,
+      super.fromReference(reference);
 
-  static final _class =
-      jni$_.JClass.forName(r'com/anandnet/harmonymusic/SDKInt$Companion');
+  static final _class = jni$_.JClass.forName(
+    r'com/anandnet/harmonymusic/SDKInt$Companion',
+  );
 
   /// The type which includes information such as the signature of this class.
   static const nullableType = $SDKInt$Companion$NullableType();
   static const type = $SDKInt$Companion$Type();
-  static final _id_getSDKInt = _class.instanceMethodId(
-    r'getSDKInt',
-    r'()I',
-  );
+  static final _id_getSDKInt = _class.instanceMethodId(r'getSDKInt', r'()I');
 
-  static final _getSDKInt = jni$_.ProtectedJniExtensions.lookup<
-          jni$_.NativeFunction<
+  static final _getSDKInt =
+      jni$_.ProtectedJniExtensions.lookup<
+            jni$_.NativeFunction<
               jni$_.JniResult Function(
                 jni$_.Pointer<jni$_.Void>,
                 jni$_.JMethodIDPtr,
-              )>>('globalEnv_CallIntMethod')
-      .asFunction<
-          jni$_.JniResult Function(
-            jni$_.Pointer<jni$_.Void>,
-            jni$_.JMethodIDPtr,
-          )>();
+              )
+            >
+          >('globalEnv_CallIntMethod')
+          .asFunction<
+            jni$_.JniResult Function(
+              jni$_.Pointer<jni$_.Void>,
+              jni$_.JMethodIDPtr,
+            )
+          >();
 
   /// from: `public final int getSDKInt()`
   int getSDKInt() {
-    return _getSDKInt(reference.pointer, _id_getSDKInt as jni$_.JMethodIDPtr)
-        .integer;
+    return _getSDKInt(
+      reference.pointer,
+      _id_getSDKInt as jni$_.JMethodIDPtr,
+    ).integer;
   }
 
   static final _id_new$ = _class.constructorId(
     r'(Lkotlin/jvm/internal/DefaultConstructorMarker;)V',
   );
 
-  static final _new$ = jni$_.ProtectedJniExtensions.lookup<
-              jni$_.NativeFunction<
-                  jni$_.JniResult Function(
-                      jni$_.Pointer<jni$_.Void>,
-                      jni$_.JMethodIDPtr,
-                      jni$_.VarArgs<(jni$_.Pointer<jni$_.Void>,)>)>>(
-          'globalEnv_NewObject')
-      .asFunction<
-          jni$_.JniResult Function(jni$_.Pointer<jni$_.Void>,
-              jni$_.JMethodIDPtr, jni$_.Pointer<jni$_.Void>)>();
+  static final _new$ =
+      jni$_.ProtectedJniExtensions.lookup<
+            jni$_.NativeFunction<
+              jni$_.JniResult Function(
+                jni$_.Pointer<jni$_.Void>,
+                jni$_.JMethodIDPtr,
+                jni$_.VarArgs<(jni$_.Pointer<jni$_.Void>,)>,
+              )
+            >
+          >('globalEnv_NewObject')
+          .asFunction<
+            jni$_.JniResult Function(
+              jni$_.Pointer<jni$_.Void>,
+              jni$_.JMethodIDPtr,
+              jni$_.Pointer<jni$_.Void>,
+            )
+          >();
 
   /// from: `synthetic public void <init>(kotlin.jvm.internal.DefaultConstructorMarker defaultConstructorMarker)`
   /// The returned object must be released after use, by calling the [release] method.
-  factory SDKInt$Companion(
-    jni$_.JObject? defaultConstructorMarker,
-  ) {
+  factory SDKInt$Companion(jni$_.JObject? defaultConstructorMarker) {
     final _$defaultConstructorMarker =
         defaultConstructorMarker?.reference ?? jni$_.jNullReference;
-    return SDKInt$Companion.fromReference(_new$(_class.reference.pointer,
-            _id_new$ as jni$_.JMethodIDPtr, _$defaultConstructorMarker.pointer)
-        .reference);
+    return SDKInt$Companion.fromReference(
+      _new$(
+        _class.reference.pointer,
+        _id_new$ as jni$_.JMethodIDPtr,
+        _$defaultConstructorMarker.pointer,
+      ).reference,
+    );
   }
 }
 
@@ -329,11 +355,7 @@ final class $SDKInt$Companion$NullableType
   @jni$_.internal
   @core$_.override
   SDKInt$Companion? fromReference(jni$_.JReference reference) =>
-      reference.isNull
-          ? null
-          : SDKInt$Companion.fromReference(
-              reference,
-            );
+      reference.isNull ? null : SDKInt$Companion.fromReference(reference);
   @jni$_.internal
   @core$_.override
   jni$_.JObjType get superType => const jni$_.JObjectType();
@@ -367,9 +389,7 @@ final class $SDKInt$Companion$Type extends jni$_.JObjType<SDKInt$Companion> {
   @jni$_.internal
   @core$_.override
   SDKInt$Companion fromReference(jni$_.JReference reference) =>
-      SDKInt$Companion.fromReference(
-        reference,
-      );
+      SDKInt$Companion.fromReference(reference);
   @jni$_.internal
   @core$_.override
   jni$_.JObjType get superType => const jni$_.JObjectType();
@@ -400,13 +420,13 @@ class SDKInt extends jni$_.JObject {
   final jni$_.JObjType<SDKInt> $type;
 
   @jni$_.internal
-  SDKInt.fromReference(
-    jni$_.JReference reference,
-  )   : $type = type,
-        super.fromReference(reference);
+  SDKInt.fromReference(jni$_.JReference reference)
+    : $type = type,
+      super.fromReference(reference);
 
-  static final _class =
-      jni$_.JClass.forName(r'com/anandnet/harmonymusic/SDKInt');
+  static final _class = jni$_.JClass.forName(
+    r'com/anandnet/harmonymusic/SDKInt',
+  );
 
   /// The type which includes information such as the signature of this class.
   static const nullableType = $SDKInt$NullableType();
@@ -421,28 +441,30 @@ class SDKInt extends jni$_.JObject {
   static SDKInt$Companion get Companion =>
       _id_Companion.get(_class, const $SDKInt$Companion$Type());
 
-  static final _id_new$ = _class.constructorId(
-    r'()V',
-  );
+  static final _id_new$ = _class.constructorId(r'()V');
 
-  static final _new$ = jni$_.ProtectedJniExtensions.lookup<
-          jni$_.NativeFunction<
+  static final _new$ =
+      jni$_.ProtectedJniExtensions.lookup<
+            jni$_.NativeFunction<
               jni$_.JniResult Function(
                 jni$_.Pointer<jni$_.Void>,
                 jni$_.JMethodIDPtr,
-              )>>('globalEnv_NewObject')
-      .asFunction<
-          jni$_.JniResult Function(
-            jni$_.Pointer<jni$_.Void>,
-            jni$_.JMethodIDPtr,
-          )>();
+              )
+            >
+          >('globalEnv_NewObject')
+          .asFunction<
+            jni$_.JniResult Function(
+              jni$_.Pointer<jni$_.Void>,
+              jni$_.JMethodIDPtr,
+            )
+          >();
 
   /// from: `public void <init>()`
   /// The returned object must be released after use, by calling the [release] method.
   factory SDKInt() {
     return SDKInt.fromReference(
-        _new$(_class.reference.pointer, _id_new$ as jni$_.JMethodIDPtr)
-            .reference);
+      _new$(_class.reference.pointer, _id_new$ as jni$_.JMethodIDPtr).reference,
+    );
   }
 }
 
@@ -456,11 +478,8 @@ final class $SDKInt$NullableType extends jni$_.JObjType<SDKInt?> {
 
   @jni$_.internal
   @core$_.override
-  SDKInt? fromReference(jni$_.JReference reference) => reference.isNull
-      ? null
-      : SDKInt.fromReference(
-          reference,
-        );
+  SDKInt? fromReference(jni$_.JReference reference) =>
+      reference.isNull ? null : SDKInt.fromReference(reference);
   @jni$_.internal
   @core$_.override
   jni$_.JObjType get superType => const jni$_.JObjectType();
@@ -493,9 +512,8 @@ final class $SDKInt$Type extends jni$_.JObjType<SDKInt> {
 
   @jni$_.internal
   @core$_.override
-  SDKInt fromReference(jni$_.JReference reference) => SDKInt.fromReference(
-        reference,
-      );
+  SDKInt fromReference(jni$_.JReference reference) =>
+      SDKInt.fromReference(reference);
   @jni$_.internal
   @core$_.override
   jni$_.JObjType get superType => const jni$_.JObjectType();

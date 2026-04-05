@@ -15,7 +15,6 @@ class CustomMorePopUpMenuWidget extends StatelessWidget {
     this.filterViewPadding,
   });
 
-
   final Widget filterView;
   final bool isAdvanceIconShow;
   final EdgeInsets? filterViewPadding;
@@ -28,17 +27,16 @@ class CustomMorePopUpMenuWidget extends StatelessWidget {
       child: WebCustomActionButton(
         message: StringFile.more,
         icon: AssetsIcons.icMore,
-        iconHeight:  ResponsiveUtil.isWeb ? 18.w : 20.w,
-        iconWidth:  ResponsiveUtil.isWeb ? 18.w : 20.w,
-        onTaped:
-            () => CustomMenu.showCustomMenu(
-              globalKey: globalKey,
-              context: context,
-              child: filterView,
-              width: 200.w,
+        iconHeight: ResponsiveUtil.isWeb ? 18.w : 20.w,
+        iconWidth: ResponsiveUtil.isWeb ? 18.w : 20.w,
+        onTaped: () => CustomMenu.showCustomMenu(
+          globalKey: globalKey,
+          context: context,
+          child: filterView,
+          width: 200.w,
 
-              padding: EdgeInsets.zero,
-            ),
+          padding: EdgeInsets.zero,
+        ),
       ),
     );
   }

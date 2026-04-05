@@ -88,7 +88,7 @@ class SongsLibraryWidget extends StatelessWidget {
                       child: Center(
                         child: CustomTextView(
                           "noOfflineSong".tr,
-                          style: context.titleMedium  ,
+                          style: context.titleMedium,
                         ),
                       ),
                     );
@@ -236,7 +236,7 @@ class PlaylistNAlbumLibraryWidget extends StatelessWidget {
                   : Center(
                       child: CustomTextView(
                         "noBookmarks".tr,
-                        style: context.titleMedium  ,
+                        style: context.titleMedium,
                       ),
                     ),
             ),
@@ -293,7 +293,7 @@ class LibraryArtistWidget extends StatelessWidget {
                     child: Center(
                       child: CustomTextView(
                         "noBookmarks".tr,
-                        style: context.titleMedium  ,
+                        style: context.titleMedium,
                       ),
                     ),
                   ),

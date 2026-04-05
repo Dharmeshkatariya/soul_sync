@@ -14,11 +14,12 @@ class SongListShimmer extends StatelessWidget {
       baseColor: Colors.grey[300]!,
       highlightColor: Colors.grey[100]!,
       child: ListView.builder(
-          itemCount: itemCount,
-          padding: EdgeInsets.only(top: topPadding, left: 0),
-          itemBuilder: (_, index) {
-            return _listTile();
-          }),
+        itemCount: itemCount,
+        padding: EdgeInsets.only(top: topPadding, left: 0),
+        itemBuilder: (_, index) {
+          return _listTile();
+        },
+      ),
     );
   }
 

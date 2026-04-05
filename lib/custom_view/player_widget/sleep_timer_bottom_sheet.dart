@@ -30,8 +30,9 @@ class SleepTimerBottomSheet extends StatelessWidget {
                 child: Container(
                   width: 180,
                   decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.secondary,
-                      borderRadius: BorderRadius.circular(20)),
+                    color: Theme.of(context).colorScheme.secondary,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
                   child: Align(
                     alignment: Alignment.center,
                     child: Obx(() {
@@ -49,19 +50,16 @@ class SleepTimerBottomSheet extends StatelessWidget {
 
                       return CustomTextView(
                         "$hrs:$min:$sec",
-                        style: Theme.of(context)
-                            .textTheme
-                            .titleLarge!
-                            .copyWith(fontSize: 35),
+                        style: Theme.of(
+                          context,
+                        ).textTheme.titleLarge!.copyWith(fontSize: 35),
                       );
                     }),
                   ),
                 ),
               ),
             if (playerController.isSleepTimerActive.isFalse)
-              Column(
-                children: getTimeListWidget(context),
-              ),
+              Column(children: getTimeListWidget(context)),
             if (playerController.isSleepTimerActive.isTrue)
               Padding(
                 padding: const EdgeInsets.only(bottom: 20.0, top: 20),
@@ -70,36 +68,38 @@ class SleepTimerBottomSheet extends StatelessWidget {
                   children: [
                     if (playerController.isSleepEndOfSongActive.isFalse)
                       OutlinedButton(
-                          onPressed: playerController.addFiveMinutes,
-                          style: OutlinedButton.styleFrom(
-                            foregroundColor:
-                                context.titleMedium  !.color!,
-                            side: BorderSide(
-                              color: Theme.of(context)
-                                  .textTheme
-                                  .titleMedium!
-                                  .color!,
-                            ),
-                          ),
-                          child: CustomTextView("add5Minutes".tr)),
-                    OutlinedButton(
-                        onPressed: () {
-                          Future.delayed(const Duration(milliseconds: 200),
-                              playerController.cancelSleepTimer);
-                          Navigator.of(context).pop();
-                          ScaffoldMessenger.of(context).showSnackBar(snackbar(
-                              context, "cancelTimerAlert".tr,
-                              size: SanckBarSize.BIG));
-                        },
+                        onPressed: playerController.addFiveMinutes,
                         style: OutlinedButton.styleFrom(
-                          foregroundColor:
-                              context.titleMedium  !.color!,
+                          foregroundColor: context.titleMedium!.color!,
                           side: BorderSide(
-                            color:
-                                context.titleMedium  !.color!,
+                            color: Theme.of(
+                              context,
+                            ).textTheme.titleMedium!.color!,
                           ),
                         ),
-                        child: CustomTextView("cancelTimer".tr))
+                        child: CustomTextView("add5Minutes".tr),
+                      ),
+                    OutlinedButton(
+                      onPressed: () {
+                        Future.delayed(
+                          const Duration(milliseconds: 200),
+                          playerController.cancelSleepTimer,
+                        );
+                        Navigator.of(context).pop();
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          snackbar(
+                            context,
+                            "cancelTimerAlert".tr,
+                            size: SanckBarSize.BIG,
+                          ),
+                        );
+                      },
+                      style: OutlinedButton.styleFrom(
+                        foregroundColor: context.titleMedium!.color!,
+                        side: BorderSide(color: context.titleMedium!.color!),
+                      ),
+                      child: CustomTextView("cancelTimer".tr),
+                    ),
                   ],
                 ),
               ),
@@ -112,39 +112,46 @@ class SleepTimerBottomSheet extends StatelessWidget {
   List<Widget> getTimeListWidget(BuildContext context) {
     final playerController = Get.find<PlayerController>();
     final List<Widget> widgets = [];
-    widgets.addAll([5, 10, 15, 30, 45, 60]
-        .map((dur) => ListTile(
+    widgets.addAll(
+      [5, 10, 15, 30, 45, 60]
+          .map(
+            (dur) => ListTile(
               onTap: () {
                 Navigator.of(context).pop();
                 Future.delayed(const Duration(milliseconds: 200), () {
                   playerController.startSleepTimer(dur);
                 });
-                ScaffoldMessenger.of(context).showSnackBar(snackbar(
-                    context, "sleepTimeSetAlert".tr,
-                    size: SanckBarSize.BIG));
+                ScaffoldMessenger.of(context).showSnackBar(
+                  snackbar(
+                    context,
+                    "sleepTimeSetAlert".tr,
+                    size: SanckBarSize.BIG,
+                  ),
+                );
               },
               leading: Padding(
                 padding: const EdgeInsets.only(left: 10.0),
                 child: CustomTextView(
                   "$dur ${'minutes'.tr}",
-                  style: context.titleMedium  ,
+                  style: context.titleMedium,
                 ),
               ),
-            ))
-        .toList());
-    widgets.add(ListTile(
-      onTap: () {
-        Navigator.of(context).pop();
-        playerController.sleepEndOfSong();
-      },
-      leading: Padding(
-        padding: const EdgeInsets.only(left: 10.0),
-        child: CustomTextView(
-          "endOfThisSong".tr,
-          style: context.titleMedium  ,
+            ),
+          )
+          .toList(),
+    );
+    widgets.add(
+      ListTile(
+        onTap: () {
+          Navigator.of(context).pop();
+          playerController.sleepEndOfSong();
+        },
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 10.0),
+          child: CustomTextView("endOfThisSong".tr, style: context.titleMedium),
         ),
       ),
-    ));
+    );
     return widgets;
   }
 }

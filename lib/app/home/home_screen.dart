@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:soul_sync/core/extension/text_style.dart';
@@ -283,7 +282,9 @@ class Body extends StatelessWidget {
     } else if (homeScreenController.tabIndex.value == 5) {
       return const SettingsScreen();
     } else {
-      return Center(child: CustomTextView("${homeScreenController.tabIndex.value}"));
+      return Center(
+        child: CustomTextView("${homeScreenController.tabIndex.value}"),
+      );
     }
   }
 

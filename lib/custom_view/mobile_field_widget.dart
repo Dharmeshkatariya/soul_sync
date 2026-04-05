@@ -117,20 +117,19 @@ class MobileFieldWidget extends StatelessWidget {
                 color: ColorFile.blackColorOpaque60,
               ),
             ),
-            items:
-                items.map((String dropDownStringItem) {
-                  return DropdownMenuItem<String>(
-                    value: dropDownStringItem,
-                    child: CustomTextView(
-                      dropDownStringItem,
-                      style: TextStyle(
-                        fontSize: 14.sp,
-                        color: ColorFile.blackColor,
-                        fontFamily: ConstantsFile.mediumFont,
-                      ),
-                    ),
-                  );
-                }).toList(),
+            items: items.map((String dropDownStringItem) {
+              return DropdownMenuItem<String>(
+                value: dropDownStringItem,
+                child: CustomTextView(
+                  dropDownStringItem,
+                  style: TextStyle(
+                    fontSize: 14.sp,
+                    color: ColorFile.blackColor,
+                    fontFamily: ConstantsFile.mediumFont,
+                  ),
+                ),
+              );
+            }).toList(),
             onChanged: (String? newValueSelected) {
               selectedItem.value = newValueSelected!;
             },

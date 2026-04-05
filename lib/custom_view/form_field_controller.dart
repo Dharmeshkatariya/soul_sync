@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-class FormFieldController{
+class FormFieldController {
   String? id;
   var textEditingController = TextEditingController();
   dynamic selectedValue;
@@ -9,5 +9,5 @@ class FormFieldController{
   var isMandatory = false.obs;
   var obscureText = true.obs;
 
-  FormFieldController({this.id ,this.selectedValue});
+  FormFieldController({this.id, this.selectedValue});
 }

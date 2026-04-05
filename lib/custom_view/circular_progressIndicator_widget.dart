@@ -8,9 +8,7 @@ class CircularProgressIndicatorWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: CircularProgressIndicator(
-        color: ColorFile.webThemeColor,
-      ),
+      child: CircularProgressIndicator(color: ColorFile.webThemeColor),
     );
   }
 }

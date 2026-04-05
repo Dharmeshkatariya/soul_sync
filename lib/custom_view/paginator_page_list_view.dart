@@ -40,35 +40,30 @@ class PaginatorPageListView extends StatelessWidget {
             height: 36.w,
             alignment: Alignment.center,
             decoration: BoxDecoration(
-              color:
-                  currentPage == mList[index]
-                      ? ColorFile.webThemeColor
-                      : ColorFile.whiteColor,
+              color: currentPage == mList[index]
+                  ? ColorFile.webThemeColor
+                  : ColorFile.whiteColor,
               borderRadius: BorderRadius.all(Radius.circular(6.r)),
               border: Border.all(
-                color:
-                    currentPage == mList[index]
-                        ? ColorFile.webThemeColor
-                        : ColorFile.grayDDColor,
+                color: currentPage == mList[index]
+                    ? ColorFile.webThemeColor
+                    : ColorFile.grayDDColor,
               ),
             ),
             child: CustomTextView(
               mData.toString(),
               textAlign: TextAlign.center,
-              style:
-                  ResponsiveUtil.isMediumWebOrLarger
-                      ? AppTextStyles.semiBoldBlack14.copyWith(
-                        color:
-                            currentPage == mList[index]
-                                ? ColorFile.whiteColor
-                                : ColorFile.webThemeColor,
-                      )
-                      : AppTextStyles.semiBoldBlack13.copyWith(
-                        color:
-                            currentPage == mList[index]
-                                ? ColorFile.whiteColor
-                                : ColorFile.webThemeColor,
-                      ),
+              style: ResponsiveUtil.isMediumWebOrLarger
+                  ? AppTextStyles.semiBoldBlack14.copyWith(
+                      color: currentPage == mList[index]
+                          ? ColorFile.whiteColor
+                          : ColorFile.webThemeColor,
+                    )
+                  : AppTextStyles.semiBoldBlack13.copyWith(
+                      color: currentPage == mList[index]
+                          ? ColorFile.whiteColor
+                          : ColorFile.webThemeColor,
+                    ),
             ),
           ),
         );

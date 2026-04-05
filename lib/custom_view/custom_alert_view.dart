@@ -25,7 +25,8 @@ class CustomAlertView extends StatelessWidget {
     required this.onPositivePressed,
     required this.onNegativePressed,
     this.isSingleButton = false,
-    this.secondaryButtonBGColor, this.assetColor,
+    this.secondaryButtonBGColor,
+    this.assetColor,
   });
 
   final Color backgroundColor;
@@ -38,14 +39,15 @@ class CustomAlertView extends StatelessWidget {
   final Function() onNegativePressed;
   final Color? secondaryButtonBGColor;
   final bool isSingleButton;
-  final  Color? assetColor ;
+  final Color? assetColor;
 
   @override
   Widget build(BuildContext context) {
     double? width;
     ResponsiveUtil.init(context);
-    width =
-         ResponsiveUtil.isWeb ? ResponsiveUtil.unitWidth * 36.75 : ResponsiveUtil.unitWidth * 80;
+    width = ResponsiveUtil.isWeb
+        ? ResponsiveUtil.unitWidth * 36.75
+        : ResponsiveUtil.unitWidth * 80;
     Common().printLog('Width', width.toString());
     return Center(
       child: SizedBox(
@@ -83,7 +85,7 @@ class CustomAlertView extends StatelessWidget {
                               assetIcon,
                               height: 60.h,
                               colorFilter: ColorFilter.mode(
-                                assetColor ??  ColorFile.blueColor,
+                                assetColor ?? ColorFile.blueColor,
                                 BlendMode.srcIn,
                               ),
                             ),
@@ -105,108 +107,108 @@ class CustomAlertView extends StatelessWidget {
                             SizedBox(height: 20.h),
                             (isSingleButton)
                                 ? CustomGestureDetector(
-                                  onTap: onPositivePressed,
-                                  child: Container(
-                                    height: 40.h,
-                                    width: 200.w,
-                                    padding: EdgeInsets.symmetric(
-                                      horizontal: 16.w,
-                                      vertical: 2.w,
-                                    ),
-                                    alignment: Alignment.center,
-                                    decoration: BoxDecoration(
-                                      color: ColorFile.blackColor,
-                                      borderRadius: BorderRadius.all(
-                                        Radius.circular(7.r),
+                                    onTap: onPositivePressed,
+                                    child: Container(
+                                      height: 40.h,
+                                      width: 200.w,
+                                      padding: EdgeInsets.symmetric(
+                                        horizontal: 16.w,
+                                        vertical: 2.w,
                                       ),
-                                    ),
-                                    child: CustomTextView(
-                                      positiveText,
-                                      style:
-                                          ResponsiveUtil.isMediumWebOrLarger
-                                              ? AppTextStyles.regularBlack14
+                                      alignment: Alignment.center,
+                                      decoration: BoxDecoration(
+                                        color: ColorFile.blackColor,
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(7.r),
+                                        ),
+                                      ),
+                                      child: CustomTextView(
+                                        positiveText,
+                                        style:
+                                            ResponsiveUtil.isMediumWebOrLarger
+                                            ? AppTextStyles.regularBlack14
                                                   .copyWith(
                                                     color: ColorFile.whiteColor,
                                                   )
-                                              : AppTextStyles.regularBlack13
+                                            : AppTextStyles.regularBlack13
                                                   .copyWith(
                                                     color: ColorFile.whiteColor,
                                                   ),
-                                    ),
-                                  ),
-                                )
-                                : Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        border: Border.all(
-                                          color: ColorFile.blackColor,
-                                        ),
-                                        borderRadius: BorderRadius.circular(
-                                          8.r,
-                                        ),
                                       ),
-                                      height: 40.h,
-                                      width: 100.w,
-                                      child: MaterialButton(
-                                        shape: RoundedRectangleBorder(
+                                    ),
+                                  )
+                                : Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Container(
+                                        decoration: BoxDecoration(
+                                          border: Border.all(
+                                            color: ColorFile.blackColor,
+                                          ),
                                           borderRadius: BorderRadius.circular(
                                             8.r,
                                           ),
                                         ),
-                                        elevation: 0,
-                                        textColor: ColorFile.blackColor,
-                                        color:
-                                            secondaryButtonBGColor ??
-                                            ColorFile.warningColor,
-                                        onPressed: onNegativePressed,
-                                        child: CustomTextView(
-                                          negativeText,
-                                          style: AppTextStyles.boldBlack14,
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(width: 10.w),
-                                    CustomGestureDetector(
-                                      onTap: onPositivePressed,
-                                      child: Container(
                                         height: 40.h,
                                         width: 100.w,
-                                        padding: EdgeInsets.only(
-                                          left: 16.w,
-                                          right: 16.w,
-                                        ),
-                                        alignment: Alignment.center,
-                                        decoration: BoxDecoration(
-                                          color: ColorFile.blackColor,
-                                          borderRadius: BorderRadius.all(
-                                            Radius.circular(7.r),
+                                        child: MaterialButton(
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(
+                                              8.r,
+                                            ),
+                                          ),
+                                          elevation: 0,
+                                          textColor: ColorFile.blackColor,
+                                          color:
+                                              secondaryButtonBGColor ??
+                                              ColorFile.warningColor,
+                                          onPressed: onNegativePressed,
+                                          child: CustomTextView(
+                                            negativeText,
+                                            style: AppTextStyles.boldBlack14,
                                           ),
                                         ),
-                                        child: CustomTextView(
-                                          positiveText,
-                                          style:
-                                              ResponsiveUtil.isMediumWebOrLarger
-                                                  ? AppTextStyles.regularBlack14
+                                      ),
+                                      SizedBox(width: 10.w),
+                                      CustomGestureDetector(
+                                        onTap: onPositivePressed,
+                                        child: Container(
+                                          height: 40.h,
+                                          width: 100.w,
+                                          padding: EdgeInsets.only(
+                                            left: 16.w,
+                                            right: 16.w,
+                                          ),
+                                          alignment: Alignment.center,
+                                          decoration: BoxDecoration(
+                                            color: ColorFile.blackColor,
+                                            borderRadius: BorderRadius.all(
+                                              Radius.circular(7.r),
+                                            ),
+                                          ),
+                                          child: CustomTextView(
+                                            positiveText,
+                                            style:
+                                                ResponsiveUtil
+                                                    .isMediumWebOrLarger
+                                                ? AppTextStyles.regularBlack14
                                                       .copyWith(
-                                                        color:
-                                                            ColorFile
-                                                                .whiteColor,
+                                                        color: ColorFile
+                                                            .whiteColor,
                                                       )
-                                                  : AppTextStyles.regularBlack13
+                                                : AppTextStyles.regularBlack13
                                                       .copyWith(
-                                                        color:
-                                                            ColorFile
-                                                                .whiteColor,
+                                                        color: ColorFile
+                                                            .whiteColor,
                                                       ),
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  ],
-                                ),
+                                    ],
+                                  ),
                             SizedBox(height: 10.h),
                           ],
                         ),

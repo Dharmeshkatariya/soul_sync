@@ -24,12 +24,12 @@ class CustomAssetImage extends StatelessWidget {
     return path.endsWith('.svg')
         ? _buildSvgImage()
         : Image.asset(
-          path,
-          height: height,
-          width: width,
-          fit: fit,
-          alignment: alignment,
-        );
+            path,
+            height: height,
+            width: width,
+            fit: fit,
+            alignment: alignment,
+          );
   }
 
   Widget _buildSvgImage() {
@@ -69,14 +69,14 @@ class CommonAssetImage extends StatelessWidget {
     return path.endsWith('.svg')
         ? _buildSvgImage()
         : Image.asset(
-          path,
-          height: height ?? 24.h,
-          width: width ?? 24.w,
-          fit: fit,
-          color: color ?? ColorFile.webThemeColor,
-          colorBlendMode: colorBlendMode ?? BlendMode.srcIn,
-          alignment: alignment,
-        );
+            path,
+            height: height ?? 24.h,
+            width: width ?? 24.w,
+            fit: fit,
+            color: color ?? ColorFile.webThemeColor,
+            colorBlendMode: colorBlendMode ?? BlendMode.srcIn,
+            alignment: alignment,
+          );
   }
 
   Widget _buildSvgImage() {

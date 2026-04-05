@@ -37,10 +37,9 @@ class CustomGestureDetector extends StatelessWidget {
           child: Obx(
             () => Container(
               decoration: BoxDecoration(
-                border:
-                    (isFocused.value)
-                        ? Border.all(width: 4.0, color: ColorFile.twitterColor)
-                        : null,
+                border: (isFocused.value)
+                    ? Border.all(width: 4.0, color: ColorFile.twitterColor)
+                    : null,
                 borderRadius: BorderRadius.circular(4.0),
               ),
               child: MouseRegion(

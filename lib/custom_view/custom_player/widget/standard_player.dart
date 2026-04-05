@@ -2,7 +2,6 @@ import 'package:soul_sync/custom_view/custom_text_view.dart';
 
 import 'dart:ui';
 
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -96,9 +95,7 @@ class StandardPlayer extends StatelessWidget {
                     SizedBox(
                       width: size.width * .45,
                       child: Padding(
-                        padding: const EdgeInsets.only(
-                          bottom: 90.0,
-                        ),
+                        padding: const EdgeInsets.only(bottom: 90.0),
                         child: Padding(
                           padding: const EdgeInsets.only(top: 40),
                           child: Center(
@@ -112,30 +109,27 @@ class StandardPlayer extends StatelessWidget {
 
                     /// Player controls in .48 of width
                     SizedBox(
-                        width: size.width * .48,
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                              left: 10.0,
-                              right: 10,
-                              bottom: Get.mediaQuery.padding.bottom),
-                          child: const PlayerControlWidget(),
-                        ))
+                      width: size.width * .48,
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                          left: 10.0,
+                          right: 10,
+                          bottom: Get.mediaQuery.padding.bottom,
+                        ),
+                        child: const PlayerControlWidget(),
+                      ),
+                    ),
                   ],
                 )
               :
-
-              /// Player content in portrait mode
-              Column(
+                /// Player content in portrait mode
+                Column(
                   children: [
                     /// Work as top padding depending on the lyrics visibility and screen size
                     Obx(
                       () => playerController.showLyricsflag.value
-                          ? SizedBox(
-                              height: size.height < 750 ? 60 : 90,
-                            )
-                          : SizedBox(
-                              height: size.height < 750 ? 110 : 140,
-                            ),
+                          ? SizedBox(height: size.height < 750 ? 60 : 90)
+                          : SizedBox(height: size.height < 750 ? 110 : 140),
                     ),
 
                     /// Contains the lyrics switch and album art with lyrics
@@ -144,9 +138,11 @@ class StandardPlayer extends StatelessWidget {
                       children: [
                         const LyricsSwitch(),
                         ConstrainedBox(
-                            constraints: const BoxConstraints(maxWidth: 500),
-                            child: AlbumArtNLyrics(
-                                playerArtImageSize: playerArtImageSize)),
+                          constraints: const BoxConstraints(maxWidth: 500),
+                          child: AlbumArtNLyrics(
+                            playerArtImageSize: playerArtImageSize,
+                          ),
+                        ),
                       ],
                     ),
 
@@ -156,11 +152,13 @@ class StandardPlayer extends StatelessWidget {
                     /// Contains the player controls
                     Padding(
                       padding: EdgeInsets.only(
-                          bottom: 80 + Get.mediaQuery.padding.bottom),
+                        bottom: 80 + Get.mediaQuery.padding.bottom,
+                      ),
                       child: Container(
-                          constraints: const BoxConstraints(maxWidth: 500),
-                          child: const PlayerControlWidget()),
-                    )
+                        constraints: const BoxConstraints(maxWidth: 500),
+                        child: const PlayerControlWidget(),
+                      ),
+                    ),
                   ],
                 ),
         ),
@@ -171,17 +169,17 @@ class StandardPlayer extends StatelessWidget {
         if (!(context.isLandscape && GetPlatform.isMobile))
           Padding(
             padding: EdgeInsets.only(
-                top: Get.mediaQuery.padding.top + 20, left: 10, right: 10),
+              top: Get.mediaQuery.padding.top + 20,
+              left: 10,
+              right: 10,
+            ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 /// Minimize button
                 IconButton(
-                  icon: const Icon(
-                    Icons.keyboard_arrow_down,
-                    size: 28,
-                  ),
+                  icon: const Icon(Icons.keyboard_arrow_down, size: 28),
                   onPressed: playerController.playerPanelController.close,
                 ),
 
@@ -192,17 +190,22 @@ class StandardPlayer extends StatelessWidget {
                     child: Obx(
                       () => Column(
                         children: [
-                          CustomTextView(playerController.playinfrom.value.typeString,
-                              style: const TextStyle(
-                                  fontSize: 12, fontWeight: FontWeight.bold)),
+                          CustomTextView(
+                            playerController.playinfrom.value.typeString,
+                            style: const TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                           Obx(
                             () => CustomTextView(
                               "\"${playerController.playinfrom.value.nameString}\"",
                               overflow: TextOverflow.ellipsis,
-                              style:
-                                  const TextStyle(fontWeight: FontWeight.bold),
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
-                          )
+                          ),
                         ],
                       ),
                     ),
@@ -211,20 +214,20 @@ class StandardPlayer extends StatelessWidget {
 
                 /// More button for current song context
                 IconButton(
-                  icon: const Icon(
-                    Icons.more_vert,
-                    size: 25,
-                  ),
+                  icon: const Icon(Icons.more_vert, size: 25),
                   onPressed: () {
                     showModalBottomSheet(
                       constraints: const BoxConstraints(maxWidth: 500),
                       shape: const RoundedRectangleBorder(
-                        borderRadius:
-                            BorderRadius.vertical(top: Radius.circular(10.0)),
+                        borderRadius: BorderRadius.vertical(
+                          top: Radius.circular(10.0),
+                        ),
                       ),
                       isScrollControlled: true,
                       context: playerController
-                          .homeScaffoldkey.currentState!.context,
+                          .homeScaffoldkey
+                          .currentState!
+                          .context,
                       barrierColor: Colors.transparent.withAlpha(100),
                       builder: (context) => SongInfoBottomSheet(
                         playerController.currentSong.value!,
@@ -235,7 +238,7 @@ class StandardPlayer extends StatelessWidget {
                 ),
               ],
             ),
-          )
+          ),
       ],
     );
   }

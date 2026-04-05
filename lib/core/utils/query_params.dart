@@ -1,5 +1,4 @@
-class QueryParams{
-
+class QueryParams {
   static const search = 'search';
   static const page = 'page';
   static const perPage = 'per-page';
@@ -32,5 +31,4 @@ class QueryParams{
   static String actionType = 'action-type';
   static String propertyEntityId = 'property-entity-id';
   static String propertyLocationId = 'property-location-id';
-
 }

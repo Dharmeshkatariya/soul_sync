@@ -93,8 +93,7 @@ class Common {
     }
   }
 
-
-  static authLogOut(){
+  static authLogOut() {
     // Get.delete<APIServices>();
     // Get.delete<LoginController>();
     Get.clearRouteTree();
@@ -563,21 +562,23 @@ class Common {
         ),
         useMaterial3: false,
         dialogTheme: DialogThemeData(
-            backgroundColor: ColorFile.whiteColor,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(8.r)))),
+          backgroundColor: ColorFile.whiteColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(8.r)),
+          ),
+        ),
       ),
       child: child!,
     );
   }
 
-
-
-  static String dateConvertApiFormat(
-      {required String text}) {
+  static String dateConvertApiFormat({required String text}) {
     String date = text.trim().isNotEmpty
-        ? Common.dateConvert(text.trim(),
-        appLocale.yMdFormatter.pattern ?? '', ConstantsFile.yyyyMMDD)
+        ? Common.dateConvert(
+            text.trim(),
+            appLocale.yMdFormatter.pattern ?? '',
+            ConstantsFile.yyyyMMDD,
+          )
         : '';
     return date;
   }
@@ -631,5 +632,4 @@ class Common {
       return defaultValue;
     }
   }
-
 }

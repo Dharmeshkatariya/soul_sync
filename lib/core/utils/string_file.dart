@@ -227,7 +227,8 @@ class StringFile {
   static String audioCodec = "Audio Codec";
   static String bitrate = "Bitrate";
   static String loudnessDb = "LoudnessDb";
-  static String deleteDownloadedDataAlert = "Successfully removed from downloads!";
+  static String deleteDownloadedDataAlert =
+      "Successfully removed from downloads!";
   static String cancelTimerAlert = "Sleep timer cancelled";
   static String sleepTimeSetAlert = "Your sleep timer is set";
   static String radioNotAvailable = "Radio not available for this artist!";
@@ -242,7 +243,8 @@ class StringFile {
   static String errorOccuredAlert = "Some error occured!";
   static String pipedplstSyncAlert = "Piped playlist synced!";
   static String playlistCreatedAlert = "playlist created!";
-  static String playlistCreatednsongAddedAlert = "playlist created & song added!";
+  static String playlistCreatednsongAddedAlert =
+      "playlist created & song added!";
   static String playlistRenameAlert = "Renamed successfully!";
   static String playlistRemovedAlert = "playlist removed!";
   static String playlistBookmarkAddAlert = "playlist bookmarked!";
@@ -300,7 +302,8 @@ class StringFile {
       "Restores all settings, login data and playlists from a backup file. Overwrites all current data";
   static String backupMsg = "Backup successfully saved!";
   static String backFilesFound = "databases found";
-  static String restoreMsg = "Successfully restored!\nChanges are applied on restart";
+  static String restoreMsg =
+      "Successfully restored!\nChanges are applied on restart";
   static String restoring = "Restoring...";
   static String restore = "Restore";
   static String closeApp = "Close App";
@@ -338,9 +341,5 @@ class StringFile {
   static String keepScreenOnWhilePlayingDes =
       "If enabled, the device screen will stay awake while music is playing";
 
-
-
-  static String somethingWentWrong ="Something went wrong";
-
-
+  static String somethingWentWrong = "Something went wrong";
 }

@@ -49,7 +49,7 @@ class AddToPlaylist extends StatelessWidget {
                             delay: const Duration(milliseconds: 300),
                             child: CustomTextView(
                               "CreateNewPlaylist".tr,
-                              style: context.titleMedium  ,
+                              style: context.titleMedium,
                             ),
                           ),
                         ),

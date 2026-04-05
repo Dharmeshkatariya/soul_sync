@@ -81,10 +81,7 @@ class PlaylistExportDialog extends StatelessWidget {
               alignment: Alignment.centerRight,
               child: TextButton(
                 onPressed: () => Navigator.of(context).pop(),
-                child: CustomTextView(
-                  "close".tr,
-                  style: context.titleMedium  ,
-                ),
+                child: CustomTextView("close".tr, style: context.titleMedium),
               ),
             ),
           ],
@@ -98,10 +95,7 @@ class PlaylistExportDialog extends StatelessWidget {
     final url = 'https://www.youtube.com/watch_videos?video_ids=$videoIds';
     final ytmUrl = await _generateYTMUrl(url);
 
-    launchUrl(
-      Uri.parse(ytmUrl ?? url),
-      mode: LaunchMode.externalApplication,
-    );
+    launchUrl(Uri.parse(ytmUrl ?? url), mode: LaunchMode.externalApplication);
   }
 
   Future<String?> _generateYTMUrl(String ytSimpleUrl) async {
@@ -136,11 +130,7 @@ class PlaylistExportDialog extends StatelessWidget {
     Clipboard.setData(ClipboardData(text: ytmUrl ?? url)).then((_) {
       if (parentContext.mounted) {
         ScaffoldMessenger.of(parentContext).showSnackBar(
-          snackbar(
-            parentContext,
-            "linkCopied".tr,
-            size: SanckBarSize.MEDIUM,
-          ),
+          snackbar(parentContext, "linkCopied".tr, size: SanckBarSize.MEDIUM),
         );
       }
     });
@@ -178,19 +168,13 @@ class _ExportButton extends StatelessWidget {
           ),
           child: Row(
             children: [
-              Icon(
-                icon,
-                color: context.titleMedium  !.color,
-              ),
+              Icon(icon, color: context.titleMedium!.color),
               const SizedBox(width: 16),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    CustomTextView(
-                      title,
-                      style: context.titleMedium  ,
-                    ),
+                    CustomTextView(title, style: context.titleMedium),
                     const SizedBox(height: 4),
                     CustomTextView(
                       subtitle,
@@ -250,19 +234,13 @@ class _SplitExportButton extends StatelessWidget {
                     padding: const EdgeInsets.all(16),
                     child: Row(
                       children: [
-                        Icon(
-                          icon,
-                          color: context.titleMedium  !.color,
-                        ),
+                        Icon(icon, color: context.titleMedium!.color),
                         const SizedBox(width: 16),
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              CustomTextView(
-                                title,
-                                style: context.titleMedium  ,
-                              ),
+                              CustomTextView(title, style: context.titleMedium),
                               const SizedBox(height: 4),
                               CustomTextView(
                                 subtitle,
@@ -295,7 +273,7 @@ class _SplitExportButton extends StatelessWidget {
                     padding: const EdgeInsets.all(16),
                     child: Icon(
                       Icons.copy,
-                      color: context.titleMedium  !.color,
+                      color: context.titleMedium!.color,
                       size: 20,
                     ),
                   ),

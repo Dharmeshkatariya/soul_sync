@@ -25,8 +25,9 @@ class CommonStatusWidget extends StatelessWidget {
     return Container(
       constraints: BoxConstraints(minHeight: 23.h),
       decoration: BoxDecoration(
-        color:
-            showBg ? statusStyle.backgroundColor : ColorFile.transparentColor,
+        color: showBg
+            ? statusStyle.backgroundColor
+            : ColorFile.transparentColor,
         borderRadius: BorderRadius.circular(30.r),
       ),
       alignment: alignment,

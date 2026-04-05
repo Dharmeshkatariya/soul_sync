@@ -1,4 +1,3 @@
-
 enum GeneralListingTypes {
   all(''),
   internal('INT'),
@@ -9,7 +8,7 @@ enum GeneralListingTypes {
   const GeneralListingTypes(this.param);
 }
 
-enum EntityType{
+enum EntityType {
   internal('Internal', 'INT'),
   external('External', 'EXT');
 
@@ -19,13 +18,9 @@ enum EntityType{
   const EntityType(this.name, this.code);
 }
 
-enum Recipient{
-  user,
-  patient,
-  other;
-}
+enum Recipient { user, patient, other }
 
-enum PracticesSort{
+enum PracticesSort {
   name('Name', 'name'),
   city('City', 'city'),
   state('State', 'state'),
@@ -38,7 +33,7 @@ enum PracticesSort{
   const PracticesSort(this.displayName, this.param);
 }
 
-enum UsersSort{
+enum UsersSort {
   status('Status', 'user__status'),
   name('Name', 'name');
 
@@ -116,20 +111,11 @@ enum PrimarySidebarPatientItemsEnum {
   const PrimarySidebarPatientItemsEnum(this.id);
 }
 
-enum DataMgmtPages{
-  masterData,
-  insurances,
-  bills;
-}
+enum DataMgmtPages { masterData, insurances, bills }
 
-enum SnackBarType{
-  error,
-  info,
-  warning,
-  success;
-}
+enum SnackBarType { error, info, warning, success }
 
-enum OtpTypes{
+enum OtpTypes {
   patientCreate('patient_create');
 
   final String paramValue;
@@ -152,20 +138,11 @@ enum PaymentMethod {
 
 enum ProviderFilterParams { displayId, name, city, zipCode }
 
+enum UserType { provider, patient }
 
-enum UserType{
-  provider,
-  patient
-}
+enum NotificationsType { call, email, sms, message }
 
-enum NotificationsType{
-  call,
-  email,
-  sms,
-  message
-}
-
-enum MeetingType{
+enum MeetingType {
   onDemand('ON_DEMAND'),
   immediate('IMMEDIATE'),
   scheduled('SCHEDULED');
@@ -175,7 +152,7 @@ enum MeetingType{
   const MeetingType(this.param);
 }
 
-enum MeetingParticipationType{
+enum MeetingParticipationType {
   inviteOnly('INVITE_ONLY'),
   limited('LIMITED');
 
@@ -184,7 +161,7 @@ enum MeetingParticipationType{
   const MeetingParticipationType(this.param);
 }
 
-enum AppointmentCategory{
+enum AppointmentCategory {
   physical('PHYSICAL'),
   telehealth('TELEHEALTH');
 
@@ -193,7 +170,7 @@ enum AppointmentCategory{
   const AppointmentCategory(this.value);
 }
 
-enum TelehealthBeginStatus{
+enum TelehealthBeginStatus {
   completeIntake('COMPLETE_INTAKE'),
   beginTriage('BEGIN_TRIAGE'),
   completeTriage('COMPLETE_TRIAGE'),
@@ -205,22 +182,17 @@ enum TelehealthBeginStatus{
   const TelehealthBeginStatus(this.value);
 }
 
-enum FaceMeetMoreOptions{
+enum FaceMeetMoreOptions {
   visualEffects,
   participants,
   chat,
   screenLayout,
   whiteBoard,
   hostControls,
-  meetingDetails
+  meetingDetails,
 }
 
-
-enum ListingTheme{
-  primary,
-  secondary
-}
-
+enum ListingTheme { primary, secondary }
 
 enum DateFilterType {
   currentWeek('Current Week'),
@@ -228,15 +200,15 @@ enum DateFilterType {
   currentMonth('Current Month'),
   lastMonth('Last Month'),
   customRange('Custom Range');
+
   final String? type;
   const DateFilterType(this.type);
 }
 
 enum DisplayDateType {
-  date('Date') ,
-  time('Time') ,
+  date('Date'),
+  time('Time'),
   dateAndTime('Date And Time');
-
 
   final String dateTime;
   const DisplayDateType(this.dateTime);

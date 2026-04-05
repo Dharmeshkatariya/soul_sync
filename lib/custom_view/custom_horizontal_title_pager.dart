@@ -68,8 +68,10 @@ class CustomHorizontalTitlePager extends StatelessWidget {
                   topRight: Radius.circular(8.r),
                 ),
               ),
-              child:
-                  CustomTextView(title!, style: AppTextStyles.semiBoldBlack16),
+              child: CustomTextView(
+                title!,
+                style: AppTextStyles.semiBoldBlack16,
+              ),
             ),
           isExpandedPager
               ? _expandedPager()
@@ -99,20 +101,17 @@ class CustomHorizontalTitlePager extends StatelessWidget {
                         ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: List.generate(
-                            mList.length,
-                            (index) {
-                              var item = mList[index];
-                              return Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  _pagerItem(item),
-                                  if (index < mList.length - 1)
-                                    SizedBox(width: itemWidth ?? 40.w),
-                                ],
-                              );
-                            },
-                          ),
+                          children: List.generate(mList.length, (index) {
+                            var item = mList[index];
+                            return Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                _pagerItem(item),
+                                if (index < mList.length - 1)
+                                  SizedBox(width: itemWidth ?? 40.w),
+                              ],
+                            );
+                          }),
                         ),
                       ),
                     ),
@@ -137,9 +136,7 @@ class CustomHorizontalTitlePager extends StatelessWidget {
         child: Row(
           children: List.generate(mList.length, (index) {
             var item = mList[index];
-            return Expanded(
-              child: _pagerItem(item),
-            );
+            return Expanded(child: _pagerItem(item));
           }),
         ),
       ),
@@ -168,8 +165,9 @@ class CustomHorizontalTitlePager extends StatelessWidget {
             CustomTextView(
               item.displayText ?? "",
               style: (item == selectedItem)
-                  ? AppTextStyles.semiBoldBlack14
-                      .copyWith(color: ColorFile.webThemeColor)
+                  ? AppTextStyles.semiBoldBlack14.copyWith(
+                      color: ColorFile.webThemeColor,
+                    )
                   : AppTextStyles.regularBlack14.copyWith(
                       color: ColorFile.lightBlack1Color,
                     ),
@@ -181,8 +179,9 @@ class CustomHorizontalTitlePager extends StatelessWidget {
                       ? '(\$${item.count!.value.toStringAsFixed(2)})'
                       : '(${item.count!.value})',
                   style: (item == selectedItem)
-                      ? AppTextStyles.semiBoldBlack14
-                          .copyWith(color: ColorFile.webThemeColor)
+                      ? AppTextStyles.semiBoldBlack14.copyWith(
+                          color: ColorFile.webThemeColor,
+                        )
                       : AppTextStyles.regularBlack14.copyWith(
                           color: ColorFile.lightBlack1Color,
                         ),

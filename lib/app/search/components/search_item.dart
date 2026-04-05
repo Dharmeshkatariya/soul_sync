@@ -10,8 +10,11 @@ import '../search_screen_controller.dart';
 class SearchItem extends StatelessWidget {
   final String queryString;
   final bool isHistoryString;
-  const SearchItem(
-      {super.key, required this.queryString, required this.isHistoryString});
+  const SearchItem({
+    super.key,
+    required this.queryString,
+    required this.isHistoryString,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +22,11 @@ class SearchItem extends StatelessWidget {
     return ListTile(
       contentPadding: const EdgeInsets.only(left: 10, right: 20),
       onTap: () {
-        Get.toNamed(ScreenNavigationSetup.searchResultScreen,
-            id: ScreenNavigationSetup.id, arguments: queryString);
+        Get.toNamed(
+          ScreenNavigationSetup.searchResultScreen,
+          id: ScreenNavigationSetup.id,
+          arguments: queryString,
+        );
         searchScreenController.addToHistryQueryList(queryString);
         // for Desktop searchbar
         if (GetPlatform.isDesktop) {
@@ -43,17 +49,13 @@ class SearchItem extends StatelessWidget {
                     splashRadius: 18,
                     visualDensity: const VisualDensity(horizontal: -2),
                     onPressed: () {
-                      searchScreenController
-                          .removeQueryFromHistory(queryString);
+                      searchScreenController.removeQueryFromHistory(
+                        queryString,
+                      );
                     },
-                    icon: Icon(
-                      Icons.clear,
-                      color: context.titleMedium  !.color,
-                    ),
+                    icon: Icon(Icons.clear, color: context.titleMedium!.color),
                   )
-                : const SizedBox(
-                    width: 40,
-                  ),
+                : const SizedBox(width: 40),
             IconButton(
               iconSize: 20,
               splashRadius: 18,
@@ -61,10 +63,7 @@ class SearchItem extends StatelessWidget {
               onPressed: () {
                 searchScreenController.suggestionInput(queryString);
               },
-              icon: Icon(
-                Icons.north_west,
-                color: context.titleMedium  !.color,
-              ),
+              icon: Icon(Icons.north_west, color: context.titleMedium!.color),
             ),
           ],
         ),

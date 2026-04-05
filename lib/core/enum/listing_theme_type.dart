@@ -1,4 +1,1 @@
-enum ListingTheme{
-  primary,
-  secondary
-}
+enum ListingTheme { primary, secondary }

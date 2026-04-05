@@ -58,10 +58,9 @@ class CustomVerticalPager extends StatelessWidget {
                 left: 10.sp,
               ),
               decoration: BoxDecoration(
-                color:
-                    mItem == selectedItem
-                        ? ColorFile.titleBGColor
-                        : ColorFile.transparentColor,
+                color: mItem == selectedItem
+                    ? ColorFile.titleBGColor
+                    : ColorFile.transparentColor,
                 borderRadius: BorderRadius.only(
                   bottomRight: Radius.circular(40.r),
                   topRight: Radius.circular(40.r),
@@ -72,14 +71,13 @@ class CustomVerticalPager extends StatelessWidget {
                   Expanded(
                     child: CustomTextView(
                       mItem.displayText ?? "",
-                      style:
-                          mItem == selectedItem
-                              ? AppTextStyles.semiBoldBlack14.copyWith(
-                                color: ColorFile.webThemeColor,
-                              )
-                              : AppTextStyles.mediumBlack14.copyWith(
-                                color: ColorFile.blackColor,
-                              ),
+                      style: mItem == selectedItem
+                          ? AppTextStyles.semiBoldBlack14.copyWith(
+                              color: ColorFile.webThemeColor,
+                            )
+                          : AppTextStyles.mediumBlack14.copyWith(
+                              color: ColorFile.blackColor,
+                            ),
                     ),
                   ),
                   mItem == selectedItem
@@ -125,10 +123,9 @@ class CustomVerticalPager extends StatelessWidget {
                 left: 10.sp,
               ),
               decoration: BoxDecoration(
-                color:
-                    mItem == selectedItem
-                        ? ColorFile.titleBGColor
-                        : ColorFile.transparentColor,
+                color: mItem == selectedItem
+                    ? ColorFile.titleBGColor
+                    : ColorFile.transparentColor,
                 borderRadius: BorderRadius.only(
                   bottomRight: Radius.circular(40.r),
                   topRight: Radius.circular(40.r),
@@ -138,14 +135,13 @@ class CustomVerticalPager extends StatelessWidget {
                 children: [
                   CustomTextView(
                     mItem.displayText ?? "",
-                    style:
-                        mItem == selectedItem
-                            ? AppTextStyles.semiBoldBlack14.copyWith(
-                              color: ColorFile.webThemeColor,
-                            )
-                            : AppTextStyles.mediumBlack14.copyWith(
-                              color: ColorFile.blackColor,
-                            ),
+                    style: mItem == selectedItem
+                        ? AppTextStyles.semiBoldBlack14.copyWith(
+                            color: ColorFile.webThemeColor,
+                          )
+                        : AppTextStyles.mediumBlack14.copyWith(
+                            color: ColorFile.blackColor,
+                          ),
                   ),
 
                   mItem == selectedItem

@@ -67,8 +67,9 @@ abstract class PlaylistAlbumScreenControllerBase extends GetxController {
         .whereType<MediaItem>()
         .toList();
     if (id != "SongDownloads") await box.close();
-    songList.value =
-        id == "LIBRP" ? songList.reversed.toList() : songList.toList();
+    songList.value = id == "LIBRP"
+        ? songList.reversed.toList()
+        : songList.toList();
     checkDownloadStatus();
   }
 
@@ -141,7 +142,9 @@ abstract class PlaylistAlbumScreenControllerBase extends GetxController {
   /// [sortWidgetController_] - The controller for the sort widget.
   /// [mode] - The mode of the operation.
   void startAdditionalOperation(
-      SortWidgetController sortWidgetController_, OperationMode mode);
+    SortWidgetController sortWidgetController_,
+    OperationMode mode,
+  );
 
   /// Selects or deselects all items.
   ///

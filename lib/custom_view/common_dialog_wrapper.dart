@@ -11,13 +11,14 @@ class CommonDialogWrapper extends StatelessWidget {
   final VoidCallback? onCloseCick;
   final bool showClose;
 
-  const CommonDialogWrapper(
-      {super.key,
-      required this.height,
-      required this.width,
-      required this.child,
-      this.showClose = true,
-      this.onCloseCick});
+  const CommonDialogWrapper({
+    super.key,
+    required this.height,
+    required this.width,
+    required this.child,
+    this.showClose = true,
+    this.onCloseCick,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -52,12 +53,8 @@ class CommonDialogWrapper extends StatelessWidget {
                         ),
                       ),
                     ),
-                  SizedBox(
-                    height: 5.w,
-                  ),
-                  Expanded(
-                    child: child,
-                  ),
+                  SizedBox(height: 5.w),
+                  Expanded(child: child),
                 ],
               ),
             ),

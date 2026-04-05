@@ -5,7 +5,10 @@ class PlatformConstants {
   static String get androidModel {
     if (kIsWeb) return '';
     try {
-      return const String.fromEnvironment('ro.product.models', defaultValue: '');
+      return const String.fromEnvironment(
+        'ro.product.models',
+        defaultValue: '',
+      );
     } catch (e) {
       return '';
     }
@@ -42,7 +45,10 @@ class PlatformConstants {
   static String get iosSimulatorModel {
     if (kIsWeb) return '';
     try {
-      return const String.fromEnvironment('SIMULATOR_MODEL_IDENTIFIER', defaultValue: '');
+      return const String.fromEnvironment(
+        'SIMULATOR_MODEL_IDENTIFIER',
+        defaultValue: '',
+      );
     } catch (e) {
       return '';
     }

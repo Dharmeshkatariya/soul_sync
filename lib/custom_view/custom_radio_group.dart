@@ -41,34 +41,31 @@ class CustomRadioGroup<T> extends StatelessWidget {
             borderRadius: BorderRadius.circular(8.r),
             border: Border.all(color: ColorFile.grayDDColor),
           ),
-          child:
-              alignment == GroupAlignment.vertical
-                  ? Column(
-                    children:
-                        values.map((e) {
-                          return _CustomRadioButton<T>(
+          child: alignment == GroupAlignment.vertical
+              ? Column(
+                  children: values.map((e) {
+                    return _CustomRadioButton<T>(
+                      value: e,
+                      isSelected: e == selectedValue,
+                      onTap: onTap,
+                      displayName: displayName,
+                    );
+                  }).toList(),
+                )
+              : Row(
+                  children: values
+                      .map(
+                        (e) => Expanded(
+                          child: _CustomRadioButton<T>(
                             value: e,
                             isSelected: e == selectedValue,
                             onTap: onTap,
                             displayName: displayName,
-                          );
-                        }).toList(),
-                  )
-                  : Row(
-                    children:
-                        values
-                            .map(
-                              (e) => Expanded(
-                                child: _CustomRadioButton<T>(
-                                  value: e,
-                                  isSelected: e == selectedValue,
-                                  onTap: onTap,
-                                  displayName: displayName,
-                                ),
-                              ),
-                            )
-                            .toList(),
-                  ),
+                          ),
+                        ),
+                      )
+                      .toList(),
+                ),
         ),
       ],
     );
@@ -96,10 +93,9 @@ class _CustomRadioButton<T> extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.only(top: 8.h, bottom: 8.h, left: 15.w),
         decoration: BoxDecoration(
-          color:
-              (isSelected)
-                  ? ColorFile.webThemeColorOpaque5
-                  : ColorFile.transparentColor,
+          color: (isSelected)
+              ? ColorFile.webThemeColorOpaque5
+              : ColorFile.transparentColor,
           border: const Border(
             left: BorderSide(color: ColorFile.grayDDColor, width: 0.5),
             right: BorderSide(color: ColorFile.grayDDColor, width: 0.5),
@@ -114,20 +110,18 @@ class _CustomRadioButton<T> extends StatelessWidget {
               padding: EdgeInsets.all(3.w),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(30.r),
-                border:
-                    (isSelected)
-                        ? Border.all(color: ColorFile.webThemeColor, width: 2.w)
-                        : Border.all(color: ColorFile.grayDDColor, width: 1.w),
+                border: (isSelected)
+                    ? Border.all(color: ColorFile.webThemeColor, width: 2.w)
+                    : Border.all(color: ColorFile.grayDDColor, width: 1.w),
               ),
               child: Container(
                 width: 12.w,
                 height: 12.w,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30.r),
-                  color:
-                      (isSelected)
-                          ? ColorFile.webThemeColor
-                          : ColorFile.transparentColor,
+                  color: (isSelected)
+                      ? ColorFile.webThemeColor
+                      : ColorFile.transparentColor,
                 ),
               ),
             ),
@@ -136,10 +130,9 @@ class _CustomRadioButton<T> extends StatelessWidget {
               child: CustomTextView(
                 displayName(value),
                 style: AppTextStyles.regularBlack14.copyWith(
-                  color:
-                      (isSelected)
-                          ? ColorFile.webThemeColor
-                          : ColorFile.blackColorOpaque70,
+                  color: (isSelected)
+                      ? ColorFile.webThemeColor
+                      : ColorFile.blackColorOpaque70,
                 ),
               ),
             ),

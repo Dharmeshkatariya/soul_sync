@@ -28,12 +28,11 @@ class CustomCheckboxWidget extends StatelessWidget {
         checkColor: Colors.white,
         activeColor: ColorFile.webThemeColor,
         value: checkboxValue.value,
-        onChanged:
-            enabled
-                ? (bool? value) {
-                  onChangedCallBack(value!);
-                }
-                : null,
+        onChanged: enabled
+            ? (bool? value) {
+                onChangedCallBack(value!);
+              }
+            : null,
       ),
     );
   }

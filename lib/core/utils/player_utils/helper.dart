@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import '../../../app/screen_navigation.dart';
 import '../../../custom_view/player_widget/sort_widget.dart';
 
-
 void printERROR(dynamic text, {String tag = "Harmony Music"}) {
   if (kReleaseMode) return;
   debugPrint("\x1B[31m[$tag]: $text\x1B[0m");
@@ -30,11 +29,7 @@ String? getCurrentRouteName() {
   return currentPath;
 }
 
-void sortSongsNVideos(
-  List songlist,
-  SortType sortType,
-  bool isAscending,
-) {
+void sortSongsNVideos(List songlist, SortType sortType, bool isAscending) {
   Comparator compareFunction;
 
   switch (sortType) {
@@ -51,8 +46,8 @@ void sortSongsNVideos(
           (a.duration ?? Duration.zero).compareTo(b.duration ?? Duration.zero);
     case SortType.Name:
     default:
-      compareFunction =
-          (a, b) => a.title.toLowerCase().compareTo(b.title.toLowerCase());
+      compareFunction = (a, b) =>
+          a.title.toLowerCase().compareTo(b.title.toLowerCase());
       break;
   }
 
@@ -65,17 +60,13 @@ void sortSongsNVideos(
   }
 }
 
-void sortAlbumNSingles(
-  List albumList,
-  SortType sortType,
-  bool isAscending,
-) {
+void sortAlbumNSingles(List albumList, SortType sortType, bool isAscending) {
   Comparator compareFunction;
 
   switch (sortType) {
     case SortType.Date:
-      compareFunction =
-          (a, b) => a.title.toLowerCase().compareTo(b.title.toLowerCase());
+      compareFunction = (a, b) =>
+          a.title.toLowerCase().compareTo(b.title.toLowerCase());
       break;
     case SortType.Name:
     default:
@@ -97,11 +88,7 @@ void sortAlbumNSingles(
   }
 }
 
-void sortPlayLists(
-  List playlists,
-  SortType sortType,
-  bool isAscending,
-) {
+void sortPlayLists(List playlists, SortType sortType, bool isAscending) {
   Comparator compareFunction;
   int titleSort(a, b) => a.title.toLowerCase().compareTo(b.title.toLowerCase());
 
@@ -137,18 +124,14 @@ void sortPlayLists(
   }
 }
 
-void sortArtist(
-  List artistList,
-  SortType sortType,
-  bool isAscending,
-) {
+void sortArtist(List artistList, SortType sortType, bool isAscending) {
   Comparator compareFunction;
 
   switch (sortType) {
     case SortType.Name:
     default:
-      compareFunction =
-          (a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase());
+      compareFunction = (a, b) =>
+          a.name.toLowerCase().compareTo(b.name.toLowerCase());
       break;
   }
 
@@ -164,9 +147,9 @@ void sortArtist(
 /// Return true if new version available
 Future<bool> newVersionCheck(String currentVersion) async {
   try {
-    final tags = (await Dio()
-            .get("https://api.github.com/repos/anandnet/Harmony-Music/tags"))
-        .data;
+    final tags = (await Dio().get(
+      "https://api.github.com/repos/anandnet/Harmony-Music/tags",
+    )).data;
     final availableVersion = tags[0]['name'] as String;
     List currentVersion_ = currentVersion.substring(1).split(".");
     List availableVersion_ = availableVersion.substring(1).split(".");

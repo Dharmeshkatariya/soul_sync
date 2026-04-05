@@ -48,10 +48,9 @@ class CustomMoreMenuPopUpListView extends StatelessWidget {
               item.onTap();
             },
             child: Container(
-              color:
-                  isHovered
-                      ? ColorFile.webThemeColorOpaque10
-                      : Colors.transparent,
+              color: isHovered
+                  ? ColorFile.webThemeColorOpaque10
+                  : Colors.transparent,
               padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.w),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -75,10 +74,9 @@ class CustomMoreMenuPopUpListView extends StatelessWidget {
                       child: CustomTextView(
                         item.title,
                         style: AppTextStyles.regularBlack14.copyWith(
-                          color:
-                              isHovered
-                                  ? ColorFile.webDarkThemeColor
-                                  : ColorFile.blackColor,
+                          color: isHovered
+                              ? ColorFile.webDarkThemeColor
+                              : ColorFile.blackColor,
                         ),
                       ),
                     ),

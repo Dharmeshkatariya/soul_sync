@@ -22,8 +22,10 @@ class AppLocale extends GetxController {
 
   factory AppLocale() => _instance;
 
-  var locale =
-      Locale(AppLanguageType.english.code!, SupportedCountries.usa.code).obs;
+  var locale = Locale(
+    AppLanguageType.english.code!,
+    SupportedCountries.usa.code,
+  ).obs;
 
   Future<AppLocale> checkLoginType() async {
     setLocal();
@@ -134,12 +136,11 @@ class AppLocale extends GetxController {
     final absAmount = amount.abs();
     final isNegative = amount.isNegative && showNegativeSign;
     // Determine currency
-    final symbol =
-        isCurrency && isSymbolVisible
-            ? NumberFormat.simpleCurrency(
-              locale: locale.value.toString(),
-            ).currencySymbol
-            : '';
+    final symbol = isCurrency && isSymbolVisible
+        ? NumberFormat.simpleCurrency(
+            locale: locale.value.toString(),
+          ).currencySymbol
+        : '';
     if (absAmount >= absCompareAmount) {
       final compact = NumberFormat.compact(
         locale: locale.value.toString(),
@@ -252,11 +253,10 @@ class AppLocale extends GetxController {
     try {
       // Collapse multiple spaces Remove trailing timezone Trim edges
       String currentLocale = locale.value.toString();
-      String cleanedDate =
-          inputDate
-              .replaceAll(RegExp(r'\s+'), ' ')
-              .replaceAll(RegExp(r' [A-Z]{2,4}$'), '')
-              .trim();
+      String cleanedDate = inputDate
+          .replaceAll(RegExp(r'\s+'), ' ')
+          .replaceAll(RegExp(r' [A-Z]{2,4}$'), '')
+          .trim();
       final possibleFormats = [
         DateFormat(ConstantsFile.eeeMMMdYYYYhMMSsa, currentLocale),
         DateFormat(ConstantsFile.eeeMMMdYYYYHHMMSSa, currentLocale),
@@ -303,18 +303,20 @@ class AppLocale extends GetxController {
         return [
           FilteringTextInputFormatter.allow(RegExp(r'[0-9\-]')),
           MaskTextInputFormatter(
-              mask: '#####-####',
-              filter: {"#": RegExp(r'\d')},
-              type: MaskAutoCompletionType.lazy),
+            mask: '#####-####',
+            filter: {"#": RegExp(r'\d')},
+            type: MaskAutoCompletionType.lazy,
+          ),
           LengthLimitingTextInputFormatter(10),
         ];
       case 'IN':
         return [
           FilteringTextInputFormatter.digitsOnly,
           MaskTextInputFormatter(
-              mask: '######',
-              filter: {"#": RegExp(r'\d')},
-              type: MaskAutoCompletionType.lazy),
+            mask: '######',
+            filter: {"#": RegExp(r'\d')},
+            type: MaskAutoCompletionType.lazy,
+          ),
           LengthLimitingTextInputFormatter(6),
         ];
       default:

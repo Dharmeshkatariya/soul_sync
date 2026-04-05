@@ -40,7 +40,7 @@ class RestoreDialog extends StatelessWidget {
                   padding: const EdgeInsets.only(bottom: 10.0, top: 10),
                   child: CustomTextView(
                     "restoreAppData".tr,
-                    style: context.titleMedium  ,
+                    style: context.titleMedium,
                   ),
                 ),
                 SizedBox(
@@ -50,7 +50,10 @@ class RestoreDialog extends StatelessWidget {
                       () =>
                           restoreDialogController.restoreProgress.toInt() ==
                               restoreDialogController.filesToRestore.toInt()
-                          ? CustomTextView("restoreMsg".tr, textAlign: TextAlign.center)
+                          ? CustomTextView(
+                              "restoreMsg".tr,
+                              textAlign: TextAlign.center,
+                            )
                           : restoreDialogController.processingFiles.isTrue
                           ? CustomTextView("processFiles".tr)
                           : restoreDialogController.restoreRunning.isTrue

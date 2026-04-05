@@ -175,7 +175,10 @@ class CustomMenu {
       pageBuilder: (context, anim1, anim2) {
         return Align(
           alignment: Alignment.bottomRight,
-          child: Padding(padding: EdgeInsets.only(right: 240.w), child: child),
+          child: Padding(
+            padding: EdgeInsets.only(right: 240.w),
+            child: child,
+          ),
         );
       },
       transitionBuilder: (context, anim1, anim2, child) {
@@ -206,14 +209,13 @@ class CustomMenu {
           child: Material(
             color: ColorFile.transparentColor,
             child: Container(
-              width: width ?? ( ResponsiveUtil.isWeb ? 550.w : Get.width),
+              width: width ?? (ResponsiveUtil.isWeb ? 550.w : Get.width),
               constraints: BoxConstraints(
-                maxHeight:  ResponsiveUtil.isWeb ? 550.h : 550.w,
+                maxHeight: ResponsiveUtil.isWeb ? 550.h : 550.w,
               ),
-              margin:
-                   ResponsiveUtil.isWeb
-                      ? EdgeInsets.zero
-                      : EdgeInsets.symmetric(horizontal: 20.w),
+              margin: ResponsiveUtil.isWeb
+                  ? EdgeInsets.zero
+                  : EdgeInsets.symmetric(horizontal: 20.w),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
@@ -230,9 +232,9 @@ class CustomMenu {
                       borderRadius: BorderRadius.all(Radius.circular(8.r)),
                       color: ColorFile.whiteColor,
                     ),
-                    width: width ?? ( ResponsiveUtil.isWeb ? 550.w : Get.width),
+                    width: width ?? (ResponsiveUtil.isWeb ? 550.w : Get.width),
                     constraints: BoxConstraints(
-                      maxHeight:  ResponsiveUtil.isWeb ? 500.h : 500.w,
+                      maxHeight: ResponsiveUtil.isWeb ? 500.h : 500.w,
                     ),
                     child: SingleChildScrollView(child: child),
                   ),
@@ -246,7 +248,7 @@ class CustomMenu {
         return SlideTransition(
           position: Tween<Offset>(
             begin: const Offset(0, 0),
-            end: endOffset ?? Offset(0,  ResponsiveUtil.isWeb ? 0.25 : 0.12),
+            end: endOffset ?? Offset(0, ResponsiveUtil.isWeb ? 0.25 : 0.12),
           ).animate(anim1),
           child: child,
         );

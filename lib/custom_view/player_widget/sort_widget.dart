@@ -9,17 +9,13 @@ import 'modified_text_field.dart';
 
 enum OperationMode { arrange, delete, addToPlaylist, none }
 
-enum SortType {
-  Name,
-  Date,
-  Duration,
-  RecentlyPlayed,
-}
+enum SortType { Name, Date, Duration, RecentlyPlayed }
 
-Set<SortType> buildSortTypeSet(
-    [bool dateRequired = false,
-    bool durationRequired = false,
-    bool recentlyPlayedRequired = false]) {
+Set<SortType> buildSortTypeSet([
+  bool dateRequired = false,
+  bool durationRequired = false,
+  bool recentlyPlayedRequired = false,
+]) {
   Set<SortType> requiredSortTypes = {};
   if (dateRequired) {
     requiredSortTypes.add(SortType.Date);
@@ -84,13 +80,8 @@ class SortWidget extends StatelessWidget {
       context: context,
       builder: (context) => AlertDialog(
         backgroundColor: Theme.of(context).cardColor,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15),
-        ),
-        title: CustomTextView(
-          "importPlaylist".tr,
-          style: context.titleLarge,
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+        title: CustomTextView("importPlaylist".tr, style: context.titleLarge),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -103,9 +94,9 @@ class SortWidget extends StatelessWidget {
             CustomTextView(
               "importLargeFileNote".tr,
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    fontStyle: FontStyle.italic,
-                    color: Theme.of(context).colorScheme.secondary,
-                  ),
+                fontStyle: FontStyle.italic,
+                color: Theme.of(context).colorScheme.secondary,
+              ),
             ),
             const SizedBox(height: 24),
             Center(
@@ -113,8 +104,10 @@ class SortWidget extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Theme.of(context).colorScheme.secondary,
                   foregroundColor: Theme.of(context).colorScheme.onSecondary,
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 12,
+                  ),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
@@ -122,8 +115,9 @@ class SortWidget extends StatelessWidget {
                 icon: const Icon(Icons.file_open),
                 label: CustomTextView("selectFile".tr),
                 onPressed: () {
-                  Get.find<LibraryPlaylistsController>()
-                      .importPlaylistFromJson(context);
+                  Get.find<LibraryPlaylistsController>().importPlaylistFromJson(
+                    context,
+                  );
                   Navigator.pop(context);
                   Navigator.pop(context);
                 },
@@ -170,14 +164,13 @@ class SortWidget extends StatelessWidget {
                               Icons.music_note,
                               size: 15,
                               color: Theme.of(context).colorScheme.secondary,
-                            )
+                            ),
                         ],
                       ),
                     ),
                     Obx(
                       () => _customIconButton(
-                        isSelected:
-                            controller.sortType.value == SortType.Name,
+                        isSelected: controller.sortType.value == SortType.Name,
                         icon: Icons.sort_by_alpha,
                         tooltip: "sortByName".tr,
                         onPressed: () {
@@ -199,15 +192,18 @@ class SortWidget extends StatelessWidget {
                           )
                         : const SizedBox.shrink(),
                     requiredSortTypes.contains(SortType.Duration)
-                        ? Obx(() => _customIconButton(
-                              isSelected: controller.sortType.value ==
+                        ? Obx(
+                            () => _customIconButton(
+                              isSelected:
+                                  controller.sortType.value ==
                                   SortType.Duration,
                               tooltip: "sortByDuration".tr,
                               icon: Icons.timer,
                               onPressed: () {
                                 controller.onSortByDuration(onSort);
                               },
-                            ))
+                            ),
+                          )
                         : const SizedBox.shrink(),
                     const Expanded(child: SizedBox()),
                     Obx(
@@ -238,25 +234,22 @@ class SortWidget extends StatelessWidget {
                       ),
                     if (isAdditionalOperationRequired)
                       PopupMenuButton(
-                        child: const Icon(
-                          Icons.more_vert,
-                          size: 20,
-                        ),
+                        child: const Icon(Icons.more_vert, size: 20),
                         // Callback that sets the selected popup menu item.
                         onSelected: (mode) {
                           showDialog(
-                              context: context,
-                              builder: (context) => AdditionalOperationDialog(
-                                    operationMode: mode,
-                                    screenController: screenController,
-                                    controller: controller,
-                                  ));
-                
+                            context: context,
+                            builder: (context) => AdditionalOperationDialog(
+                              operationMode: mode,
+                              screenController: screenController,
+                              controller: controller,
+                            ),
+                          );
+
                           controller.setActiveMode(mode);
                           startAdditionalOperation!(controller, mode);
                         },
-                        itemBuilder: (BuildContext context) =>
-                            <PopupMenuEntry>[
+                        itemBuilder: (BuildContext context) => <PopupMenuEntry>[
                           if (isPlaylistRearrageFeatureRequired)
                             PopupMenuItem(
                               value: OperationMode.arrange,
@@ -273,9 +266,7 @@ class SortWidget extends StatelessWidget {
                           ),
                         ],
                       ),
-                    const SizedBox(
-                      width: 15,
-                    )
+                    const SizedBox(width: 15),
                   ],
                 ),
               if (controller.isSearchingEnabled.value)
@@ -285,9 +276,9 @@ class SortWidget extends StatelessWidget {
                   // color:
                   //     Theme.of(context).scaffoldBackgroundColor.withAlpha(125),
                   child: ColoredBox(
-                    color: Theme.of(context)
-                        .scaffoldBackgroundColor
-                        .withAlpha(125),
+                    color: Theme.of(
+                      context,
+                    ).scaffoldBackgroundColor.withAlpha(125),
                     child: ModifiedTextField(
                       controller: controller.textEditingController,
                       textAlignVertical: TextAlignVertical.center,
@@ -295,16 +286,16 @@ class SortWidget extends StatelessWidget {
                       onChanged: (value) {
                         onSearch!(value, tag);
                       },
-                      cursorColor:
-                          context.titleSmall!.color,
+                      cursorColor: context.titleSmall!.color,
                       decoration: InputDecoration(
                         isDense: true,
                         contentPadding: const EdgeInsets.all(8),
                         filled: true,
                         border: const OutlineInputBorder(),
                         hintText: "search".tr,
-                        suffixIconColor:
-                            Theme.of(context).colorScheme.secondary,
+                        suffixIconColor: Theme.of(
+                          context,
+                        ).colorScheme.secondary,
                         suffixIcon: IconButton(
                           splashRadius: 10,
                           iconSize: 20,

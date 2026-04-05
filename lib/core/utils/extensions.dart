@@ -9,18 +9,22 @@ import 'package:soul_sync/core/utils/common.dart';
 extension StringExtension on String {
   String toTitleCase() {
     return split('_')
-        .map((word) => word.isNotEmpty
-            ? word[0].toUpperCase() + word.substring(1).toLowerCase()
-            : '')
+        .map(
+          (word) => word.isNotEmpty
+              ? word[0].toUpperCase() + word.substring(1).toLowerCase()
+              : '',
+        )
         .join(' ');
   }
 
   String capitalizeEachWord() {
     return toLowerCase()
         .split(' ')
-        .map((word) => word.isNotEmpty
-            ? '${word[0].toUpperCase()}${word.substring(1)}'
-            : '')
+        .map(
+          (word) => word.isNotEmpty
+              ? '${word[0].toUpperCase()}${word.substring(1)}'
+              : '',
+        )
         .join(' ');
   }
 
@@ -39,12 +43,14 @@ extension StringExtension on String {
 
   String get formatted => isNotEmpty
       ? split('_')
-              .map((word) => word.isNotEmpty
-                  ? word[0].toUpperCase() + word.substring(1)
-                  : '')
-              .join(' ')
-              .capitalize ??
-          ''
+                .map(
+                  (word) => word.isNotEmpty
+                      ? word[0].toUpperCase() + word.substring(1)
+                      : '',
+                )
+                .join(' ')
+                .capitalize ??
+            ''
       : '';
 
   double toDouble() {
@@ -72,7 +78,6 @@ extension StringExtension on String {
     }
     return 0;
   }
-
 }
 
 extension DateFormatExt on DateTime {
@@ -83,6 +88,7 @@ extension DateFormatExt on DateTime {
 
   String get tommmDDYyyy => DateFormat(ConstantsFile.mmDDYyyy).format(this);
 
-  DateTime get currentMonday =>  subtract(Duration(days: weekday - DateTime.monday));
-  DateTime get currentSunday =>  add(Duration(days: DateTime.sunday - weekday));
+  DateTime get currentMonday =>
+      subtract(Duration(days: weekday - DateTime.monday));
+  DateTime get currentSunday => add(Duration(days: DateTime.sunday - weekday));
 }

@@ -37,37 +37,55 @@ class SideNavBar extends StatelessWidget {
                     //backgroundColor: Colors.green,
                     destinations: <NavigationRailDestination>[
                       railDestination(
-                          "home".tr, isMobileOrTabScreen, Icons.home),
+                        "home".tr,
+                        isMobileOrTabScreen,
+                        Icons.home,
+                      ),
                       railDestination(
-                          "songs".tr, isMobileOrTabScreen, Icons.art_track),
-                      railDestination("playlists".tr, isMobileOrTabScreen,
-                          Icons.featured_play_list),
+                        "songs".tr,
+                        isMobileOrTabScreen,
+                        Icons.art_track,
+                      ),
                       railDestination(
-                          "albums".tr, isMobileOrTabScreen, Icons.album),
+                        "playlists".tr,
+                        isMobileOrTabScreen,
+                        Icons.featured_play_list,
+                      ),
                       railDestination(
-                          "artists".tr, isMobileOrTabScreen, Icons.people),
+                        "albums".tr,
+                        isMobileOrTabScreen,
+                        Icons.album,
+                      ),
+                      railDestination(
+                        "artists".tr,
+                        isMobileOrTabScreen,
+                        Icons.people,
+                      ),
                       //railDestination("Settings")
                       const NavigationRailDestination(
                         padding: EdgeInsets.only(top: 10, bottom: 10),
                         icon: Icon(Icons.settings),
                         label: SizedBox.shrink(),
                         selectedIcon: Icon(Icons.settings),
-                      )
+                      ),
                     ],
                   ),
                 ),
-              ))
+              ),
+            )
           : Padding(
               padding: const EdgeInsets.only(bottom: 100.0),
               child: SideBarAnimated(
                 onTap: homeScreenController.onSideBarTabSelected,
                 sideBarColor: Theme.of(context).primaryColor.withAlpha(250),
                 animatedContainerColor: Theme.of(context).colorScheme.secondary,
-                hoverColor:
-                    Theme.of(context).colorScheme.secondary.withAlpha(180),
+                hoverColor: Theme.of(
+                  context,
+                ).colorScheme.secondary.withAlpha(180),
                 splashColor: Theme.of(context).colorScheme.secondary,
-                highlightColor:
-                    Theme.of(context).colorScheme.secondary.withAlpha(180),
+                highlightColor: Theme.of(
+                  context,
+                ).colorScheme.secondary.withAlpha(180),
                 widthSwitch: 800,
                 mainLogoImage: 'assets/icons/icon.png',
                 sidebarItems: [
@@ -91,10 +109,7 @@ class SideNavBar extends StatelessWidget {
                     iconUnselected: Icons.album_outlined,
                     text: 'albums'.tr,
                   ),
-                  SideBarItem(
-                    iconSelected: Icons.person,
-                    text: 'artists'.tr,
-                  ),
+                  SideBarItem(iconSelected: Icons.person, text: 'artists'.tr),
                   SideBarItem(
                     iconSelected: Icons.settings,
                     iconUnselected: Icons.settings_outlined,
@@ -107,22 +122,28 @@ class SideNavBar extends StatelessWidget {
   }
 
   NavigationRailDestination railDestination(
-      String label, bool isMobileOrTabScreen, IconData icon) {
+    String label,
+    bool isMobileOrTabScreen,
+    IconData icon,
+  ) {
     return isMobileOrTabScreen
         ? NavigationRailDestination(
             icon: const SizedBox.shrink(),
             label: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 5),
-                child: isMobileOrTabScreen
-                    ? RotatedBox(quarterTurns: -1, child: CustomTextView(label))
-                    : CustomTextView(label)),
+              padding: const EdgeInsets.symmetric(vertical: 5),
+              child: isMobileOrTabScreen
+                  ? RotatedBox(quarterTurns: -1, child: CustomTextView(label))
+                  : CustomTextView(label),
+            ),
           )
         : NavigationRailDestination(
             icon: Icon(icon),
             label: CustomTextView(label),
             padding: const EdgeInsets.only(left: 10),
             indicatorShape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(10))),
-            indicatorColor: Colors.amber);
+              borderRadius: BorderRadius.all(Radius.circular(10)),
+            ),
+            indicatorColor: Colors.amber,
+          );
   }
 }

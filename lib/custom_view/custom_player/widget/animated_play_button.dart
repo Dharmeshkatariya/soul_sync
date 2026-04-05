@@ -20,7 +20,7 @@ class AnimatedPlayButton extends StatefulWidget {
 class _AnimatedPlayButtonState extends State<AnimatedPlayButton>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
-  
+
   @override
   void initState() {
     super.initState();
@@ -38,31 +38,31 @@ class _AnimatedPlayButtonState extends State<AnimatedPlayButton>
 
   @override
   Widget build(BuildContext context) {
-    return GetX<PlayerController>(builder: (controller) {
-      final buttonState = controller.buttonState.value;
-      final isPlaying = buttonState == PlayButtonState.playing;
-      final isLoading = buttonState == PlayButtonState.loading;
+    return GetX<PlayerController>(
+      builder: (controller) {
+        final buttonState = controller.buttonState.value;
+        final isPlaying = buttonState == PlayButtonState.playing;
+        final isLoading = buttonState == PlayButtonState.loading;
 
-      if (isPlaying) {
-        _controller.forward();
-      } else if (!isLoading) {
-        _controller.reverse();
-      }
+        if (isPlaying) {
+          _controller.forward();
+        } else if (!isLoading) {
+          _controller.reverse();
+        }
 
-      return IconButton(
-        iconSize: widget.iconSize,
-        onPressed: () {
-          isPlaying ? controller.pause() : controller.play();
-        },
-        icon: isLoading
-            ? const LoadingIndicator(
-                dimension: 20,
-              )
-            : AnimatedIcon(
-                icon: AnimatedIcons.play_pause,
-                progress: _controller,
-              ),
-      );
-    });
+        return IconButton(
+          iconSize: widget.iconSize,
+          onPressed: () {
+            isPlaying ? controller.pause() : controller.play();
+          },
+          icon: isLoading
+              ? const LoadingIndicator(dimension: 20)
+              : AnimatedIcon(
+                  icon: AnimatedIcons.play_pause,
+                  progress: _controller,
+                ),
+        );
+      },
+    );
   }
 }

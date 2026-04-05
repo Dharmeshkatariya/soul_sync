@@ -4,7 +4,6 @@ import 'package:smtc_windows/smtc_windows.dart';
 import '../core/utils/player_utils/helper.dart';
 import '../custom_view/custom_player/player_controller.dart';
 
-
 class WindowsAudioService extends GetxService {
   late SMTCWindows smtc;
   final playerController = Get.find<PlayerController>();
@@ -16,9 +15,7 @@ class WindowsAudioService extends GetxService {
   }
 
   _initService() {
-    smtc = SMTCWindows(
-      enabled: false,
-    );
+    smtc = SMTCWindows(enabled: false);
     try {
       smtc.buttonPressStream.listen((event) {
         switch (event) {

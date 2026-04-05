@@ -1,4 +1,3 @@
-
 enum DeviceTypeEnum {
   mobile(1),
   tablet(2),

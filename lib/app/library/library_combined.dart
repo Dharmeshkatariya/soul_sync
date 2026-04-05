@@ -22,10 +22,13 @@ class CombinedLibrary extends StatelessWidget {
         backgroundColor: Theme.of(context).canvasColor,
         elevation: 0,
         actions: [
-          Obx(() => (settingscrnController.isLinkedWithPiped.isTrue)
-              ? const PipedSyncWidget(
-                  padding: EdgeInsets.only(right: 10, top: 50))
-              : const SizedBox.shrink()),
+          Obx(
+            () => (settingscrnController.isLinkedWithPiped.isTrue)
+                ? const PipedSyncWidget(
+                    padding: EdgeInsets.only(right: 10, top: 50),
+                  )
+                : const SizedBox.shrink(),
+          ),
           Padding(
             padding: const EdgeInsets.only(top: 50.0, right: 25),
             child: SizedBox(
@@ -33,21 +36,18 @@ class CombinedLibrary extends StatelessWidget {
               width: 50,
               child: FittedBox(
                 child: FloatingActionButton.extended(
-                    elevation: 0,
-                    onPressed: () {
-                      showDialog(
-                          context: context,
-                          builder: (context) =>
-                              const CreateNRenamePlaylistPopup());
-                    },
-                    label: const Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Icon(
-                          Icons.add,
-                        ),
-                      ],
-                    )),
+                  elevation: 0,
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) => const CreateNRenamePlaylistPopup(),
+                    );
+                  },
+                  label: const Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [Icon(Icons.add)],
+                  ),
+                ),
               ),
             ),
           ),
@@ -65,18 +65,17 @@ class CombinedLibrary extends StatelessWidget {
         ),
         title: Padding(
           padding: const EdgeInsets.only(top: 60.0, left: 5),
-          child:
-              CustomTextView('library'.tr, style: context.titleLarge),
+          child: CustomTextView('library'.tr, style: context.titleLarge),
         ),
       ),
       body: TabBarView(
         controller: tabCon.tabController,
         children: const [
-          SongsLibraryWidget(
+          SongsLibraryWidget(isBottomNavActive: true),
+          PlaylistNAlbumLibraryWidget(
+            isAlbumContent: false,
             isBottomNavActive: true,
           ),
-          PlaylistNAlbumLibraryWidget(
-              isAlbumContent: false, isBottomNavActive: true),
           PlaylistNAlbumLibraryWidget(isBottomNavActive: true),
           LibraryArtistWidget(isBottomNavActive: true),
         ],

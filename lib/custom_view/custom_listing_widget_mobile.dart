@@ -51,36 +51,34 @@ class CustomListingWidgetMobile extends StatelessWidget {
     return Container(
       padding:
           padding ?? EdgeInsets.symmetric(horizontal: 20.w, vertical: 12.h),
-      child:
-          isLoading
-              ? const Center(child: CircularProgressIndicatorWidget())
-              : mList.isNotEmpty
-              ? Column(
-                children: [
-                  if (expanded)
-                    Expanded(child: buildListView())
-                  else
-                    buildListView(),
-                  if (pagination != null) ...[
-                    SizedBox(height: 10.h),
-                    pagination ?? Container(),
-                  ],
+      child: isLoading
+          ? const Center(child: CircularProgressIndicatorWidget())
+          : mList.isNotEmpty
+          ? Column(
+              children: [
+                if (expanded)
+                  Expanded(child: buildListView())
+                else
+                  buildListView(),
+                if (pagination != null) ...[
+                  SizedBox(height: 10.h),
+                  pagination ?? Container(),
                 ],
-              )
-              : CustomEmptyDataView(
-                moduleNameTitle: moduleName,
-                isSearchEmptyData: true,
-              ),
+              ],
+            )
+          : CustomEmptyDataView(
+              moduleNameTitle: moduleName,
+              isSearchEmptyData: true,
+            ),
     );
   }
 
   ListView buildListView() {
     return ListView.separated(
       shrinkWrap: true,
-      physics:
-          isScrollable!
-              ? const BouncingScrollPhysics()
-              : const NeverScrollableScrollPhysics(),
+      physics: isScrollable!
+          ? const BouncingScrollPhysics()
+          : const NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
         var mData = mList[index];
         return listingItem(mData, index);
@@ -186,10 +184,9 @@ class CustomListingItemMobile extends StatelessWidget {
               () => CustomGestureDetector(
                 onTap: () => isExpandedView.toggle(),
                 child: Container(
-                  padding:
-                      (isExpandedView.value)
-                          ? EdgeInsets.only(bottom: 20.h)
-                          : null,
+                  padding: (isExpandedView.value)
+                      ? EdgeInsets.only(bottom: 20.h)
+                      : null,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -227,8 +224,9 @@ class CustomListingItemMobile extends StatelessWidget {
           () => CustomGestureDetector(
             onTap: () => isExpandedView.toggle(),
             child: Container(
-              padding:
-                  (isExpandedView.value) ? EdgeInsets.only(bottom: 20.h) : null,
+              padding: (isExpandedView.value)
+                  ? EdgeInsets.only(bottom: 20.h)
+                  : null,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -259,14 +257,13 @@ class CustomListingItemMobile extends StatelessWidget {
                     ConstantsFile.horizontalPaddingRatioMobile,
                 vertical: 14.h,
               ),
-          decoration:
-              isBorderShow
-                  ? BoxDecoration(
-                    borderRadius: BorderRadius.circular(8.r),
-                    border: Border.all(color: ColorFile.grayDDColor),
-                    color: ColorFile.whiteColor,
-                  )
-                  : null,
+          decoration: isBorderShow
+              ? BoxDecoration(
+                  borderRadius: BorderRadius.circular(8.r),
+                  border: Border.all(color: ColorFile.grayDDColor),
+                  color: ColorFile.whiteColor,
+                )
+              : null,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,

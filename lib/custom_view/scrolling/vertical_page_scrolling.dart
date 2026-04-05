@@ -3,11 +3,11 @@ import 'package:get/get_rx/src/rx_types/rx_types.dart';
 
 import '../custom_horizontal_pager.dart';
 
-
 class VerticalPagerScrolling {
-
-
-  static void  getSectionHeightAsync(GlobalKey key, Function(double) onHeightReady) {
+  static void getSectionHeightAsync(
+    GlobalKey key,
+    Function(double) onHeightReady,
+  ) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final context = key.currentContext;
       if (context != null) {
@@ -37,8 +37,9 @@ class VerticalPagerScrolling {
   }) {
     double scrollPosition = scrollController.position.pixels;
     List<GlobalKey> sectionKeys = globalKeyList;
-    List<double> sectionHeights =
-    sectionKeys.map((key) => getSectionHeight(key)).toList();
+    List<double> sectionHeights = sectionKeys
+        .map((key) => getSectionHeight(key))
+        .toList();
     double gapHeight = gapHeightBetweenWidget;
     double cumulativeHeight = 0.0;
     for (int i = 0; i < sectionHeights.length; i++) {
@@ -59,8 +60,9 @@ class VerticalPagerScrolling {
   }) {
     double scrollPosition = scrollController.position.pixels;
     List<GlobalKey> sectionKeys = globalKeyList;
-    List<double> sectionHeights =
-    sectionKeys.map((key) => getSectionHeight(key)).toList();
+    List<double> sectionHeights = sectionKeys
+        .map((key) => getSectionHeight(key))
+        .toList();
     double gapHeight = gapHeightBetweenWidget;
     double cumulativeHeight = 0.0;
     for (int i = 0; i < sectionHeights.length; i++) {
@@ -72,7 +74,7 @@ class VerticalPagerScrolling {
     }
   }
 
-  static  verticalPageScrollingForIndex<T>({
+  static verticalPageScrollingForIndex<T>({
     required List<GlobalKey> globalKeyList,
     required ScrollController scrollController,
     required double gapHeightBetweenWidget,
@@ -80,8 +82,9 @@ class VerticalPagerScrolling {
     required Rx<int> selectedIndex,
   }) {
     double scrollPosition = scrollController.position.pixels;
-    List<double> sectionHeights =
-    globalKeyList.map((key) => getSectionHeight(key)).toList();
+    List<double> sectionHeights = globalKeyList
+        .map((key) => getSectionHeight(key))
+        .toList();
     double cumulativeHeight = 0.0;
     for (int i = 0; i < sectionHeights.length; i++) {
       cumulativeHeight += sectionHeights[i] + gapHeightBetweenWidget;
@@ -92,9 +95,7 @@ class VerticalPagerScrolling {
     }
   }
 
-
-
-  handleScrollUsingContextKey(){
+  handleScrollUsingContextKey() {
     // var referredFromContext = referredFromFormKey.currentContext;
     // var referredToContext = referredToFormKey.currentContext;
     // if (referredFromContext != null && referredToContext != null) {
@@ -116,8 +117,6 @@ class VerticalPagerScrolling {
     // }
   }
 
-
-
   /// Scroll to a specific section using its [GlobalKey]
   static Future<void> scrollToSection({
     required GlobalKey sectionKey,
@@ -128,8 +127,8 @@ class VerticalPagerScrolling {
     final context = sectionKey.currentContext;
     if (context != null) {
       final RenderBox renderBox = context.findRenderObject() as RenderBox;
-      final offset = renderBox.localToGlobal(Offset.zero).dy +
-          scrollController.offset;
+      final offset =
+          renderBox.localToGlobal(Offset.zero).dy + scrollController.offset;
       await scrollController.animateTo(
         offset,
         duration: duration,

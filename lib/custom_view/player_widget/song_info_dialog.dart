@@ -8,7 +8,6 @@ import 'package:hive/hive.dart';
 
 import 'common_dialog_widget.dart';
 
-
 class SongInfoDialog extends StatelessWidget {
   final MediaItem song;
   const SongInfoDialog({super.key, required this.song});
@@ -23,48 +22,55 @@ class SongInfoDialog extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 10.0),
-              child: CustomTextView("songInfo".tr,
-                  style: context.titleLarge),
+              child: CustomTextView("songInfo".tr, style: context.titleLarge),
             ),
             const Divider(),
             Expanded(
-                child: ListView(
-              children: [
-                InfoItem(title: "id".tr, value: song.id),
-                InfoItem(title: "title".tr, value: song.title),
-                InfoItem(title: "album".tr, value: song.album ?? "NA"),
-                InfoItem(title: "artists".tr, value: song.artist ?? "NA"),
-                InfoItem(
+              child: ListView(
+                children: [
+                  InfoItem(title: "id".tr, value: song.id),
+                  InfoItem(title: "title".tr, value: song.title),
+                  InfoItem(title: "album".tr, value: song.album ?? "NA"),
+                  InfoItem(title: "artists".tr, value: song.artist ?? "NA"),
+                  InfoItem(
                     title: "duration".tr,
                     value:
-                        "${streamInfo["approxDurationMs"] ?? song.duration?.inMilliseconds ?? "NA"} ms"),
-                InfoItem(
+                        "${streamInfo["approxDurationMs"] ?? song.duration?.inMilliseconds ?? "NA"} ms",
+                  ),
+                  InfoItem(
                     title: "audioCodec".tr,
-                    value: streamInfo["audioCodec"] ?? "NA"),
-                InfoItem(
+                    value: streamInfo["audioCodec"] ?? "NA",
+                  ),
+                  InfoItem(
                     title: "bitrate".tr,
-                    value: "${streamInfo["bitrate"] ?? "NA"}"),
-                InfoItem(
+                    value: "${streamInfo["bitrate"] ?? "NA"}",
+                  ),
+                  InfoItem(
                     title: "loudnessDb".tr,
-                    value: "${streamInfo["loudnessDb"] ?? "NA"}"),
-              ],
-            )),
+                    value: "${streamInfo["loudnessDb"] ?? "NA"}",
+                  ),
+                ],
+              ),
+            ),
             const Divider(),
             SizedBox(
               height: 50,
               child: Align(
                 alignment: Alignment.center,
                 child: InkWell(
-                    onTap: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 10.0, horizontal: 25),
-                      child: CustomTextView("close".tr),
-                    )),
+                  onTap: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 10.0,
+                      horizontal: 25,
+                    ),
+                    child: CustomTextView("close".tr),
+                  ),
+                ),
               ),
-            )
+            ),
           ],
         ),
       ),
@@ -77,20 +83,22 @@ class SongInfoDialog extends StatelessWidget {
       "audioCodec": null,
       "bitrate": null,
       "loudnessDb": null,
-      "approxDurationMs": null
+      "approxDurationMs": null,
     };
     if (Hive.box("SongDownloads").containsKey(id)) {
       final song = Hive.box("SongDownloads").get(id);
 
-      tempstreamInfo =
-          song["streamInfo"] == null ? nullVal : song["streamInfo"][1];
+      tempstreamInfo = song["streamInfo"] == null
+          ? nullVal
+          : song["streamInfo"][1];
     } else {
       final dbStreamData = Hive.box("SongsUrlCache").get(id);
-      tempstreamInfo = dbStreamData != null &&
+      tempstreamInfo =
+          dbStreamData != null &&
               dbStreamData.runtimeType.toString().contains("Map")
           ? dbStreamData[Hive.box('AppPrefs').get('streamingQuality') == 0
-              ? 'lowQualityAudio'
-              : "highQualityAudio"]
+                ? 'lowQualityAudio'
+                : "highQualityAudio"]
           : nullVal;
     }
     return tempstreamInfo;
@@ -109,17 +117,11 @@ class InfoItem extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CustomTextView(
-            title,
-            textAlign: TextAlign.start,
-          ),
+          CustomTextView(title, textAlign: TextAlign.start),
           TextSelectionTheme(
             data: Theme.of(context).textSelectionTheme,
-            child: SelectableText(
-              value,
-              style: context.titleMedium  ,
-            ),
-          )
+            child: SelectableText(value, style: context.titleMedium),
+          ),
         ],
       ),
     );

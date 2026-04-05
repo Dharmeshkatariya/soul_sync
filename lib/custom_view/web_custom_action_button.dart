@@ -40,7 +40,7 @@ class WebCustomActionButton extends StatelessWidget {
             color: ColorFile.transparentColor,
             shape: BoxShape.rectangle,
             borderRadius: BorderRadius.circular(8.r),
-              border: Border.all(color: ColorFile.grayDDColor)
+            border: Border.all(color: ColorFile.grayDDColor),
           ),
           child: SvgPicture.asset(
             icon,
@@ -81,10 +81,9 @@ class CustomActionWidget extends StatelessWidget {
       message: message,
       child: CustomGestureDetector(
         onTap: onTap,
-        cursor:
-            (onTap == null)
-                ? SystemMouseCursors.basic
-                : SystemMouseCursors.click,
+        cursor: (onTap == null)
+            ? SystemMouseCursors.basic
+            : SystemMouseCursors.click,
         child: Container(
           width: width,
           height: height,

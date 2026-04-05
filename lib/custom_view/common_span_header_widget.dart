@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -29,7 +28,7 @@ class CommonSpanHeaderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ResponsiveUtil.init(context);
-    return  ResponsiveUtil.isWeb ? _forwardToWidget() : _forwardMobileToWidget();
+    return ResponsiveUtil.isWeb ? _forwardToWidget() : _forwardMobileToWidget();
   }
 
   Widget _forwardToWidget() {
@@ -84,7 +83,7 @@ class CommonSpanHeaderWidget extends StatelessWidget {
         children: [
           CommonWidget.customWidgetSpanWidget(
             text: title,
-            style:  ResponsiveUtil.isWeb
+            style: ResponsiveUtil.isWeb
                 ? AppTextStyles.semiBoldBlack24.copyWith(
                     // color: ColorFile.webThemeColor,
                   )
@@ -102,7 +101,7 @@ class CommonSpanHeaderWidget extends StatelessWidget {
           if (isSubTitleAndForwardVisible) ...[
             CommonWidget.customWidgetSpanWidget(
               text: ' > ',
-              style:  ResponsiveUtil.isWeb
+              style: ResponsiveUtil.isWeb
                   ? AppTextStyles.semiBoldBlack24.copyWith(
                       color: ColorFile.lightBlack1Color,
                     )
@@ -113,7 +112,7 @@ class CommonSpanHeaderWidget extends StatelessWidget {
 
             CommonWidget.customWidgetSpanWidget(
               text: " $subTitle",
-              style:  ResponsiveUtil.isWeb
+              style: ResponsiveUtil.isWeb
                   ? AppTextStyles.mediumBlack20.copyWith(
                       color: ColorFile.lightBlack1Color,
                     )

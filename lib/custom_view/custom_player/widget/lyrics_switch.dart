@@ -20,7 +20,7 @@ class LyricsSwitch extends StatelessWidget {
                 cornerRadius: 20.0,
                 activeBgColors: [
                   [Theme.of(context).primaryColor.withLightness(0.4)],
-                  [Theme.of(context).primaryColor.withLightness(0.4)]
+                  [Theme.of(context).primaryColor.withLightness(0.4)],
                 ],
                 activeFgColor: Colors.white,
                 inactiveBgColor: Theme.of(context).colorScheme.secondary,

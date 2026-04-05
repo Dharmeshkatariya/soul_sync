@@ -20,10 +20,7 @@ class CustomNoDataFoundWidget extends StatelessWidget {
     return Container(
       alignment: Alignment.center,
       padding: EdgeInsets.only(top: 50.h, bottom: 50.h),
-      child: CustomTextView(
-        title,
-        style: AppTextStyles.boldBlack14,
-      ),
+      child: CustomTextView(title, style: AppTextStyles.boldBlack14),
     );
   }
 }

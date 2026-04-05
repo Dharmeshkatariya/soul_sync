@@ -46,8 +46,12 @@ int sumTotalDuration(Map<String, dynamic> item) {
   return totalDuration;
 }
 
-String? getItemCustomTextView(Map<String, dynamic> item, int index,
-    {int runIndex = 0, bool noneIfAbsent = false}) {
+String? getItemCustomTextView(
+  Map<String, dynamic> item,
+  int index, {
+  int runIndex = 0,
+  bool noneIfAbsent = false,
+}) {
   dynamic column = getFlexColumnItem(item, index);
   if (column == null) {
     return noneIfAbsent ? null : "";
@@ -60,14 +64,12 @@ String? getItemCustomTextView(Map<String, dynamic> item, int index,
 }
 
 Map<String, dynamic>? getFixedColumnItem(Map<String, dynamic> item, int index) {
-  if (!item['fixedColumns'][index]['musicResponsiveListItemFixedColumnRenderer']
-          ['text']
+  if (!item['fixedColumns'][index]['musicResponsiveListItemFixedColumnRenderer']['text']
       .containsKey('runs')) {
     return null;
   }
 
-  return item['fixedColumns'][index]
-      ['musicResponsiveListItemFixedColumnRenderer'];
+  return item['fixedColumns'][index]['musicResponsiveListItemFixedColumnRenderer'];
 }
 
 ///Check if Steam Url or given epoch is expired
@@ -87,9 +89,13 @@ bool isExpired({String? url, int? epoch}) {
 }
 
 void parseMenuPlaylists(
-    Map<String, dynamic> data, Map<String, dynamic> result) {
-  var watchMenu = findObjectsByKey(nav(data, ['menu', 'menuRenderer', 'items']),
-      'menuNavigationItemRenderer');
+  Map<String, dynamic> data,
+  Map<String, dynamic> result,
+) {
+  var watchMenu = findObjectsByKey(
+    nav(data, ['menu', 'menuRenderer', 'items']),
+    'menuNavigationItemRenderer',
+  );
   for (var item
       in watchMenu.map((item) => item['menuNavigationItemRenderer']).toList()) {
     String watchKey;
@@ -101,18 +107,28 @@ void parseMenuPlaylists(
     } else {
       continue;
     }
-    var watchId = nav(
-        item, ['navigationEndpoint', 'watchPlaylistEndpoint', 'playlistId']);
-    watchId ??=
-        nav(item, ['navigationEndpoint', 'watchEndpoint', 'playlistId']);
+    var watchId = nav(item, [
+      'navigationEndpoint',
+      'watchPlaylistEndpoint',
+      'playlistId',
+    ]);
+    watchId ??= nav(item, [
+      'navigationEndpoint',
+      'watchEndpoint',
+      'playlistId',
+    ]);
     if (watchId != null) {
       result[watchKey] = watchId;
     }
   }
 }
 
-dynamic findObjectByKey(List objectList, dynamic key,
-    {String? nested, bool isKey = false}) {
+dynamic findObjectByKey(
+  List objectList,
+  dynamic key, {
+  String? nested,
+  bool isKey = false,
+}) {
   for (var item in objectList) {
     if (nested != null) {
       item = item[nested];
@@ -124,8 +140,11 @@ dynamic findObjectByKey(List objectList, dynamic key,
   return null;
 }
 
-List<dynamic> findObjectsByKey(List<dynamic> objectList, String key,
-    {String? nested}) {
+List<dynamic> findObjectsByKey(
+  List<dynamic> objectList,
+  String key, {
+  String? nested,
+}) {
   List<dynamic> objects = [];
   for (dynamic item in objectList) {
     if (nested != null) {
@@ -207,12 +226,13 @@ String? _getParam2(String filter) {
     'videos': 'Q',
     'albums': 'Y',
     'artists': 'g',
-    'playlists': 'o'
+    'playlists': 'o',
   };
   return filterParams[filter];
 }
 
 dynamic getDotSeparatorIndex(List<dynamic> runs) {
   return runs.indexWhere(
-      ((element) => ({'text': " • "}).toString() == element.toString()));
+    ((element) => ({'text': " • "}).toString() == element.toString()),
+  );
 }

@@ -9,17 +9,19 @@ import '../core/utils/color_file.dart';
 import '../models/custom_base_model.dart';
 import 'custom_gesture_detector.dart';
 import 'custom_text_view.dart';
+
 class CustomHorizontalPager extends StatelessWidget {
-  CustomHorizontalPager(
-      {required this.mList,
-      required this.onTap,
-      this.margin,
-      this.selectedItem,
-      this.padding,
-      this.alignment,
-      this.isShowCount = false,
-      this.isExpandedPager = false,
-      super.key});
+  CustomHorizontalPager({
+    required this.mList,
+    required this.onTap,
+    this.margin,
+    this.selectedItem,
+    this.padding,
+    this.alignment,
+    this.isShowCount = false,
+    this.isExpandedPager = false,
+    super.key,
+  });
 
   List<PagerModel> mList;
   PagerModel? selectedItem;
@@ -44,22 +46,16 @@ class CustomHorizontalPager extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: List.generate(
-                    mList.length,
-                    (index) {
-                      var item = mList[index];
-                      return Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          _pagerItem(item),
-                          if (index < mList.length - 1)
-                            SizedBox(
-                              width: 40.w,
-                            )
-                        ],
-                      );
-                    },
-                  ),
+                  children: List.generate(mList.length, (index) {
+                    var item = mList[index];
+                    return Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        _pagerItem(item),
+                        if (index < mList.length - 1) SizedBox(width: 40.w),
+                      ],
+                    );
+                  }),
                 ),
               ),
             ),
@@ -76,9 +72,7 @@ class CustomHorizontalPager extends StatelessWidget {
         child: Row(
           children: List.generate(mList.length, (index) {
             var item = mList[index];
-            return Expanded(
-              child: _pagerItem(item),
-            );
+            return Expanded(child: _pagerItem(item));
           }),
         ),
       ),
@@ -96,34 +90,41 @@ class CustomHorizontalPager extends StatelessWidget {
         decoration: (item == selectedItem)
             ? BoxDecoration(
                 border: Border(
-                    bottom:
-                        BorderSide(color: ColorFile.webThemeColor, width: 3.h)),
+                  bottom: BorderSide(
+                    color: ColorFile.webThemeColor,
+                    width: 3.h,
+                  ),
+                ),
               )
             : null,
         child: Row(
           mainAxisSize: isExpandedPager ? MainAxisSize.min : MainAxisSize.max,
           children: [
-            CustomTextView(item.displayText ?? "",
-                style: (item == selectedItem)
-                    ? AppTextStyles.semiBoldBlack14
-                        .copyWith(color: ColorFile.webThemeColor)
-                    : AppTextStyles.regularBlack14.copyWith(
-                        color: ColorFile.lightBlack1Color,
-                      )),
+            CustomTextView(
+              item.displayText ?? "",
+              style: (item == selectedItem)
+                  ? AppTextStyles.semiBoldBlack14.copyWith(
+                      color: ColorFile.webThemeColor,
+                    )
+                  : AppTextStyles.regularBlack14.copyWith(
+                      color: ColorFile.lightBlack1Color,
+                    ),
+            ),
             Visibility(
               visible: isShowCount,
               child: Obx(() {
                 return CustomTextView(
                   '(${item.count!.value})',
                   style: (item == selectedItem)
-                      ? AppTextStyles.semiBoldBlack14
-                          .copyWith(color: ColorFile.webThemeColor)
+                      ? AppTextStyles.semiBoldBlack14.copyWith(
+                          color: ColorFile.webThemeColor,
+                        )
                       : AppTextStyles.regularBlack14.copyWith(
                           color: ColorFile.lightBlack1Color,
                         ),
                 );
               }),
-            )
+            ),
           ],
         ),
       ),
@@ -138,12 +139,13 @@ class PagerModel extends CustomBaseModel {
   String? text = '';
   GlobalKey? globalKey;
 
-  PagerModel(
-      {this.displayText,
-      this.text,
-      this.count,
-      this.isSelected,
-      this.globalKey});
+  PagerModel({
+    this.displayText,
+    this.text,
+    this.count,
+    this.isSelected,
+    this.globalKey,
+  });
 
   @override
   bool isEmpty() {

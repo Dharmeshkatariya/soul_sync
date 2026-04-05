@@ -3,12 +3,17 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../core/utils/color_file.dart';
 
 class CustomMobileContainerButton extends StatelessWidget {
-  const CustomMobileContainerButton(
-      {super.key, required this.child, this.padding,this.isCreatePermission = true ,  required this.horizontalPadding});
+  const CustomMobileContainerButton({
+    super.key,
+    required this.child,
+    this.padding,
+    this.isCreatePermission = true,
+    required this.horizontalPadding,
+  });
 
   final Widget child;
-  final double horizontalPadding ;
-  final bool isCreatePermission ;
+  final double horizontalPadding;
+  final bool isCreatePermission;
   final EdgeInsetsGeometry? padding;
 
   @override
@@ -18,7 +23,8 @@ class CustomMobileContainerButton extends StatelessWidget {
       child: Container(
         color: ColorFile.whiteColor,
         padding:
-        padding ?? EdgeInsets.symmetric(horizontal: horizontalPadding, vertical: 20.h),
+            padding ??
+            EdgeInsets.symmetric(horizontal: horizontalPadding, vertical: 20.h),
         child: child,
       ),
     );

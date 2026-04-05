@@ -29,47 +29,49 @@ class DesktopSystemTray extends GetxService with TrayListener {
     await trayManager.setIcon(path);
 
     // create context menu
-    final Menu menu = Menu(items: [
-      MenuItem(
-        label: 'Show/Hide',
-        onClick: (menuItem) async => await windowManager.isVisible()
-            ? await windowManager.hide()
-            : await windowManager.show(),
-      ),
-      MenuItem.separator(),
-      MenuItem(
-        label: 'Prev',
-        onClick: (menuItem) {
-          if (playerController.currentQueue.isNotEmpty) {
-            playerController.prev();
-          }
-        },
-      ),
-      MenuItem(
-        label: 'Play/Pause',
-        onClick: (menuItem) {
-          if (playerController.currentQueue.isNotEmpty) {
-            playerController.playPause();
-          }
-        },
-      ),
-      MenuItem(
-        label: 'Next',
-        onClick: (menuItem) {
-          if (playerController.currentQueue.isNotEmpty) {
-            playerController.next();
-          }
-        },
-      ),
-      MenuItem.separator(),
-      MenuItem(
-        label: 'Quit',
-        onClick: (menuItem) async {
-          await Get.find<AudioHandler>().customAction("saveSession");
-          exit(0);
-        },
-      ),
-    ]);
+    final Menu menu = Menu(
+      items: [
+        MenuItem(
+          label: 'Show/Hide',
+          onClick: (menuItem) async => await windowManager.isVisible()
+              ? await windowManager.hide()
+              : await windowManager.show(),
+        ),
+        MenuItem.separator(),
+        MenuItem(
+          label: 'Prev',
+          onClick: (menuItem) {
+            if (playerController.currentQueue.isNotEmpty) {
+              playerController.prev();
+            }
+          },
+        ),
+        MenuItem(
+          label: 'Play/Pause',
+          onClick: (menuItem) {
+            if (playerController.currentQueue.isNotEmpty) {
+              playerController.playPause();
+            }
+          },
+        ),
+        MenuItem(
+          label: 'Next',
+          onClick: (menuItem) {
+            if (playerController.currentQueue.isNotEmpty) {
+              playerController.next();
+            }
+          },
+        ),
+        MenuItem.separator(),
+        MenuItem(
+          label: 'Quit',
+          onClick: (menuItem) async {
+            await Get.find<AudioHandler>().customAction("saveSession");
+            exit(0);
+          },
+        ),
+      ],
+    );
 
     // set context menu
     await trayManager.setContextMenu(menu);

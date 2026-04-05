@@ -37,7 +37,6 @@ class CommonWidget {
     return CustomTextView(title, style: AppTextStyles.semiBoldBlack14);
   }
 
-
   static Widget cardTitleWidget({
     required String title,
     Function()? onTapEdit,
@@ -360,7 +359,7 @@ class CommonWidget {
         onTap?.call() ?? Get.back();
       },
       width: ResponsiveUtil.isWeb ? null : 200.w,
-      height: height ?? ( ResponsiveUtil.isWeb ? 40 : 45),
+      height: height ?? (ResponsiveUtil.isWeb ? 40 : 45),
       bgColor: ColorFile.transparentColor,
       hasBorder: true,
       textColor: ColorFile.webThemeColor,
@@ -474,17 +473,12 @@ class CommonWidget {
               ],
             ),
           ),
-          if (showAdvanceSearchIcon &&
-              globalKey != null &&
-              filterView != null) ...[
-          ],
+          if (showAdvanceSearchIcon && globalKey != null && filterView != null)
+            ...[],
         ],
       ),
     );
   }
-
-
-
 
   static WidgetSpan customWidgetSpanWidget({
     required String text,
@@ -498,34 +492,33 @@ class CommonWidget {
     TextStyle? style,
   }) {
     return WidgetSpan(
-      child:
-      (onTaped != null)
+      child: (onTaped != null)
           ? CustomGestureDetector(
-        semanticsLabel: semanticsLabel,
-        onTap: () => onTaped(),
-        child: CustomTextView(
-          text,
-          textAlign: textAlign ?? TextAlign.center,
-          style:
-          style ??
-              AppTextStyles.boldBlack12.copyWith(
-                overflow: overflow,
-                decoration: textDecoration ?? TextDecoration.none,
-                decorationStyle: decorationStyle,
+              semanticsLabel: semanticsLabel,
+              onTap: () => onTaped(),
+              child: CustomTextView(
+                text,
+                textAlign: textAlign ?? TextAlign.center,
+                style:
+                    style ??
+                    AppTextStyles.boldBlack12.copyWith(
+                      overflow: overflow,
+                      decoration: textDecoration ?? TextDecoration.none,
+                      decorationStyle: decorationStyle,
+                    ),
               ),
-        ),
-      )
+            )
           : CustomTextView(
-        text,
-        textAlign: textAlign ?? TextAlign.center,
-        style:
-        style ??
-            AppTextStyles.boldBlack12.copyWith(
-              overflow: overflow,
-              decoration: textDecoration ?? TextDecoration.none,
-              decorationStyle: decorationStyle,
+              text,
+              textAlign: textAlign ?? TextAlign.center,
+              style:
+                  style ??
+                  AppTextStyles.boldBlack12.copyWith(
+                    overflow: overflow,
+                    decoration: textDecoration ?? TextDecoration.none,
+                    decorationStyle: decorationStyle,
+                  ),
             ),
-      ),
     );
   }
 
@@ -546,5 +539,4 @@ class CommonWidget {
 
     return enterStr;
   }
-
 }

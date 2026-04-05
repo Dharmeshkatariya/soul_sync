@@ -47,8 +47,10 @@ class PlayerController extends GetxController
   final volume = 100.obs;
 
   final progressBarStatus = ProgressBarState(
-      buffered: Duration.zero, current: Duration.zero, total: Duration.zero)
-      .obs;
+    buffered: Duration.zero,
+    current: Duration.zero,
+    total: Duration.zero,
+  ).obs;
 
   final currentSongIndex = (0).obs;
   final isFirstSong = true;
@@ -65,10 +67,15 @@ class PlayerController extends GetxController
   bool isDesktopLyricsDialogOpen = false;
   // 0 for play, 1 for pause, 2 for blank
   final gesturePlayerVisibleState = 2.obs;
-  final lyricUi =
-  UINetease(highlight: true, defaultSize: 20, defaultExtSize: 12);
-  RxMap<String, dynamic> lyrics =
-      <String, dynamic>{"synced": "", "plainLyrics": ""}.obs;
+  final lyricUi = UINetease(
+    highlight: true,
+    defaultSize: 20,
+    defaultExtSize: 12,
+  );
+  RxMap<String, dynamic> lyrics = <String, dynamic>{
+    "synced": "",
+    "plainLyrics": "",
+  }.obs;
   ScrollController scrollController = ScrollController();
   final GlobalKey<ScaffoldState> homeScaffoldkey = GlobalKey<ScaffoldState>();
 
@@ -133,9 +140,11 @@ class PlayerController extends GetxController
     );
 
     gesturePlayerStateAnimation = Tween<double>(begin: 1, end: 0).animate(
-        CurvedAnimation(
-            parent: gesturePlayerStateAnimationController!,
-            curve: Curves.easeIn));
+      CurvedAnimation(
+        parent: gesturePlayerStateAnimationController!,
+        curve: Curves.easeIn,
+      ),
+    );
   }
 
   void _setInitLyricsMode() {
@@ -159,10 +168,11 @@ class PlayerController extends GetxController
 
   void _listenForKeyboardActivity() {
     var keyboardVisibilityController = KeyboardVisibilityController();
-    keyboardSubscription =
-        keyboardVisibilityController.onChange.listen((bool visible) {
-          visible ? playerPanelController.hide() : playerPanelController.show();
-        });
+    keyboardSubscription = keyboardVisibilityController.onChange.listen((
+      bool visible,
+    ) {
+      visible ? playerPanelController.hide() : playerPanelController.show();
+    });
   }
 
   void _listenForChangesInPlayerState() {
@@ -230,11 +240,12 @@ class PlayerController extends GetxController
       final oldState = progressBarStatus.value;
       if (progressBarStatus.value.total.inSeconds != 0 &&
           playbackState.bufferedPosition.inSeconds /
-              progressBarStatus.value.total.inSeconds >=
+                  progressBarStatus.value.total.inSeconds >=
               0.98) {
         if (_newSongFlag) {
-          _audioHandler.customAction(
-              "checkWithCacheDb", {'mediaItem': currentSong.value!});
+          _audioHandler.customAction("checkWithCacheDb", {
+            'mediaItem': currentSong.value!,
+          });
           _newSongFlag = false;
         }
       }
@@ -259,8 +270,9 @@ class PlayerController extends GetxController
         _newSongFlag = true;
         isCurrentSongBuffered.value = false;
         currentSong.value = mediaItem;
-        currentSongIndex.value = currentQueue
-            .indexWhere((element) => element.id == currentSong.value!.id);
+        currentSongIndex.value = currentQueue.indexWhere(
+          (element) => element.id == currentSong.value!.id,
+        );
         await _checkFav();
         await _addToRP(currentSong.value!);
         if (isRadioModeOn && (currentSong.value!.id == currentQueue.last.id)) {
@@ -304,7 +316,7 @@ class PlayerController extends GetxController
         await _audioHandler.customAction("playByIndex", {
           "index": currentIndex,
           "position": position,
-          "restoreSession": true
+          "restoreSession": true,
         });
       }
     }
@@ -320,43 +332,49 @@ class PlayerController extends GetxController
 
   ///pushSongToPlaylist method clear previous song queue, plays the tapped song and push related
   ///songs into Queue
-  Future<void> pushSongToQueue(MediaItem? mediaItem,
-      {String? playlistid, bool radio = false}) async {
+  Future<void> pushSongToQueue(
+    MediaItem? mediaItem, {
+    String? playlistid,
+    bool radio = false,
+  }) async {
     /// update playing from value
     playinfrom.value = PlaylingFrom(
-        type: PlaylingFromType.SELECTION,
-        name: radio ? "randomRadio".tr : "randomSelection".tr);
+      type: PlaylingFromType.SELECTION,
+      name: radio ? "randomRadio".tr : "randomSelection".tr,
+    );
 
     /// set global radio mode flag
     isRadioModeOn = radio;
 
-    Future.delayed(
-      Duration.zero,
-          () async {
-        final content = await _musicServices.getWatchPlaylist(
-            videoId: mediaItem?.id ?? "", radio: radio, playlistId: playlistid);
-        radioContinuationParam = content['additionalParamsForNext'];
-        await _audioHandler
-            .updateQueue(List<MediaItem>.from(content['tracks']));
-        if (isShuffleModeEnabled.isTrue) {
-          await _audioHandler.customAction("shuffleCmd", {"index": 0});
-        }
+    Future.delayed(Duration.zero, () async {
+      final content = await _musicServices.getWatchPlaylist(
+        videoId: mediaItem?.id ?? "",
+        radio: radio,
+        playlistId: playlistid,
+      );
+      radioContinuationParam = content['additionalParamsForNext'];
+      await _audioHandler.updateQueue(List<MediaItem>.from(content['tracks']));
+      if (isShuffleModeEnabled.isTrue) {
+        await _audioHandler.customAction("shuffleCmd", {"index": 0});
+      }
 
-        // added here to broadcast current mediaitem via Audio Service as list is updated
-        // if radio is started on current playing song
-        if (radio && (currentSong.value?.id == mediaItem?.id)) {
-          _audioHandler
-              .customAction("upadateMediaItemInAudioService", {"index": 0});
-        }
-      },
-    ).then((value) async {
+      // added here to broadcast current mediaitem via Audio Service as list is updated
+      // if radio is started on current playing song
+      if (radio && (currentSong.value?.id == mediaItem?.id)) {
+        _audioHandler.customAction("upadateMediaItemInAudioService", {
+          "index": 0,
+        });
+      }
+    }).then((value) async {
       if (playlistid != null) {
         _playerPanelCheck();
         await _audioHandler.customAction("playByIndex", {"index": 0});
       } else {
         if (Hive.box("AppPrefs").get("discoverContentType") == "BOLI") {
-          Get.find<HomeScreenController>()
-              .changeDiscoverContent("BOLI", songId: mediaItem!.id);
+          Get.find<HomeScreenController>().changeDiscoverContent(
+            "BOLI",
+            songId: mediaItem!.id,
+          );
         }
       }
     });
@@ -368,8 +386,9 @@ class PlayerController extends GetxController
 
     //currentSong.value = mediaItem;
     _playerPanelCheck();
-    await _audioHandler
-        .customAction("setSourceNPlay", {'mediaItem': mediaItem});
+    await _audioHandler.customAction("setSourceNPlay", {
+      'mediaItem': mediaItem,
+    });
 
     // disable queue loop mode when radio is started
     if (radio &&
@@ -379,8 +398,11 @@ class PlayerController extends GetxController
     }
   }
 
-  Future<void> playPlayListSong(List<MediaItem> mediaItems, int index,
-      {PlaylingFrom? playfrom}) async {
+  Future<void> playPlayListSong(
+    List<MediaItem> mediaItems,
+    int index, {
+    PlaylingFrom? playfrom,
+  }) async {
     isRadioModeOn = false;
     //open player pane,set current song and push first song into playing list,
 
@@ -391,8 +413,10 @@ class PlayerController extends GetxController
     //for changing home content based on last interation
     Future.delayed(const Duration(seconds: 3), () {
       if (Hive.box("AppPrefs").get("discoverContentType") == "BOLI") {
-        Get.find<HomeScreenController>()
-            .changeDiscoverContent("BOLI", songId: mediaItems[index].id);
+        Get.find<HomeScreenController>().changeDiscoverContent(
+          "BOLI",
+          songId: mediaItems[index].id,
+        );
       }
     });
 
@@ -412,11 +436,12 @@ class PlayerController extends GetxController
   Future<void> _addRadioContinuation(dynamic item) async {
     final isSong = item.runtimeType.toString() == "MediaItem";
     final content = await _musicServices.getWatchPlaylist(
-        videoId: isSong ? item.id : "",
-        radio: true,
-        limit: 24,
-        playlistId: isSong ? null : item,
-        additionalParamsNext: radioContinuationParam);
+      videoId: isSong ? item.id : "",
+      radio: true,
+      limit: 24,
+      playlistId: isSong ? null : item,
+      additionalParamsNext: radioContinuationParam,
+    );
     radioContinuationParam = content['additionalParamsForNext'];
     await enqueueSongList(List<MediaItem>.from(content['tracks']));
   }
@@ -542,14 +567,17 @@ class PlayerController extends GetxController
     if (isShuffleModeEnabled.isTrue && isQueueLoopModeEnabled.isFalse) {
       isQueueLoopModeEnabled.value = true;
     } else if (isShuffleModeEnabled.isFalse) {
-      isQueueLoopModeEnabled.value =
-          Hive.box("AppPrefs").get("queueLoopModeEnabled", defaultValue: false);
+      isQueueLoopModeEnabled.value = Hive.box(
+        "AppPrefs",
+      ).get("queueLoopModeEnabled", defaultValue: false);
     }
   }
 
   void onReorder(int oldIndex, int newIndex) {
-    _audioHandler.customAction(
-        "reorderQueue", {"oldIndex": oldIndex, "newIndex": newIndex});
+    _audioHandler.customAction("reorderQueue", {
+      "oldIndex": oldIndex,
+      "newIndex": newIndex,
+    });
   }
 
   void onReorderStart(int index) {
@@ -574,7 +602,7 @@ class PlayerController extends GetxController
     // for gesture player
     if (Get.find<SettingsScreenController>().playerUi.value == 1) {
       gesturePlayerVisibleState.value =
-      _audioHandler.playbackState.value.playing ? 0 : 1;
+          _audioHandler.playbackState.value.playing ? 0 : 1;
       gesturePlayerStateAnimationController?.reset();
       gesturePlayerStateAnimationController?.forward();
     }
@@ -601,8 +629,9 @@ class PlayerController extends GetxController
   }
 
   void toggleLoudnessNormalization(bool enable) {
-    _audioHandler
-        .customAction("toggleLoudnessNormalization", {"enable": enable});
+    _audioHandler.customAction("toggleLoudnessNormalization", {
+      "enable": enable,
+    });
   }
 
   Future<void> toggleLoopMode() async {
@@ -610,32 +639,45 @@ class PlayerController extends GetxController
         ? _audioHandler.setRepeatMode(AudioServiceRepeatMode.one)
         : _audioHandler.setRepeatMode(AudioServiceRepeatMode.none);
     isLoopModeEnabled.value = !isLoopModeEnabled.value;
-    await Hive.box("AppPrefs")
-        .put("isLoopModeEnabled", isLoopModeEnabled.value);
+    await Hive.box(
+      "AppPrefs",
+    ).put("isLoopModeEnabled", isLoopModeEnabled.value);
   }
 
   Future<void> toggleQueueLoopMode({bool showMessage = true}) async {
     if (isShuffleModeEnabled.isTrue && isQueueLoopModeEnabled.isTrue) {
       if (!showMessage) return;
-      ScaffoldMessenger.of(Get.context!).showSnackBar(snackbar(
-          Get.context!, "queueLoopNotDisMsg1".tr,
-          size: SanckBarSize.BIG, duration: const Duration(seconds: 2)));
+      ScaffoldMessenger.of(Get.context!).showSnackBar(
+        snackbar(
+          Get.context!,
+          "queueLoopNotDisMsg1".tr,
+          size: SanckBarSize.BIG,
+          duration: const Duration(seconds: 2),
+        ),
+      );
       return;
     }
 
     if (isRadioModeOn && isQueueLoopModeEnabled.isFalse) {
       if (!showMessage) return;
-      ScaffoldMessenger.of(Get.context!).showSnackBar(snackbar(
-          Get.context!, "queueLoopNotDisMsg2".tr,
-          size: SanckBarSize.BIG, duration: const Duration(seconds: 2)));
+      ScaffoldMessenger.of(Get.context!).showSnackBar(
+        snackbar(
+          Get.context!,
+          "queueLoopNotDisMsg2".tr,
+          size: SanckBarSize.BIG,
+          duration: const Duration(seconds: 2),
+        ),
+      );
       return;
     }
 
     isQueueLoopModeEnabled.value = !isQueueLoopModeEnabled.value;
-    await _audioHandler.customAction(
-        "toggleQueueLoopMode", {"enable": isQueueLoopModeEnabled.value});
-    await Hive.box("AppPrefs")
-        .put("queueLoopModeEnabled", isQueueLoopModeEnabled.value);
+    await _audioHandler.customAction("toggleQueueLoopMode", {
+      "enable": isQueueLoopModeEnabled.value,
+    });
+    await Hive.box(
+      "AppPrefs",
+    ).put("queueLoopModeEnabled", isQueueLoopModeEnabled.value);
   }
 
   Future<void> setVolume(int value) async {
@@ -660,8 +702,9 @@ class PlayerController extends GetxController
   }
 
   Future<void> _checkFav() async {
-    isCurrentSongFav.value =
-        (await Hive.openBox("LIBFAV")).containsKey(currentSong.value!.id);
+    isCurrentSongFav.value = (await Hive.openBox(
+      "LIBFAV",
+    )).containsKey(currentSong.value!.id);
   }
 
   Future<void> toggleFavourite() async {
@@ -672,19 +715,25 @@ class PlayerController extends GetxController
         : box.delete(currMediaItem.id);
     try {
       final playlistController = Get.find<PlaylistScreenController>(
-          tag: const Key("LIBFAV").hashCode.toString());
+        tag: const Key("LIBFAV").hashCode.toString(),
+      );
       isCurrentSongFav.isFalse
-          ? playlistController.addNRemoveItemsinList(currMediaItem,
-          action: 'add', index: 0)
-          : playlistController.addNRemoveItemsinList(currMediaItem,
-          action: 'remove');
+          ? playlistController.addNRemoveItemsinList(
+              currMediaItem,
+              action: 'add',
+              index: 0,
+            )
+          : playlistController.addNRemoveItemsinList(
+              currMediaItem,
+              action: 'remove',
+            );
 
       // ignore: empty_catches
     } catch (e) {}
     isCurrentSongFav.value = !isCurrentSongFav.value;
     if (Get.find<SettingsScreenController>()
-        .autoDownloadFavoriteSongEnabled
-        .isTrue &&
+            .autoDownloadFavoriteSongEnabled
+            .isTrue &&
         isCurrentSongFav.isTrue) {
       Get.find<Downloader>().download(currMediaItem);
     }
@@ -711,17 +760,23 @@ class PlayerController extends GetxController
       box.add(MediaItemBuilder.toJson(mediaItem));
       try {
         final playlistController = Get.find<PlaylistScreenController>(
-            tag: const Key("LIBRP").hashCode.toString());
+          tag: const Key("LIBRP").hashCode.toString(),
+        );
         if (removedSongId != null) {
-          playlistController.songList
-              .removeWhere((element) => element.id == removedSongId);
+          playlistController.songList.removeWhere(
+            (element) => element.id == removedSongId,
+          );
         }
         // removes current duplicate item from list
-        playlistController.songList
-            .removeWhere((element) => element.id == mediaItem.id);
+        playlistController.songList.removeWhere(
+          (element) => element.id == mediaItem.id,
+        );
         // adds current item to list
-        playlistController.addNRemoveItemsinList(mediaItem,
-            action: 'add', index: 0);
+        playlistController.addNRemoveItemsinList(
+          mediaItem,
+          action: 'add',
+          index: 0,
+        );
 
         // ignore: empty_catches
       } catch (e) {}
@@ -736,15 +791,19 @@ class PlayerController extends GetxController
       isLyricsLoading.value = true;
       try {
         final Map<String, dynamic>? lyricsR =
-        await SyncedLyricsService.getSyncedLyrics(
-            currentSong.value!, progressBarStatus.value.total.inSeconds);
+            await SyncedLyricsService.getSyncedLyrics(
+              currentSong.value!,
+              progressBarStatus.value.total.inSeconds,
+            );
         if (lyricsR != null) {
           lyrics.value = lyricsR;
           isLyricsLoading.value = false;
           return;
         }
         final related = await _musicServices.getWatchPlaylist(
-            videoId: currentSong.value!.id, onlyRelated: true);
+          videoId: currentSong.value!.id,
+          onlyRelated: true,
+        );
         final relatedLyricsId = related['lyrics'];
         if (relatedLyricsId != null) {
           final lyrics_ = await _musicServices.getLyrics(relatedLyricsId);
@@ -808,9 +867,13 @@ class PlayerController extends GetxController
   /// Called from audio handler in case audio is not playable
   /// or returned streamInfo null due to network error
   void notifyPlayError(String message) {
-    ScaffoldMessenger.of(Get.context!).showSnackBar(snackbar(
-        Get.context!, message == "networkError" ? message.tr : message,
-        size: SanckBarSize.MEDIUM));
+    ScaffoldMessenger.of(Get.context!).showSnackBar(
+      snackbar(
+        Get.context!,
+        message == "networkError" ? message.tr : message,
+        size: SanckBarSize.MEDIUM,
+      ),
+    );
   }
 
   @override

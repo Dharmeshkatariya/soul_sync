@@ -10,11 +10,12 @@ import 'modification_list.dart';
 import 'sort_widget.dart';
 
 class AdditionalOperationDialog extends StatelessWidget {
-  const AdditionalOperationDialog(
-      {super.key,
-      required this.operationMode,
-      required this.screenController,
-      required this.controller});
+  const AdditionalOperationDialog({
+    super.key,
+    required this.operationMode,
+    required this.screenController,
+    required this.controller,
+  });
   final OperationMode operationMode;
   final dynamic screenController;
   final SortWidgetController controller;
@@ -59,17 +60,20 @@ class AdditionalOperationDialog extends StatelessWidget {
                                 controller.toggleSelectAll(val);
                               },
                               visualDensity: const VisualDensity(
-                                  horizontal: -3, vertical: -3),
+                                horizontal: -3,
+                                vertical: -3,
+                              ),
                               shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10)),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
                             ),
                           ),
                         ),
                         const SizedBox(width: 18),
                         CustomTextView(
                           "selectAll".tr,
-                          style: context.titleMedium  ,
-                        )
+                          style: context.titleMedium,
+                        ),
                       ],
                     ),
                   ],
@@ -91,11 +95,12 @@ class AdditionalOperationDialog extends StatelessWidget {
                     },
                   ),
                   ProceedButton(
-                      buttonText: "Proceed",
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                        screenController.performAdditionalOperation!();
-                      }),
+                    buttonText: "Proceed",
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                      screenController.performAdditionalOperation!();
+                    },
+                  ),
                 ],
               ),
             ),
