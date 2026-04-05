@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import '../core/utils/assets_icons.dart';
 import '../core/utils/color_file.dart';
-import '../core/utils/common.dart';
 import '../core/utils/responsive_util.dart';
 import '../core/utils/typing_timer_util.dart';
 import 'border_container.dart';

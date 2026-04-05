@@ -1,10 +1,12 @@
+import 'package:soul_sync/custom_view/custom_text_view.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../core/utils/app_text_styles.dart';
 import '../core/utils/color_file.dart';
-import '../model/more_menu_item_model.dart';
-import 'custom_text.dart';
+import '../models/more_menu_item_model.dart';
+import 'custom_text_view.dart';
 
 class CustomMoreMenuPopUpListView extends StatelessWidget {
   final List<MoreMenuItemModel> items;

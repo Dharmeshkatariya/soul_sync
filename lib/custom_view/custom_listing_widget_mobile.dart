@@ -1,3 +1,5 @@
+import 'package:soul_sync/custom_view/custom_text_view.dart';
+
 // ignore: must_be_immutable
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -12,7 +14,7 @@ import '../core/utils/responsive_util.dart';
 import 'custom_gesture_detector.dart';
 import 'circular_progressIndicator_widget.dart';
 import 'custom_empty_data_view.dart';
-import 'custom_text.dart';
+import 'custom_text_view.dart';
 
 class CustomListingWidgetMobile extends StatelessWidget {
   const CustomListingWidgetMobile({

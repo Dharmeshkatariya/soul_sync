@@ -28,19 +28,19 @@ class StringFile {
   static String invalidUrl = "Invalid URL";
   static String invalidMobileNumber = "Invalid Mobile Number";
   static String mandatoryField = "This field is mandatory";
-  static String home = "Home";
+  static String home = "home";
   static String songs = "Songs";
   static String playlists = "Playlists";
   static String albums = "Albums";
-  static String album = "Album";
+  static String album = "album";
   static String singles = "Singles";
-  static String artists = "Artists";
-  static String settings = "Settings";
-  static String library = "Library";
-  static String libSongs = "Library Songs";
-  static String libPlaylists = "Library Playlists";
-  static String libAlbums = "Library Albums";
-  static String libArtists = "Library Artists";
+  static String artists = "artists";
+  static String settings = "settings";
+  static String library = "library";
+  static String libSongs = "library Songs";
+  static String libPlaylists = "library Playlists";
+  static String libAlbums = "library Albums";
+  static String libArtists = "library artists";
   static String communityplaylists = "Community Playlists";
   static String featuredplaylists = "Featured Playlists";
   static String items = "items";
@@ -53,7 +53,7 @@ class StringFile {
   static String downloads = "Downloads";
   static String emptyPlaylist = "Empty playlist!";
   static String enqueueAll = "Enqueue all";
-  static String renamePlaylist = "Rename Playlist";
+  static String renamePlaylist = "Rename playlist";
   static String removePlaylist = "Remove playlist";
   static String createNewPlaylist = "Create new playlist";
   static String reArrangePlaylist = "Rearrange playlist";
@@ -98,7 +98,7 @@ class StringFile {
       "Queue loop mode cannot be disabled when shuffle mode is enabled.";
   static String queueLoopNotDisMsg2 =
       "Queue loop mode cannot be enabled in radio mode.";
-  static String removeFromLib = "Remove from Library Songs";
+  static String removeFromLib = "Remove from library Songs";
   static String sleepTimer = "Sleep Timer";
   static String add5Minutes = "Add 5 minutes";
   static String cancelTimer = "Cancel timer";
@@ -142,7 +142,7 @@ class StringFile {
   static String autoOpenPlayer = "Auto open player screen";
   static String autoOpenPlayerDes =
       "Enable/disable auto opening of player full screen on selection of song for play";
-  static String homeContentCount = "Home content count";
+  static String homeContentCount = "home content count";
   static String homeContentCountDes =
       "Select the number of initial homescreen-content(approx). Lesser results faster loading";
   static String enableBottomNav = "Bottom navigation bar";
@@ -171,7 +171,7 @@ class StringFile {
   static String downloadLocation = "Download Location";
   static String cacheHomeScreenData = "Cache home screen content data";
   static String cacheHomeScreenDataDes =
-      "Enable Caching home screen content data, Home screen will load instantly if this option is enabled";
+      "Enable Caching home screen content data, home screen will load instantly if this option is enabled";
   static String downloadingFormat = "Downloading File Format";
   static String downloadingFormatDes =
       "Select downloading file format. \"Opus\" will provide best quality";
@@ -201,16 +201,16 @@ class StringFile {
   static String resetToDefaultDes =
       "Reset app settings to default (Restart required)";
   static String resetToDefaultMsg =
-      "Settings reset to default completed, Please restart app";
+      "settings reset to default completed, Please restart app";
   static String github = "GitHub";
   static String githubDes =
       "View GitHub source code \nif you like this project, don't forget to give a ⭐";
   static String by = "by";
   static String urlSearchDes =
       "Url detected click on it to open/play associated content";
-  static String search = "Search";
-  static String searchDes = "Songs, Playlist, Album or Artist";
-  static String searchRes = "Search results";
+  static String search = "search";
+  static String searchDes = "Songs, playlist, album or Artist";
+  static String searchRes = "search results";
   static String for1 = "for";
   static String videos = "Videos";
   static String viewAll = "View all";
@@ -241,14 +241,14 @@ class StringFile {
   static String songRemovedAlert = "Removed from";
   static String errorOccuredAlert = "Some error occured!";
   static String pipedplstSyncAlert = "Piped playlist synced!";
-  static String playlistCreatedAlert = "Playlist created!";
-  static String playlistCreatednsongAddedAlert = "Playlist created & song added!";
+  static String playlistCreatedAlert = "playlist created!";
+  static String playlistCreatednsongAddedAlert = "playlist created & song added!";
   static String playlistRenameAlert = "Renamed successfully!";
-  static String playlistRemovedAlert = "Playlist removed!";
-  static String playlistBookmarkAddAlert = "Playlist bookmarked!";
-  static String playlistBookmarkRemoveAlert = "Playlist bookmark removed!";
-  static String albumBookmarkAddAlert = "Album bookmarked!";
-  static String albumBookmarkRemoveAlert = "Album bookmark removed!";
+  static String playlistRemovedAlert = "playlist removed!";
+  static String playlistBookmarkAddAlert = "playlist bookmarked!";
+  static String playlistBookmarkRemoveAlert = "playlist bookmark removed!";
+  static String albumBookmarkAddAlert = "album bookmarked!";
+  static String albumBookmarkRemoveAlert = "album bookmark removed!";
   static String artistBookmarkAddAlert = "Artist bookmarked!";
   static String artistBookmarkRemoveAlert = "Artist bookmark removed!";
   static String lyricsNotAvailable = "Lyrics not available!";
@@ -276,7 +276,7 @@ class StringFile {
   static String password = "Password";
   static String linkAlert = "Linked successfully!";
   static String unlinkAlert = "Unlinked successfully!";
-  static String playlistBlacklistAlert = "Playlist blacklisted!";
+  static String playlistBlacklistAlert = "playlist blacklisted!";
   static String reset = "Reset";
   static String blacklistPlstResetAlert = "Reset successfully!";
   static String resetblacklistedplaylist = "Reset blacklisted playlists";
@@ -305,20 +305,20 @@ class StringFile {
   static String restore = "Restore";
   static String closeApp = "Close App";
   static String restartApp = "Restart App";
-  static String exportPlaylist = "Export Playlist";
-  static String exportPlaylistCsv = "Export Playlist as CSV";
+  static String exportPlaylist = "Export playlist";
+  static String exportPlaylistCsv = "Export playlist as CSV";
   static String exportingPlaylist = "Exporting playlist...";
-  static String playlistExportedMsg = "Playlist exported successfully to";
+  static String playlistExportedMsg = "playlist exported successfully to";
   static String exportError = "Error exporting playlist";
   static String exportErrorPermission = "Permission denied while exporting";
   static String exportErrorStorage = "Not enough storage space";
   static String exportErrorFormat = "Error formatting playlist data";
-  static String importPlaylist = "Import Playlist";
+  static String importPlaylist = "Import playlist";
   static String importingPlaylist = "Importing playlist...";
   static String importPlaylistDesc =
       "Select a previously exported playlist JSON file to import";
   static String selectFile = "Select File";
-  static String playlistImportedMsg = "Playlist imported successfully";
+  static String playlistImportedMsg = "playlist imported successfully";
   static String importError = "Error importing playlist";
   static String importErrorFileAccess = "Could not access the selected file";
   static String importErrorFormat = "Invalid file format";

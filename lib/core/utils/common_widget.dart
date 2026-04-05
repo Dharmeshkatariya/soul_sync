@@ -1,3 +1,5 @@
+import 'package:soul_sync/custom_view/custom_text_view.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -8,7 +10,7 @@ import 'package:soul_sync/core/utils/string_file.dart';
 import 'package:soul_sync/core/utils/typing_timer_util.dart';
 import 'package:soul_sync/custom_view/border_container.dart';
 import 'package:soul_sync/custom_view/custom_divider.dart';
-import 'package:soul_sync/custom_view/custom_text.dart';
+import 'package:soul_sync/custom_view/custom_text_view.dart';
 
 import '../../custom_view/custom_button.dart';
 import '../../custom_view/custom_edit_text.dart';
@@ -455,7 +457,7 @@ class CommonWidget {
                   ),
                 ),
                 Expanded(
-                  child: CustomEditText(
+                  child: CustomEditCustomTextView(
                     hint,
                     controller,
                     TextInputType.name,

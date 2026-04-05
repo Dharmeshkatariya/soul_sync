@@ -1,3 +1,5 @@
+import 'package:soul_sync/custom_view/custom_text_view.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,7 +10,6 @@ import 'package:soul_sync/core/utils/color_file.dart';
 import 'package:soul_sync/core/utils/globals.dart';
 import 'package:soul_sync/core/utils/string_file.dart';
 import 'custom_edit_text.dart';
-import 'custom_text.dart';
 import 'mandatory_indicator_widget.dart';
 
 class MobileFieldWidget extends StatelessWidget {
@@ -120,7 +121,7 @@ class MobileFieldWidget extends StatelessWidget {
                 items.map((String dropDownStringItem) {
                   return DropdownMenuItem<String>(
                     value: dropDownStringItem,
-                    child: Text(
+                    child: CustomTextView(
                       dropDownStringItem,
                       style: TextStyle(
                         fontSize: 14.sp,

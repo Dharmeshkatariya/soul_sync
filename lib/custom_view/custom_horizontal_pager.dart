@@ -1,12 +1,14 @@
+import 'package:soul_sync/custom_view/custom_text_view.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../core/utils/app_text_styles.dart';
 import '../core/utils/color_file.dart';
-import '../model/custom_base_model.dart';
+import '../models/custom_base_model.dart';
 import 'custom_gesture_detector.dart';
-import 'custom_text.dart';
+import 'custom_text_view.dart';
 class CustomHorizontalPager extends StatelessWidget {
   CustomHorizontalPager(
       {required this.mList,

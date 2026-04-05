@@ -1,9 +1,11 @@
+import 'package:soul_sync/custom_view/custom_text_view.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:soul_sync/core/utils/app_text_styles.dart';
 import 'package:soul_sync/core/utils/color_file.dart';
 import 'package:soul_sync/core/utils/common.dart';
-import 'package:soul_sync/custom_view/custom_text.dart';
+import 'package:soul_sync/custom_view/custom_text_view.dart';
 
 class InitialsCircularImage extends StatelessWidget {
   const InitialsCircularImage(this.text, {super.key, this.width = 40, this.height = 40, this.textSize = 14});

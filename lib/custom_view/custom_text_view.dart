@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class CustomTextView extends StatelessWidget {
   final String text;
   final TextStyle? style;
-  final int? maxLine;
+  final int? maxLines;
   final TextAlign? textAlign;
   final TextOverflow? textOverflow;
 
@@ -11,7 +11,7 @@ class CustomTextView extends StatelessWidget {
     this.text, {
     super.key,
     this.style,
-    this.maxLine,
+    this.maxLines,
     this.textAlign,
     this.textOverflow,
   });
@@ -22,9 +22,9 @@ class CustomTextView extends StatelessWidget {
       text,
       style: style,
       textAlign: textAlign,
-      maxLines: maxLine,
+      maxLines: maxLines,
       overflow:
-          textOverflow ?? (maxLine != null ? TextOverflow.ellipsis : null),
+          textOverflow ?? (maxLines != null ? TextOverflow.ellipsis : null),
     );
   }
 }

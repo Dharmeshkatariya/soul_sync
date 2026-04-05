@@ -1,3 +1,5 @@
+import 'package:soul_sync/custom_view/custom_text_view.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -5,8 +7,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:soul_sync/core/utils/app_text_styles.dart';
 import 'package:soul_sync/custom_view/custom_gesture_detector.dart';
-import 'package:soul_sync/custom_view/custom_text.dart';
-import 'package:soul_sync/model/column_drill_down.dart';
+import 'package:soul_sync/custom_view/custom_text_view.dart';
+import 'package:soul_sync/models/column_drill_down.dart';
 import '../core/enum/listing_theme_type.dart';
 import '../core/utils/color_file.dart';
 import '../core/utils/common.dart';

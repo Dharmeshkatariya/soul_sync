@@ -5,7 +5,7 @@ class PlatformConstants {
   static String get androidModel {
     if (kIsWeb) return '';
     try {
-      return const String.fromEnvironment('ro.product.model', defaultValue: '');
+      return const String.fromEnvironment('ro.product.models', defaultValue: '');
     } catch (e) {
       return '';
     }

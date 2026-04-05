@@ -32,7 +32,7 @@ class Routes {
   static String propertyUnits = '/property-units';
 
   Map<String, String> get routeDisplayNames => {
-    providerHomePage: 'Provider Home Page',
+    providerHomePage: 'Provider home Page',
     managerDashboard: 'Manager Dashboard',
     roleManagement: 'Role Management',
     addRoleView: 'Add Role View',

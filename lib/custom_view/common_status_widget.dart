@@ -1,7 +1,9 @@
+import 'package:soul_sync/custom_view/custom_text_view.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:soul_sync/core/utils/extensions.dart';
-import '../../../../custom_view/custom_text.dart';
+import '../../../../custom_view/custom_text_view.dart';
 import '../core/utils/app_text_styles.dart';
 import '../core/utils/color_file.dart';
 import '../core/utils/constant_status.dart';
@@ -29,7 +31,7 @@ class CommonStatusWidget extends StatelessWidget {
       ),
       alignment: alignment,
       padding: EdgeInsets.symmetric(vertical: 4.h, horizontal: 14.w),
-      child: _buildStatusText(status, statusStyle.textColor),
+      child: _buildStatusCustomTextView(status, statusStyle.textColor),
     );
   }
 
@@ -102,7 +104,7 @@ class CommonStatusWidget extends StatelessWidget {
     }
   }
 
-  Widget _buildStatusText(String value, Color textColor) {
+  Widget _buildStatusCustomTextView(String value, Color textColor) {
     return CustomTextView(
       value.formatted,
       style: AppTextStyles.semiBoldBlack12.copyWith(

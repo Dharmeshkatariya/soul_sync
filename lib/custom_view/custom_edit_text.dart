@@ -1,10 +1,11 @@
+import 'package:soul_sync/custom_view/custom_text_view.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:soul_sync/core/utils/app_text_styles.dart';
-import 'package:soul_sync/custom_view/custom_text.dart';
 
 import '../core/constants/constants_file.dart';
 import '../core/utils/color_file.dart';

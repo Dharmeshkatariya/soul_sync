@@ -1,10 +1,9 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:soul_sync/core/utils/app_text_styles.dart';
-
 import '../core/utils/color_file.dart';
-import '../core/utils/common.dart';
 import '../core/utils/common_widget.dart';
 import '../core/utils/responsive_util.dart';
 
@@ -38,7 +37,7 @@ class CommonSpanHeaderWidget extends StatelessWidget {
       return Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          _richText(),
+          _richCustomTextView(),
           SizedBox(width: 8.w),
           if (expandedWidget != null) ...[expandedWidget ?? Container()],
         ],
@@ -47,7 +46,7 @@ class CommonSpanHeaderWidget extends StatelessWidget {
       return Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          _richText(),
+          _richCustomTextView(),
           SizedBox(width: 8.w),
           if (widget != null) ...[widget ?? Container()],
         ],
@@ -61,7 +60,7 @@ class CommonSpanHeaderWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _richText(),
+          _richCustomTextView(),
           SizedBox(height: 10.h),
           if (expandedWidget != null) ...[expandedWidget ?? Container()],
         ],
@@ -70,7 +69,7 @@ class CommonSpanHeaderWidget extends StatelessWidget {
       return Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          _richText(),
+          _richCustomTextView(),
           SizedBox(width: 8.w),
           if (widget != null) ...[widget ?? Container()],
         ],
@@ -78,7 +77,7 @@ class CommonSpanHeaderWidget extends StatelessWidget {
     }
   }
 
-  Widget _richText() {
+  Widget _richCustomTextView() {
     return RichText(
       textAlign: TextAlign.center,
       text: TextSpan(

@@ -3,7 +3,7 @@ import 'dart:html' as html;
 import 'package:get/get.dart';
 import 'package:soul_sync/core/utils/query_params.dart';
 import 'package:soul_sync/custom_view/custom_horizontal_pager.dart';
-import 'package:soul_sync/model/pagination.dart';
+import 'package:soul_sync/models/pagination.dart';
 
 class BookmarkUtils {
   static void updateQueryParams(String key, String value) {
@@ -138,7 +138,7 @@ class BookmarkUtils {
 
 /// Pagination:
 /// - When switching pages in a paginated list (e.g., `pages=2`)
-/// Search Input:
+/// search Input:
 /// - On performing a search or filter action (e.g., `search=John`)
 /// Tab Changes:
 /// - When switching between tabs (e.g., `tab=details`)

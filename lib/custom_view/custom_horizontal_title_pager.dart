@@ -1,3 +1,5 @@
+import 'package:soul_sync/custom_view/custom_text_view.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -8,7 +10,7 @@ import '../core/utils/constant_status.dart';
 import 'border_container.dart';
 import 'custom_gesture_detector.dart';
 import 'custom_horizontal_pager.dart';
-import 'custom_text.dart';
+import 'custom_text_view.dart';
 
 class CustomHorizontalTitlePager extends StatelessWidget {
   const CustomHorizontalTitlePager({

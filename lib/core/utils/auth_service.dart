@@ -70,7 +70,7 @@
 //     //   // device details
 //     //   RequestAndResponseParams.deviceDetail: {
 //     //     RequestAndResponseParams.make: getLocationAndDeviceInfo.make,
-//     //     RequestAndResponseParams.model: getLocationAndDeviceInfo.model,
+//     //     RequestAndResponseParams.models: getLocationAndDeviceInfo.models,
 //     //     RequestAndResponseParams.ipAddress: getLocationAndDeviceInfo.externalIP,
 //     //     if(NotificationService.deviceToken!=null && NotificationService.deviceToken!.isNotEmpty)
 //     //       RequestAndResponseParams.deviceToken: NotificationService.deviceToken,

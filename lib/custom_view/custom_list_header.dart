@@ -1,3 +1,5 @@
+import 'package:soul_sync/custom_view/custom_text_view.dart';
+
 import 'package:flutter/material.dart';
 
 class CustomListHeader extends StatelessWidget {
@@ -41,10 +43,10 @@ class CustomListHeader extends StatelessWidget {
                 vertical: 8.0,
                 horizontal: 4.0,
               ),
-              child: Text(
+              child: CustomTextView(
                 headerTexts[index],
                 style: textStyle,
-                overflow: TextOverflow.ellipsis,
+                textOverflow: TextOverflow.ellipsis,
               ),
             ),
           );

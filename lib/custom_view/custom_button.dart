@@ -1,3 +1,5 @@
+import 'package:soul_sync/custom_view/custom_text_view.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -6,7 +8,7 @@ import '../core/constants/constants_file.dart';
 import '../core/utils/app_text_styles.dart';
 import '../core/utils/color_file.dart';
 import 'custom_gesture_detector.dart';
-import 'custom_text.dart';
+import 'custom_text_view.dart';
 
 class CustomButton extends StatelessWidget {
   final String text;
