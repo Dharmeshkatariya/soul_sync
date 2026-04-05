@@ -1,5 +1,3 @@
-import 'package:get/get.dart';
-import 'app_bindings.dart';
 
 class Routes {
   String login = '/login';

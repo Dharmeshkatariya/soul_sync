@@ -26,7 +26,7 @@ class LyricsWidget extends StatelessWidget {
                 child: Obx(
                   () => TextSelectionTheme(
                     data: Theme.of(context).textSelectionTheme,
-                    child: SelectableCustomTextView(
+                    child: SelectableText(
                       playerController.lyrics["plainLyrics"] == "NA"
                           ? "lyricsNotAvailable".tr
                           : playerController.lyrics["plainLyrics"],

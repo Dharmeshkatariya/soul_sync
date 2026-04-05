@@ -5,7 +5,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:soul_sync/core/utils/app_text_styles.dart';
 import 'package:soul_sync/core/utils/color_file.dart';
-import 'package:soul_sync/custom_view/custom_text_view.dart';
 import 'custom_gesture_detector.dart';
 
 class BackToLoginWidget extends StatelessWidget {

@@ -11,7 +11,6 @@ import '../core/utils/color_file.dart';
 import '../core/utils/common.dart';
 import '../core/utils/responsive_util.dart';
 import 'custom_gesture_detector.dart';
-import 'custom_text_view.dart';
 
 class CustomAlertView extends StatelessWidget {
   const CustomAlertView({

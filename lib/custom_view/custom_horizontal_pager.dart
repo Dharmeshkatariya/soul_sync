@@ -8,7 +8,6 @@ import '../core/utils/app_text_styles.dart';
 import '../core/utils/color_file.dart';
 import '../models/custom_base_model.dart';
 import 'custom_gesture_detector.dart';
-import 'custom_text_view.dart';
 
 class CustomHorizontalPager extends StatelessWidget {
   CustomHorizontalPager({

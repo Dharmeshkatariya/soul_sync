@@ -9,12 +9,10 @@ import 'package:soul_sync/core/utils/app_text_styles.dart';
 import '../core/constants/constants_file.dart';
 import '../core/utils/assets_icons.dart';
 import '../core/utils/color_file.dart';
-import '../core/utils/common.dart';
 import '../core/utils/responsive_util.dart';
 import 'custom_gesture_detector.dart';
 import 'circular_progressIndicator_widget.dart';
 import 'custom_empty_data_view.dart';
-import 'custom_text_view.dart';
 
 class CustomListingWidgetMobile extends StatelessWidget {
   const CustomListingWidgetMobile({

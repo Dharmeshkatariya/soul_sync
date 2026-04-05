@@ -1,5 +1,3 @@
-import 'package:soul_sync/custom_view/custom_text_view.dart';
-
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';

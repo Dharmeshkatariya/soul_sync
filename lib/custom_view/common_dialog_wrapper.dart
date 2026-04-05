@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../core/utils/common.dart';
 import '../core/utils/responsive_util.dart';
 
 class CommonDialogWrapper extends StatelessWidget {

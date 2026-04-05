@@ -7,10 +7,8 @@ import 'package:get/get.dart';
 import '../core/constants/constants_file.dart';
 import '../core/utils/app_text_styles.dart';
 import '../core/utils/color_file.dart';
-import '../core/utils/common.dart';
 import '../core/utils/responsive_util.dart';
 import 'custom_horizontal_pager.dart';
-import 'custom_text_view.dart';
 
 class CustomHeaderView extends StatelessWidget {
   final String title;

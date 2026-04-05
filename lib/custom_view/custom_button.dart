@@ -8,7 +8,6 @@ import '../core/constants/constants_file.dart';
 import '../core/utils/app_text_styles.dart';
 import '../core/utils/color_file.dart';
 import 'custom_gesture_detector.dart';
-import 'custom_text_view.dart';
 
 class CustomButton extends StatelessWidget {
   final String text;

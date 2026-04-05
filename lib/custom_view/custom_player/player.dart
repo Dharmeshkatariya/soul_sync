@@ -1,3 +1,4 @@
+import 'package:soul_sync/core/extension/text_style.dart';
 import 'package:soul_sync/custom_view/custom_text_view.dart';
 
 import 'dart:ui';

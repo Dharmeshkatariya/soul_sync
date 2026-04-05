@@ -200,7 +200,7 @@ class StandardPlayer extends StatelessWidget {
                           Obx(
                             () => CustomTextView(
                               "\"${playerController.playinfrom.value.nameString}\"",
-                              overflow: TextOverflow.ellipsis,
+                              textOverflow: TextOverflow.ellipsis,
                               style: const TextStyle(
                                 fontWeight: FontWeight.bold,
                               ),

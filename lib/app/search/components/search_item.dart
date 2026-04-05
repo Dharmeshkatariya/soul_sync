@@ -43,8 +43,7 @@ class SearchItem extends StatelessWidget {
         width: 80,
         child: Row(
           children: [
-            isHistoryString
-                ? IconButton(
+            if (isHistoryString) IconButton(
                     iconSize: 18,
                     splashRadius: 18,
                     visualDensity: const VisualDensity(horizontal: -2),
@@ -54,8 +53,7 @@ class SearchItem extends StatelessWidget {
                       );
                     },
                     icon: Icon(Icons.clear, color: context.titleMedium!.color),
-                  )
-                : const SizedBox(width: 40),
+                  ) else const SizedBox(width: 40),
             IconButton(
               iconSize: 20,
               splashRadius: 18,

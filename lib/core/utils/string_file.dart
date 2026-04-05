@@ -1,6 +1,3 @@
-import 'package:get/get.dart';
-import 'package:soul_sync/core/utils/common.dart';
-import 'app_locale.dart';
 import 'globals.dart';
 
 class StringFile {

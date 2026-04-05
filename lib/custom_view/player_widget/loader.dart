@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:soul_sync/core/extension/text_style.dart';
 
 class LoadingIndicator extends StatelessWidget {
   final double strokeWidth;

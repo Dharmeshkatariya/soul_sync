@@ -6,9 +6,6 @@ import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:soul_sync/core/constants/constants_file.dart';
 import 'package:soul_sync/core/enum/app_language_type.dart';
 
-import '../enum/app_language_type.dart';
-import '../enum/misc_enums.dart';
-
 class AppLocale extends GetxController {
   AppLocale.initialize();
 

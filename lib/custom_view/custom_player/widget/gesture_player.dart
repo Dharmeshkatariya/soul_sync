@@ -148,7 +148,7 @@ class GesturePlayer extends StatelessWidget {
                                                     .artist!
                                               : "NA",
                                           textAlign: TextAlign.start,
-                                          overflow: TextOverflow.ellipsis,
+                                          textOverflow: TextOverflow.ellipsis,
                                           style: Theme.of(context)
                                               .textTheme
                                               .titleSmall!

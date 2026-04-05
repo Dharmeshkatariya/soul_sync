@@ -10,7 +10,6 @@ import '../core/utils/constant_status.dart';
 import 'border_container.dart';
 import 'custom_gesture_detector.dart';
 import 'custom_horizontal_pager.dart';
-import 'custom_text_view.dart';
 
 class CustomHorizontalTitlePager extends StatelessWidget {
   const CustomHorizontalTitlePager({

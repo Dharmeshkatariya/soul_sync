@@ -3,7 +3,6 @@ import 'package:soul_sync/custom_view/custom_text_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:soul_sync/core/utils/extensions.dart';
-import '../../../../custom_view/custom_text_view.dart';
 import '../core/utils/app_text_styles.dart';
 import '../core/utils/color_file.dart';
 import '../core/utils/constant_status.dart';

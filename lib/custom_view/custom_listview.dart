@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:soul_sync/custom_view/custom_divider.dart';
 import 'custom_no_data_found_widget.dart';
 

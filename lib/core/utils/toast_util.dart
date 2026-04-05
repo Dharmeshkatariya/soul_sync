@@ -3,7 +3,6 @@ import 'package:soul_sync/custom_view/custom_text_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:toastification/toastification.dart';
-import '../../custom_view/custom_text_view.dart';
 import '../enum/toast_duration.dart';
 import 'app_text_styles.dart';
 import 'assets_icons.dart';

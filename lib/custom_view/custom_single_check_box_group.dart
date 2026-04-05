@@ -8,7 +8,6 @@ import '../core/utils/color_file.dart';
 import 'custom_checkbox_widget.dart';
 import 'custom_gesture_detector.dart';
 import 'custom_radio_group.dart';
-import 'custom_text_view.dart';
 
 class CustomSingleCheckboxGroup<T> extends StatelessWidget {
   CustomSingleCheckboxGroup({

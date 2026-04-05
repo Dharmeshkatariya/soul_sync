@@ -616,7 +616,7 @@ class SettingsScreen extends StatelessWidget {
                                         .enableIgnoringBatteryOptimizations
                                   : null,
                               subtitle: Obx(
-                                () => RichCustomTextView(
+                                () => RichText(
                                   text: TextSpan(
                                     text:
                                         "${"status".tr}: ${settingsController.isIgnoringBatteryOptimizations.isTrue ? "enabled".tr : "disabled".tr}\n",

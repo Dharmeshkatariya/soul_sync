@@ -1,3 +1,4 @@
+import 'package:soul_sync/core/extension/text_style.dart';
 import 'package:soul_sync/custom_view/custom_text_view.dart';
 
 import 'package:flutter/material.dart';
@@ -13,6 +14,7 @@ class ModificationList extends StatelessWidget {
     required this.mode,
     this.screenController,
   });
+
   final OperationMode mode;
   final dynamic screenController;
 

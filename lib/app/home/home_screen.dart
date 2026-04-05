@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:soul_sync/core/extension/text_style.dart';
 import 'package:soul_sync/custom_view/custom_player/player_controller.dart';
-import 'package:soul_sync/custom_view/custom_text.dart';
 import 'package:soul_sync/custom_view/player_widget/animated_screen_transition.dart';
 import 'package:soul_sync/custom_view/player_widget/quickpickswidget.dart';
-
+import '../../custom_view/custom_text_view.dart';
 import '../../custom_view/player_widget/content_list_widget.dart';
 import '../../custom_view/player_widget/create_playlist_dialog.dart';
 import '../../custom_view/player_widget/shimmer_widgets/home_shimmer.dart';
