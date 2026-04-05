@@ -1,3 +1,4 @@
+import 'package:soul_sync/core/extension/text_style.dart';
 import 'package:soul_sync/custom_view/custom_text_view.dart';
 
 import 'package:audio_service/audio_service.dart';
@@ -250,7 +251,7 @@ class ListWidget extends StatelessWidget with RemoveSongFromPlaylistMixin {
                     CustomTextView(
                       title,
                       maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
+                      textOverflow: TextOverflow.ellipsis,
                       style: context.titleMedium  ,
                     ),
                     CustomTextView(

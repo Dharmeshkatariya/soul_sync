@@ -34,7 +34,7 @@ extension StringExtension on String {
       mask: '(###)-###-####',
       filter: {"#": RegExp(r'\d')},
     );
-    return formatter.maskCustomTextView(this);
+    return formatter.maskText(this);
   }
 
   String get formatted => isNotEmpty

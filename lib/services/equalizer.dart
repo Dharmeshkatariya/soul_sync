@@ -1,5 +1,3 @@
-import 'package:soul_sync/custom_view/custom_text_view.dart';
-
 import 'package:jni/jni.dart';
 
 import '../native_bindings/andrid_utils.dart';
@@ -7,7 +5,7 @@ import '../native_bindings/andrid_utils.dart';
 class EqualizerService {
   static bool openEqualizer(int sessionId) {
     JObject activity = JObject.fromReference(Jni.getCurrentActivity());
-    JObject context = JObject.fromReference(Jni.getCachedApplicationConCustomTextView());
+    JObject context = JObject.fromReference(Jni.getCachedApplicationContext());
     final success = Equalizer().openEqualizer(sessionId, context, activity);
     activity.release();
     context.release();
@@ -15,13 +13,13 @@ class EqualizerService {
   }
 
   static void initAudioEffect(int sessionId) {
-    JObject context = JObject.fromReference(Jni.getCachedApplicationConCustomTextView());
+    JObject context = JObject.fromReference(Jni.getCachedApplicationContext());
     Equalizer().initAudioEffect(sessionId, context);
     context.release();
   }
 
   static void endAudioEffect(int sessionId) {
-    JObject context = JObject.fromReference(Jni.getCachedApplicationConCustomTextView());
+    JObject context = JObject.fromReference(Jni.getCachedApplicationContext());
     Equalizer().endAudioEffect(sessionId, context);
     context.release();
   }
