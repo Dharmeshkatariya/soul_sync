@@ -1,0 +1,4 @@
+enum ListingTheme{
+  primary,
+  secondary
+}
