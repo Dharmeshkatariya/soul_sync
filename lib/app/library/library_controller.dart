@@ -43,14 +43,13 @@ class LibrarySongsController extends GetxController {
     List<String> songsList = [];
     final cacheDir = (await getTemporaryDirectory()).path;
     if (Directory("$cacheDir/cachedSongs/").existsSync()) {
-      final downloadedFiles = Directory("$cacheDir/cachedSongs")
-          .listSync()
-          .where(
-            (f) => ![
-              'mime',
-              'part',
-            ].contains(f.path.replaceAll(RegExp(r'^.*\.'), '')),
-          );
+      final downloadedFiles =
+          Directory("$cacheDir/cachedSongs").listSync().where(
+                (f) => ![
+                  'mime',
+                  'part',
+                ].contains(f.path.replaceAll(RegExp(r'^.*\.'), '')),
+              );
       songsList.addAll(
         downloadedFiles
             .map((e) {
@@ -80,7 +79,8 @@ class LibrarySongsController extends GetxController {
         .toList();
 
     librarySongsList.addAll(
-      Hive.box("SongDownloads").values
+      Hive.box("SongDownloads")
+          .values
           .map<MediaItem?>((item) => MediaItemBuilder.fromJson(item))
           .whereType<MediaItem>()
           .toList(),
@@ -165,8 +165,8 @@ class LibrarySongsController extends GetxController {
   }
 
   void checkIfAllSelected() {
-    sortWidgetController!.isAllSelected.value = !additionalOperationTempMap
-        .containsValue(false);
+    sortWidgetController!.isAllSelected.value =
+        !additionalOperationTempMap.containsValue(false);
   }
 
   void selectAll(bool selected) {
@@ -316,8 +316,7 @@ class LibraryPlaylistsController extends GetxController
     final res = await Get.find<PipedServices>().getAllPlaylists();
     final box = await Hive.openBox('blacklistedPlaylist');
     final blacklistedPlaylist = box.values.whereType<String>().toList();
-    final libPipedPlaylistsId =
-        libraryPlaylists
+    final libPipedPlaylistsId = libraryPlaylists
             .toList()
             .map((e) {
               if (e.isPipedPlaylist) {
@@ -553,8 +552,7 @@ class LibraryPlaylistsController extends GetxController
       final newPlaylist = Playlist(
         title: "${playlistInfo['title']} (${StringFile.imported})",
         playlistId: newPlaylistId,
-        thumbnailUrl:
-            playlistInfo['thumbnailUrl'] ??
+        thumbnailUrl: playlistInfo['thumbnailUrl'] ??
             (playlistInfo['thumbnails'] != null &&
                     playlistInfo['thumbnails'].isNotEmpty
                 ? playlistInfo['thumbnails'][0]['url']

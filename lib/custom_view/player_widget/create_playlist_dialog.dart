@@ -131,8 +131,8 @@ class CreateNRenamePlaylistPopup extends StatelessWidget {
                               isCreateNadd
                                   ? StringFile.createnAdd
                                   : renamePlaylist
-                                  ? StringFile.rename
-                                  : StringFile.create,
+                                      ? StringFile.rename
+                                      : StringFile.create,
                               style: TextStyle(
                                 color: Theme.of(context).canvasColor,
                               ),
@@ -158,37 +158,36 @@ class CreateNRenamePlaylistPopup extends StatelessWidget {
                             } else {
                               librPlstCntrller
                                   .createNewPlaylist(
-                                    createPlaylistNaddSong: isCreateNadd,
-                                    songItems: songItems,
-                                  )
+                                createPlaylistNaddSong: isCreateNadd,
+                                songItems: songItems,
+                              )
                                   .then((value) {
-                                    if (!context.mounted) return;
-                                    if (value) {
-                                      ScaffoldMessenger.of(
-                                        context,
-                                      ).showSnackBar(
-                                        snackbar(
-                                          context,
-                                          isCreateNadd
-                                              ? "playlistCreatednsongAddedAlert"
-                                                    .tr
-                                              : StringFile.playlistCreatedAlert,
-                                          size: SanckBarSize.MEDIUM,
-                                        ),
-                                      );
-                                    } else {
-                                      ScaffoldMessenger.of(
-                                        context,
-                                      ).showSnackBar(
-                                        snackbar(
-                                          context,
-                                          StringFile.errorOccuredAlert,
-                                          size: SanckBarSize.MEDIUM,
-                                        ),
-                                      );
-                                    }
-                                    Navigator.of(context).pop();
-                                  });
+                                if (!context.mounted) return;
+                                if (value) {
+                                  ScaffoldMessenger.of(
+                                    context,
+                                  ).showSnackBar(
+                                    snackbar(
+                                      context,
+                                      isCreateNadd
+                                          ? "playlistCreatednsongAddedAlert".tr
+                                          : StringFile.playlistCreatedAlert,
+                                      size: SanckBarSize.MEDIUM,
+                                    ),
+                                  );
+                                } else {
+                                  ScaffoldMessenger.of(
+                                    context,
+                                  ).showSnackBar(
+                                    snackbar(
+                                      context,
+                                      StringFile.errorOccuredAlert,
+                                      size: SanckBarSize.MEDIUM,
+                                    ),
+                                  );
+                                }
+                                Navigator.of(context).pop();
+                              });
                             }
                           },
                         ),
@@ -201,19 +200,19 @@ class CreateNRenamePlaylistPopup extends StatelessWidget {
             Obx(
               () =>
                   (librPlstCntrller.creationInProgress.isTrue && isPipedLinked)
-                  ? const Positioned(
-                      top: 5,
-                      right: 8,
-                      child: SizedBox(
-                        height: 15,
-                        width: 15,
-                        child: CircularProgressIndicator(
-                          backgroundColor: Colors.transparent,
-                          strokeWidth: 2,
-                        ),
-                      ),
-                    )
-                  : const SizedBox.shrink(),
+                      ? const Positioned(
+                          top: 5,
+                          right: 8,
+                          child: SizedBox(
+                            height: 15,
+                            width: 15,
+                            child: CircularProgressIndicator(
+                              backgroundColor: Colors.transparent,
+                              strokeWidth: 2,
+                            ),
+                          ),
+                        )
+                      : const SizedBox.shrink(),
             ),
           ],
         ),

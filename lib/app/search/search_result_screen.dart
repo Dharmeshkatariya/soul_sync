@@ -37,10 +37,8 @@ class SearchResultScreen extends StatelessWidget {
                           onDestinationSelected:
                               searchResScrController.onDestinationSelected,
                           minWidth: 60,
-                          destinations:
-                              (searchResScrController
-                                      .isResultContentFetced
-                                      .value &&
+                          destinations: (searchResScrController
+                                      .isResultContentFetced.value &&
                                   searchResScrController.railItems.isNotEmpty)
                               ? [
                                   railDestination(StringFile.results),
@@ -65,7 +63,9 @@ class SearchResultScreen extends StatelessWidget {
                                 onPressed: () {
                                   Get.nestedKey(
                                     ScreenNavigationSetup.id,
-                                  )!.currentState!.pop();
+                                  )!
+                                      .currentState!
+                                      .pop();
                                 },
                               ),
                               const SizedBox(height: 10),
@@ -73,8 +73,7 @@ class SearchResultScreen extends StatelessWidget {
                           ),
                           labelType: NavigationRailLabelType.all,
                           selectedIndex: searchResScrController
-                              .navigationRailCurrentIndex
-                              .value,
+                              .navigationRailCurrentIndex.value,
                         ),
                       ),
                     ),
@@ -143,11 +142,8 @@ class Body extends StatelessWidget {
     } else {
       if (searchResScrController.isResultContentFetced.isTrue) {
         final topPadding = context.isLandscape ? 50.0 : 80.0;
-        final name =
-            searchResScrController.railItems[searchResScrController
-                    .navigationRailCurrentIndex
-                    .value -
-                1];
+        final name = searchResScrController.railItems[
+            searchResScrController.navigationRailCurrentIndex.value - 1];
         return SeparateTabItemWidget(
           items: const [],
           title: name,

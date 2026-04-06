@@ -63,8 +63,7 @@ Future<List<dynamic>> getContinuations(
 
   while ((additionalParams_ != null || results.containsKey('continuations')) &&
       (limit > 0 && items.length < limit)) {
-    final String additionalParams =
-        additionalParams_ ??
+    final String additionalParams = additionalParams_ ??
         (reloadable
             ? getReloadableContinuationParams(results)
             : getContinuationParams(results, ctokenPath: ctokenPath));
@@ -114,13 +113,13 @@ Future<List<dynamic>> getValidatedContinuations(
 
     final Map<String, dynamic> response =
         await resendRequestUntilParsedResponseIsValid(
-          requestFunc,
-          additionalParams,
-          (response) =>
-              getParsedContinuationItems(response, parseFunc, continuationType),
-          (parsed) => validateResponse(parsed, perPage, limit, items.length),
-          3,
-        );
+      requestFunc,
+      additionalParams,
+      (response) =>
+          getParsedContinuationItems(response, parseFunc, continuationType),
+      (parsed) => validateResponse(parsed, perPage, limit, items.length),
+      3,
+    );
 
     results = response['results'];
     items.addAll(response['parsed']);

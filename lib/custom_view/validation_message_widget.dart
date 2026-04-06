@@ -92,12 +92,10 @@ class ErrorTextWidget extends StatelessWidget {
               color: ColorFile.errorColor,
               border: Border(top: BorderSide(color: ColorFile.errorColor)),
               borderRadius: BorderRadius.only(
-                topLeft: (errorText.isEmpty)
-                    ? Radius.circular(6.r)
-                    : Radius.zero,
-                topRight: (errorText.isEmpty)
-                    ? Radius.circular(6.r)
-                    : Radius.zero,
+                topLeft:
+                    (errorText.isEmpty) ? Radius.circular(6.r) : Radius.zero,
+                topRight:
+                    (errorText.isEmpty) ? Radius.circular(6.r) : Radius.zero,
                 bottomLeft: Radius.circular(6.r),
                 bottomRight: Radius.circular(6.r),
               ),

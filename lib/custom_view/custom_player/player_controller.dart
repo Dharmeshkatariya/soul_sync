@@ -706,7 +706,8 @@ class PlayerController extends GetxController
   Future<void> _checkFav() async {
     isCurrentSongFav.value = (await Hive.openBox(
       "LIBFAV",
-    )).containsKey(currentSong.value!.id);
+    ))
+        .containsKey(currentSong.value!.id);
   }
 
   Future<void> toggleFavourite() async {
@@ -794,9 +795,9 @@ class PlayerController extends GetxController
       try {
         final Map<String, dynamic>? lyricsR =
             await SyncedLyricsService.getSyncedLyrics(
-              currentSong.value!,
-              progressBarStatus.value.total.inSeconds,
-            );
+          currentSong.value!,
+          progressBarStatus.value.total.inSeconds,
+        );
         if (lyricsR != null) {
           lyrics.value = lyricsR;
           isLyricsLoading.value = false;

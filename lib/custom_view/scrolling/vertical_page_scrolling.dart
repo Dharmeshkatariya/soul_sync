@@ -37,9 +37,8 @@ class VerticalPagerScrolling {
   }) {
     double scrollPosition = scrollController.position.pixels;
     List<GlobalKey> sectionKeys = globalKeyList;
-    List<double> sectionHeights = sectionKeys
-        .map((key) => getSectionHeight(key))
-        .toList();
+    List<double> sectionHeights =
+        sectionKeys.map((key) => getSectionHeight(key)).toList();
     double gapHeight = gapHeightBetweenWidget;
     double cumulativeHeight = 0.0;
     for (int i = 0; i < sectionHeights.length; i++) {
@@ -60,9 +59,8 @@ class VerticalPagerScrolling {
   }) {
     double scrollPosition = scrollController.position.pixels;
     List<GlobalKey> sectionKeys = globalKeyList;
-    List<double> sectionHeights = sectionKeys
-        .map((key) => getSectionHeight(key))
-        .toList();
+    List<double> sectionHeights =
+        sectionKeys.map((key) => getSectionHeight(key)).toList();
     double gapHeight = gapHeightBetweenWidget;
     double cumulativeHeight = 0.0;
     for (int i = 0; i < sectionHeights.length; i++) {
@@ -82,9 +80,8 @@ class VerticalPagerScrolling {
     required Rx<int> selectedIndex,
   }) {
     double scrollPosition = scrollController.position.pixels;
-    List<double> sectionHeights = globalKeyList
-        .map((key) => getSectionHeight(key))
-        .toList();
+    List<double> sectionHeights =
+        globalKeyList.map((key) => getSectionHeight(key)).toList();
     double cumulativeHeight = 0.0;
     for (int i = 0; i < sectionHeights.length; i++) {
       cumulativeHeight += sectionHeights[i] + gapHeightBetweenWidget;

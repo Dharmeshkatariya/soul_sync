@@ -39,8 +39,8 @@ class SeparateTabItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final artistController =
         Get.isRegistered<ArtistScreenController>(tag: artistControllerTag)
-        ? Get.find<ArtistScreenController>(tag: artistControllerTag)
-        : null;
+            ? Get.find<ArtistScreenController>(tag: artistControllerTag)
+            : null;
     final searchResController = Get.isRegistered<SearchResultScreenController>()
         ? Get.find<SearchResultScreenController>()
         : null;
@@ -77,8 +77,7 @@ class SeparateTabItemWidget extends StatelessWidget {
                   () => SortWidget(
                     tag: "${title}_$artistControllerTag",
                     screenController: artistController,
-                    isAdditionalOperationRequired:
-                        artistController != null &&
+                    isAdditionalOperationRequired: artistController != null &&
                         (title == "Songs" || title == "Videos"),
                     isSearchFeatureRequired: artistController != null,
                     titleLeftPadding: 9,
@@ -108,30 +107,26 @@ class SeparateTabItemWidget extends StatelessWidget {
               : const SizedBox.shrink(),
           isCompleteList
               ? isResultWidget
-                    ? GetX<SearchResultScreenController>(
-                        builder: (controller) {
-                          if (controller
-                              .isSeparatedResultContentFetced
-                              .isTrue) {
-                            return ListWidget(
-                              controller.separatedResultContent[title],
-                              title,
-                              isCompleteList,
-                              scrollController: scrollController,
-                            );
-                          } else {
-                            return const Expanded(
-                              child: Center(child: LoadingIndicator()),
-                            );
-                          }
-                        },
-                      )
-                    : (artistController!.isArtistContentFetced.isTrue
-                          ? Obx(
-                              () =>
-                                  (artistController
-                                          .additionalOperationMode
-                                          .value ==
+                  ? GetX<SearchResultScreenController>(
+                      builder: (controller) {
+                        if (controller.isSeparatedResultContentFetced.isTrue) {
+                          return ListWidget(
+                            controller.separatedResultContent[title],
+                            title,
+                            isCompleteList,
+                            scrollController: scrollController,
+                          );
+                        } else {
+                          return const Expanded(
+                            child: Center(child: LoadingIndicator()),
+                          );
+                        }
+                      },
+                    )
+                  : (artistController!.isArtistContentFetced.isTrue
+                      ? Obx(
+                          () =>
+                              (artistController.additionalOperationMode.value ==
                                       OperationMode.none
                                   ? ListWidget(
                                       items,
@@ -143,14 +138,13 @@ class SeparateTabItemWidget extends StatelessWidget {
                                     )
                                   : ModificationList(
                                       mode: artistController
-                                          .additionalOperationMode
-                                          .value,
+                                          .additionalOperationMode.value,
                                       screenController: artistController,
                                     )),
-                            )
-                          : const Expanded(
-                              child: Center(child: LoadingIndicator()),
-                            ))
+                        )
+                      : const Expanded(
+                          child: Center(child: LoadingIndicator()),
+                        ))
               : ListWidget(
                   items,
                   title,

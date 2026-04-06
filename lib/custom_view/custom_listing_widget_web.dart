@@ -102,80 +102,78 @@ class CustomListingWidgetWeb extends StatelessWidget {
     return isLoading
         ? const Center(child: CircularProgressIndicatorWidget())
         : mList.isNotEmpty
-        ? Column(
-            children: [
-              titles.isNotEmpty
-                  ? Container(
-                      margin: isShowBorder! ? margin : EdgeInsets.zero,
-                      constraints: BoxConstraints(minHeight: 36.h),
-                      alignment: Alignment.center,
-                      padding: isShowBorder!
-                          ? EdgeInsets.symmetric(
-                              horizontal: ResponsiveUtil.unitWidth * 1.5,
-                              vertical: 6.w,
-                            )
-                          : EdgeInsets.zero,
-                      decoration: listTheme == ListingTheme.primary
-                          ? BoxDecoration(
-                              borderRadius: isShowBorder!
-                                  ? BorderRadius.circular(8.r)
-                                  : BorderRadius.zero,
-
-                              border: isShowBorder!
-                                  ? Border.all(color: ColorFile.grayDDColor)
-                                  : Border(
-                                      bottom: BorderSide(
-                                        color: ColorFile.grayDDColor,
-                                      ),
-                                    ),
-                              color: ColorFile.whiteColor,
-                            )
-                          : BoxDecoration(
-                              border: isShowBorder!
-                                  ? Border.all(color: ColorFile.grayDDColor)
-                                  : Border(
-                                      bottom: BorderSide(
-                                        color: ColorFile.grayDDColor,
-                                      ),
-                                    ),
-                              color: ColorFile.whiteColor,
+            ? Column(
+                children: [
+                  titles.isNotEmpty
+                      ? Container(
+                          margin: isShowBorder! ? margin : EdgeInsets.zero,
+                          constraints: BoxConstraints(minHeight: 36.h),
+                          alignment: Alignment.center,
+                          padding: isShowBorder!
+                              ? EdgeInsets.symmetric(
+                                  horizontal: ResponsiveUtil.unitWidth * 1.5,
+                                  vertical: 6.w,
+                                )
+                              : EdgeInsets.zero,
+                          decoration: listTheme == ListingTheme.primary
+                              ? BoxDecoration(
+                                  borderRadius: isShowBorder!
+                                      ? BorderRadius.circular(8.r)
+                                      : BorderRadius.zero,
+                                  border: isShowBorder!
+                                      ? Border.all(color: ColorFile.grayDDColor)
+                                      : Border(
+                                          bottom: BorderSide(
+                                            color: ColorFile.grayDDColor,
+                                          ),
+                                        ),
+                                  color: ColorFile.whiteColor,
+                                )
+                              : BoxDecoration(
+                                  border: isShowBorder!
+                                      ? Border.all(color: ColorFile.grayDDColor)
+                                      : Border(
+                                          bottom: BorderSide(
+                                            color: ColorFile.grayDDColor,
+                                          ),
+                                        ),
+                                  color: ColorFile.whiteColor,
+                                ),
+                          child: Padding(
+                            padding: isShowBorder!
+                                ? EdgeInsets.zero
+                                : EdgeInsets.symmetric(
+                                    horizontal: 25.0,
+                                    vertical: 8.w,
+                                  ),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: titles.map((e) => e).toList(),
                             ),
-                      child: Padding(
-                        padding: isShowBorder!
-                            ? EdgeInsets.zero
-                            : EdgeInsets.symmetric(
-                                horizontal: 25.0,
-                                vertical: 8.w,
-                              ),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: titles.map((e) => e).toList(),
-                        ),
-                      ),
-                    )
-                  : Container(),
-
-              if (titles.isNotEmpty &&
-                  listTheme.name == ListingTheme.primary.name)
-                SizedBox(height: 14.h)
-              else
-                SizedBox(height: 0.h),
-              (isExpand!)
-                  ? Expanded(
-                      child: SingleChildScrollView(
-                        physics: isScrollable!
-                            ? const AlwaysScrollableScrollPhysics()
-                            : const NeverScrollableScrollPhysics(),
-                        child: listingAndPaginationView(bottomTitlesVal),
-                      ),
-                    )
-                  : listingAndPaginationView(bottomTitlesVal),
-            ],
-          )
-        : CustomEmptyDataView(
-            moduleNameTitle: moduleName,
-            isSearchEmptyData: isSearchEmptyData,
-          );
+                          ),
+                        )
+                      : Container(),
+                  if (titles.isNotEmpty &&
+                      listTheme.name == ListingTheme.primary.name)
+                    SizedBox(height: 14.h)
+                  else
+                    SizedBox(height: 0.h),
+                  (isExpand!)
+                      ? Expanded(
+                          child: SingleChildScrollView(
+                            physics: isScrollable!
+                                ? const AlwaysScrollableScrollPhysics()
+                                : const NeverScrollableScrollPhysics(),
+                            child: listingAndPaginationView(bottomTitlesVal),
+                          ),
+                        )
+                      : listingAndPaginationView(bottomTitlesVal),
+                ],
+              )
+            : CustomEmptyDataView(
+                moduleNameTitle: moduleName,
+                isSearchEmptyData: isSearchEmptyData,
+              );
   }
 
   Widget listingAndPaginationView(List<Widget> bottomTitlesVal) {
@@ -223,7 +221,6 @@ class CustomListingWidgetWeb extends StatelessWidget {
                     borderRadius: isShowBorder!
                         ? BorderRadius.circular(8.r)
                         : BorderRadius.zero,
-
                     border: isShowBorder!
                         ? Border.all(color: ColorFile.grayDDColor)
                         : Border(

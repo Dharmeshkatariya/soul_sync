@@ -44,36 +44,36 @@ class ExportFileDialog extends StatelessWidget {
                   height: 150,
                   child: Center(
                     child: Obx(
-                      () =>
-                          exportFileDialogController.exportProgress.toInt() ==
+                      () => exportFileDialogController.exportProgress.toInt() ==
                               exportFileDialogController.filesToExport.length
                           ? CustomTextView(StringFile.exportMsg)
                           : exportFileDialogController.exportRunning.isTrue
-                          ? Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                CustomTextView(
-                                  "${exportFileDialogController.exportProgress.toInt()}/${exportFileDialogController.filesToExport.length}",
-                                  style: context.titleLarge,
-                                ),
-                                const SizedBox(height: 10),
-                                CustomTextView(StringFile.exporting),
-                              ],
-                            )
-                          : exportFileDialogController.ready.isTrue
-                          ? CustomTextView(
-                              "${exportFileDialogController.filesToExport.length} ${StringFile.downFilesFound}",
-                            )
-                          : exportFileDialogController.scanning.isTrue
-                          ? Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                const LoadingIndicator(),
-                                const SizedBox(height: 10),
-                                CustomTextView(StringFile.scanning),
-                              ],
-                            )
-                          : const SizedBox(),
+                              ? Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    CustomTextView(
+                                      "${exportFileDialogController.exportProgress.toInt()}/${exportFileDialogController.filesToExport.length}",
+                                      style: context.titleLarge,
+                                    ),
+                                    const SizedBox(height: 10),
+                                    CustomTextView(StringFile.exporting),
+                                  ],
+                                )
+                              : exportFileDialogController.ready.isTrue
+                                  ? CustomTextView(
+                                      "${exportFileDialogController.filesToExport.length} ${StringFile.downFilesFound}",
+                                    )
+                                  : exportFileDialogController.scanning.isTrue
+                                      ? Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            const LoadingIndicator(),
+                                            const SizedBox(height: 10),
+                                            CustomTextView(StringFile.scanning),
+                                          ],
+                                        )
+                                      : const SizedBox(),
                     ),
                   ),
                 ),
@@ -105,8 +105,7 @@ class ExportFileDialog extends StatelessWidget {
                               exportFileDialogController.exportProgress
                                           .toInt() ==
                                       exportFileDialogController
-                                          .filesToExport
-                                          .length
+                                          .filesToExport.length
                                   ? StringFile.close
                                   : StringFile.export,
                               style: TextStyle(
@@ -159,9 +158,8 @@ class ExportFileDialogController extends GetxController {
 
     exportProgress.value = 0;
     exportRunning.value = true;
-    final exportDirPath = Get.find<SettingsScreenController>()
-        .exportLocationPath
-        .toString();
+    final exportDirPath =
+        Get.find<SettingsScreenController>().exportLocationPath.toString();
     final length_ = filesToExport.length;
     for (int i = 0; i < length_; i++) {
       final filePath = filesToExport[i];

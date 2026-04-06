@@ -34,8 +34,8 @@ class PlaylistScreen extends StatelessWidget {
     final tag = key.hashCode.toString();
     final playlistController =
         (Get.isRegistered<PlaylistScreenController>(tag: tag))
-        ? Get.find<PlaylistScreenController>(tag: tag)
-        : Get.put(PlaylistScreenController(), tag: tag);
+            ? Get.find<PlaylistScreenController>(tag: tag)
+            : Get.put(PlaylistScreenController(), tag: tag);
     final size = MediaQuery.of(context).size;
     final playerController = Get.find<PlayerController>();
     final landscape = size.width > size.height;
@@ -66,13 +66,11 @@ class PlaylistScreen extends StatelessWidget {
                           : -.25 * playlistController.scrollOffset.value,
                       right: landscape ? 0 : null,
                       child: Obx(() {
-                        final opacityValue =
-                            1 -
+                        final opacityValue = 1 -
                             playlistController.scrollOffset.value /
                                 (size.width - 100);
                         return Opacity(
-                          opacity:
-                              opacityValue < 0 ||
+                          opacity: opacityValue < 0 ||
                                   playlistController.isSearchingOn.isTrue &&
                                       !landscape
                               ? 0
@@ -151,9 +149,7 @@ class PlaylistScreen extends StatelessWidget {
                           ),
                         ),
                         if (!playlistController
-                                .playlist
-                                .value
-                                .isCloudPlaylist &&
+                                .playlist.value.isCloudPlaylist &&
                             playlistController.isDefaultPlaylist.isFalse)
                           SizedBox(
                             width: 50,
@@ -190,11 +186,10 @@ class PlaylistScreen extends StatelessWidget {
                                               context: context,
                                               builder: (context) =>
                                                   CreateNRenamePlaylistPopup(
-                                                    renamePlaylist: true,
-                                                    playlist: playlistController
-                                                        .playlist
-                                                        .value,
-                                                  ),
+                                                renamePlaylist: true,
+                                                playlist: playlistController
+                                                    .playlist.value,
+                                              ),
                                             );
                                           },
                                         ),
@@ -207,29 +202,28 @@ class PlaylistScreen extends StatelessWidget {
                                             Navigator.of(context).pop();
                                             playlistController
                                                 .addNremoveFromLibrary(
-                                                  playlistController
-                                                      .playlist
-                                                      .value,
-                                                  add: false,
-                                                )
+                                              playlistController.playlist.value,
+                                              add: false,
+                                            )
                                                 .then((value) {
-                                                  Get.nestedKey(
-                                                    ScreenNavigationSetup.id,
-                                                  )!.currentState!.pop();
-                                                  ScaffoldMessenger.of(
-                                                    Get.context!,
-                                                  ).showSnackBar(
-                                                    snackbar(
-                                                      Get.context!,
-                                                      value
-                                                          ? "playlistRemovedAlert"
-                                                                .tr
-                                                          : "operationFailed"
-                                                                .tr,
-                                                      size: SanckBarSize.MEDIUM,
-                                                    ),
-                                                  );
-                                                });
+                                              Get.nestedKey(
+                                                ScreenNavigationSetup.id,
+                                              )!
+                                                  .currentState!
+                                                  .pop();
+                                              ScaffoldMessenger.of(
+                                                Get.context!,
+                                              ).showSnackBar(
+                                                snackbar(
+                                                  Get.context!,
+                                                  value
+                                                      ? "playlistRemovedAlert"
+                                                          .tr
+                                                      : "operationFailed".tr,
+                                                  size: SanckBarSize.MEDIUM,
+                                                ),
+                                              );
+                                            });
                                           },
                                         ),
                                       ],
@@ -258,12 +252,11 @@ class PlaylistScreen extends StatelessWidget {
                               top: playlistController.isSearchingOn.isTrue
                                   ? 0
                                   : landscape
-                                  ? 150
-                                  : 200,
+                                      ? 150
+                                      : 200,
                               bottom: 200,
                             ),
-                            itemCount:
-                                playlistController.songList.isEmpty ||
+                            itemCount: playlistController.songList.isEmpty ||
                                     playlistController.isContentFetched.isFalse
                                 ? 4
                                 : playlistController.songList.length + 3,
@@ -279,25 +272,21 @@ class PlaylistScreen extends StatelessWidget {
                                         children: [
                                           // Bookmark button
                                           Obx(
-                                            () =>
-                                                (playlistController
+                                            () => (playlistController
                                                         .playlist
                                                         .value
                                                         .isPipedPlaylist ||
-                                                    !playlistController
-                                                        .playlist
-                                                        .value
-                                                        .isCloudPlaylist)
+                                                    !playlistController.playlist
+                                                        .value.isCloudPlaylist)
                                                 ? const SizedBox.shrink()
                                                 : IconButton(
-                                                    tooltip:
-                                                        playlistController
+                                                    tooltip: playlistController
                                                             .isAddedToLibrary
                                                             .isFalse
                                                         ? StringFile
-                                                              .addToLibrary
+                                                            .addToLibrary
                                                         : "removeFromLibrary"
-                                                              .tr,
+                                                            .tr,
                                                     splashRadius: 10,
                                                     onPressed: () {
                                                       final add =
@@ -306,34 +295,33 @@ class PlaylistScreen extends StatelessWidget {
                                                               .isFalse;
                                                       playlistController
                                                           .addNremoveFromLibrary(
-                                                            playlistController
-                                                                .playlist
-                                                                .value,
-                                                            add: add,
-                                                          )
+                                                        playlistController
+                                                            .playlist.value,
+                                                        add: add,
+                                                      )
                                                           .then((value) {
-                                                            if (!context
-                                                                .mounted) {
-                                                              return;
-                                                            }
+                                                        if (!context.mounted) {
+                                                          return;
+                                                        }
 
-                                                            ScaffoldMessenger.of(
-                                                              context,
-                                                            ).showSnackBar(
-                                                              snackbar(
-                                                                context,
-                                                                value
-                                                                    ? add
-                                                                          ? StringFile.playlistBookmarkAddAlert
-                                                                          : StringFile.listBookmarkRemoveAlert
-                                                                    : "operationFailed"
-                                                                          .tr,
-                                                                size:
-                                                                    SanckBarSize
-                                                                        .MEDIUM,
-                                                              ),
-                                                            );
-                                                          });
+                                                        ScaffoldMessenger.of(
+                                                          context,
+                                                        ).showSnackBar(
+                                                          snackbar(
+                                                            context,
+                                                            value
+                                                                ? add
+                                                                    ? StringFile
+                                                                        .playlistBookmarkAddAlert
+                                                                    : StringFile
+                                                                        .listBookmarkRemoveAlert
+                                                                : "operationFailed"
+                                                                    .tr,
+                                                            size: SanckBarSize
+                                                                .MEDIUM,
+                                                          ),
+                                                        );
+                                                      });
                                                     },
                                                     icon: Icon(
                                                       playlistController
@@ -341,7 +329,7 @@ class PlaylistScreen extends StatelessWidget {
                                                               .isFalse
                                                           ? Icons.bookmark_add
                                                           : Icons
-                                                                .bookmark_added,
+                                                              .bookmark_added,
                                                     ),
                                                   ),
                                           ),
@@ -356,9 +344,7 @@ class PlaylistScreen extends StatelessWidget {
                                                 0,
                                                 playfrom: PlaylingFrom(
                                                   name: playlistController
-                                                      .playlist
-                                                      .value
-                                                      .title,
+                                                      .playlist.value.title,
                                                   type:
                                                       PlaylingFromType.PLAYLIST,
                                                 ),
@@ -377,24 +363,23 @@ class PlaylistScreen extends StatelessWidget {
                                             onPressed: () {
                                               Get.find<PlayerController>()
                                                   .enqueueSongList(
-                                                    playlistController.songList
-                                                        .toList(),
-                                                  )
+                                                playlistController.songList
+                                                    .toList(),
+                                              )
                                                   .whenComplete(() {
-                                                    if (context.mounted) {
-                                                      ScaffoldMessenger.of(
-                                                        context,
-                                                      ).showSnackBar(
-                                                        snackbar(
-                                                          context,
-                                                          StringFile
-                                                              .songEnqueueAlert,
-                                                          size: SanckBarSize
-                                                              .MEDIUM,
-                                                        ),
-                                                      );
-                                                    }
-                                                  });
+                                                if (context.mounted) {
+                                                  ScaffoldMessenger.of(
+                                                    context,
+                                                  ).showSnackBar(
+                                                    snackbar(
+                                                      context,
+                                                      StringFile
+                                                          .songEnqueueAlert,
+                                                      size: SanckBarSize.MEDIUM,
+                                                    ),
+                                                  );
+                                                }
+                                              });
                                             },
                                             icon: Icon(
                                               Icons.merge,
@@ -410,8 +395,8 @@ class PlaylistScreen extends StatelessWidget {
                                             onPressed: () {
                                               final songsToplay =
                                                   List<MediaItem>.from(
-                                                    playlistController.songList,
-                                                  );
+                                                playlistController.songList,
+                                              );
                                               songsToplay.shuffle();
                                               songsToplay.shuffle();
                                               playerController.playPlayListSong(
@@ -419,9 +404,7 @@ class PlaylistScreen extends StatelessWidget {
                                                 0,
                                                 playfrom: PlaylingFrom(
                                                   name: playlistController
-                                                      .playlist
-                                                      .value
-                                                      .title,
+                                                      .playlist.value.title,
                                                   type:
                                                       PlaylingFromType.PLAYLIST,
                                                 ),
@@ -438,16 +421,13 @@ class PlaylistScreen extends StatelessWidget {
                                           GetX<Downloader>(
                                             builder: (controller) {
                                               final id = playlistController
-                                                  .playlist
-                                                  .value
-                                                  .playlistId;
+                                                  .playlist.value.playlistId;
                                               return IconButton(
                                                 tooltip:
                                                     StringFile.downloadPlaylist,
                                                 onPressed: () {
                                                   if (playlistController
-                                                      .isDownloaded
-                                                      .isTrue) {
+                                                      .isDownloaded.isTrue) {
                                                     return;
                                                   }
                                                   controller.downloadPlaylist(
@@ -456,75 +436,75 @@ class PlaylistScreen extends StatelessWidget {
                                                         .toList(),
                                                   );
                                                 },
-                                                icon:
-                                                    playlistController
-                                                        .isDownloaded
-                                                        .isTrue
+                                                icon: playlistController
+                                                        .isDownloaded.isTrue
                                                     ? const Icon(
                                                         Icons.download_done,
                                                       )
                                                     : controller.playlistQueue
-                                                              .containsKey(
-                                                                id,
-                                                              ) &&
-                                                          controller
-                                                                  .currentPlaylistId
-                                                                  .toString() ==
-                                                              id
-                                                    ? Stack(
-                                                        children: [
-                                                          Center(
-                                                            child: CustomTextView(
-                                                              "${controller.playlistDownloadingProgress.value}/${playlistController.songList.length}",
-                                                              style: Theme.of(context)
-                                                                  .textTheme
-                                                                  .titleMedium!
-                                                                  .copyWith(
-                                                                    fontSize:
-                                                                        10,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold,
+                                                                .containsKey(
+                                                              id,
+                                                            ) &&
+                                                            controller
+                                                                    .currentPlaylistId
+                                                                    .toString() ==
+                                                                id
+                                                        ? Stack(
+                                                            children: [
+                                                              Center(
+                                                                child:
+                                                                    CustomTextView(
+                                                                  "${controller.playlistDownloadingProgress.value}/${playlistController.songList.length}",
+                                                                  style: Theme.of(
+                                                                          context)
+                                                                      .textTheme
+                                                                      .titleMedium!
+                                                                      .copyWith(
+                                                                        fontSize:
+                                                                            10,
+                                                                        fontWeight:
+                                                                            FontWeight.bold,
+                                                                      ),
+                                                                ),
+                                                              ),
+                                                              const Center(
+                                                                child:
+                                                                    LoadingIndicator(
+                                                                  dimension: 30,
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          )
+                                                        : controller
+                                                                .playlistQueue
+                                                                .containsKey(id)
+                                                            ? const Stack(
+                                                                children: [
+                                                                  Center(
+                                                                    child: Icon(
+                                                                      Icons
+                                                                          .hourglass_bottom,
+                                                                      size: 20,
+                                                                    ),
                                                                   ),
-                                                            ),
-                                                          ),
-                                                          const Center(
-                                                            child:
-                                                                LoadingIndicator(
-                                                                  dimension: 30,
-                                                                ),
-                                                          ),
-                                                        ],
-                                                      )
-                                                    : controller.playlistQueue
-                                                          .containsKey(id)
-                                                    ? const Stack(
-                                                        children: [
-                                                          Center(
-                                                            child: Icon(
-                                                              Icons
-                                                                  .hourglass_bottom,
-                                                              size: 20,
-                                                            ),
-                                                          ),
-                                                          Center(
-                                                            child:
-                                                                LoadingIndicator(
-                                                                  dimension: 30,
-                                                                ),
-                                                          ),
-                                                        ],
-                                                      )
-                                                    : const Icon(
-                                                        Icons.download,
-                                                      ),
+                                                                  Center(
+                                                                    child:
+                                                                        LoadingIndicator(
+                                                                      dimension:
+                                                                          30,
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              )
+                                                            : const Icon(
+                                                                Icons.download,
+                                                              ),
                                               );
                                             },
                                           ),
 
                                           if (playlistController
-                                              .isAddedToLibrary
-                                              .isTrue)
+                                              .isAddedToLibrary.isTrue)
                                             IconButton(
                                               tooltip:
                                                   StringFile.syncPlaylistSongs,
@@ -537,9 +517,7 @@ class PlaylistScreen extends StatelessWidget {
                                               ),
                                             ),
                                           if (playlistController
-                                              .playlist
-                                              .value
-                                              .isPipedPlaylist)
+                                              .playlist.value.isPipedPlaylist)
                                             IconButton(
                                               tooltip: StringFile
                                                   .blacklistPipedPlaylist,
@@ -551,15 +529,15 @@ class PlaylistScreen extends StatelessWidget {
                                               onPressed: () {
                                                 Get.nestedKey(
                                                   ScreenNavigationSetup.id,
-                                                )!.currentState!.pop();
+                                                )!
+                                                    .currentState!
+                                                    .pop();
                                                 Get.find<
-                                                      LibraryPlaylistsController
-                                                    >()
+                                                        LibraryPlaylistsController>()
                                                     .blacklistPipedPlaylist(
-                                                      playlistController
-                                                          .playlist
-                                                          .value,
-                                                    );
+                                                  playlistController
+                                                      .playlist.value,
+                                                );
                                                 ScaffoldMessenger.of(
                                                   Get.context!,
                                                 ).showSnackBar(
@@ -573,21 +551,18 @@ class PlaylistScreen extends StatelessWidget {
                                               },
                                             ),
                                           if (playlistController
-                                              .playlist
-                                              .value
-                                              .isCloudPlaylist)
+                                              .playlist.value.isCloudPlaylist)
                                             IconButton(
                                               tooltip: StringFile.sharePlaylist,
                                               visualDensity:
                                                   const VisualDensity(
-                                                    vertical: -3,
-                                                  ),
+                                                vertical: -3,
+                                              ),
                                               splashRadius: 10,
                                               onPressed: () {
                                                 final content =
                                                     playlistController
-                                                        .playlist
-                                                        .value;
+                                                        .playlist.value;
                                                 if (content.isPipedPlaylist) {
                                                   Share.share(
                                                     "https://piped.video/playlist?list=${content.playlistId}",
@@ -595,17 +570,18 @@ class PlaylistScreen extends StatelessWidget {
                                                 } else {
                                                   final isPlaylistIdPrefixAvlbl =
                                                       content.playlistId
-                                                          .substring(0, 2) ==
-                                                      "VL";
+                                                              .substring(
+                                                                  0, 2) ==
+                                                          "VL";
                                                   String url =
                                                       "https://youtube.com/playlist?list=";
 
                                                   url = isPlaylistIdPrefixAvlbl
                                                       ? url +
-                                                            content.playlistId
-                                                                .substring(2)
+                                                          content.playlistId
+                                                              .substring(2)
                                                       : url +
-                                                            content.playlistId;
+                                                          content.playlistId;
                                                   Share.share(url);
                                                 }
                                               },
@@ -621,10 +597,10 @@ class PlaylistScreen extends StatelessWidget {
                                                 context: context,
                                                 builder: (dialogContext) =>
                                                     PlaylistExportDialog(
-                                                      controller:
-                                                          playlistController,
-                                                      parentContext: context,
-                                                    ),
+                                                  controller:
+                                                      playlistController,
+                                                  parentContext: context,
+                                                ),
                                               );
                                             },
                                             icon: const Icon(Icons.file_upload),
@@ -639,9 +615,7 @@ class PlaylistScreen extends StatelessWidget {
                                 final title =
                                     playlistController.playlist.value.title;
                                 final description = playlistController
-                                    .playlist
-                                    .value
-                                    .description;
+                                    .playlist.value.description;
 
                                 return AnimatedBuilder(
                                   animation:
@@ -649,12 +623,10 @@ class PlaylistScreen extends StatelessWidget {
                                   builder: (context, child) {
                                     return SizedBox(
                                       height: playlistController
-                                          .heightAnimation
-                                          .value,
+                                          .heightAnimation.value,
                                       child: Transform.scale(
                                         scale: playlistController
-                                            .scaleAnimation
-                                            .value,
+                                            .scaleAnimation.value,
                                         child: child,
                                       ),
                                     );
@@ -716,8 +688,8 @@ class PlaylistScreen extends StatelessWidget {
                                 return SizedBox(
                                   height:
                                       playlistController.isSearchingOn.isTrue
-                                      ? 60
-                                      : 40,
+                                          ? 60
+                                          : 40,
                                   child: Padding(
                                     padding: const EdgeInsets.only(
                                       left: 15.0,
@@ -726,36 +698,24 @@ class PlaylistScreen extends StatelessWidget {
                                     child: Obx(
                                       () => SortWidget(
                                         tag: playlistController
-                                            .playlist
-                                            .value
-                                            .playlistId,
+                                            .playlist.value.playlistId,
                                         screenController: playlistController,
                                         isSearchFeatureRequired: true,
                                         isPlaylistRearrageFeatureRequired:
-                                            !playlistController
-                                                .playlist
-                                                .value
-                                                .isCloudPlaylist &&
-                                            playlistController
-                                                    .playlist
-                                                    .value
-                                                    .playlistId !=
-                                                "LIBRP" &&
-                                            playlistController
-                                                    .playlist
-                                                    .value
-                                                    .playlistId !=
-                                                "SongDownloads" &&
-                                            playlistController
-                                                    .playlist
-                                                    .value
-                                                    .playlistId !=
-                                                "SongsCache",
+                                            !playlistController.playlist.value
+                                                    .isCloudPlaylist &&
+                                                playlistController.playlist
+                                                        .value.playlistId !=
+                                                    "LIBRP" &&
+                                                playlistController.playlist
+                                                        .value.playlistId !=
+                                                    "SongDownloads" &&
+                                                playlistController.playlist
+                                                        .value.playlistId !=
+                                                    "SongsCache",
                                         isSongDeletetioFeatureRequired:
                                             !playlistController
-                                                .playlist
-                                                .value
-                                                .isCloudPlaylist,
+                                                .playlist.value.isCloudPlaylist,
                                         itemCountTitle:
                                             "${playlistController.songList.length}",
                                         itemIcon: Icons.music_note,
@@ -785,16 +745,13 @@ class PlaylistScreen extends StatelessWidget {
                                   ),
                                 );
                               } else if (playlistController
-                                      .isContentFetched
-                                      .isFalse ||
+                                      .isContentFetched.isFalse ||
                                   playlistController.songList.isEmpty) {
                                 return SizedBox(
                                   height: 300,
                                   child: Center(
-                                    child:
-                                        playlistController
-                                            .isContentFetched
-                                            .isFalse
+                                    child: playlistController
+                                            .isContentFetched.isFalse
                                         ? const LoadingIndicator()
                                         : CustomTextView(
                                             StringFile.emptyPlaylist,
@@ -820,9 +777,7 @@ class PlaylistScreen extends StatelessWidget {
                                       index - 3,
                                       playfrom: PlaylingFrom(
                                         name: playlistController
-                                            .playlist
-                                            .value
-                                            .title,
+                                            .playlist.value.title,
                                         type: PlaylingFromType.PLAYLIST,
                                       ),
                                     );

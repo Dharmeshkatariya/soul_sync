@@ -64,8 +64,8 @@ mixin AdditionalOpeartionMixin on PlaylistAlbumScreenControllerBase {
   }
 
   void checkIfAllSelected() {
-    sortWidgetController!.isAllSelected.value = !additionalOperationTempMap
-        .containsValue(false);
+    sortWidgetController!.isAllSelected.value =
+        !additionalOperationTempMap.containsValue(false);
   }
 
   @override

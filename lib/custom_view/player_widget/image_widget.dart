@@ -33,12 +33,12 @@ class ImageWidget extends StatelessWidget {
     String imageUrl = song != null
         ? song!.artUri.toString()
         : playlist != null
-        ? playlist!.thumbnailUrl
-        : album != null
-        ? album!.thumbnailUrl
-        : artist != null
-        ? artist!.thumbnailUrl
-        : "";
+            ? playlist!.thumbnailUrl
+            : album != null
+                ? album!.thumbnailUrl
+                : artist != null
+                    ? artist!.thumbnailUrl
+                    : "";
     // String cacheKey = song != null
     //     ? "${song!.id}_song"
     //     : playlist != null
@@ -83,39 +83,32 @@ class ImageWidget extends StatelessWidget {
                   padding: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
                     color: Theme.of(context).colorScheme.secondary,
-                    shape: artist != null
-                        ? BoxShape.circle
-                        : BoxShape.rectangle,
-                    borderRadius: artist != null
-                        ? null
-                        : BorderRadius.circular(10),
+                    shape:
+                        artist != null ? BoxShape.circle : BoxShape.rectangle,
+                    borderRadius:
+                        artist != null ? null : BorderRadius.circular(10),
                   ),
                   child: Image.asset(
-                    "assets/icons/${song != null
-                        ? "song"
-                        : artist != null
-                        ? "artist"
-                        : "album"}.png",
+                    "assets/icons/${song != null ? "song" : artist != null ? "artist" : "album"}.png",
                   ),
                 );
               },
               progressIndicatorBuilder: ((_, __, ___) => Shimmer.fromColors(
-                baseColor: Colors.grey[500]!,
-                highlightColor: Colors.grey[300]!,
-                enabled: true,
-                direction: ShimmerDirection.ltr,
-                child: Container(
-                  decoration: BoxDecoration(
-                    shape: artist != null
-                        ? BoxShape.circle
-                        : BoxShape.rectangle,
-                    borderRadius: artist != null
-                        ? null
-                        : BorderRadius.circular(10),
-                    color: Colors.white54,
-                  ),
-                ),
-              )),
+                    baseColor: Colors.grey[500]!,
+                    highlightColor: Colors.grey[300]!,
+                    enabled: true,
+                    direction: ShimmerDirection.ltr,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        shape: artist != null
+                            ? BoxShape.circle
+                            : BoxShape.rectangle,
+                        borderRadius:
+                            artist != null ? null : BorderRadius.circular(10),
+                        color: Colors.white54,
+                      ),
+                    ),
+                  )),
             ),
     );
   }

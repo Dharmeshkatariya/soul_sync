@@ -13,8 +13,7 @@ class PipedServices extends GetxService {
 
   PipedServices() {
     final appPrefsBox = Hive.box('AppPrefs');
-    final piped =
-        appPrefsBox.get('piped') ??
+    final piped = appPrefsBox.get('piped') ??
         {"isLoggedIn": false, "token": "", "instApiUrl": ""};
     _isLoggedIn = piped["isLoggedIn"];
     if (isLoggedIn) {

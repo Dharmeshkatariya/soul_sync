@@ -45,7 +45,9 @@ class SearchScreen extends StatelessWidget {
                             onPressed: () {
                               Get.nestedKey(
                                 ScreenNavigationSetup.id,
-                              )!.currentState!.pop();
+                              )!
+                                  .currentState!
+                                  .pop();
                             },
                           ),
                         ),
@@ -85,8 +87,7 @@ class SearchScreen extends StatelessWidget {
                         searchScreenController.addToHistryQueryList(val);
                       },
                       autofocus: settingsScreenController
-                          .isBottomNavBarEnabled
-                          .isFalse,
+                          .isBottomNavBarEnabled.isFalse,
                       cursorColor: Theme.of(context).textTheme.bodySmall!.color,
                       decoration: InputDecoration(
                         contentPadding: const EdgeInsets.only(left: 5),
@@ -102,8 +103,8 @@ class SearchScreen extends StatelessWidget {
                     ),
                     Expanded(
                       child: Obx(() {
-                        final isEmpty =
-                            searchScreenController.suggestionList.isEmpty ||
+                        final isEmpty = searchScreenController
+                                .suggestionList.isEmpty ||
                             searchScreenController.textInputController.text ==
                                 "";
                         final list = isEmpty
@@ -121,8 +122,7 @@ class SearchScreen extends StatelessWidget {
                                       searchScreenController.filterLinks(
                                         Uri.parse(
                                           searchScreenController
-                                              .textInputController
-                                              .text,
+                                              .textInputController.text,
                                         ),
                                       );
                                       searchScreenController.reset();
@@ -147,13 +147,13 @@ class SearchScreen extends StatelessWidget {
                                   ),
                                 ]
                               : list
-                                    .map(
-                                      (item) => SearchItem(
-                                        queryString: item,
-                                        isHistoryString: isEmpty,
-                                      ),
-                                    )
-                                    .toList(),
+                                  .map(
+                                    (item) => SearchItem(
+                                      queryString: item,
+                                      isHistoryString: isEmpty,
+                                    ),
+                                  )
+                                  .toList(),
                         );
                       }),
                     ),

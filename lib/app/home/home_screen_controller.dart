@@ -43,8 +43,7 @@ class HomeScreenController extends GetxController {
       final loaded = await loadContentFromDb();
 
       if (loaded) {
-        final currTimeSecsDiff =
-            DateTime.now().millisecondsSinceEpoch -
+        final currTimeSecsDiff = DateTime.now().millisecondsSinceEpoch -
             (box.get("homeScreenDataTime") ??
                 DateTime.now().millisecondsSinceEpoch);
         if (currTimeSecsDiff / 1000 > 3600 * 8) {

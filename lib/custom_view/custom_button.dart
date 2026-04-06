@@ -127,8 +127,7 @@ class CustomButton extends StatelessWidget {
                             fit: fit,
                             child: CustomTextView(
                               text,
-                              style:
-                                  textStyle ??
+                              style: textStyle ??
                                   AppTextStyles.mediumBlack14.copyWith(
                                     fontSize: textSize.sp,
                                     color: textColor,
@@ -160,7 +159,6 @@ class CustomButton extends StatelessWidget {
           ),
           padding: padding,
         ),
-
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [

@@ -34,8 +34,7 @@ class SlidingUpPanel extends StatefulWidget {
     ScrollController sc,
     Function(int) onListReorderStart,
     Function(int) onListReorderEnd,
-  )?
-  panelBuilder;
+  )? panelBuilder;
 
   /// The Widget displayed overtop the [panel] when collapsed.
   /// This fades out as the panel is opened.
@@ -199,9 +198,9 @@ class SlidingUpPanel extends StatefulWidget {
     this.defaultPanelState = PanelState.CLOSED,
     this.header,
     this.footer,
-  }) : assert(panel != null || panelBuilder != null),
-       assert(0 <= backdropOpacity && backdropOpacity <= 1.0),
-       assert(snapPoint == null || 0 < snapPoint && snapPoint < 1.0);
+  })  : assert(panel != null || panelBuilder != null),
+        assert(0 <= backdropOpacity && backdropOpacity <= 1.0),
+        assert(snapPoint == null || 0 < snapPoint && snapPoint < 1.0);
 
   @override
   State<SlidingUpPanel> createState() => _SlidingUpPanelState();
@@ -221,25 +220,24 @@ class _SlidingUpPanelState extends State<SlidingUpPanel>
   void initState() {
     super.initState();
 
-    _ac =
-        AnimationController(
-          vsync: this,
-          duration: const Duration(milliseconds: 300),
-          value: widget.defaultPanelState == PanelState.CLOSED
-              ? 0.0
-              : 1.0, //set the default panel state (i.e. set initial value of _ac)
-        )..addListener(() {
-          if (widget.onPanelSlide != null) widget.onPanelSlide!(_ac.value);
+    _ac = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 300),
+      value: widget.defaultPanelState == PanelState.CLOSED
+          ? 0.0
+          : 1.0, //set the default panel state (i.e. set initial value of _ac)
+    )..addListener(() {
+        if (widget.onPanelSlide != null) widget.onPanelSlide!(_ac.value);
 
-          if (widget.onPanelOpened != null && _ac.value == 1.0) {
-            widget.onPanelOpened!();
-          }
+        if (widget.onPanelOpened != null && _ac.value == 1.0) {
+          widget.onPanelOpened!();
+        }
 
-          if (widget.onPanelClosed != null && _ac.value == 0.0) {
-            widget.onPanelClosed!();
-          }
-          //printINFO("offset :${_sc.offset}");
-        });
+        if (widget.onPanelClosed != null && _ac.value == 0.0) {
+          widget.onPanelClosed!();
+        }
+        //printINFO("offset :${_sc.offset}");
+      });
 
     // prevent the panel content from being scrolled only if the widget is
     // draggable and panel scrolling is enabled
@@ -323,7 +321,7 @@ class _SlidingUpPanelState extends State<SlidingUpPanel>
                     return Container(
                       height:
                           _ac.value * (widget.maxHeight - widget.minHeight) +
-                          widget.minHeight,
+                              widget.minHeight,
                       margin: widget.margin,
                       padding: widget.padding,
                       decoration: widget.renderPanelSheet
@@ -347,8 +345,7 @@ class _SlidingUpPanelState extends State<SlidingUpPanel>
                         bottom: widget.slideDirection == SlideDirection.DOWN
                             ? 0.0
                             : null,
-                        width:
-                            MediaQuery.of(context).size.width -
+                        width: MediaQuery.of(context).size.width -
                             (widget.margin != null
                                 ? widget.margin!.horizontal
                                 : 0) -
@@ -357,8 +354,7 @@ class _SlidingUpPanelState extends State<SlidingUpPanel>
                                 : 0),
                         child: SizedBox(
                           height: widget.maxHeight,
-                          child:
-                              widget.panel ??
+                          child: widget.panel ??
                               widget.panelBuilder!(
                                 _sc,
                                 onListReorderStart,
@@ -375,8 +371,8 @@ class _SlidingUpPanelState extends State<SlidingUpPanel>
                                   : null,
                               bottom:
                                   widget.slideDirection == SlideDirection.DOWN
-                                  ? 0.0
-                                  : null,
+                                      ? 0.0
+                                      : null,
                               child: widget.header ?? const SizedBox(),
                             )
                           : Container(),
@@ -389,8 +385,8 @@ class _SlidingUpPanelState extends State<SlidingUpPanel>
                                   : 0.0,
                               bottom:
                                   widget.slideDirection == SlideDirection.DOWN
-                                  ? null
-                                  : 0.0,
+                                      ? null
+                                      : 0.0,
                               child: widget.footer ?? const SizedBox(),
                             )
                           : Container(),
@@ -403,8 +399,7 @@ class _SlidingUpPanelState extends State<SlidingUpPanel>
                         bottom: widget.slideDirection == SlideDirection.DOWN
                             ? 0.0
                             : null,
-                        width:
-                            MediaQuery.of(context).size.width -
+                        width: MediaQuery.of(context).size.width -
                             (widget.margin != null
                                 ? widget.margin!.horizontal
                                 : 0) -

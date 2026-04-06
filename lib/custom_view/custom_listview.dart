@@ -40,21 +40,22 @@ class CustomListView extends StatelessWidget {
     return (isLoading)
         ? const Center(child: CircularProgressIndicator())
         : (itemCount == 0)
-        ? emptyView ?? CustomNoDataFoundWidget(noDataFoundTitle: noDataFoundMsg)
-        : ListView.separated(
-            controller: controller,
-            scrollDirection: axis,
-            shrinkWrap: shrinkWrap,
-            physics: physics,
-            itemCount: itemCount,
-            padding: padding,
-            itemBuilder: itemBuilder,
-            separatorBuilder: (context, index) => isSeparator
-                ? SizedBox(height: separatorHeight ?? 10.h)
-                : isDivider
-                ? _divider()
-                : Container(),
-          );
+            ? emptyView ??
+                CustomNoDataFoundWidget(noDataFoundTitle: noDataFoundMsg)
+            : ListView.separated(
+                controller: controller,
+                scrollDirection: axis,
+                shrinkWrap: shrinkWrap,
+                physics: physics,
+                itemCount: itemCount,
+                padding: padding,
+                itemBuilder: itemBuilder,
+                separatorBuilder: (context, index) => isSeparator
+                    ? SizedBox(height: separatorHeight ?? 10.h)
+                    : isDivider
+                        ? _divider()
+                        : Container(),
+              );
   }
 
   Widget _divider() {

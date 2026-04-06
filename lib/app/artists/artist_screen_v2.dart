@@ -82,11 +82,9 @@ class ArtistScreenBN extends StatelessWidget {
                   ),
                   ...["Songs", "Videos", "Albums", "Singles"].map((item) {
                     if (artistScreenController
-                            .isSeparatedArtistContentFetced
-                            .isFalse &&
+                            .isSeparatedArtistContentFetced.isFalse &&
                         artistScreenController
-                                .navigationRailCurrentIndex
-                                .value !=
+                                .navigationRailCurrentIndex.value !=
                             0) {
                       return const Center(child: LoadingIndicator());
                     }
@@ -103,12 +101,14 @@ class ArtistScreenBN extends StatelessWidget {
                         scrollController: item == "Songs"
                             ? artistScreenController.songScrollController
                             : item == "Videos"
-                            ? artistScreenController.videoScrollController
-                            : item == "Albums"
-                            ? artistScreenController.albumScrollController
-                            : item == "Singles"
-                            ? artistScreenController.singlesScrollController
-                            : null,
+                                ? artistScreenController.videoScrollController
+                                : item == "Albums"
+                                    ? artistScreenController
+                                        .albumScrollController
+                                    : item == "Singles"
+                                        ? artistScreenController
+                                            .singlesScrollController
+                                        : null,
                       ),
                     );
                   }),

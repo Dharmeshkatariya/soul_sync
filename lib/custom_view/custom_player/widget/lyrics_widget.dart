@@ -21,54 +21,54 @@ class LyricsWidget extends StatelessWidget {
       () => playerController.isLyricsLoading.isTrue
           ? const Center(child: LoadingIndicator())
           : playerController.lyricsMode.toInt() == 1
-          ? Center(
-              child: SingleChildScrollView(
-                physics: const BouncingScrollPhysics(),
-                padding: padding,
-                child: Obx(
-                  () => TextSelectionTheme(
-                    data: Theme.of(context).textSelectionTheme,
-                    child: SelectableText(
-                      playerController.lyrics["plainLyrics"] == "NA"
-                          ? StringFile.lyricsNotAvailable
-                          : playerController.lyrics["plainLyrics"],
-                      textAlign: TextAlign.center,
-                      style: playerController.isDesktopLyricsDialogOpen
-                          ? context.titleMedium!
-                          : Theme.of(context).textTheme.titleMedium!.copyWith(
-                              color: Colors.white,
-                            ),
+              ? Center(
+                  child: SingleChildScrollView(
+                    physics: const BouncingScrollPhysics(),
+                    padding: padding,
+                    child: Obx(
+                      () => TextSelectionTheme(
+                        data: Theme.of(context).textSelectionTheme,
+                        child: SelectableText(
+                          playerController.lyrics["plainLyrics"] == "NA"
+                              ? StringFile.lyricsNotAvailable
+                              : playerController.lyrics["plainLyrics"],
+                          textAlign: TextAlign.center,
+                          style: playerController.isDesktopLyricsDialogOpen
+                              ? context.titleMedium!
+                              : Theme.of(context)
+                                  .textTheme
+                                  .titleMedium!
+                                  .copyWith(
+                                    color: Colors.white,
+                                  ),
+                        ),
+                      ),
+                    ),
+                  ),
+                )
+              : IgnorePointer(
+                  child: LyricsReader(
+                    padding: const EdgeInsets.only(left: 5, right: 5),
+                    lyricUi: playerController.lyricUi,
+                    position: playerController
+                        .progressBarStatus.value.current.inMilliseconds,
+                    model: LyricsModelBuilder.create()
+                        .bindLyricToMain(
+                          playerController.lyrics['synced'].toString(),
+                        )
+                        .getModel(),
+                    emptyBuilder: () => Center(
+                      child: CustomTextView(
+                        StringFile.syncedLyricsNotAvailable,
+                        style: playerController.isDesktopLyricsDialogOpen
+                            ? context.titleMedium!
+                            : Theme.of(context).textTheme.titleMedium!.copyWith(
+                                  color: Colors.white,
+                                ),
+                      ),
                     ),
                   ),
                 ),
-              ),
-            )
-          : IgnorePointer(
-              child: LyricsReader(
-                padding: const EdgeInsets.only(left: 5, right: 5),
-                lyricUi: playerController.lyricUi,
-                position: playerController
-                    .progressBarStatus
-                    .value
-                    .current
-                    .inMilliseconds,
-                model: LyricsModelBuilder.create()
-                    .bindLyricToMain(
-                      playerController.lyrics['synced'].toString(),
-                    )
-                    .getModel(),
-                emptyBuilder: () => Center(
-                  child: CustomTextView(
-                    StringFile.syncedLyricsNotAvailable,
-                    style: playerController.isDesktopLyricsDialogOpen
-                        ? context.titleMedium!
-                        : Theme.of(context).textTheme.titleMedium!.copyWith(
-                            color: Colors.white,
-                          ),
-                  ),
-                ),
-              ),
-            ),
     );
   }
 }

@@ -96,17 +96,15 @@ class SongInfoDialog extends StatelessWidget {
     if (Hive.box("SongDownloads").containsKey(id)) {
       final song = Hive.box("SongDownloads").get(id);
 
-      tempstreamInfo = song["streamInfo"] == null
-          ? nullVal
-          : song["streamInfo"][1];
+      tempstreamInfo =
+          song["streamInfo"] == null ? nullVal : song["streamInfo"][1];
     } else {
       final dbStreamData = Hive.box("SongsUrlCache").get(id);
-      tempstreamInfo =
-          dbStreamData != null &&
+      tempstreamInfo = dbStreamData != null &&
               dbStreamData.runtimeType.toString().contains("Map")
           ? dbStreamData[Hive.box('AppPrefs').get('streamingQuality') == 0
-                ? 'lowQualityAudio'
-                : "highQualityAudio"]
+              ? 'lowQualityAudio'
+              : "highQualityAudio"]
           : nullVal;
     }
     return tempstreamInfo;

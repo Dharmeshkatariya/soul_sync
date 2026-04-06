@@ -142,7 +142,6 @@ class CustomVerticalPager extends StatelessWidget {
                             color: ColorFile.blackColor,
                           ),
                   ),
-
                   mItem == selectedItem
                       ? const Icon(Icons.navigate_next)
                       : const SizedBox(),

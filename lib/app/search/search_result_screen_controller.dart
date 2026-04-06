@@ -114,13 +114,11 @@ class SearchResultScreenController extends GetxController
         ]).contains(element),
       );
       railItems.value = List<String>.from(allKeys);
-      final len = railItems
-          .where((element) => element.contains("playlists"))
-          .length;
+      final len =
+          railItems.where((element) => element.contains("playlists")).length;
       final calH = 30 + (railItems.length + 1 - len) * 123 + len * 150.0;
-      railitemHeight.value = calH >= railitemHeight.value
-          ? calH
-          : railitemHeight.value;
+      railitemHeight.value =
+          calH >= railitemHeight.value ? calH : railitemHeight.value;
 
       //ScrollControlers for list Continuation callback implementarion
       for (String item in railItems) {

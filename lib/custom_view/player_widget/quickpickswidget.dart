@@ -65,9 +65,7 @@ class QuickPicksWidget extends StatelessWidget {
                           ),
                           isScrollControlled: true,
                           context: playerController
-                              .homeScaffoldkey
-                              .currentState!
-                              .context,
+                              .homeScaffoldkey.currentState!.context,
                           barrierColor: Colors.transparent.withAlpha(100),
                           builder: (context) =>
                               SongInfoBottomSheet(content.songList[item]),
@@ -105,9 +103,7 @@ class QuickPicksWidget extends StatelessWidget {
                           ),
                           isScrollControlled: true,
                           context: playerController
-                              .homeScaffoldkey
-                              .currentState!
-                              .context,
+                              .homeScaffoldkey.currentState!.context,
                           //constraints: BoxConstraints(maxHeight:Get.height),
                           barrierColor: Colors.transparent.withAlpha(100),
                           builder: (context) =>
@@ -129,9 +125,7 @@ class QuickPicksWidget extends StatelessWidget {
                                   ),
                                   isScrollControlled: true,
                                   context: playerController
-                                      .homeScaffoldkey
-                                      .currentState!
-                                      .context,
+                                      .homeScaffoldkey.currentState!.context,
                                   //constraints: BoxConstraints(maxHeight:Get.height),
                                   barrierColor: Colors.transparent.withAlpha(
                                     100,

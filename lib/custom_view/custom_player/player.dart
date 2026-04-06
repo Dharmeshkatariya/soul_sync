@@ -121,7 +121,9 @@ class Player extends StatelessWidget {
                               Obx(
                                 () => CustomTextView(
                                   "${playerController.currentQueue.length} ${StringFile.songs}",
-                                  style: Theme.of(context).textTheme.titleSmall!
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleSmall!
                                       .copyWith(
                                         color: Theme.of(
                                           context,
@@ -142,10 +144,8 @@ class Player extends StatelessWidget {
                                       horizontal: 15,
                                     ),
                                     decoration: BoxDecoration(
-                                      color:
-                                          playerController
-                                              .isQueueLoopModeEnabled
-                                              .isFalse
+                                      color: playerController
+                                              .isQueueLoopModeEnabled.isFalse
                                           ? Colors.white24
                                           : Colors.white.withOpacity(0.8),
                                       borderRadius: BorderRadius.circular(20),
@@ -163,8 +163,7 @@ class Player extends StatelessWidget {
                               InkWell(
                                 onTap: () {
                                   if (playerController
-                                      .isShuffleModeEnabled
-                                      .isTrue) {
+                                      .isShuffleModeEnabled.isTrue) {
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       snackbar(
                                         context,

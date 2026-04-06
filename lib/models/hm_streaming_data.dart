@@ -34,9 +34,9 @@ class HMStreamingData {
   }
 
   Map<String, dynamic> toJson() => {
-    "playable": playable,
-    "statusMSG": statusMSG,
-    "lowQualityAudio": lowQualityAudio?.toJson(),
-    "highQualityAudio": highQualityAudio?.toJson(),
-  };
+        "playable": playable,
+        "statusMSG": statusMSG,
+        "lowQualityAudio": lowQualityAudio?.toJson(),
+        "highQualityAudio": highQualityAudio?.toJson(),
+      };
 }

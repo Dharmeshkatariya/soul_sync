@@ -19,8 +19,7 @@ class BackToLoginWidget extends StatelessWidget {
         CustomTextView("Back to login"),
         SizedBox(width: 10.w),
         CustomGestureDetector(
-          onTap:
-              onClick ??
+          onTap: onClick ??
               () {
                 Get.back();
               },

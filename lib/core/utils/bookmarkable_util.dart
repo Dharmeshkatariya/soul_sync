@@ -21,9 +21,8 @@ class BookmarkUtils {
     queryParams[key] = value;
 
     // Reconstruct the fragment with the updated query parameters.
-    final newFragment = fragmentUri
-        .replace(queryParameters: queryParams)
-        .toString();
+    final newFragment =
+        fragmentUri.replace(queryParameters: queryParams).toString();
 
     // Construct the new URL.
     final newUrl = baseUrl + '#' + newFragment;
@@ -69,9 +68,8 @@ class BookmarkUtils {
     final fragmentUri = Uri.parse(hashFragment);
     final queryParams = Map<String, String>.from(fragmentUri.queryParameters);
     queryParams.remove(key);
-    final newFragment = fragmentUri
-        .replace(queryParameters: queryParams)
-        .toString();
+    final newFragment =
+        fragmentUri.replace(queryParameters: queryParams).toString();
     final newUrl = baseUrl + '#' + newFragment;
     html.window.history.pushState(null, '', newUrl);
   }

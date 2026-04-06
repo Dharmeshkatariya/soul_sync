@@ -497,8 +497,7 @@ class CommonWidget {
               child: CustomTextView(
                 text,
                 textAlign: textAlign ?? TextAlign.center,
-                style:
-                    style ??
+                style: style ??
                     AppTextStyles.boldBlack12.copyWith(
                       overflow: overflow,
                       decoration: textDecoration ?? TextDecoration.none,
@@ -509,8 +508,7 @@ class CommonWidget {
           : CustomTextView(
               text,
               textAlign: textAlign ?? TextAlign.center,
-              style:
-                  style ??
+              style: style ??
                   AppTextStyles.boldBlack12.copyWith(
                     overflow: overflow,
                     decoration: textDecoration ?? TextDecoration.none,
@@ -529,10 +527,8 @@ class CommonWidget {
 
   String getPhoneNumberRemoveDash(String enterStr) {
     if (enterStr.isNotEmpty) {
-      enterStr = enterStr
-          .replaceAll("(", "")
-          .replaceAll(")", "")
-          .replaceAll("-", "");
+      enterStr =
+          enterStr.replaceAll("(", "").replaceAll(")", "").replaceAll("-", "");
     }
 
     return enterStr;

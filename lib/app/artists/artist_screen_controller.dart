@@ -82,9 +82,8 @@ class ArtistScreenController extends GetxController
     artist_ = Artist(
       browseId: id,
       name: data['name'],
-      thumbnailUrl: data['thumbnails'] != null
-          ? data['thumbnails'][0]['url']
-          : "",
+      thumbnailUrl:
+          data['thumbnails'] != null ? data['thumbnails'][0]['url'] : "",
       subscribers: "${data['subscribers']} subscribers",
       radioId: data["radioId"],
     );
@@ -142,10 +141,10 @@ class ArtistScreenController extends GetxController
       final scrollController = val == 1
           ? songScrollController
           : val == 2
-          ? videoScrollController
-          : val == 3
-          ? albumScrollController
-          : singlesScrollController;
+              ? videoScrollController
+              : val == 3
+                  ? albumScrollController
+                  : singlesScrollController;
 
       scrollController.addListener(() {
         double maxScroll = scrollController.position.maxScrollExtent;
@@ -232,8 +231,8 @@ class ArtistScreenController extends GetxController
       "Albums",
       "Singles",
     ][navigationRailCurrentIndex.value];
-    additionalOperationTempList.value = sepataredContent[tabName]['results']
-        .toList();
+    additionalOperationTempList.value =
+        sepataredContent[tabName]['results'].toList();
     if (mode == OperationMode.addToPlaylist || mode == OperationMode.delete) {
       for (int i = 0; i < additionalOperationTempList.length; i++) {
         additionalOperationTempMap[i] = false;
@@ -243,8 +242,8 @@ class ArtistScreenController extends GetxController
   }
 
   void checkIfAllSelected() {
-    sortWidgetController!.isAllSelected.value = !additionalOperationTempMap
-        .containsValue(false);
+    sortWidgetController!.isAllSelected.value =
+        !additionalOperationTempMap.containsValue(false);
   }
 
   void selectAll(bool selected) {

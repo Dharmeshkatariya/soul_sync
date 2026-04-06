@@ -114,9 +114,7 @@ class GesturePlayer extends StatelessWidget {
                                         playerController.currentSong.value !=
                                                 null
                                             ? playerController
-                                                  .currentSong
-                                                  .value!
-                                                  .title
+                                                .currentSong.value!.title
                                             : "NA",
                                         textAlign: TextAlign.start,
                                         style: Theme.of(context)
@@ -143,9 +141,7 @@ class GesturePlayer extends StatelessWidget {
                                           playerController.currentSong.value !=
                                                   null
                                               ? controller
-                                                    .currentSong
-                                                    .value!
-                                                    .artist!
+                                                  .currentSong.value!.artist!
                                               : "NA",
                                           textAlign: TextAlign.start,
                                           textOverflow: TextOverflow.ellipsis,
@@ -182,8 +178,7 @@ class GesturePlayer extends StatelessWidget {
                                     icon: Obx(
                                       () => Icon(
                                         playerController
-                                                .isCurrentSongFav
-                                                .isFalse
+                                                .isCurrentSongFav.isFalse
                                             ? Icons.favorite_border
                                             : Icons.favorite,
                                         color: Theme.of(
@@ -208,18 +203,16 @@ class GesturePlayer extends StatelessWidget {
                                               playerController.toggleLoopMode,
                                           icon: Icon(
                                             Icons.all_inclusive,
-                                            color:
-                                                playerController
-                                                    .isLoopModeEnabled
-                                                    .value
+                                            color: playerController
+                                                    .isLoopModeEnabled.value
                                                 ? Theme.of(
                                                     context,
                                                   ).textTheme.titleLarge!.color
                                                 : Theme.of(context)
-                                                      .textTheme
-                                                      .titleLarge!
-                                                      .color!
-                                                      .withOpacity(0.2),
+                                                    .textTheme
+                                                    .titleLarge!
+                                                    .color!
+                                                    .withOpacity(0.2),
                                           ),
                                         );
                                       }),
@@ -235,18 +228,16 @@ class GesturePlayer extends StatelessWidget {
                                         icon: Obx(
                                           () => Icon(
                                             Ionicons.shuffle,
-                                            color:
-                                                playerController
-                                                    .isShuffleModeEnabled
-                                                    .value
+                                            color: playerController
+                                                    .isShuffleModeEnabled.value
                                                 ? Theme.of(
                                                     context,
                                                   ).textTheme.titleLarge!.color
                                                 : Theme.of(context)
-                                                      .textTheme
-                                                      .titleLarge!
-                                                      .color!
-                                                      .withOpacity(0.2),
+                                                    .textTheme
+                                                    .titleLarge!
+                                                    .color!
+                                                    .withOpacity(0.2),
                                           ),
                                         ),
                                       ),

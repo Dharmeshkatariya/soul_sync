@@ -55,8 +55,7 @@ class BackupDialog extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Obx(
-                            () =>
-                                (backupDialogController.scanning.isTrue ||
+                            () => (backupDialogController.scanning.isTrue ||
                                     backupDialogController.backupRunning.isTrue)
                                 ? const LoadingIndicator()
                                 : const SizedBox.shrink(),
@@ -69,23 +68,19 @@ class BackupDialog extends StatelessWidget {
                                   backupDialogController.scanning.isTrue
                                       ? StringFile.scanning
                                       : backupDialogController
-                                            .backupRunning
-                                            .isTrue
-                                      ? StringFile.backupInProgress
-                                      : backupDialogController
-                                            .isbackupCompleted
-                                            .isTrue
-                                      ? StringFile.backupMsg
-                                      : StringFile.letsStrart,
+                                              .backupRunning.isTrue
+                                          ? StringFile.backupInProgress
+                                          : backupDialogController
+                                                  .isbackupCompleted.isTrue
+                                              ? StringFile.backupMsg
+                                              : StringFile.letsStrart,
                                   textAlign: TextAlign.center,
                                 ),
                               ),
                               if (GetPlatform.isAndroid)
                                 Obx(
-                                  () =>
-                                      (backupDialogController
-                                          .isDownloadedfilesSeclected
-                                          .isTrue)
+                                  () => (backupDialogController
+                                          .isDownloadedfilesSeclected.isTrue)
                                       ? Padding(
                                           padding: const EdgeInsets.only(
                                             top: 8.0,
@@ -119,25 +114,20 @@ class BackupDialog extends StatelessWidget {
                         children: [
                           Checkbox(
                             value: backupDialogController
-                                .isDownloadedfilesSeclected
-                                .value,
+                                .isDownloadedfilesSeclected.value,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(5),
                             ),
-                            onChanged:
-                                backupDialogController.scanning.isTrue ||
+                            onChanged: backupDialogController.scanning.isTrue ||
                                     backupDialogController
-                                        .backupRunning
-                                        .isTrue ||
+                                        .backupRunning.isTrue ||
                                     backupDialogController
-                                        .isbackupCompleted
-                                        .isTrue
+                                        .isbackupCompleted.isTrue
                                 ? null
                                 : (bool? value) {
                                     backupDialogController
-                                            .isDownloadedfilesSeclected
-                                            .value =
-                                        value!;
+                                        .isDownloadedfilesSeclected
+                                        .value = value!;
                                   },
                           ),
                           CustomTextView(StringFile.includeDownloadedFiles),
@@ -175,8 +165,7 @@ class BackupDialog extends StatelessWidget {
                               child: Obx(
                                 () => CustomTextView(
                                   backupDialogController
-                                          .isbackupCompleted
-                                          .isTrue
+                                          .isbackupCompleted.isTrue
                                       ? StringFile.close
                                       : StringFile.backup,
                                   style: TextStyle(
@@ -254,16 +243,14 @@ class BackupDialogController extends GetxController {
     final exportDirPath = pickedFolderPath.toString();
 
     compressFilesInBackground(
-          filesToExport,
-          '$exportDirPath/${DateTime.now().millisecondsSinceEpoch.toString()}.hmb',
-        )
-        .then((_) {
-          backupRunning.value = false;
-          isbackupCompleted.value = true;
-        })
-        .catchError((e) {
-          printERROR('Error during compression: $e');
-        });
+      filesToExport,
+      '$exportDirPath/${DateTime.now().millisecondsSinceEpoch.toString()}.hmb',
+    ).then((_) {
+      backupRunning.value = false;
+      isbackupCompleted.value = true;
+    }).catchError((e) {
+      printERROR('Error during compression: $e');
+    });
   }
 }
 

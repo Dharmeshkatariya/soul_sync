@@ -29,25 +29,25 @@ class Routes {
   static String propertyUnits = '/property-units';
 
   Map<String, String> get routeDisplayNames => {
-    providerHomePage: 'Provider home Page',
-    managerDashboard: 'Manager Dashboard',
-    roleManagement: 'Role Management',
-    addRoleView: 'Add Role View',
-    manageTenants: 'Manage Tenants',
-    managePractices: 'Manage Practices',
-    customerView: 'Customer View',
-    addCustomerView: 'Add Customer View',
-    addPropertyLocationView: 'Add Property Location View',
-    propertyUnits: 'Property Units',
-  };
+        providerHomePage: 'Provider home Page',
+        managerDashboard: 'Manager Dashboard',
+        roleManagement: 'Role Management',
+        addRoleView: 'Add Role View',
+        manageTenants: 'Manage Tenants',
+        managePractices: 'Manage Practices',
+        customerView: 'Customer View',
+        addCustomerView: 'Add Customer View',
+        addPropertyLocationView: 'Add Property Location View',
+        propertyUnits: 'Property Units',
+      };
 
   Map<String, String> get providerInternalRoutes => {
-    roleManagement: roleManagement,
-    addRoleView: addRoleView,
-    customerView: customerView,
-    addCustomerView: addCustomerView,
-    addPropertyLocationView: addPropertyLocationView,
-  };
+        roleManagement: roleManagement,
+        addRoleView: addRoleView,
+        customerView: customerView,
+        addCustomerView: addCustomerView,
+        addPropertyLocationView: addPropertyLocationView,
+      };
 
   //
   // GetPage notFoundPageWidget = GetPage(

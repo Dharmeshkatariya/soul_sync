@@ -116,17 +116,17 @@ class ListWidget extends StatelessWidget with RemoveSongFromPlaylistMixin {
                   ),
                 )
               :
-                // if playlist is not null then play from playlist else play from album
-                playlist != null && album == null
-              ? playerController.playPlayListSong(
-                  List<MediaItem>.from(items),
-                  index,
-                  playfrom: PlaylingFrom(
-                    type: PlaylingFromType.PLAYLIST,
-                    name: playlist.title,
-                  ),
-                )
-              : playerController.pushSongToQueue(items[index] as MediaItem);
+              // if playlist is not null then play from playlist else play from album
+              playlist != null && album == null
+                  ? playerController.playPlayListSong(
+                      List<MediaItem>.from(items),
+                      index,
+                      playfrom: PlaylingFrom(
+                        type: PlaylingFromType.PLAYLIST,
+                        name: playlist.title,
+                      ),
+                    )
+                  : playerController.pushSongToQueue(items[index] as MediaItem);
         },
       ),
     );
@@ -167,9 +167,8 @@ class ListWidget extends StatelessWidget with RemoveSongFromPlaylistMixin {
             }
             // ignore: empty_catches
           } catch (e) {}
-          artistName = artistName.length > 16
-              ? artistName.substring(0, 16)
-              : artistName;
+          artistName =
+              artistName.length > 16 ? artistName.substring(0, 16) : artistName;
           return wideListTile(
             context,
             album: albums[index],

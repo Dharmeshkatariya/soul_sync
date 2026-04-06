@@ -20,8 +20,7 @@ class CustomCheckboxWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(
       () => Checkbox(
-        shape:
-            shape ??
+        shape: shape ??
             RoundedRectangleBorder(
               side: BorderSide(color: ColorFile.xfE1E4EA, width: 1),
             ),

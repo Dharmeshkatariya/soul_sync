@@ -235,11 +235,11 @@ class Common {
       } else if (displayDateType == DisplayDateType.date) {
         outputDate = AppLocale().yMdFormatter.format(localTime);
       } else if (displayDateType == DisplayDateType.time) {
-        outputDate = AppLocale()
-            .dateFormatter(ConstantsFile.hhMMA)
-            .format(localTime);
+        outputDate =
+            AppLocale().dateFormatter(ConstantsFile.hhMMA).format(localTime);
       } else if (displayDateType == DisplayDateType.dateAndTime) {
-        outputDate = AppLocale().yMdFormatter
+        outputDate = AppLocale()
+            .yMdFormatter
             .addPattern(ConstantsFile.hhMMA, ',')
             .format(localTime);
       } else {

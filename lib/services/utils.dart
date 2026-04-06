@@ -1,4 +1,3 @@
-
 import 'dart:math';
 
 import 'nav_parser.dart';
@@ -63,12 +62,14 @@ String? getItemCustomTextView(
 }
 
 Map<String, dynamic>? getFixedColumnItem(Map<String, dynamic> item, int index) {
-  if (!item['fixedColumns'][index]['musicResponsiveListItemFixedColumnRenderer']['text']
+  if (!item['fixedColumns'][index]['musicResponsiveListItemFixedColumnRenderer']
+          ['text']
       .containsKey('runs')) {
     return null;
   }
 
-  return item['fixedColumns'][index]['musicResponsiveListItemFixedColumnRenderer'];
+  return item['fixedColumns'][index]
+      ['musicResponsiveListItemFixedColumnRenderer'];
 }
 
 ///Check if Steam Url or given epoch is expired

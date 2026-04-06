@@ -27,8 +27,8 @@ class ArtistScreen extends StatelessWidget {
     final tag = key.hashCode.toString();
     final ArtistScreenController artistScreenController =
         Get.isRegistered<ArtistScreenController>(tag: tag)
-        ? Get.find<ArtistScreenController>(tag: tag)
-        : Get.put(ArtistScreenController(), tag: tag);
+            ? Get.find<ArtistScreenController>(tag: tag)
+            : Get.put(ArtistScreenController(), tag: tag);
     return Scaffold(
       floatingActionButton: Obx(
         () => Padding(
@@ -68,8 +68,7 @@ class ArtistScreen extends StatelessWidget {
           ),
         ),
       ),
-      body:
-          GetPlatform.isDesktop ||
+      body: GetPlatform.isDesktop ||
               Get.find<SettingsScreenController>().isBottomNavBarEnabled.value
           ? ArtistScreenBN(
               artistScreenController: artistScreenController,
@@ -109,7 +108,9 @@ class ArtistScreen extends StatelessWidget {
                                 onPressed: () {
                                   Get.nestedKey(
                                     ScreenNavigationSetup.id,
-                                  )!.currentState!.pop();
+                                  )!
+                                      .currentState!
+                                      .pop();
                                 },
                               ),
                               const SizedBox(height: 10),
@@ -117,8 +118,7 @@ class ArtistScreen extends StatelessWidget {
                           ),
                           labelType: NavigationRailLabelType.all,
                           selectedIndex: artistScreenController
-                              .navigationRailCurrentIndex
-                              .value,
+                              .navigationRailCurrentIndex.value,
                         ),
                       ),
                     ),
@@ -134,8 +134,7 @@ class ArtistScreen extends StatelessWidget {
                       child: Center(
                         key: ValueKey<int>(
                           artistScreenController
-                              .navigationRailCurrentIndex
-                              .value,
+                              .navigationRailCurrentIndex.value,
                         ),
                         child: Body(tag: tag),
                       ),
@@ -198,12 +197,12 @@ class Body extends StatelessWidget {
           scrollController: currentTabName == "Songs"
               ? artistScreenController.songScrollController
               : currentTabName == "Videos"
-              ? artistScreenController.videoScrollController
-              : currentTabName == "Albums"
-              ? artistScreenController.albumScrollController
-              : currentTabName == "Singles"
-              ? artistScreenController.singlesScrollController
-              : null,
+                  ? artistScreenController.videoScrollController
+                  : currentTabName == "Albums"
+                      ? artistScreenController.albumScrollController
+                      : currentTabName == "Singles"
+                          ? artistScreenController.singlesScrollController
+                          : null,
         );
       });
     }
@@ -249,41 +248,36 @@ class AboutArtist extends StatelessWidget {
                                 InkWell(
                                   onTap: () {
                                     final bool add = artistScreenController
-                                        .isAddedToLibrary
-                                        .isFalse;
+                                        .isAddedToLibrary.isFalse;
                                     artistScreenController
                                         .addNremoveFromLibrary(add: add)
                                         .then((value) {
-                                          if (context.mounted) {
-                                            ScaffoldMessenger.of(
-                                              context,
-                                            ).showSnackBar(
-                                              snackbar(
-                                                context,
-                                                value
-                                                    ? add
-                                                          ? "artistBookmarkAddAlert"
-                                                                .tr
-                                                          : "artistBookmarkRemoveAlert"
-                                                                .tr
-                                                    : StringFile
-                                                          .operationFailed,
-                                                size: SanckBarSize.MEDIUM,
-                                              ),
-                                            );
-                                          }
-                                        });
+                                      if (context.mounted) {
+                                        ScaffoldMessenger.of(
+                                          context,
+                                        ).showSnackBar(
+                                          snackbar(
+                                            context,
+                                            value
+                                                ? add
+                                                    ? "artistBookmarkAddAlert"
+                                                        .tr
+                                                    : "artistBookmarkRemoveAlert"
+                                                        .tr
+                                                : StringFile.operationFailed,
+                                            size: SanckBarSize.MEDIUM,
+                                          ),
+                                        );
+                                      }
+                                    });
                                   },
                                   child: Obx(
-                                    () =>
-                                        artistScreenController
-                                            .isArtistContentFetced
-                                            .isFalse
+                                    () => artistScreenController
+                                            .isArtistContentFetced.isFalse
                                         ? const SizedBox.shrink()
                                         : Icon(
                                             artistScreenController
-                                                    .isAddedToLibrary
-                                                    .isFalse
+                                                    .isAddedToLibrary.isFalse
                                                 ? Icons.bookmark_add
                                                 : Icons.bookmark_added,
                                           ),

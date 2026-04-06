@@ -99,9 +99,9 @@ class SortWidget extends StatelessWidget {
             CustomTextView(
               StringFile.importLargeFileNote,
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                fontStyle: FontStyle.italic,
-                color: Theme.of(context).colorScheme.secondary,
-              ),
+                    fontStyle: FontStyle.italic,
+                    color: Theme.of(context).colorScheme.secondary,
+                  ),
             ),
             const SizedBox(height: 24),
             Center(
@@ -199,8 +199,7 @@ class SortWidget extends StatelessWidget {
                     requiredSortTypes.contains(SortType.Duration)
                         ? Obx(
                             () => _customIconButton(
-                              isSelected:
-                                  controller.sortType.value ==
+                              isSelected: controller.sortType.value ==
                                   SortType.Duration,
                               tooltip: StringFile.sortByDuration,
                               icon: Icons.timer,

@@ -21,9 +21,9 @@ class CustomListHeader extends StatelessWidget {
     this.backgroundColor = Colors.white,
     this.borderRadius,
   }) : assert(
-         flexValues.length == headerTexts.length,
-         'Flex values and header texts must have the same length',
-       );
+          flexValues.length == headerTexts.length,
+          'Flex values and header texts must have the same length',
+        );
 
   @override
   Widget build(BuildContext context) {

@@ -170,8 +170,7 @@ class PlayerControlWidget extends StatelessWidget {
 
 Widget _nextButton(PlayerController playerController, BuildContext context) {
   return Obx(() {
-    final isLastSong =
-        playerController.currentQueue.isEmpty ||
+    final isLastSong = playerController.currentQueue.isEmpty ||
         (!(playerController.isShuffleModeEnabled.isTrue ||
                 playerController.isQueueLoopModeEnabled.isTrue) &&
             (playerController.currentQueue.last.id ==

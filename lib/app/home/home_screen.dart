@@ -34,19 +34,17 @@ class HomeScreen extends StatelessWidget {
 
     return Scaffold(
       floatingActionButton: Obx(
-        () =>
-            ((homeScreenController.tabIndex.value == 0 &&
+        () => ((homeScreenController.tabIndex.value == 0 &&
                         !GetPlatform.isDesktop) ||
                     homeScreenController.tabIndex.value == 2) &&
                 settingsScreenController.isBottomNavBarEnabled.isFalse
             ? Obx(
                 () => Padding(
                   padding: EdgeInsets.only(
-                    bottom:
-                        playerController.playerPanelMinHeight.value >
+                    bottom: playerController.playerPanelMinHeight.value >
                             Get.mediaQuery.padding.bottom
                         ? playerController.playerPanelMinHeight.value -
-                              Get.mediaQuery.padding.bottom
+                            Get.mediaQuery.padding.bottom
                         : playerController.playerPanelMinHeight.value,
                   ),
                   child: SizedBox(
@@ -99,8 +97,7 @@ class HomeScreen extends StatelessWidget {
               child: Obx(
                 () => AnimatedScreenTransition(
                   enabled: settingsScreenController
-                      .isTransitionAnimationDisabled
-                      .isFalse,
+                      .isTransitionAnimationDisabled.isFalse,
                   resverse: homeScreenController.reverseAnimationtransiton,
                   horizontalTransition:
                       settingsScreenController.isBottomNavBarEnabled.isTrue,
@@ -129,13 +126,12 @@ class Body extends StatelessWidget {
     final topPadding = GetPlatform.isDesktop
         ? 85.0
         : context.isLandscape
-        ? 50.0
-        : size.height < 750
-        ? 80.0
-        : 85.0;
-    final leftPadding = settingsScreenController.isBottomNavBarEnabled.isTrue
-        ? 20.0
-        : 5.0;
+            ? 50.0
+            : size.height < 750
+                ? 80.0
+                : 85.0;
+    final leftPadding =
+        settingsScreenController.isBottomNavBarEnabled.isTrue ? 20.0 : 5.0;
     if (homeScreenController.tabIndex.value == 0) {
       return Padding(
         padding: EdgeInsets.only(left: leftPadding),
@@ -212,8 +208,8 @@ class Body extends StatelessWidget {
                     : Obx(() {
                         // dispose all detachached scroll controllers
                         homeScreenController.disposeDetachedScrollControllers();
-                        final items =
-                            homeScreenController.isContentFetched.value
+                        final items = homeScreenController
+                                .isContentFetched.value
                             ? [
                                 Obx(() {
                                   final scrollController = ScrollController();

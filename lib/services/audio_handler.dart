@@ -207,8 +207,8 @@ class MyAudioHandler extends BaseAudioHandler with GetxServiceMixin {
     final playerDurationOffset = GetPlatform.isWindows
         ? 200
         : GetPlatform.isLinux
-        ? 700
-        : 0;
+            ? 700
+            : 0;
     _player.positionStream.listen((value) async {
       if (_player.duration != null && _player.duration?.inSeconds != 0) {
         if (value.inMilliseconds >=
@@ -535,10 +535,10 @@ class MyAudioHandler extends BaseAudioHandler with GetxServiceMixin {
             jsonData['streamInfo'] = dbStreamData != null
                 ? [
                     true,
-                    dbStreamData[Hive.box('AppPrefs').get('streamingQuality') ==
-                            0
-                        ? 'lowQualityAudio'
-                        : "highQualityAudio"],
+                    dbStreamData[
+                        Hive.box('AppPrefs').get('streamingQuality') == 0
+                            ? 'lowQualityAudio'
+                            : "highQualityAudio"],
                   ]
                 : null;
             songsCacheBox.put(song.id, jsonData);
@@ -731,9 +731,8 @@ class MyAudioHandler extends BaseAudioHandler with GetxServiceMixin {
     }
     final currQueue = queue.value;
     if (currQueue.isNotEmpty) {
-      final queueData = currQueue
-          .map((e) => MediaItemBuilder.toJson(e))
-          .toList();
+      final queueData =
+          currQueue.map((e) => MediaItemBuilder.toJson(e)).toList();
       final currIndex = currentIndex ?? 0;
       final position = _player.position.inMilliseconds;
       final prevSessionData = await Hive.openBox("prevSessionData");
@@ -945,9 +944,8 @@ class MediaLibrary {
 
   Future<List<MediaItem>> getAlbums() async {
     final box = await Hive.openBox("LibraryAlbums");
-    final albums = box.values
-        .map((item) => Album.fromJson(item).toMediaItem())
-        .toList();
+    final albums =
+        box.values.map((item) => Album.fromJson(item).toMediaItem()).toList();
     await box.close();
     return albums;
   }

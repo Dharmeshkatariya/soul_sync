@@ -34,7 +34,9 @@ class SearchResultScreenBN extends StatelessWidget {
                       onPressed: () {
                         Get.nestedKey(
                           ScreenNavigationSetup.id,
-                        )!.currentState!.pop();
+                        )!
+                            .currentState!
+                            .pop();
                       },
                       icon: const Icon(Icons.arrow_back_ios_new),
                     ),
@@ -83,8 +85,7 @@ class SearchResultScreenBN extends StatelessWidget {
                     ),
                   );
                 } else if (searchResScrController
-                    .isResultContentFetced
-                    .isTrue) {
+                    .isResultContentFetced.isTrue) {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[

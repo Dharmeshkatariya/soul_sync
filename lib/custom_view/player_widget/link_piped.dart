@@ -23,9 +23,8 @@ class LinkPiped extends StatelessWidget {
     return CommonDialog(
       child: Obx(
         () => Container(
-          height: pipedLinkedController.selectedInst.value == "custom"
-              ? 400
-              : 365,
+          height:
+              pipedLinkedController.selectedInst.value == "custom" ? 400 : 365,
           padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 30),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -81,9 +80,8 @@ class LinkPiped extends StatelessWidget {
                       icon: pipedLinkedController.passwordVisible.value
                           ? const Icon(Icons.visibility_off)
                           : const Icon(Icons.visibility),
-                      onPressed: () =>
-                          pipedLinkedController.passwordVisible.value =
-                              !pipedLinkedController.passwordVisible.value,
+                      onPressed: () => pipedLinkedController.passwordVisible
+                          .value = !pipedLinkedController.passwordVisible.value,
                     ),
                   ),
                   obscureText: !pipedLinkedController.passwordVisible.value,
@@ -179,29 +177,29 @@ class PipedLinkedController extends GetxController {
     }
     _pipedServices
         .login(
-          selectedInst.toString() == 'custom'
-              ? instApiUrlInputController.text
-              : selectedInst.toString(),
-          userName,
-          password,
-        )
+      selectedInst.toString() == 'custom'
+          ? instApiUrlInputController.text
+          : selectedInst.toString(),
+      userName,
+      password,
+    )
         .then((res) {
-          if (res.code == 1) {
-            printINFO("Login Successfull");
-            Get.find<SettingsScreenController>().isLinkedWithPiped.value = true;
-            Navigator.of(Get.context!).pop();
-            ScaffoldMessenger.of(Get.context!).showSnackBar(
-              snackbar(
-                Get.context!,
-                StringFile.linkAlert,
-                size: SanckBarSize.MEDIUM,
-              ),
-            );
-            Get.find<LibraryPlaylistsController>().syncPipedPlaylist();
-          } else {
-            errorText.value = res.errorMessage ?? StringFile.errorOccuredAlert;
-          }
-        });
+      if (res.code == 1) {
+        printINFO("Login Successfull");
+        Get.find<SettingsScreenController>().isLinkedWithPiped.value = true;
+        Navigator.of(Get.context!).pop();
+        ScaffoldMessenger.of(Get.context!).showSnackBar(
+          snackbar(
+            Get.context!,
+            StringFile.linkAlert,
+            size: SanckBarSize.MEDIUM,
+          ),
+        );
+        Get.find<LibraryPlaylistsController>().syncPipedPlaylist();
+      } else {
+        errorText.value = res.errorMessage ?? StringFile.errorOccuredAlert;
+      }
+    });
   }
 
   @override

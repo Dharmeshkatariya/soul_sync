@@ -52,22 +52,22 @@ class CustomListingWidgetMobile extends StatelessWidget {
       child: isLoading
           ? const Center(child: CircularProgressIndicatorWidget())
           : mList.isNotEmpty
-          ? Column(
-              children: [
-                if (expanded)
-                  Expanded(child: buildListView())
-                else
-                  buildListView(),
-                if (pagination != null) ...[
-                  SizedBox(height: 10.h),
-                  pagination ?? Container(),
-                ],
-              ],
-            )
-          : CustomEmptyDataView(
-              moduleNameTitle: moduleName,
-              isSearchEmptyData: true,
-            ),
+              ? Column(
+                  children: [
+                    if (expanded)
+                      Expanded(child: buildListView())
+                    else
+                      buildListView(),
+                    if (pagination != null) ...[
+                      SizedBox(height: 10.h),
+                      pagination ?? Container(),
+                    ],
+                  ],
+                )
+              : CustomEmptyDataView(
+                  moduleNameTitle: moduleName,
+                  isSearchEmptyData: true,
+                ),
     );
   }
 
@@ -222,9 +222,8 @@ class CustomListingItemMobile extends StatelessWidget {
           () => CustomGestureDetector(
             onTap: () => isExpandedView.toggle(),
             child: Container(
-              padding: (isExpandedView.value)
-                  ? EdgeInsets.only(bottom: 20.h)
-                  : null,
+              padding:
+                  (isExpandedView.value) ? EdgeInsets.only(bottom: 20.h) : null,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -247,11 +246,9 @@ class CustomListingItemMobile extends StatelessWidget {
         duration: const Duration(milliseconds: 200),
         child: Container(
           constraints: BoxConstraints(minHeight: 60.h),
-          padding:
-              padding ??
+          padding: padding ??
               EdgeInsets.symmetric(
-                horizontal:
-                    ResponsiveUtil.unitWidth *
+                horizontal: ResponsiveUtil.unitWidth *
                     ConstantsFile.horizontalPaddingRatioMobile,
                 vertical: 14.h,
               ),

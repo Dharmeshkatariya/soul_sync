@@ -46,7 +46,9 @@ class Home extends StatelessWidget {
     }
     return PopScope(
       canPop: false,
-      onPopInvoked: (didPop,) async {
+      onPopInvoked: (
+        didPop,
+      ) async {
         if (didPop) return;
         if (playerController.playerPanelController.isPanelOpen) {
           playerController.playerPanelController.close();
@@ -74,11 +76,10 @@ class Home extends StatelessWidget {
         },
         child: Obx(
           () => Scaffold(
-            bottomNavigationBar:
-                settingsScreenController.isBottomNavBarEnabled.isTrue
+            bottomNavigationBar: settingsScreenController
+                    .isBottomNavBarEnabled.isTrue
                 ? ScrollToHideWidget(
-                    isVisible:
-                        homeScreenController.isHomeSreenOnTop.isTrue &&
+                    isVisible: homeScreenController.isHomeSreenOnTop.isTrue &&
                         playerController.isPanelGTHOpened.isFalse,
                     child: const BottomNavBar(),
                   )
@@ -139,16 +140,15 @@ class Home extends StatelessWidget {
                                                 height: 30,
                                                 padding:
                                                     const EdgeInsets.symmetric(
-                                                      horizontal: 20,
-                                                    ),
+                                                  horizontal: 20,
+                                                ),
                                                 decoration: BoxDecoration(
-                                                  color:
-                                                      playerController
+                                                  color: playerController
                                                           .isQueueLoopModeEnabled
                                                           .isFalse
                                                       ? Colors.white24
                                                       : Colors.white
-                                                            .withOpacity(0.8),
+                                                          .withOpacity(0.8),
                                                   borderRadius:
                                                       BorderRadius.circular(20),
                                                 ),

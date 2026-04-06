@@ -17,8 +17,8 @@ SnackBar snackbar(
   final hrMargin = size == SanckBarSize.BIG
       ? (scrWidth - 300) / 2
       : size == SanckBarSize.MEDIUM
-      ? (scrWidth - 200) / 2
-      : (scrWidth - 100) / 2;
+          ? (scrWidth - 200) / 2
+          : (scrWidth - 100) / 2;
   return SnackBar(
     backgroundColor: Theme.of(context).colorScheme.secondary,
     content: Center(

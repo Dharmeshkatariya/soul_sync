@@ -34,8 +34,7 @@ class CustomSearchWidget extends StatelessWidget {
 
     return BorderContainer(
       width: double.infinity,
-      padding:
-          padding ??
+      padding: padding ??
           ((ResponsiveUtil.isWeb)
               ? EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.w)
               : EdgeInsets.symmetric(horizontal: 15.w, vertical: 2.h)),

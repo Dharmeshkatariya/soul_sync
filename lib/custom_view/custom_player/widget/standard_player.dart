@@ -122,8 +122,9 @@ class StandardPlayer extends StatelessWidget {
                   ],
                 )
               :
-                /// Player content in portrait mode
-                Column(
+
+              /// Player content in portrait mode
+              Column(
                   children: [
                     /// Work as top padding depending on the lyrics visibility and screen size
                     Obx(
@@ -225,9 +226,7 @@ class StandardPlayer extends StatelessWidget {
                       ),
                       isScrollControlled: true,
                       context: playerController
-                          .homeScaffoldkey
-                          .currentState!
-                          .context,
+                          .homeScaffoldkey.currentState!.context,
                       barrierColor: Colors.transparent.withAlpha(100),
                       builder: (context) => SongInfoBottomSheet(
                         playerController.currentSong.value!,

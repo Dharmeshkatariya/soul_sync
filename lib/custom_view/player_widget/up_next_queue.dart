@@ -30,9 +30,8 @@ class UpNextQueue extends StatelessWidget {
       child: Obx(() {
         return ReorderableListView.builder(
           footer: SizedBox(height: Get.mediaQuery.padding.bottom),
-          scrollController: isQueueInSlidePanel
-              ? playerController.scrollController
-              : null,
+          scrollController:
+              isQueueInSlidePanel ? playerController.scrollController : null,
           onReorder: (int oldIndex, int newIndex) {
             if (playerController.isShuffleModeEnabled.isTrue) {
               ScaffoldMessenger.of(Get.context!).showSnackBar(
@@ -85,9 +84,7 @@ class UpNextQueue extends StatelessWidget {
                         ),
                         isScrollControlled: true,
                         context: playerController
-                            .homeScaffoldkey
-                            .currentState!
-                            .context,
+                            .homeScaffoldkey.currentState!.context,
                         //constraints: BoxConstraints(maxHeight:Get.height),
                         barrierColor: Colors.transparent.withAlpha(100),
                         builder: (context) => SongInfoBottomSheet(
@@ -154,10 +151,14 @@ class UpNextQueue extends StatelessWidget {
                           ? Theme.of(
                               homeScaffoldContext,
                             ).textTheme.titleSmall!.copyWith(
-                              color: Theme.of(
-                                homeScaffoldContext,
-                              ).textTheme.titleMedium!.color!.withOpacity(0.35),
-                            )
+                                color: Theme.of(
+                                  homeScaffoldContext,
+                                )
+                                    .textTheme
+                                    .titleMedium!
+                                    .color!
+                                    .withOpacity(0.35),
+                              )
                           : Theme.of(homeScaffoldContext).textTheme.titleSmall,
                     ),
                     trailing: ReorderableDragStartListener(
@@ -179,8 +180,7 @@ class UpNextQueue extends StatelessWidget {
                                     color: Colors.white,
                                   )
                                 : CustomTextView(
-                                    playerController
-                                            .currentQueue[index]
+                                    playerController.currentQueue[index]
                                             .extras!['length'] ??
                                         "",
                                     style: Theme.of(

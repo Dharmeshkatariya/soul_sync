@@ -15,9 +15,8 @@ void startHouseKeeping() {
 Future<void> removeExpiredSongsUrlFromDb() async {
   try {
     final songsUrlCacheBox = Hive.box("SongsUrlCache");
-    final songsUrlCacheKeysList = songsUrlCacheBox.keys
-        .whereType<String>()
-        .toList();
+    final songsUrlCacheKeysList =
+        songsUrlCacheBox.keys.whereType<String>().toList();
     for (var i = 0; i < songsUrlCacheKeysList.length; i++) {
       final songUrlKey = songsUrlCacheKeysList[i];
       final streamData = songsUrlCacheBox.get(songUrlKey)[1];

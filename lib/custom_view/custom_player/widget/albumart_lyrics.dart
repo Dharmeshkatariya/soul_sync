@@ -31,9 +31,7 @@ class AlbumArtNLyrics extends StatelessWidget {
                       ),
                       isScrollControlled: true,
                       context: playerController
-                          .homeScaffoldkey
-                          .currentState!
-                          .context,
+                          .homeScaffoldkey.currentState!.context,
                       barrierColor: Colors.transparent.withAlpha(100),
                       builder: (context) => SongInfoBottomSheet(
                         playerController.currentSong.value!,
@@ -140,9 +138,7 @@ class AlbumArtNLyrics extends StatelessWidget {
                                 ),
                                 isScrollControlled: true,
                                 context: playerController
-                                    .homeScaffoldkey
-                                    .currentState!
-                                    .context,
+                                    .homeScaffoldkey.currentState!.context,
                                 barrierColor: Colors.transparent.withAlpha(100),
                                 builder: (context) =>
                                     const SleepTimerBottomSheet(),

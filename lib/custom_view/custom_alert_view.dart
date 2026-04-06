@@ -94,7 +94,6 @@ class CustomAlertView extends StatelessWidget {
                               textAlign: TextAlign.center,
                               style: AppTextStyles.boldBlack20,
                             ),
-
                             if (message.isNotEmpty) ...[
                               SizedBox(height: 10.h),
                               CustomTextView(
@@ -125,12 +124,12 @@ class CustomAlertView extends StatelessWidget {
                                         positiveText,
                                         style:
                                             ResponsiveUtil.isMediumWebOrLarger
-                                            ? AppTextStyles.regularBlack14
-                                                  .copyWith(
+                                                ? AppTextStyles.regularBlack14
+                                                    .copyWith(
                                                     color: ColorFile.whiteColor,
                                                   )
-                                            : AppTextStyles.regularBlack13
-                                                  .copyWith(
+                                                : AppTextStyles.regularBlack13
+                                                    .copyWith(
                                                     color: ColorFile.whiteColor,
                                                   ),
                                       ),
@@ -161,8 +160,7 @@ class CustomAlertView extends StatelessWidget {
                                           ),
                                           elevation: 0,
                                           textColor: ColorFile.blackColor,
-                                          color:
-                                              secondaryButtonBGColor ??
+                                          color: secondaryButtonBGColor ??
                                               ColorFile.warningColor,
                                           onPressed: onNegativePressed,
                                           child: CustomTextView(
@@ -190,19 +188,16 @@ class CustomAlertView extends StatelessWidget {
                                           ),
                                           child: CustomTextView(
                                             positiveText,
-                                            style:
-                                                ResponsiveUtil
+                                            style: ResponsiveUtil
                                                     .isMediumWebOrLarger
                                                 ? AppTextStyles.regularBlack14
-                                                      .copyWith(
-                                                        color: ColorFile
-                                                            .whiteColor,
-                                                      )
+                                                    .copyWith(
+                                                    color: ColorFile.whiteColor,
+                                                  )
                                                 : AppTextStyles.regularBlack13
-                                                      .copyWith(
-                                                        color: ColorFile
-                                                            .whiteColor,
-                                                      ),
+                                                    .copyWith(
+                                                    color: ColorFile.whiteColor,
+                                                  ),
                                           ),
                                         ),
                                       ),

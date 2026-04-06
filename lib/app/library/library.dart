@@ -69,23 +69,23 @@ class SongsLibraryWidget extends StatelessWidget {
             builder: (controller) {
               return controller.librarySongsList.isNotEmpty
                   ? (controller.additionalOperationMode.value ==
-                            OperationMode.none
-                        ? ListWidget(
-                            controller.librarySongsList,
-                            "library Songs",
-                            true,
-                            isPlaylistOrAlbum: true,
-                            playlist: Playlist(
-                              title: "library Songs",
-                              playlistId: "SongsDownloads",
-                              thumbnailUrl: "",
-                              isCloudPlaylist: false,
-                            ),
-                          )
-                        : ModificationList(
-                            mode: controller.additionalOperationMode.value,
-                            screenController: controller,
-                          ))
+                          OperationMode.none
+                      ? ListWidget(
+                          controller.librarySongsList,
+                          "library Songs",
+                          true,
+                          isPlaylistOrAlbum: true,
+                          playlist: Playlist(
+                            title: "library Songs",
+                            playlistId: "SongsDownloads",
+                            thumbnailUrl: "",
+                            isCloudPlaylist: false,
+                          ),
+                        )
+                      : ModificationList(
+                          mode: controller.additionalOperationMode.value,
+                          screenController: controller,
+                        ))
                   : Expanded(
                       child: Center(
                         child: CustomTextView(
@@ -191,15 +191,13 @@ class PlaylistNAlbumLibraryWidget extends StatelessWidget {
           ),
           Expanded(
             child: Obx(
-              () =>
-                  (isAlbumContent
+              () => (isAlbumContent
                       ? libralbumCntrller.libraryAlbums.isNotEmpty
                       : librplstCntrller.libraryPlaylists.isNotEmpty)
                   ? LayoutBuilder(
                       builder: (context, constraints) {
                         //Fix for grid in mobile screen
-                        final availableWidth =
-                            constraints.maxWidth > 300 &&
+                        final availableWidth = constraints.maxWidth > 300 &&
                                 constraints.maxWidth < 394
                             ? 310.0
                             : constraints.maxWidth;
@@ -210,9 +208,9 @@ class PlaylistNAlbumLibraryWidget extends StatelessWidget {
                             physics: const BouncingScrollPhysics(),
                             gridDelegate:
                                 SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: columns,
-                                  childAspectRatio: (itemWidth / itemHeight),
-                                ),
+                              crossAxisCount: columns,
+                              childAspectRatio: (itemWidth / itemHeight),
+                            ),
                             controller: ScrollController(
                               keepScrollOffset: false,
                             ),

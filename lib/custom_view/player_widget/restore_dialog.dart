@@ -49,28 +49,28 @@ class RestoreDialog extends StatelessWidget {
                   height: 150,
                   child: Center(
                     child: Obx(
-                      () =>
-                          restoreDialogController.restoreProgress.toInt() ==
+                      () => restoreDialogController.restoreProgress.toInt() ==
                               restoreDialogController.filesToRestore.toInt()
                           ? CustomTextView(
                               StringFile.restoreMsg,
                               textAlign: TextAlign.center,
                             )
                           : restoreDialogController.processingFiles.isTrue
-                          ? CustomTextView(StringFile.processFiles)
-                          : restoreDialogController.restoreRunning.isTrue
-                          ? Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                CustomTextView(
-                                  "${restoreDialogController.restoreProgress.toInt()}/${restoreDialogController.filesToRestore.toInt()}",
-                                  style: context.titleLarge,
-                                ),
-                                const SizedBox(height: 10),
-                                CustomTextView(StringFile.restoring),
-                              ],
-                            )
-                          : CustomTextView(StringFile.letsStrart),
+                              ? CustomTextView(StringFile.processFiles)
+                              : restoreDialogController.restoreRunning.isTrue
+                                  ? Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        CustomTextView(
+                                          "${restoreDialogController.restoreProgress.toInt()}/${restoreDialogController.filesToRestore.toInt()}",
+                                          style: context.titleLarge,
+                                        ),
+                                        const SizedBox(height: 10),
+                                        CustomTextView(StringFile.restoring),
+                                      ],
+                                    )
+                                  : CustomTextView(StringFile.letsStrart),
                     ),
                   ),
                 ),
@@ -99,10 +99,8 @@ class RestoreDialog extends StatelessWidget {
                         },
                         child: Obx(
                           () => Visibility(
-                            visible:
-                                restoreDialogController
-                                    .processingFiles
-                                    .isFalse &&
+                            visible: restoreDialogController
+                                    .processingFiles.isFalse &&
                                 restoreDialogController.restoreRunning.isFalse,
                             replacement: const SizedBox(height: 40),
                             child: Padding(
@@ -154,13 +152,13 @@ class RestoreDialogController extends GetxController {
       return;
     }
 
-    final FilePickerResult? pickedFileResult = await FilePicker.platform
-        .pickFiles(
-          dialogTitle: "Select backup file",
-          type: GetPlatform.isWindows ? FileType.custom : FileType.any,
-          allowedExtensions: GetPlatform.isWindows ? ['hmb'] : null,
-          allowMultiple: false,
-        );
+    final FilePickerResult? pickedFileResult =
+        await FilePicker.platform.pickFiles(
+      dialogTitle: "Select backup file",
+      type: GetPlatform.isWindows ? FileType.custom : FileType.any,
+      allowedExtensions: GetPlatform.isWindows ? ['hmb'] : null,
+      allowMultiple: false,
+    );
 
     final String? pickedFile = pickedFileResult?.files.first.path;
 
@@ -196,10 +194,10 @@ class RestoreDialogController extends GetxController {
         final data = file.content as List<int>;
         final targetFileDir =
             filename.endsWith(".m4a") || filename.endsWith(".opus")
-            ? "$supportDirPath/Music"
-            : filename.endsWith(".png")
-            ? "$supportDirPath/thumbnails"
-            : dbDirPath;
+                ? "$supportDirPath/Music"
+                : filename.endsWith(".png")
+                    ? "$supportDirPath/thumbnails"
+                    : dbDirPath;
         final outputFile = File('$targetFileDir/$filename');
         await outputFile.create(recursive: true);
         await outputFile.writeAsBytes(data);

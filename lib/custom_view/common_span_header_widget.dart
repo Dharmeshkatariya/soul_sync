@@ -86,10 +86,10 @@ class CommonSpanHeaderWidget extends StatelessWidget {
             style: ResponsiveUtil.isWeb
                 ? AppTextStyles.semiBoldBlack24.copyWith(
                     // color: ColorFile.webThemeColor,
-                  )
+                    )
                 : AppTextStyles.semiBoldBlack20.copyWith(
                     // color: ColorFile.webThemeColor,
-                  ),
+                    ),
             onTaped: () {
               if (onTapBack != null) {
                 onTapBack!();
@@ -109,7 +109,6 @@ class CommonSpanHeaderWidget extends StatelessWidget {
                       color: ColorFile.lightBlack1Color,
                     ),
             ),
-
             CommonWidget.customWidgetSpanWidget(
               text: " $subTitle",
               style: ResponsiveUtil.isWeb

@@ -197,9 +197,8 @@ class Downloader extends GetxService {
         : playerResponse.highestBitrateMp4aAudio!;
 
     final dirPath = settingsScreenController.downloadLocationPath.string;
-    final actualDownformat = requiredAudioStream.audioCodec.name.contains("mp")
-        ? "m4a"
-        : "opus";
+    final actualDownformat =
+        requiredAudioStream.audioCodec.name.contains("mp") ? "m4a" : "opus";
     final RegExp invalidChar = RegExp(
       r'Container.|\/|\\|\"|\<|\>|\*|\?|\:|\!|\[|\]|\¡|\||\%',
     );
@@ -209,98 +208,97 @@ class Downloader extends GetxService {
     printINFO("Downloading filePath: $filePath");
     final totalBytes = requiredAudioStream.size;
 
-    _dio
-        .download(
-          requiredAudioStream.url,
-          options: Options(headers: {"Range": 'bytes=0-$totalBytes'}),
-          filePath,
-          onReceiveProgress: (count, total) {
-            if (total <= 0) return;
-            songDownloadingProgress.value = ((count / total) * 100).toInt();
-          },
-        )
-        .then((value) async {
-          printINFO(value.data);
+    _dio.download(
+      requiredAudioStream.url,
+      options: Options(headers: {"Range": 'bytes=0-$totalBytes'}),
+      filePath,
+      onReceiveProgress: (count, total) {
+        if (total <= 0) return;
+        songDownloadingProgress.value = ((count / total) * 100).toInt();
+      },
+    ).then((value) async {
+      printINFO(value.data);
 
-          String? year;
-          try {
-            if (song.extras?['year'] != null) {
-              year = song.extras?['year'];
-            } else {
-              if (song.album != null) {
-                final musicServ = Get.find<MusicServices>();
-                year = await musicServ.getSongYear(song.id);
-              }
-            }
-          } catch (_) {}
-
-          // Save Thumbnail
-          try {
-            final thumbnailPath =
-                "${settingsScreenController.supportDirPath}/thumbnails/${song.id}.png";
-            await _dio.downloadUri(song.artUri!, thumbnailPath);
-            // ignore: empty_catches
-          } catch (e) {}
-
-          song.extras?['url'] = filePath;
-          final songJson = MediaItemBuilder.toJson(song);
-          final streamInfoJson = requiredAudioStream.toJson();
-          streamInfoJson['url'] = filePath;
-          // [playbility status, info map]
-          songJson["streamInfo"] = [true, streamInfoJson];
-
-          Hive.box("SongDownloads").put(song.id, songJson);
-          Get.find<LibrarySongsController>().librarySongsList.add(song);
-          printINFO("Downloaded successfully");
-
-          final trackDetails = (song.extras?['trackDetails'])?.split("/");
-          final int? trackNumber = int.tryParse(trackDetails?[0] ?? "");
-          final int? totalTracks = int.tryParse(trackDetails?[1] ?? "");
-
-          try {
-            /// Reverted -- Removed AudioTags as using this package, app is flagged as TROJ_GEN.R002V01K623 by TrendMicro-HouseCall
-            final imageUrl = song.artUri!.toString();
-            Tag tag = Tag(
-              title: song.title,
-              trackArtist: song.artist,
-              album: song.album,
-              year: int.tryParse(year ?? ""),
-              trackNumber: trackNumber,
-              trackTotal: totalTracks,
-              albumArtist: song.artist,
-              genre: song.genre,
-              pictures: [
-                Picture(
-                  bytes: (await NetworkAssetBundle(
-                    Uri.parse((imageUrl)),
-                  ).load(imageUrl)).buffer.asUint8List(),
-                  mimeType: MimeType.png,
-                  pictureType: PictureType.coverFront,
-                ),
-              ],
-            );
-
-            await AudioTags.write(filePath, tag);
-          } catch (e) {
-            printERROR("$e");
+      String? year;
+      try {
+        if (song.extras?['year'] != null) {
+          year = song.extras?['year'];
+        } else {
+          if (song.album != null) {
+            final musicServ = Get.find<MusicServices>();
+            year = await musicServ.getSongYear(song.id);
           }
-          complete.complete();
-        })
-        .onError((error, stackTrace) {
-          ScaffoldMessenger.of(Get.context!).showSnackBar(
-            snackbar(
-              Get.context!,
-              StringFile.downloadError3,
-              size: SanckBarSize.BIG,
-              duration: const Duration(seconds: 2),
-              top: !GetPlatform.isDesktop,
+        }
+      } catch (_) {}
+
+      // Save Thumbnail
+      try {
+        final thumbnailPath =
+            "${settingsScreenController.supportDirPath}/thumbnails/${song.id}.png";
+        await _dio.downloadUri(song.artUri!, thumbnailPath);
+        // ignore: empty_catches
+      } catch (e) {}
+
+      song.extras?['url'] = filePath;
+      final songJson = MediaItemBuilder.toJson(song);
+      final streamInfoJson = requiredAudioStream.toJson();
+      streamInfoJson['url'] = filePath;
+      // [playbility status, info map]
+      songJson["streamInfo"] = [true, streamInfoJson];
+
+      Hive.box("SongDownloads").put(song.id, songJson);
+      Get.find<LibrarySongsController>().librarySongsList.add(song);
+      printINFO("Downloaded successfully");
+
+      final trackDetails = (song.extras?['trackDetails'])?.split("/");
+      final int? trackNumber = int.tryParse(trackDetails?[0] ?? "");
+      final int? totalTracks = int.tryParse(trackDetails?[1] ?? "");
+
+      try {
+        /// Reverted -- Removed AudioTags as using this package, app is flagged as TROJ_GEN.R002V01K623 by TrendMicro-HouseCall
+        final imageUrl = song.artUri!.toString();
+        Tag tag = Tag(
+          title: song.title,
+          trackArtist: song.artist,
+          album: song.album,
+          year: int.tryParse(year ?? ""),
+          trackNumber: trackNumber,
+          trackTotal: totalTracks,
+          albumArtist: song.artist,
+          genre: song.genre,
+          pictures: [
+            Picture(
+              bytes: (await NetworkAssetBundle(
+                Uri.parse((imageUrl)),
+              ).load(imageUrl))
+                  .buffer
+                  .asUint8List(),
+              mimeType: MimeType.png,
+              pictureType: PictureType.coverFront,
             ),
-          );
-          printINFO(
-            "Downloading failed due to network/stream error! Please try again",
-          );
-          complete.complete();
-        });
+          ],
+        );
+
+        await AudioTags.write(filePath, tag);
+      } catch (e) {
+        printERROR("$e");
+      }
+      complete.complete();
+    }).onError((error, stackTrace) {
+      ScaffoldMessenger.of(Get.context!).showSnackBar(
+        snackbar(
+          Get.context!,
+          StringFile.downloadError3,
+          size: SanckBarSize.BIG,
+          duration: const Duration(seconds: 2),
+          top: !GetPlatform.isDesktop,
+        ),
+      );
+      printINFO(
+        "Downloading failed due to network/stream error! Please try again",
+      );
+      complete.complete();
+    });
 
     return complete.future;
   }

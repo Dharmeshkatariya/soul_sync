@@ -46,8 +46,8 @@ void sortSongsNVideos(List songlist, SortType sortType, bool isAscending) {
           (a.duration ?? Duration.zero).compareTo(b.duration ?? Duration.zero);
     case SortType.Name:
     default:
-      compareFunction = (a, b) =>
-          a.title.toLowerCase().compareTo(b.title.toLowerCase());
+      compareFunction =
+          (a, b) => a.title.toLowerCase().compareTo(b.title.toLowerCase());
       break;
   }
 
@@ -65,8 +65,8 @@ void sortAlbumNSingles(List albumList, SortType sortType, bool isAscending) {
 
   switch (sortType) {
     case SortType.Date:
-      compareFunction = (a, b) =>
-          a.title.toLowerCase().compareTo(b.title.toLowerCase());
+      compareFunction =
+          (a, b) => a.title.toLowerCase().compareTo(b.title.toLowerCase());
       break;
     case SortType.Name:
     default:
@@ -130,8 +130,8 @@ void sortArtist(List artistList, SortType sortType, bool isAscending) {
   switch (sortType) {
     case SortType.Name:
     default:
-      compareFunction = (a, b) =>
-          a.name.toLowerCase().compareTo(b.name.toLowerCase());
+      compareFunction =
+          (a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase());
       break;
   }
 
@@ -149,7 +149,8 @@ Future<bool> newVersionCheck(String currentVersion) async {
   try {
     final tags = (await Dio().get(
       "https://api.github.com/repos/anandnet/Harmony-Music/tags",
-    )).data;
+    ))
+        .data;
     final availableVersion = tags[0]['name'] as String;
     List currentVersion_ = currentVersion.substring(1).split(".");
     List availableVersion_ = availableVersion.substring(1).split(".");

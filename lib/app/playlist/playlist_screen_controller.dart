@@ -88,8 +88,7 @@ class PlaylistScreenController extends PlaylistAlbumScreenControllerBase
   void fetchPlaylistDetails(Playlist? playlist_, String playlistId) async {
     final isIdOnly = playlist_ == null;
     final isPipedPlaylist = playlist_?.isPipedPlaylist ?? false;
-    isDefaultPlaylist.value =
-        (playlistId == "SongDownloads" ||
+    isDefaultPlaylist.value = (playlistId == "SongDownloads" ||
         playlistId == "SongsCache" ||
         playlistId == "LIBRP" ||
         playlistId == "LIBFAV");
@@ -237,8 +236,8 @@ class PlaylistScreenController extends PlaylistAlbumScreenControllerBase
     final box_ = await Hive.openBox(id);
     for (MediaItem element in songs) {
       final index = box_.values.toList().indexWhere(
-        (ele) => ele['videoId'] == element.id,
-      );
+            (ele) => ele['videoId'] == element.id,
+          );
       await box_.deleteAt(index);
 
       if (isoffline) {
@@ -283,7 +282,8 @@ class PlaylistScreenController extends PlaylistAlbumScreenControllerBase
   }
 
   @override
-  void fetchAlbumDetails(Album? album_, String albumId) {} // Not used in this class
+  void fetchAlbumDetails(
+      Album? album_, String albumId) {} // Not used in this class
 
   /// This function updates the local playlist thumbnail based on the first song's thumbnail
   void _updatePlaylistThumbSongBased() {
@@ -548,8 +548,8 @@ class PlaylistScreenController extends PlaylistAlbumScreenControllerBase
       // Keep playlistBrowseId blank for offline/piped playlists
       final playlistBrowseId =
           (!playlist.value.isCloudPlaylist || playlist.value.isPipedPlaylist)
-          ? ''
-          : _escapeCsvField(playlist.value.playlistId);
+              ? ''
+              : _escapeCsvField(playlist.value.playlistId);
       final playlistName = _escapeCsvField(playlist.value.title);
       final mediaId = _escapeCsvField(song.id);
       final title = _escapeCsvField(song.title);
@@ -561,20 +561,17 @@ class PlaylistScreenController extends PlaylistAlbumScreenControllerBase
           : '';
 
       // Format duration as HH:MM:SS or MM:SS
-      final duration = song.duration != null
-          ? _formatDuration(song.duration!)
-          : '';
+      final duration =
+          song.duration != null ? _formatDuration(song.duration!) : '';
 
       final thumbnailUrl = _escapeCsvField(song.artUri.toString());
 
       // Extract album information
       final albumData = song.extras?['album'] as Map?;
-      final albumId = albumData != null
-          ? _escapeCsvField(albumData['id'] ?? '')
-          : '';
-      final albumTitle = albumData != null
-          ? _escapeCsvField(albumData['name'] ?? '')
-          : '';
+      final albumId =
+          albumData != null ? _escapeCsvField(albumData['id'] ?? '') : '';
+      final albumTitle =
+          albumData != null ? _escapeCsvField(albumData['name'] ?? '') : '';
 
       // Extract all artist IDs (comma-separated)
       final artistIds = artistsList != null && artistsList.isNotEmpty
@@ -630,8 +627,7 @@ class PlaylistScreenController extends PlaylistAlbumScreenControllerBase
         directory = Directory('${docDir.path}/$appFolderName');
       } else if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
         // Desktop platforms: use Downloads folder in user's home directory
-        final homeDir =
-            Platform.environment['HOME'] ??
+        final homeDir = Platform.environment['HOME'] ??
             Platform.environment['USERPROFILE'] ??
             '.';
         directory = Directory('$homeDir/Downloads/$appFolderName');

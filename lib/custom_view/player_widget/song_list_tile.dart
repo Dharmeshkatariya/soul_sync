@@ -202,9 +202,7 @@ class SongListTile extends StatelessWidget with RemoveSongFromPlaylistMixin {
                         ),
                         isScrollControlled: true,
                         context: playerController
-                            .homeScaffoldkey
-                            .currentState!
-                            .context,
+                            .homeScaffoldkey.currentState!.context,
                         //constraints: BoxConstraints(maxHeight:Get.height),
                         barrierColor: Colors.transparent.withAlpha(100),
                         builder: (context) =>

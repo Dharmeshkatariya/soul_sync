@@ -87,7 +87,7 @@ class DesktopSearchBar extends StatelessWidget {
             child: Obx(() {
               final isHistoryString =
                   searchScreenController.textInputController.text.isEmpty &&
-                  searchScreenController.suggestionList.isEmpty;
+                      searchScreenController.suggestionList.isEmpty;
               final listToShow = isHistoryString
                   ? searchScreenController.historyQuerylist
                   : searchScreenController.suggestionList;
@@ -113,18 +113,18 @@ class DesktopSearchBar extends StatelessWidget {
                       ),
                     )
                   : searchScreenController.isSearchBarInFocus.isTrue &&
-                        listToShow.isNotEmpty
-                  ? ListView(
-                      shrinkWrap: true,
-                      padding: const EdgeInsets.all(5.0),
-                      children: listToShow.map((item) {
-                        return SearchItem(
-                          queryString: item,
-                          isHistoryString: isHistoryString,
-                        );
-                      }).toList(),
-                    )
-                  : const SizedBox.shrink();
+                          listToShow.isNotEmpty
+                      ? ListView(
+                          shrinkWrap: true,
+                          padding: const EdgeInsets.all(5.0),
+                          children: listToShow.map((item) {
+                            return SearchItem(
+                              queryString: item,
+                              isHistoryString: isHistoryString,
+                            );
+                          }).toList(),
+                        )
+                      : const SizedBox.shrink();
             }),
           ),
         ),

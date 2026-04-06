@@ -15,10 +15,10 @@ class PlaylistContent {
             .toList(),
       );
   Map<String, dynamic> toJson() => {
-    "type": "playlist Content",
-    "title": title,
-    "playlists": playlistList.map((e) => e.toJson()).toList(),
-  };
+        "type": "playlist Content",
+        "title": title,
+        "playlists": playlistList.map((e) => e.toJson()).toList(),
+      };
 }
 
 class Playlist {
@@ -42,28 +42,28 @@ class Playlist {
       "https://raw.githubusercontent.com/anandnet/Harmony-Music/refs/heads/main/playlist_placeholder.png";
 
   factory Playlist.fromJson(Map<dynamic, dynamic> json) => Playlist(
-    title: json["title"],
-    playlistId: json["playlistId"] ?? json["browseId"],
-    thumbnailUrl: (json["thumbnails"][0]["url"]).isEmpty
-        ? Thumbnail(thumbPlaceholderUrl).extraHigh
-        : Thumbnail(json["thumbnails"][0]["url"]).extraHigh,
-    description: json["description"] ?? "playlist",
-    songCount: json['itemCount'],
-    isPipedPlaylist: json["isPipedPlaylist"] ?? false,
-    isCloudPlaylist: json["isCloudPlaylist"] ?? true,
-  );
+        title: json["title"],
+        playlistId: json["playlistId"] ?? json["browseId"],
+        thumbnailUrl: (json["thumbnails"][0]["url"]).isEmpty
+            ? Thumbnail(thumbPlaceholderUrl).extraHigh
+            : Thumbnail(json["thumbnails"][0]["url"]).extraHigh,
+        description: json["description"] ?? "playlist",
+        songCount: json['itemCount'],
+        isPipedPlaylist: json["isPipedPlaylist"] ?? false,
+        isCloudPlaylist: json["isCloudPlaylist"] ?? true,
+      );
 
   Map<String, dynamic> toJson() => {
-    "title": title,
-    "playlistId": playlistId,
-    "description": description,
-    'thumbnails': [
-      {'url': thumbnailUrl},
-    ],
-    "itemCount": songCount,
-    "isPipedPlaylist": isPipedPlaylist,
-    "isCloudPlaylist": isCloudPlaylist,
-  };
+        "title": title,
+        "playlistId": playlistId,
+        "description": description,
+        'thumbnails': [
+          {'url': thumbnailUrl},
+        ],
+        "itemCount": songCount,
+        "isPipedPlaylist": isPipedPlaylist,
+        "isCloudPlaylist": isCloudPlaylist,
+      };
 
   Playlist copyWith({String? title, String? thumbnailUrl}) {
     return Playlist(

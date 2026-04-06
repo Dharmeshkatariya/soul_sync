@@ -46,8 +46,7 @@ class WebCustomActionButton extends StatelessWidget {
             icon,
             width: iconHeight ?? 17.w,
             height: iconHeight ?? 17.w,
-            colorFilter:
-                colorFilter ??
+            colorFilter: colorFilter ??
                 ColorFilter.mode(ColorFile.blackColor, BlendMode.srcIn),
           ),
         ),

@@ -126,37 +126,37 @@ class AddToPlaylist extends StatelessWidget {
                               onTap: () {
                                 addToPlaylistController
                                     .addSongsToPlaylist(
-                                      songItems,
-                                      (addToPlaylistController.playlists[index])
-                                          .playlistId,
-                                      context,
-                                    )
+                                  songItems,
+                                  (addToPlaylistController.playlists[index])
+                                      .playlistId,
+                                  context,
+                                )
                                     .then((value) {
-                                      if (!context.mounted) return;
-                                      if (value) {
-                                        ScaffoldMessenger.of(
-                                          context,
-                                        ).showSnackBar(
-                                          snackbar(
-                                            context,
-                                            StringFile.songAddedToPlaylistAlert,
-                                            size: SanckBarSize.MEDIUM,
-                                          ),
-                                        );
-                                        Navigator.of(context).pop();
-                                      } else {
-                                        ScaffoldMessenger.of(
-                                          context,
-                                        ).showSnackBar(
-                                          snackbar(
-                                            context,
-                                            StringFile.songAlreadyExists,
-                                            size: SanckBarSize.MEDIUM,
-                                          ),
-                                        );
-                                        Navigator.of(context).pop();
-                                      }
-                                    });
+                                  if (!context.mounted) return;
+                                  if (value) {
+                                    ScaffoldMessenger.of(
+                                      context,
+                                    ).showSnackBar(
+                                      snackbar(
+                                        context,
+                                        StringFile.songAddedToPlaylistAlert,
+                                        size: SanckBarSize.MEDIUM,
+                                      ),
+                                    );
+                                    Navigator.of(context).pop();
+                                  } else {
+                                    ScaffoldMessenger.of(
+                                      context,
+                                    ).showSnackBar(
+                                      snackbar(
+                                        context,
+                                        StringFile.songAlreadyExists,
+                                        size: SanckBarSize.MEDIUM,
+                                      ),
+                                    );
+                                    Navigator.of(context).pop();
+                                  }
+                                });
                               },
                             ),
                           )
@@ -168,8 +168,7 @@ class AddToPlaylist extends StatelessWidget {
               ],
             ),
             Obx(
-              () =>
-                  (addToPlaylistController.additionInProgress.isTrue &&
+              () => (addToPlaylistController.additionInProgress.isTrue &&
                       isPipedLinked)
                   ? const Positioned(
                       top: 60,

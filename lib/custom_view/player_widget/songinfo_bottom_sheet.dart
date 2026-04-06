@@ -201,12 +201,12 @@ class SongInfoBottomSheet extends StatelessWidget {
                           .whenComplete(
                             () =>
                                 ScaffoldMessenger.of(Get.context!).showSnackBar(
-                                  snackbar(
-                                    Get.context!,
-                                    "Removed from ${playlist!.title}",
-                                    size: SanckBarSize.MEDIUM,
-                                  ),
-                                ),
+                              snackbar(
+                                Get.context!,
+                                "Removed from ${playlist!.title}",
+                                size: SanckBarSize.MEDIUM,
+                              ),
+                            ),
                           );
                     },
                   )
@@ -240,8 +240,7 @@ class SongInfoBottomSheet extends StatelessWidget {
                   )
                 : const SizedBox.shrink(),
             Obx(
-              () =>
-                  (songInfoController.isDownloaded.isTrue &&
+              () => (songInfoController.isDownloaded.isTrue &&
                       (playlist?.playlistId != "SongDownloads" &&
                           playlist?.playlistId != "SongsCache"))
                   ? ListTile(
@@ -254,30 +253,30 @@ class SongInfoBottomSheet extends StatelessWidget {
                         final box = Hive.box("SongDownloads");
                         Get.find<LibrarySongsController>()
                             .removeSong(
-                              song,
-                              true,
-                              url: box.get(song.id)['url'],
-                            )
+                          song,
+                          true,
+                          url: box.get(song.id)['url'],
+                        )
                             .then((value) async {
-                              box.delete(song.id).then((value) {
-                                if (playlist != null) {
-                                  Get.find<PlaylistScreenController>(
-                                    tag: Key(
-                                      playlist!.playlistId,
-                                    ).hashCode.toString(),
-                                  ).checkDownloadStatus();
-                                }
-                                if (context.mounted) {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    snackbar(
-                                      context,
-                                      StringFile.deleteDownloadedDataAlert,
-                                      size: SanckBarSize.BIG,
-                                    ),
-                                  );
-                                }
-                              });
-                            });
+                          box.delete(song.id).then((value) {
+                            if (playlist != null) {
+                              Get.find<PlaylistScreenController>(
+                                tag: Key(
+                                  playlist!.playlistId,
+                                ).hashCode.toString(),
+                              ).checkDownloadStatus();
+                            }
+                            if (context.mounted) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                snackbar(
+                                  context,
+                                  StringFile.deleteDownloadedDataAlert,
+                                  size: SanckBarSize.BIG,
+                                ),
+                              );
+                            }
+                          });
+                        });
                       },
                     )
                   : const SizedBox.shrink(),
@@ -361,33 +360,32 @@ class SongInfoBottomSheet extends StatelessWidget {
     }
     return artistList.isNotEmpty
         ? artistList
-              .map(
-                (e) => ListTile(
-                  onTap: () async {
-                    Navigator.of(context).pop();
-                    if (calledFromPlayer) {
-                      Get.find<PlayerController>().playerPanelController
-                          .close();
-                    }
-                    if (calledFromQueue) {
-                      final playerController = Get.find<PlayerController>();
-                      playerController.playerPanelController.close();
-                    }
-                    await Get.toNamed(
-                      ScreenNavigationSetup.artistScreen,
-                      id: ScreenNavigationSetup.id,
-                      preventDuplicates: true,
-                      arguments: [true, e['id']],
-                    );
-                  },
-                  tileColor: Colors.transparent,
-                  leading: const Icon(Icons.person),
-                  title: CustomTextView(
-                    "${StringFile.viewArtist} (${e['name']})",
-                  ),
+            .map(
+              (e) => ListTile(
+                onTap: () async {
+                  Navigator.of(context).pop();
+                  if (calledFromPlayer) {
+                    Get.find<PlayerController>().playerPanelController.close();
+                  }
+                  if (calledFromQueue) {
+                    final playerController = Get.find<PlayerController>();
+                    playerController.playerPanelController.close();
+                  }
+                  await Get.toNamed(
+                    ScreenNavigationSetup.artistScreen,
+                    id: ScreenNavigationSetup.id,
+                    preventDuplicates: true,
+                    arguments: [true, e['id']],
+                  );
+                },
+                tileColor: Colors.transparent,
+                leading: const Icon(Icons.person),
+                title: CustomTextView(
+                  "${StringFile.viewArtist} (${e['name']})",
                 ),
-              )
-              .toList()
+              ),
+            )
+            .toList()
         : [const SizedBox.shrink()];
   }
 }
@@ -406,7 +404,8 @@ class SongInfoController extends GetxController
     isDownloaded.value = Hive.box("SongDownloads").containsKey(song.id);
     isCurrentSongFav.value = (await Hive.openBox(
       "LIBFAV",
-    )).containsKey(song.id);
+    ))
+        .containsKey(song.id);
     final artists = song.extras!['artists'];
     if (artists != null) {
       for (dynamic each in artists) {
@@ -465,8 +464,8 @@ mixin RemoveSongFromPlaylistMixin {
     } else if (!playlist.isPipedPlaylist) {
       //Other playlist song case
       final index = box.values.toList().indexWhere(
-        (ele) => ele['videoId'] == item.id,
-      );
+            (ele) => ele['videoId'] == item.id,
+          );
       await box.deleteAt(index);
     }
 

@@ -85,19 +85,17 @@ class SettingsScreenController extends GetxController {
     currentAppLanguageCode.value = appLang == "zh_Hant"
         ? "zh-TW"
         : appLang == "zh_Hans"
-        ? "zh-CN"
-        : appLang;
-    isBottomNavBarEnabled.value = isDesktop
-        ? false
-        : (setBox.get("isBottomNavBarEnabled") ?? false);
+            ? "zh-CN"
+            : appLang;
+    isBottomNavBarEnabled.value =
+        isDesktop ? false : (setBox.get("isBottomNavBarEnabled") ?? false);
     noOfHomeScreenContent.value = setBox.get("noOfHomeScreenContent") ?? 3;
     isTransitionAnimationDisabled.value =
         setBox.get("isTransitionAnimationDisabled") ?? false;
     cacheSongs.value = setBox.get('cacheSongs') ?? false;
     themeModetype.value = ThemeType.values[setBox.get('themeModeType') ?? 0];
-    skipSilenceEnabled.value = isDesktop
-        ? false
-        : setBox.get("skipSilenceEnabled");
+    skipSilenceEnabled.value =
+        isDesktop ? false : setBox.get("skipSilenceEnabled");
     loudnessNormalizationEnabled.value = isDesktop
         ? false
         : (setBox.get("loudnessNormalizationEnabled") ?? false);
@@ -115,8 +113,8 @@ class SettingsScreenController extends GetxController {
         setBox.get('downloadLocationPath') ?? await _createInAppSongDownDir();
     downloadLocationPath.value =
         (isDesktop && downloadPath.contains("emulated"))
-        ? await _createInAppSongDownDir()
-        : downloadPath;
+            ? await _createInAppSongDownDir()
+            : downloadPath;
 
     exportLocationPath.value =
         setBox.get("exportLocationPath") ?? "/storage/emulated/0/Music";
@@ -175,9 +173,8 @@ class SettingsScreenController extends GetxController {
       homeScrCon.onSideBarTabSelected(5);
     }
     if (!Get.find<PlayerController>().initFlagForPlayer) {
-      playerCon.playerPanelMinHeight.value = val
-          ? 75.0
-          : 75.0 + Get.mediaQuery.viewPadding.bottom;
+      playerCon.playerPanelMinHeight.value =
+          val ? 75.0 : 75.0 + Get.mediaQuery.viewPadding.bottom;
     }
     setBox.put("isBottomNavBarEnabled", val);
   }

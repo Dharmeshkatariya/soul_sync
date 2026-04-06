@@ -22,8 +22,7 @@ class CustomMobileContainerButton extends StatelessWidget {
       visible: isCreatePermission,
       child: Container(
         color: ColorFile.whiteColor,
-        padding:
-            padding ??
+        padding: padding ??
             EdgeInsets.symmetric(horizontal: horizontalPadding, vertical: 20.h),
         child: child,
       ),

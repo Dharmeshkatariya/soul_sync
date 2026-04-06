@@ -1,8 +1,8 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
-typedef ControllerBuilder<T extends GetxController> =
-    Widget Function(T controller);
+typedef ControllerBuilder<T extends GetxController> = Widget Function(
+    T controller);
 
 class ControllerViewWrapper<T extends GetxController> extends StatelessWidget {
   final T Function() initController;

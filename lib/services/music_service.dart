@@ -151,7 +151,8 @@ class MusicServices extends getx.GetxService {
           "browse",
           data,
           additionalParams: additionalParams,
-        )).data;
+        ))
+            .data;
       }
 
       parseFunc(contents) => parseMixedContent(contents);
@@ -313,10 +314,11 @@ class MusicServices extends getx.GetxService {
     dynamic additionalParamsForNext;
     if (results.containsKey('continuations') || additionalParamsNext != null) {
       requestFunc(additionalParams) async => (await _sendRequest(
-        "next",
-        data,
-        additionalParams: additionalParams,
-      )).data;
+            "next",
+            data,
+            additionalParams: additionalParams,
+          ))
+              .data;
       parseFunc(contents) => parseWatchPlaylist(contents);
       final x = await getContinuations(
         results,
@@ -398,42 +400,42 @@ class MusicServices extends getx.GetxService {
     final Map<String, dynamic> response = (await _sendRequest(
       'browse',
       data,
-    )).data;
+    ))
+        .data;
     if (playlistId != null) {
       final Map<String, dynamic> header =
           nav(response, ['header', "musicDetailHeaderRenderer"]) ??
-          nav(response, [
-            'contents',
-            "twoColumnBrowseResultsRenderer",
-            'tabs',
-            0,
-            "tabRenderer",
-            "content",
-            "sectionListRenderer",
-            "contents",
-            0,
-            "musicResponsiveHeaderRenderer",
-          ]);
+              nav(response, [
+                'contents',
+                "twoColumnBrowseResultsRenderer",
+                'tabs',
+                0,
+                "tabRenderer",
+                "content",
+                "sectionListRenderer",
+                "contents",
+                0,
+                "musicResponsiveHeaderRenderer",
+              ]);
 
       final Map<String, dynamic> results =
           nav(response, musicPlaylistShelfRenderer) ??
-          nav(response, [
-            'contents',
-            "singleColumnBrowseResultsRenderer",
-            "tabs",
-            0,
-            "tabRenderer",
-            "content",
-            'sectionListRenderer',
-            'contents',
-            0,
-            "musicPlaylistShelfRenderer",
-          ]);
+              nav(response, [
+                'contents',
+                "singleColumnBrowseResultsRenderer",
+                "tabs",
+                0,
+                "tabRenderer",
+                "content",
+                'sectionListRenderer',
+                'contents',
+                0,
+                "musicPlaylistShelfRenderer",
+              ]);
       final Map<String, dynamic> playlist = {'id': results['playlistId']};
 
       playlist['title'] = nav(header, title_text);
-      playlist['thumbnails'] =
-          nav(header, thumnail_cropped) ??
+      playlist['thumbnails'] = nav(header, thumnail_cropped) ??
           nav(header, [
             "thumbnail",
             "musicThumbnailRenderer",
@@ -454,18 +456,15 @@ class MusicServices extends getx.GetxService {
 
       final int secondSubtitleRunCount =
           header['secondSubtitle']['runs'].length;
-      final String count =
-          (((header['secondSubtitle']['runs'][secondSubtitleRunCount %
-                              3]['text'])
-                          .split(' ')[0])
-                      .split(',')
-                  as List)
-              .join();
+      final String count = (((header['secondSubtitle']['runs']
+                      [secondSubtitleRunCount % 3]['text'])
+                  .split(' ')[0])
+              .split(',') as List)
+          .join();
       final int songCount = int.parse(count);
       if (header['secondSubtitle']['runs'].length > 1) {
-        playlist['duration'] =
-            header['secondSubtitle']['runs'][(secondSubtitleRunCount % 3) +
-                2]['text'];
+        playlist['duration'] = header['secondSubtitle']['runs']
+            [(secondSubtitleRunCount % 3) + 2]['text'];
       }
       playlist['trackCount'] = songCount;
 
@@ -498,8 +497,7 @@ class MusicServices extends getx.GetxService {
 
     //album content
     final album = parseAlbumHeader(response);
-    dynamic results =
-        nav(response, [
+    dynamic results = nav(response, [
           'contents',
           "twoColumnBrowseResultsRenderer",
           "secondaryContents",
@@ -559,12 +557,12 @@ class MusicServices extends getx.GetxService {
     data['input'] = queryStr;
     final res =
         nav((await _sendRequest("music/get_search_suggestions", data)).data, [
-          'contents',
-          0,
-          'searchSuggestionsSectionRenderer',
-          'contents',
-        ]) ??
-        [];
+              'contents',
+              0,
+              'searchSuggestionsSectionRenderer',
+              'contents',
+            ]) ??
+            [];
     return res
         .map<String?>((item) {
           return (nav(item, [
@@ -654,11 +652,10 @@ class MusicServices extends getx.GetxService {
     dynamic results;
 
     if ((response['contents']).containsKey('tabbedSearchResultsRenderer')) {
-      final tabIndex = scope == null || filter != null
-          ? 0
-          : scopes.indexOf(scope) + 1;
-      results =
-          response['contents']['tabbedSearchResultsRenderer']['tabs'][tabIndex]['tabRenderer']['content'];
+      final tabIndex =
+          scope == null || filter != null ? 0 : scopes.indexOf(scope) + 1;
+      results = response['contents']['tabbedSearchResultsRenderer']['tabs']
+          [tabIndex]['tabRenderer']['content'];
     } else {
       results = response['contents'];
     }
@@ -762,16 +759,17 @@ class MusicServices extends getx.GetxService {
 
       if (filter != null) {
         requestFunc(additionalParams) async => (await _sendRequest(
-          "search",
-          data,
-          additionalParams: additionalParams,
-        )).data;
+              "search",
+              data,
+              additionalParams: additionalParams,
+            ))
+                .data;
         parseFunc(contents) => parseSearchResults(
-          contents,
-          ['artist', 'playlist', 'song', 'video', 'station'],
-          type,
-          category,
-        );
+              contents,
+              ['artist', 'playlist', 'song', 'video', 'station'],
+              type,
+              category,
+            );
 
         if (searchResults.containsKey(category)) {
           final x = await getContinuations(
@@ -811,17 +809,18 @@ class MusicServices extends getx.GetxService {
     final Map<String, dynamic> searchResults = {};
 
     requestFunc(additionalParams) async => (await _sendRequest(
-      "search",
-      data,
-      additionalParams: additionalParams,
-    )).data;
+          "search",
+          data,
+          additionalParams: additionalParams,
+        ))
+            .data;
 
     parseFunc(contents) => parseSearchResults(
-      contents,
-      ['artist', 'playlist', 'song', 'video', 'station'],
-      type,
-      category,
-    );
+          contents,
+          ['artist', 'playlist', 'song', 'video', 'station'],
+          type,
+          category,
+        );
 
     final x = await getContinuations(
       {},
@@ -856,8 +855,8 @@ class MusicServices extends getx.GetxService {
     final results = nav(response, [...single_column_tab, ...section_list]);
 
     final Map<String, dynamic> artist = {'description': null, 'views': null};
-    final Map<String, dynamic> header =
-        (response['header']['musicImmersiveHeaderRenderer']) ??
+    final Map<String, dynamic> header = (response['header']
+            ['musicImmersiveHeaderRenderer']) ??
         response['header']['musicVisualHeaderRenderer'];
     artist['name'] = nav(header, title_text);
     final descriptionShelf = findObjectByKey(
@@ -908,7 +907,8 @@ class MusicServices extends getx.GetxService {
       "browse",
       data,
       additionalParams: additionalParams,
-    )).data;
+    ))
+        .data;
     final contents = nav(response, [
       'contents',
       'singleColumnBrowseResultsRenderer',
@@ -997,13 +997,13 @@ class MusicServices extends getx.GetxService {
 
       result['results'] = category == 'Albums'
           ? contentlist
-                .map((item) => parseAlbum(item['musicTwoRowItemRenderer']))
-                .whereType<Album>()
-                .toList()
+              .map((item) => parseAlbum(item['musicTwoRowItemRenderer']))
+              .whereType<Album>()
+              .toList()
           : contentlist
-                .map((item) => parseSingle(item['musicTwoRowItemRenderer']))
-                .whereType<Album>()
-                .toList();
+              .map((item) => parseSingle(item['musicTwoRowItemRenderer']))
+              .whereType<Album>()
+              .toList();
     }
     return result;
   }

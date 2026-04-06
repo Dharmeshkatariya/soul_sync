@@ -34,7 +34,6 @@ class CustomMorePopUpMenuWidget extends StatelessWidget {
           context: context,
           child: filterView,
           width: 200.w,
-
           padding: EdgeInsets.zero,
         ),
       ),

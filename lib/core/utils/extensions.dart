@@ -41,14 +41,14 @@ extension StringExtension on String {
 
   String get formatted => isNotEmpty
       ? split('_')
-                .map(
-                  (word) => word.isNotEmpty
-                      ? word[0].toUpperCase() + word.substring(1)
-                      : '',
-                )
-                .join(' ')
-                .capitalize ??
-            ''
+              .map(
+                (word) => word.isNotEmpty
+                    ? word[0].toUpperCase() + word.substring(1)
+                    : '',
+              )
+              .join(' ')
+              .capitalize ??
+          ''
       : '';
 
   double toDouble() {

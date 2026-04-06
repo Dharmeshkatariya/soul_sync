@@ -34,9 +34,8 @@ class CustomEmptyDataView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ResponsiveUtil.init(context);
-    String moduleName = moduleNameTitle.isNotEmpty
-        ? moduleNameTitle
-        : StringFile.data;
+    String moduleName =
+        moduleNameTitle.isNotEmpty ? moduleNameTitle : StringFile.data;
     return Center(
       child: Container(
         alignment: Alignment.center,
@@ -136,13 +135,11 @@ class CustomEmptyDataView extends StatelessWidget {
               text: StringFile.accordingToYourSpecifiedSearchCriteriaNoSuitable,
               style: AppTextStyles.regularBlack14,
             ),
-
             WidgetSpan(child: SizedBox(width: 5.w)),
             CommonWidget.customWidgetSpanWidget(
               text: moduleNameTitle.toLowerCase(),
               style: AppTextStyles.boldBlack14,
             ),
-
             WidgetSpan(child: SizedBox(width: 5.w)),
             CommonWidget.customWidgetSpanWidget(
               text:

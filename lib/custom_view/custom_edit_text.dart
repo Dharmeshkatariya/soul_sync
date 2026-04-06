@@ -86,8 +86,7 @@ class CustomEditText extends StatelessWidget {
     var isFocused = false.obs;
     // List<TextInputFormatter>? inputFormatter = ;
 
-    final formatters =
-        inputFormatter ??
+    final formatters = inputFormatter ??
         () {
           if (textInputType == TextInputType.name) {
             return [
@@ -132,7 +131,6 @@ class CustomEditText extends StatelessWidget {
             title: title,
             isMandatory: isMandatory,
           ),
-
           Obx(
             () => Focus(
               autofocus: false,
@@ -301,23 +299,18 @@ class CustomEditText extends StatelessWidget {
                               prefixIcon: prefixIcon,
                               prefix: prefix,
                               labelText: labelText,
-                              labelStyle:
-                                  labelStyle ??
+                              labelStyle: labelStyle ??
                                   AppTextStyles.semiBoldBlack14.copyWith(
                                     color: ColorFile.blackColor,
                                   ),
-
                               floatingLabelStyle: AppTextStyles.semiBoldBlack14
                                   .copyWith(color: ColorFile.blackColor),
-
                               counterText: '',
                               hintText: hintText,
                               hintStyle: AppTextStyles.regularBlack14.copyWith(
                                 color: ColorFile.blackColorOpaque50,
                               ),
-
-                              contentPadding:
-                                  contentPadding ??
+                              contentPadding: contentPadding ??
                                   EdgeInsets.only(
                                     top: 12.w,
                                     bottom: 12.w,
@@ -326,8 +319,7 @@ class CustomEditText extends StatelessWidget {
                                   ),
                               isDense: true,
                             ),
-                            maxLength:
-                                maxLength ??
+                            maxLength: maxLength ??
                                 ((textInputType == TextInputType.streetAddress)
                                     ? 10
                                     : null),

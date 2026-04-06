@@ -7,11 +7,8 @@ class MediaItemBuilder {
   static MediaItem fromJson(dynamic json, {String? url}) {
     String? artistName;
     if (json['artists'] != null) {
-      artistName = json['artists']
-          ?.map((e) => e['name'])
-          .toList()
-          .join(', ')
-          .toString();
+      artistName =
+          json['artists']?.map((e) => e['name']).toList().join(', ').toString();
     }
 
     Map? album;
@@ -50,8 +47,7 @@ class MediaItemBuilder {
     int sec = 0;
     final splitted = time.split(":");
     if (splitted.length == 3) {
-      sec +=
-          int.parse(splitted[0]) * 3600 +
+      sec += int.parse(splitted[0]) * 3600 +
           int.parse(splitted[1]) * 60 +
           int.parse(splitted[2]);
     } else if (splitted.length == 2) {
@@ -63,18 +59,18 @@ class MediaItemBuilder {
   }
 
   static Map<String, dynamic> toJson(MediaItem mediaItem) => {
-    "videoId": mediaItem.id,
-    "title": mediaItem.title,
-    'album': mediaItem.extras!['album'],
-    'artists': mediaItem.extras!['artists'],
-    'length': mediaItem.extras!['length'],
-    'duration': mediaItem.duration?.inSeconds,
-    'date': mediaItem.extras!['date'],
-    'thumbnails': [
-      {'url': mediaItem.artUri.toString()},
-    ],
-    'url': mediaItem.extras!['url'],
-    'trackDetails': mediaItem.extras?['trackDetails'],
-    'year': mediaItem.extras?['year'],
-  };
+        "videoId": mediaItem.id,
+        "title": mediaItem.title,
+        'album': mediaItem.extras!['album'],
+        'artists': mediaItem.extras!['artists'],
+        'length': mediaItem.extras!['length'],
+        'duration': mediaItem.duration?.inSeconds,
+        'date': mediaItem.extras!['date'],
+        'thumbnails': [
+          {'url': mediaItem.artUri.toString()},
+        ],
+        'url': mediaItem.extras!['url'],
+        'trackDetails': mediaItem.extras?['trackDetails'],
+        'year': mediaItem.extras?['year'],
+      };
 }

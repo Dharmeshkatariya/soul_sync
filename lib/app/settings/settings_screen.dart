@@ -91,7 +91,9 @@ class SettingsScreen extends StatelessWidget {
                               ),
                               subtitle: CustomTextView(
                                 StringFile.goToDownloadPage,
-                                style: Theme.of(context).textTheme.bodyMedium!
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium!
                                     .copyWith(
                                       color: Colors.white70,
                                       fontSize: 13,
@@ -115,12 +117,12 @@ class SettingsScreen extends StatelessWidget {
                                   ThemeType.dynamic
                               ? StringFile.dynamic
                               : settingsController.themeModetype.value ==
-                                    ThemeType.system
-                              ? StringFile.systemDefault
-                              : settingsController.themeModetype.value ==
-                                    ThemeType.dark
-                              ? StringFile.dark
-                              : StringFile.light,
+                                      ThemeType.system
+                                  ? StringFile.systemDefault
+                                  : settingsController.themeModetype.value ==
+                                          ThemeType.dark
+                                      ? StringFile.dark
+                                      : StringFile.light,
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                       ),
@@ -155,14 +157,14 @@ class SettingsScreen extends StatelessWidget {
                               .toList(),
                           selectedItemBuilder: (context) =>
                               langMap.entries.map<Widget>((item) {
-                                return Container(
-                                  alignment: Alignment.centerRight,
-                                  constraints: const BoxConstraints(
-                                    minWidth: 50,
-                                  ),
-                                  child: CustomTextView(item.value),
-                                );
-                              }).toList(),
+                            return Container(
+                              alignment: Alignment.centerRight,
+                              constraints: const BoxConstraints(
+                                minWidth: 50,
+                              ),
+                              child: CustomTextView(item.value),
+                            );
+                          }).toList(),
                           onChanged: settingsController.setAppLanguage,
                         ),
                       ),
@@ -228,8 +230,7 @@ class SettingsScreen extends StatelessWidget {
                       trailing: Obx(
                         () => CustSwitch(
                           value: settingsController
-                              .isTransitionAnimationDisabled
-                              .isTrue,
+                              .isTransitionAnimationDisabled.isTrue,
                           onChanged:
                               settingsController.disableTransitionAnimation,
                         ),
@@ -264,12 +265,13 @@ class SettingsScreen extends StatelessWidget {
                           settingsController.discoverContentType.value == "QP"
                               ? StringFile.quickpicks
                               : settingsController.discoverContentType.value ==
-                                    "TMV"
-                              ? StringFile.topmusicvideos
-                              : settingsController.discoverContentType.value ==
-                                    "TR"
-                              ? StringFile.trending
-                              : StringFile.basedOnLast,
+                                      "TMV"
+                                  ? StringFile.topmusicvideos
+                                  : settingsController
+                                              .discoverContentType.value ==
+                                          "TR"
+                                      ? StringFile.trending
+                                      : StringFile.basedOnLast,
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                       ),
@@ -404,15 +406,15 @@ class SettingsScreen extends StatelessWidget {
                       isThreeLine: true,
                       onTap: () {
                         settingsController.clearImagesCache().then(
-                          (value) =>
-                              ScaffoldMessenger.of(Get.context!).showSnackBar(
+                              (value) => ScaffoldMessenger.of(Get.context!)
+                                  .showSnackBar(
                                 snackbar(
                                   Get.context!,
                                   StringFile.clearImgCacheAlert,
                                   size: SanckBarSize.BIG,
                                 ),
                               ),
-                        );
+                            );
                       },
                     ),
                   ],
@@ -461,8 +463,7 @@ class SettingsScreen extends StatelessWidget {
                         trailing: Obx(
                           () => CustSwitch(
                             value: settingsController
-                                .loudnessNormalizationEnabled
-                                .value,
+                                .loudnessNormalizationEnabled.value,
                             onChanged:
                                 settingsController.toggleLoudnessNormalization,
                           ),
@@ -606,8 +607,7 @@ class SettingsScreen extends StatelessWidget {
                         trailing: Obx(
                           () => CustSwitch(
                             value: settingsController
-                                .stopPlyabackOnSwipeAway
-                                .value,
+                                .stopPlyabackOnSwipeAway.value,
                             onChanged: settingsController
                                 .toggleStopPlyabackOnSwipeAway,
                           ),
@@ -621,12 +621,10 @@ class SettingsScreen extends StatelessWidget {
                                 right: 10,
                               ),
                               title: CustomTextView(StringFile.ignoreBatOpt),
-                              onTap:
-                                  settingsController
-                                      .isIgnoringBatteryOptimizations
-                                      .isFalse
+                              onTap: settingsController
+                                      .isIgnoringBatteryOptimizations.isFalse
                                   ? settingsController
-                                        .enableIgnoringBatteryOptimizations
+                                      .enableIgnoringBatteryOptimizations
                                   : null,
                               subtitle: Obx(
                                 () => RichText(
@@ -667,8 +665,7 @@ class SettingsScreen extends StatelessWidget {
                       trailing: Obx(
                         () => CustSwitch(
                           value: settingsController
-                              .autoDownloadFavoriteSongEnabled
-                              .value,
+                              .autoDownloadFavoriteSongEnabled.value,
                           onChanged:
                               settingsController.toggleAutoDownloadFavoriteSong,
                         ),
@@ -742,13 +739,12 @@ class SettingsScreen extends StatelessWidget {
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                         isThreeLine: true,
-                        onTap: () =>
-                            showDialog(
-                              context: context,
-                              builder: (context) => const ExportFileDialog(),
-                            ).whenComplete(
-                              () => Get.delete<ExportFileDialogController>(),
-                            ),
+                        onTap: () => showDialog(
+                          context: context,
+                          builder: (context) => const ExportFileDialog(),
+                        ).whenComplete(
+                          () => Get.delete<ExportFileDialogController>(),
+                        ),
                       ),
                     if (GetPlatform.isAndroid)
                       ListTile(
@@ -782,13 +778,12 @@ class SettingsScreen extends StatelessWidget {
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
                       isThreeLine: true,
-                      onTap: () =>
-                          showDialog(
-                            context: context,
-                            builder: (context) => const BackupDialog(),
-                          ).whenComplete(
-                            () => Get.delete<BackupDialogController>(),
-                          ),
+                      onTap: () => showDialog(
+                        context: context,
+                        builder: (context) => const BackupDialog(),
+                      ).whenComplete(
+                        () => Get.delete<BackupDialogController>(),
+                      ),
                     ),
                     ListTile(
                       contentPadding: const EdgeInsets.only(left: 5, right: 10),
@@ -798,13 +793,12 @@ class SettingsScreen extends StatelessWidget {
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
                       isThreeLine: true,
-                      onTap: () =>
-                          showDialog(
-                            context: context,
-                            builder: (context) => const RestoreDialog(),
-                          ).whenComplete(
-                            () => Get.delete<RestoreDialogController>(),
-                          ),
+                      onTap: () => showDialog(
+                        context: context,
+                        builder: (context) => const RestoreDialog(),
+                      ).whenComplete(
+                        () => Get.delete<RestoreDialogController>(),
+                      ),
                     ),
                   ],
                 ),

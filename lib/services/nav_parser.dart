@@ -374,8 +374,7 @@ MediaItem parseSongFlat(Map<String, dynamic> data) {
 
   Map<String, dynamic> song = {
     'title': nav(columns[0], text_run_text),
-    'videoId':
-        nav(
+    'videoId': nav(
           columns[0],
           text_run + navigation_video_id,
           noneIfAbsent: true,
@@ -418,12 +417,14 @@ Map<String, dynamic> getFlexColumnItem(Map<String, dynamic> item, int index) {
   if ((item['flexColumns']).length <= index ||
       !item['flexColumns'][index]['musicResponsiveListItemFlexColumnRenderer']
           .containsKey('text') ||
-      !item['flexColumns'][index]['musicResponsiveListItemFlexColumnRenderer']['text']
+      !item['flexColumns'][index]['musicResponsiveListItemFlexColumnRenderer']
+              ['text']
           .containsKey('runs')) {
     return {};
   }
 
-  return item['flexColumns'][index]['musicResponsiveListItemFlexColumnRenderer'];
+  return item['flexColumns'][index]
+      ['musicResponsiveListItemFlexColumnRenderer'];
 }
 
 Map<String, dynamic> parseWatchPlaylistHome(Map<dynamic, dynamic> data) {
@@ -481,7 +482,8 @@ String? getTabBrowseId(Map<String, dynamic> watchNextRenderer, int tabId) {
   if (!watchNextRenderer['tabs'][tabId]['tabRenderer'].containsKey(
     'unselectable',
   )) {
-    return watchNextRenderer['tabs'][tabId]['tabRenderer']['endpoint']['browseEndpoint']['browseId'];
+    return watchNextRenderer['tabs'][tabId]['tabRenderer']['endpoint']
+        ['browseEndpoint']['browseId'];
   } else {
     return null;
   }
@@ -543,8 +545,8 @@ List<dynamic> parsePlaylistItems(
             //inspect(menuService);
 
             if (menuService.containsKey('playlistEditEndpoint')) {
-              videoId =
-                  menuService['playlistEditEndpoint']['actions'][0]['removedVideoId'];
+              videoId = menuService['playlistEditEndpoint']['actions'][0]
+                  ['removedVideoId'];
               // print("$videoId");
             }
           }
@@ -587,8 +589,7 @@ List<dynamic> parsePlaylistItems(
 
     bool isAvailable = true;
     if (data.containsKey('musicItemRendererDisplayPolicy')) {
-      isAvailable =
-          data['musicItemRendererDisplayPolicy'] !=
+      isAvailable = data['musicItemRendererDisplayPolicy'] !=
           'MUSIC_ITEM_RENDERER_DISPLAY_POLICY_GREY_OUT';
     }
 
@@ -794,8 +795,8 @@ dynamic parseSearchResult(
 
   if (resultType == 'artist') {
     searchResult['artist'] = getItemCustomTextView(data, 0);
-    final list =
-        data['flexColumns'][1]['musicResponsiveListItemFlexColumnRenderer']['text']['runs'];
+    final list = data['flexColumns'][1]
+        ['musicResponsiveListItemFlexColumnRenderer']['text']['runs'];
     searchResult['subscribers'] = list.length < 2 ? "" : list[2];
     ['text'];
     //final x = parseMenuPlaylists(data, searchResult);
@@ -803,8 +804,8 @@ dynamic parseSearchResult(
     searchResult['type'] = getItemCustomTextView(data, 1);
     searchResult['audioPlaylistId'] = nav(data, audio_watch_playlist_id);
     try {
-      final list =
-          data['flexColumns'][1]['musicResponsiveListItemFlexColumnRenderer']['text']['runs'];
+      final list = data['flexColumns'][1]
+          ['musicResponsiveListItemFlexColumnRenderer']['text']['runs'];
       searchResult['description'] = list.map((run) => run['text']).join('');
     } catch (e) {}
   } else if (resultType.contains('playlist')) {
@@ -814,9 +815,8 @@ dynamic parseSearchResult(
       defaultOffset + (hasAuthor ? 2 : 0),
       'text',
     ]).split(' ')[0];
-    searchResult['description'] = hasAuthor
-        ? nav(flexItem, [defaultOffset, 'text'])
-        : null;
+    searchResult['description'] =
+        hasAuthor ? nav(flexItem, [defaultOffset, 'text']) : null;
   } else if (resultType == 'station') {
     searchResult['videoId'] =
         nav(data, navigation_video_id) ?? nav(data, navigation_browse_id);
@@ -831,8 +831,7 @@ dynamic parseSearchResult(
         nav(getFlexColumnItem(data, 1), ['text', 'runs']),
       ];
       if (flexItems[0] != null) {
-        searchResult['videoId'] =
-            nav(flexItems[0][0], navigation_video_id) ??
+        searchResult['videoId'] = nav(flexItems[0][0], navigation_video_id) ??
             nav(flexItems[0][0], navigation_browse_id);
         searchResult['playlistId'] = nav(
           flexItems[0][0],
@@ -913,8 +912,7 @@ dynamic parseSearchResult(
 
 //parse album Header
 Map<String, dynamic> parseAlbumHeader(Map<String, dynamic> response) {
-  Map<String, dynamic> header =
-      nav(response, [
+  Map<String, dynamic> header = nav(response, [
         'contents',
         "twoColumnBrowseResultsRenderer",
         'tabs',
@@ -930,8 +928,7 @@ Map<String, dynamic> parseAlbumHeader(Map<String, dynamic> response) {
   Map<String, dynamic> album = {
     'title': nav(header, title_text),
     'type': nav(header, subtitle),
-    'thumbnails':
-        nav(header, thumnail_cropped) ??
+    'thumbnails': nav(header, thumnail_cropped) ??
         nav(header, [
           "thumbnail",
           "musicThumbnailRenderer",
@@ -940,8 +937,7 @@ Map<String, dynamic> parseAlbumHeader(Map<String, dynamic> response) {
         ]),
   };
 
-  album["description"] =
-      nav(header, [
+  album["description"] = nav(header, [
         "description",
         "musicDescriptionShelfRenderer",
         "description",
@@ -1165,8 +1161,7 @@ MediaItem? parseChartsTrending(dynamic data) {
 
   final video = {
     'title': nav(flex_0, text_run_text),
-    'videoId':
-        nav(flex_0, text_run + navigation_video_id) ??
+    'videoId': nav(flex_0, text_run + navigation_video_id) ??
         nav(data, ['playlistItemData', 'videoId']),
     'playlistId': nav(flex_0, text_run + navigation_playlist_id),
     'artists': artists,

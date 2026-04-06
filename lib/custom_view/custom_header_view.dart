@@ -36,8 +36,7 @@ class CustomHeaderView extends StatelessWidget {
           SizedBox(height: 24.w),
           Padding(
             padding: EdgeInsets.symmetric(
-              horizontal:
-                  padding ??
+              horizontal: padding ??
                   ResponsiveUtil.unitWidth *
                       ConstantsFile.horizontalPaddingRatio,
             ),
@@ -54,8 +53,7 @@ class CustomHeaderView extends StatelessWidget {
                   ),
                   child: Padding(
                     padding: EdgeInsets.symmetric(
-                      horizontal:
-                          padding ??
+                      horizontal: padding ??
                           ResponsiveUtil.unitWidth *
                               ConstantsFile.horizontalPaddingRatio,
                     ),
@@ -71,8 +69,8 @@ class CustomHeaderView extends StatelessWidget {
                 ),
               )
             : (ResponsiveUtil.isWeb)
-            ? SizedBox(height: 20.w)
-            : SizedBox(height: 12.w),
+                ? SizedBox(height: 20.w)
+                : SizedBox(height: 12.w),
       ],
     );
   }

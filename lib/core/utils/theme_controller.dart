@@ -69,8 +69,7 @@ class ThemeController extends GetxController {
       ResizeImage(imageProvider, height: 200, width: 200),
     );
     //final colorList = generator.colors;
-    final paletteColor =
-        generator.dominantColor ??
+    final paletteColor = generator.dominantColor ??
         generator.darkMutedColor ??
         generator.darkVibrantColor ??
         generator.lightMutedColor ??
@@ -444,8 +443,7 @@ extension HexColor on Color {
   }
 
   /// Prefixes a hash sign if [leadingHashSign] is set to `true` (default is `true`).
-  String toHex({bool leadingHashSign = true}) =>
-      '${leadingHashSign ? '#' : ''}'
+  String toHex({bool leadingHashSign = true}) => '${leadingHashSign ? '#' : ''}'
       '${alpha.toRadixString(16).padLeft(2, '0')}'
       '${red.toRadixString(16).padLeft(2, '0')}'
       '${green.toRadixString(16).padLeft(2, '0')}'
