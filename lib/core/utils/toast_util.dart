@@ -141,11 +141,13 @@ class ToastConfig {
     borderRadius: 0,
   );
 }
+
 enum ToastSize {
   small,
   medium,
   big,
 }
+
 class ToastUtil {
   static final Map<String, ToastificationItem> _activeToasts = {};
 
@@ -311,9 +313,6 @@ class ToastUtil {
       onTap: onTap,
     );
   }
-
-
-
 
   // Success toast with size and position
   static void successWithSize({
@@ -511,7 +510,6 @@ class ToastUtil {
       onTap: onTap,
     );
   }
-
 
   // Loading toast (doesn't auto-dismiss)
   static ToastificationItem loading({

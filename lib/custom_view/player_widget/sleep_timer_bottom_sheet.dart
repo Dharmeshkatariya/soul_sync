@@ -1,4 +1,4 @@
-﻿import 'package:soul_sync/core/utils/toast_util.dart';
+import 'package:soul_sync/core/utils/toast_util.dart';
 import 'package:soul_sync/core/utils/string_file.dart';
 
 import 'package:soul_sync/core/extension/text_style.dart';
@@ -124,7 +124,6 @@ class SleepTimerBottomSheet extends StatelessWidget {
                   size: ToastSize.big,
                   message: StringFile.sleepTimeSetAlert,
                 );
-
               },
               leading: Padding(
                 padding: const EdgeInsets.only(left: 10.0),

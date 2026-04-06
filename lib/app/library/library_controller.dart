@@ -1,4 +1,4 @@
-﻿import 'package:soul_sync/core/utils/player_utils/song_utils.dart';
+import 'package:soul_sync/core/utils/player_utils/song_utils.dart';
 import 'package:soul_sync/core/utils/toast_util.dart';
 import 'package:soul_sync/core/utils/string_file.dart';
 
@@ -95,8 +95,7 @@ class LibrarySongsController extends GetxController {
   void onSort(SortType sortType, bool isAscending) {
     final songlist = librarySongsList.toList();
     SongUtils.sortSongsNVideos(
-        songlist:
-        songlist,sortType:  sortType,isAscending:  isAscending);
+        songlist: songlist, sortType: sortType, isAscending: isAscending);
     librarySongsList.value = songlist;
   }
 
@@ -740,8 +739,7 @@ class LibraryArtistsController extends GetxController {
   void onSort(SortType sortType, bool isAscending) {
     final artistList = libraryArtists.toList();
     SongUtils.sortArtist(
-        artistList:
-        artistList, sortType: sortType, isAscending: isAscending);
+        artistList: artistList, sortType: sortType, isAscending: isAscending);
     libraryArtists.value = artistList;
   }
 

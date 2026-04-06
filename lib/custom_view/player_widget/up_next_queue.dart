@@ -1,4 +1,4 @@
-﻿import 'package:soul_sync/core/utils/toast_util.dart';
+import 'package:soul_sync/core/utils/toast_util.dart';
 import 'package:soul_sync/core/utils/string_file.dart';
 
 import 'package:soul_sync/custom_view/custom_text_view.dart';
@@ -109,12 +109,11 @@ class UpNextQueue extends StatelessWidget {
                             onPressed: () {
                               if (playerController.currentSongIndex.value ==
                                   index) {
-
                                 ToastUtil.successWithSize(
                                   size: ToastSize.big,
-                                  message: StringFile.songRemovedfromQueueCurrSong,
+                                  message:
+                                      StringFile.songRemovedfromQueueCurrSong,
                                 );
-
                               } else {
                                 playerController.removeFromQueue(
                                   playerController.currentQueue[index],

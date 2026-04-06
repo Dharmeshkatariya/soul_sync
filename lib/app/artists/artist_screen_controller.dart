@@ -183,8 +183,7 @@ class ArtistScreenController extends GetxController
     if (title == "Songs" || title == "Videos") {
       final songlist = sepataredContent[title]['results'].toList();
       SongUtils.sortSongsNVideos(
-          songlist:
-          songlist,sortType:  sortType,isAscending:  isAscending);
+          songlist: songlist, sortType: sortType, isAscending: isAscending);
       sepataredContent[title]['results'] = songlist;
     } else if (title == "Albums" || title == "Singles") {
       final albumList = sepataredContent[title]['results'].toList();

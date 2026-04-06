@@ -398,7 +398,8 @@ class CommonWidget {
       },
       asset: asset ?? AssetsIcons.icAdd,
       hasBorder: true,
-      assetColorFilter: const ColorFilter.mode(ColorFile.whiteColor, BlendMode.srcIn),
+      assetColorFilter:
+          const ColorFilter.mode(ColorFile.whiteColor, BlendMode.srcIn),
       bgColor: ColorFile.webThemeColor,
       textColor: ColorFile.whiteColor,
     );

@@ -1,4 +1,4 @@
-﻿import 'package:soul_sync/core/utils/toast_util.dart';
+import 'package:soul_sync/core/utils/toast_util.dart';
 import 'package:soul_sync/core/utils/string_file.dart';
 
 import 'package:soul_sync/core/extension/text_style.dart';
@@ -94,13 +94,10 @@ class SongListTile extends StatelessWidget with RemoveSongFromPlaylistMixin {
                 playerController.enqueueSong(song).whenComplete(() {
                   if (!context.mounted) return;
 
-
                   ToastUtil.errorWithSize(
                     size: ToastSize.medium,
-                    message:  StringFile.songEnqueueAlert,
+                    message: StringFile.songEnqueueAlert,
                   );
-
-
                 });
               },
               backgroundColor: Theme.of(context).colorScheme.secondary,
@@ -112,10 +109,9 @@ class SongListTile extends StatelessWidget with RemoveSongFromPlaylistMixin {
               onPressed: (context) {
                 playerController.playNext(song);
                 ToastUtil.infoWithSize(
-                  message:  "${StringFile.playnextMsg} ${(song).title}",
+                  message: "${StringFile.playnextMsg} ${(song).title}",
                   size: ToastSize.big,
                 );
-
               },
               backgroundColor: Theme.of(context).colorScheme.secondary,
               foregroundColor: context.titleMedium!.color,

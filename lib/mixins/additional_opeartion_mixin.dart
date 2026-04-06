@@ -18,8 +18,7 @@ mixin AdditionalOpeartionMixin on PlaylistAlbumScreenControllerBase {
   void onSort(SortType sortType, bool isAscending) {
     final songlist_ = songList.toList();
     SongUtils.sortSongsNVideos(
-        songlist:
-        songlist_,sortType:  sortType,isAscending:  isAscending);
+        songlist: songlist_, sortType: sortType, isAscending: isAscending);
     songList.value = songlist_;
   }
 

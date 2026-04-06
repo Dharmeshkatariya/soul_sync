@@ -29,7 +29,6 @@ String? getCurrentRouteName() {
   return currentPath;
 }
 
-
 /// Return true if new version available
 Future<bool> newVersionCheck(String currentVersion) async {
   try {

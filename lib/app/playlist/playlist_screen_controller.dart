@@ -1,4 +1,4 @@
-﻿import 'package:soul_sync/core/utils/toast_util.dart';
+import 'package:soul_sync/core/utils/toast_util.dart';
 import 'package:soul_sync/core/utils/string_file.dart';
 
 import 'package:soul_sync/core/extension/text_style.dart';
@@ -392,12 +392,10 @@ class PlaylistScreenController extends PlaylistAlbumScreenControllerBase
       // Show success message with platform-specific path info
       String locationMsg = _getLocationMessage(exportDir.path);
       if (context.mounted) {
-
         ToastUtil.successWithSize(
           size: ToastSize.medium,
           message: "${StringFile.playlistExportedMsg}: $locationMsg",
         );
-
       }
     } catch (e) {
       // Close progress dialog if it's still open
@@ -419,8 +417,7 @@ class PlaylistScreenController extends PlaylistAlbumScreenControllerBase
       }
 
       if (context.mounted) {
-        ToastUtil.successWithSize(
-            size: ToastSize.medium, message: errorMsg);
+        ToastUtil.successWithSize(size: ToastSize.medium, message: errorMsg);
       }
     } finally {
       isExporting.value = false;
@@ -489,13 +486,10 @@ class PlaylistScreenController extends PlaylistAlbumScreenControllerBase
       // Show success message with platform-specific path info
       String locationMsg = _getLocationMessage(exportDir.path);
       if (context.mounted) {
-
         ToastUtil.successWithSize(
-          message:    "${StringFile.playlistExportedMsg}: $locationMsg",
+          message: "${StringFile.playlistExportedMsg}: $locationMsg",
           size: ToastSize.medium,
         );
-
-
       }
     } catch (e) {
       // Close progress dialog if it's still open
@@ -517,8 +511,7 @@ class PlaylistScreenController extends PlaylistAlbumScreenControllerBase
       }
 
       if (context.mounted) {
-        ToastUtil.successWithSize(
-            size: ToastSize.medium, message: errorMsg);
+        ToastUtil.successWithSize(size: ToastSize.medium, message: errorMsg);
       }
     } finally {
       isExporting.value = false;

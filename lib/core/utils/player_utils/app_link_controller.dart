@@ -1,4 +1,4 @@
-﻿import 'package:soul_sync/core/utils/toast_util.dart';
+import 'package:soul_sync/core/utils/toast_util.dart';
 import 'package:soul_sync/core/utils/string_file.dart';
 
 import 'dart:async';
@@ -75,7 +75,6 @@ mixin ProcessLink {
           size: ToastSize.medium,
           message: StringFile.notaSongVideo,
         );
-
       } else if (uri.pathSegments[0] == "watch") {
         final songId = uri.queryParameters['v'];
         await playSong(songId!);
@@ -89,10 +88,9 @@ mixin ProcessLink {
       }
     } else {
       ToastUtil.infoWithSize(
-        message:  StringFile.notaValidLink,
+        message: StringFile.notaValidLink,
         size: ToastSize.medium,
       );
-
     }
   }
 
@@ -136,12 +134,10 @@ mixin ProcessLink {
         playfrom: PlaylingFrom(type: PlaylingFromType.SELECTION),
       );
     } else {
-
       ToastUtil.infoWithSize(
         message: StringFile.notaSongVideo,
         size: ToastSize.medium,
       );
-
     }
   }
 }

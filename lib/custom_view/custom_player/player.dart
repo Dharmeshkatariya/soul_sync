@@ -1,4 +1,4 @@
-﻿import 'package:soul_sync/core/utils/toast_util.dart';
+import 'package:soul_sync/core/utils/toast_util.dart';
 import 'package:soul_sync/core/utils/string_file.dart';
 
 import 'package:soul_sync/core/extension/text_style.dart';
@@ -164,9 +164,9 @@ class Player extends StatelessWidget {
                                 onTap: () {
                                   if (playerController
                                       .isShuffleModeEnabled.isTrue) {
-
                                     ToastUtil.infoWithSize(
-                                      message:  StringFile.queueShufflingDeniedMsg,
+                                      message:
+                                          StringFile.queueShufflingDeniedMsg,
                                       size: ToastSize.big,
                                     );
 

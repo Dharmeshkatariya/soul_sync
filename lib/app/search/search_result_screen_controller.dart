@@ -157,8 +157,7 @@ class SearchResultScreenController extends GetxController
     if (title == "Songs" || title == "Videos") {
       final songList = separatedResultContent[title].toList();
       SongUtils.sortSongsNVideos(
-          songlist:
-          songList,sortType:  sortType,isAscending:  isAscending);
+          songlist: songList, sortType: sortType, isAscending: isAscending);
       separatedResultContent[title] = songList;
     } else if (title.contains('playlists')) {
       final playlists = separatedResultContent[title].toList();
@@ -168,8 +167,7 @@ class SearchResultScreenController extends GetxController
     } else if (title == "artists") {
       final artistList = separatedResultContent[title].toList();
       SongUtils.sortArtist(
-          artistList:
-          artistList, sortType: sortType, isAscending: isAscending);
+          artistList: artistList, sortType: sortType, isAscending: isAscending);
       separatedResultContent[title] = artistList;
     } else if (title == "Albums") {
       final albumList = separatedResultContent[title].toList();
