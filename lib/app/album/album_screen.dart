@@ -61,13 +61,11 @@ class AlbumScreen extends StatelessWidget {
                           : -.25 * albumController.scrollOffset.value,
                       right: landscape ? 0 : null,
                       child: Obx(() {
-                        final opacityValue =
-                            1 -
+                        final opacityValue = 1 -
                             albumController.scrollOffset.value /
                                 (size.width - 100);
                         return Opacity(
-                          opacity:
-                              opacityValue < 0 ||
+                          opacity: opacityValue < 0 ||
                                   albumController.isSearchingOn.isTrue
                               ? 0
                               : opacityValue,
@@ -177,8 +175,8 @@ class AlbumScreen extends StatelessWidget {
                               top: albumController.isSearchingOn.isTrue
                                   ? 0
                                   : landscape
-                                  ? 150
-                                  : 200,
+                                      ? 150
+                                      : 200,
                               bottom: 200,
                             ),
                             itemCount: albumController.songList.isEmpty
@@ -197,49 +195,42 @@ class AlbumScreen extends StatelessWidget {
                                         // Bookmark button
                                         Obx(
                                           () => IconButton(
-                                            tooltip:
-                                                albumController
-                                                    .isAddedToLibrary
-                                                    .isFalse
+                                            tooltip: albumController
+                                                    .isAddedToLibrary.isFalse
                                                 ? StringFile.addToLibrary
                                                 : StringFile.removeFromLibrary,
                                             splashRadius: 10,
                                             onPressed: () {
                                               final add = albumController
-                                                  .isAddedToLibrary
-                                                  .isFalse;
+                                                  .isAddedToLibrary.isFalse;
                                               albumController
                                                   .addNremoveFromLibrary(
-                                                    albumController.album.value,
-                                                    add: add,
-                                                  )
+                                                albumController.album.value,
+                                                add: add,
+                                              )
                                                   .then((value) {
-                                                    if (!context.mounted)
-                                                      return;
+                                                if (!context.mounted) return;
 
-                                                    ScaffoldMessenger.of(
-                                                      context,
-                                                    ).showSnackBar(
-                                                      snackbar(
-                                                        context,
-                                                        value
-                                                            ? add
-                                                                  ? "albumBookmarkAddAlert"
-                                                                        .tr
-                                                                  : "albumBookmarkRemoveAlert"
-                                                                        .tr
-                                                            : "operationFailed"
-                                                                  .tr,
-                                                        size:
-                                                            SanckBarSize.MEDIUM,
-                                                      ),
-                                                    );
-                                                  });
+                                                ScaffoldMessenger.of(
+                                                  context,
+                                                ).showSnackBar(
+                                                  snackbar(
+                                                    context,
+                                                    value
+                                                        ? add
+                                                            ? "albumBookmarkAddAlert"
+                                                                .tr
+                                                            : "albumBookmarkRemoveAlert"
+                                                                .tr
+                                                        : "operationFailed".tr,
+                                                    size: SanckBarSize.MEDIUM,
+                                                  ),
+                                                );
+                                              });
                                             },
                                             icon: Icon(
                                               albumController
-                                                      .isAddedToLibrary
-                                                      .isFalse
+                                                      .isAddedToLibrary.isFalse
                                                   ? Icons.bookmark_add
                                                   : Icons.bookmark_added,
                                             ),
@@ -256,9 +247,7 @@ class AlbumScreen extends StatelessWidget {
                                               0,
                                               playfrom: PlaylingFrom(
                                                 name: albumController
-                                                    .album
-                                                    .value
-                                                    .title,
+                                                    .album.value.title,
                                                 type: PlaylingFromType.ALBUM,
                                               ),
                                             );
@@ -276,24 +265,21 @@ class AlbumScreen extends StatelessWidget {
                                           onPressed: () {
                                             Get.find<PlayerController>()
                                                 .enqueueSongList(
-                                                  albumController.songList
-                                                      .toList(),
-                                                )
+                                              albumController.songList.toList(),
+                                            )
                                                 .whenComplete(() {
-                                                  if (context.mounted) {
-                                                    ScaffoldMessenger.of(
-                                                      context,
-                                                    ).showSnackBar(
-                                                      snackbar(
-                                                        context,
-                                                        StringFile
-                                                            .songEnqueueAlert,
-                                                        size:
-                                                            SanckBarSize.MEDIUM,
-                                                      ),
-                                                    );
-                                                  }
-                                                });
+                                              if (context.mounted) {
+                                                ScaffoldMessenger.of(
+                                                  context,
+                                                ).showSnackBar(
+                                                  snackbar(
+                                                    context,
+                                                    StringFile.songEnqueueAlert,
+                                                    size: SanckBarSize.MEDIUM,
+                                                  ),
+                                                );
+                                              }
+                                            });
                                           },
                                           icon: Icon(
                                             Icons.merge,
@@ -307,16 +293,13 @@ class AlbumScreen extends StatelessWidget {
                                         GetX<Downloader>(
                                           builder: (controller) {
                                             final id = albumController
-                                                .album
-                                                .value
-                                                .browseId;
+                                                .album.value.browseId;
                                             return IconButton(
                                               tooltip:
                                                   StringFile.downloadAlbumSongs,
                                               onPressed: () {
                                                 if (albumController
-                                                    .isDownloaded
-                                                    .isTrue) {
+                                                    .isDownloaded.isTrue) {
                                                   return;
                                                 }
                                                 controller.downloadPlaylist(
@@ -325,63 +308,67 @@ class AlbumScreen extends StatelessWidget {
                                                       .toList(),
                                                 );
                                               },
-                                              icon:
-                                                  albumController
-                                                      .isDownloaded
-                                                      .isTrue
+                                              icon: albumController
+                                                      .isDownloaded.isTrue
                                                   ? const Icon(
                                                       Icons.download_done,
                                                     )
                                                   : controller.playlistQueue
-                                                            .containsKey(id) &&
-                                                        controller
-                                                                .currentPlaylistId
-                                                                .toString() ==
-                                                            id
-                                                  ? Stack(
-                                                      children: [
-                                                        Center(
-                                                          child: CustomTextView(
-                                                            "${controller.playlistDownloadingProgress.value}/${albumController.songList.length}",
-                                                            style: Theme.of(context)
-                                                                .textTheme
-                                                                .titleMedium!
-                                                                .copyWith(
-                                                                  fontSize: 10,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold,
+                                                              .containsKey(
+                                                                  id) &&
+                                                          controller
+                                                                  .currentPlaylistId
+                                                                  .toString() ==
+                                                              id
+                                                      ? Stack(
+                                                          children: [
+                                                            Center(
+                                                              child:
+                                                                  CustomTextView(
+                                                                "${controller.playlistDownloadingProgress.value}/${albumController.songList.length}",
+                                                                style: Theme.of(
+                                                                        context)
+                                                                    .textTheme
+                                                                    .titleMedium!
+                                                                    .copyWith(
+                                                                      fontSize:
+                                                                          10,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                    ),
+                                                              ),
+                                                            ),
+                                                            const Center(
+                                                              child:
+                                                                  LoadingIndicator(
+                                                                dimension: 30,
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        )
+                                                      : controller.playlistQueue
+                                                              .containsKey(id)
+                                                          ? const Stack(
+                                                              children: [
+                                                                Center(
+                                                                  child: Icon(
+                                                                    Icons
+                                                                        .hourglass_bottom,
+                                                                    size: 20,
+                                                                  ),
                                                                 ),
-                                                          ),
-                                                        ),
-                                                        const Center(
-                                                          child:
-                                                              LoadingIndicator(
-                                                                dimension: 30,
-                                                              ),
-                                                        ),
-                                                      ],
-                                                    )
-                                                  : controller.playlistQueue
-                                                        .containsKey(id)
-                                                  ? const Stack(
-                                                      children: [
-                                                        Center(
-                                                          child: Icon(
-                                                            Icons
-                                                                .hourglass_bottom,
-                                                            size: 20,
-                                                          ),
-                                                        ),
-                                                        Center(
-                                                          child:
-                                                              LoadingIndicator(
-                                                                dimension: 30,
-                                                              ),
-                                                        ),
-                                                      ],
-                                                    )
-                                                  : const Icon(Icons.download),
+                                                                Center(
+                                                                  child:
+                                                                      LoadingIndicator(
+                                                                    dimension:
+                                                                        30,
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            )
+                                                          : const Icon(
+                                                              Icons.download),
                                             );
                                           },
                                         ),
@@ -433,9 +420,7 @@ class AlbumScreen extends StatelessWidget {
                                     child: Obx(
                                       () => SortWidget(
                                         tag: albumController
-                                            .album
-                                            .value
-                                            .browseId,
+                                            .album.value.browseId,
                                         screenController: albumController,
                                         isSearchFeatureRequired: true,
                                         itemCountTitle:
@@ -467,21 +452,20 @@ class AlbumScreen extends StatelessWidget {
                                   ),
                                 );
                               } else if (albumController
-                                      .isContentFetched
-                                      .isFalse ||
+                                      .isContentFetched.isFalse ||
                                   albumController.songList.isEmpty) {
                                 return SizedBox(
                                   height: 300,
                                   child: Center(
                                     child:
                                         albumController.isContentFetched.isFalse
-                                        ? const LoadingIndicator()
-                                        : CustomTextView(
-                                            StringFile.emptyPlaylist,
-                                            style: Theme.of(
-                                              context,
-                                            ).textTheme.titleSmall,
-                                          ),
+                                            ? const LoadingIndicator()
+                                            : CustomTextView(
+                                                StringFile.emptyPlaylist,
+                                                style: Theme.of(
+                                                  context,
+                                                ).textTheme.titleSmall,
+                                              ),
                                   ),
                                 );
                               }
@@ -533,7 +517,7 @@ class AlbumScreen extends StatelessWidget {
     final description = albumController.album.value.description;
     final artists =
         albumController.album.value.artists?.map((e) => e['name']).join(", ") ??
-        "";
+            "";
     return AnimatedBuilder(
       animation: albumController.animationController,
       builder: (context, child) {
