@@ -1,3 +1,5 @@
+import 'package:soul_sync/core/utils/string_file.dart';
+
 import 'package:soul_sync/core/extension/text_style.dart';
 import 'package:soul_sync/custom_view/custom_text_view.dart';
 
@@ -41,13 +43,13 @@ class SearchResultScreen extends StatelessWidget {
                                       .value &&
                                   searchResScrController.railItems.isNotEmpty)
                               ? [
-                                  railDestination("results".tr),
+                                  railDestination(StringFile.results),
                                   ...(searchResScrController.railItems.map(
                                     (element) => railDestination(element),
                                   )),
                                 ]
                               : [
-                                  railDestination("results".tr),
+                                  railDestination(StringFile.results),
                                   railDestination(""),
                                 ],
                           leading: Column(
@@ -127,7 +129,7 @@ class Body extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                CustomTextView("nomatch".tr, style: context.titleMedium),
+                CustomTextView(StringFile.nomatch, style: context.titleMedium),
                 CustomTextView("'${searchResScrController.queryString.value}'"),
               ],
             ),

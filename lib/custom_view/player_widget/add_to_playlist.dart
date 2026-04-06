@@ -1,3 +1,5 @@
+import 'package:soul_sync/core/utils/string_file.dart';
+
 import 'package:soul_sync/core/extension/text_style.dart';
 import 'package:soul_sync/custom_view/custom_text_view.dart';
 
@@ -48,7 +50,7 @@ class AddToPlaylist extends StatelessWidget {
                             id: "createNewPlaylistx",
                             delay: const Duration(milliseconds: 300),
                             child: CustomTextView(
-                              "CreateNewPlaylist".tr,
+                              StringFile.CreateNewPlaylist,
                               style: context.titleMedium,
                             ),
                           ),
@@ -85,7 +87,7 @@ class AddToPlaylist extends StatelessWidget {
                               onChanged:
                                   addToPlaylistController.changePlaylistType,
                             ),
-                            CustomTextView("Piped".tr),
+                            CustomTextView(StringFile.Piped),
                           ],
                         ),
                         const SizedBox(width: 15),
@@ -98,7 +100,7 @@ class AddToPlaylist extends StatelessWidget {
                               onChanged:
                                   addToPlaylistController.changePlaylistType,
                             ),
-                            CustomTextView("local".tr),
+                            CustomTextView(StringFile.local),
                           ],
                         ),
                       ],
@@ -137,7 +139,7 @@ class AddToPlaylist extends StatelessWidget {
                                         ).showSnackBar(
                                           snackbar(
                                             context,
-                                            "songAddedToPlaylistAlert".tr,
+                                            StringFile.songAddedToPlaylistAlert,
                                             size: SanckBarSize.MEDIUM,
                                           ),
                                         );
@@ -148,7 +150,7 @@ class AddToPlaylist extends StatelessWidget {
                                         ).showSnackBar(
                                           snackbar(
                                             context,
-                                            "songAlreadyExists".tr,
+                                            StringFile.songAlreadyExists,
                                             size: SanckBarSize.MEDIUM,
                                           ),
                                         );
@@ -158,7 +160,9 @@ class AddToPlaylist extends StatelessWidget {
                               },
                             ),
                           )
-                        : Center(child: CustomTextView("noLibPlaylist".tr)),
+                        : Center(
+                            child: CustomTextView(StringFile.noLibPlaylist),
+                          ),
                   ),
                 ),
               ],

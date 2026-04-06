@@ -1,3 +1,5 @@
+import 'package:soul_sync/core/utils/string_file.dart';
+
 import 'package:soul_sync/custom_view/custom_text_view.dart';
 
 import 'package:flutter/material.dart';
@@ -36,7 +38,7 @@ class UpNextQueue extends StatelessWidget {
               ScaffoldMessenger.of(Get.context!).showSnackBar(
                 snackbar(
                   Get.context!,
-                  "queuerearrangingDeniedMsg".tr,
+                  StringFile.queuerearrangingDeniedMsg,
                   size: SanckBarSize.BIG,
                 ),
               );
@@ -115,7 +117,7 @@ class UpNextQueue extends StatelessWidget {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   snackbar(
                                     context,
-                                    "songRemovedfromQueueCurrSong".tr,
+                                    StringFile.songRemovedfromQueueCurrSong,
                                     size: SanckBarSize.BIG,
                                   ),
                                 );

@@ -1,3 +1,5 @@
+import 'package:soul_sync/core/utils/string_file.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../app/Library/library_controller.dart';
@@ -31,7 +33,7 @@ class PipedSyncWidget extends StatelessWidget {
               ScaffoldMessenger.of(Get.context!).showSnackBar(
                 snackbar(
                   Get.context!,
-                  "pipedplstSyncAlert".tr,
+                  StringFile.pipedplstSyncAlert,
                   size: SanckBarSize.MEDIUM,
                 ),
               );
@@ -39,7 +41,7 @@ class PipedSyncWidget extends StatelessWidget {
               ScaffoldMessenger.of(Get.context!).showSnackBar(
                 snackbar(
                   Get.context!,
-                  "errorOccuredAlert".tr,
+                  StringFile.errorOccuredAlert,
                   size: SanckBarSize.BIG,
                 ),
               );

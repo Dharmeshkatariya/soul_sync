@@ -1,3 +1,5 @@
+import 'package:soul_sync/core/utils/string_file.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,7 +12,6 @@ import '../routes/routes.dart';
 import 'app_locale.dart';
 import 'color_file.dart';
 import 'globals.dart';
-import 'string_file.dart';
 
 class Common {
   String buildVersion = "v1.1(030222)"; // for Apk Build Version

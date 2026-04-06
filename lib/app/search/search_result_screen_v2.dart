@@ -1,3 +1,5 @@
+import 'package:soul_sync/core/utils/string_file.dart';
+
 import 'package:soul_sync/core/extension/text_style.dart';
 import 'package:soul_sync/custom_view/custom_text_view.dart';
 
@@ -44,7 +46,7 @@ class SearchResultScreenBN extends StatelessWidget {
                       Align(
                         alignment: Alignment.centerLeft,
                         child: CustomTextView(
-                          "searchRes".tr,
+                          StringFile.searchRes,
                           style: context.titleLarge,
                         ),
                       ),
@@ -52,7 +54,7 @@ class SearchResultScreenBN extends StatelessWidget {
                         alignment: Alignment.centerLeft,
                         child: Obx(
                           () => CustomTextView(
-                            "${"for1".tr} \"${searchResScrController.queryString.value}\"",
+                            "${StringFile.for1} \"${searchResScrController.queryString.value}\"",
                             style: context.titleMedium,
                           ),
                         ),
@@ -71,7 +73,7 @@ class SearchResultScreenBN extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         CustomTextView(
-                          "nomatch".tr,
+                          StringFile.nomatch,
                           style: context.titleMedium,
                         ),
                         CustomTextView(
@@ -122,7 +124,7 @@ class SearchResultScreenBN extends StatelessWidget {
                           ),
                           // Add your tabs here
                           tabs: [
-                            Tab(text: "results".tr),
+                            Tab(text: StringFile.results),
                             ...searchResScrController.railItems.map(
                               (item) => Tab(
                                 text: item.toLowerCase().removeAllWhitespace.tr,

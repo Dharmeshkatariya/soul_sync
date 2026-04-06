@@ -1,3 +1,5 @@
+import 'package:soul_sync/core/utils/string_file.dart';
+
 import 'dart:async';
 
 import 'package:app_links/app_links.dart';
@@ -70,7 +72,11 @@ mixin ProcessLink {
         await openPlaylistOrAlbum(browseId!);
       } else if (uri.pathSegments[0] == "shorts") {
         ScaffoldMessenger.of(Get.context!).showSnackBar(
-          snackbar(Get.context!, "notaSongVideo".tr, size: SanckBarSize.MEDIUM),
+          snackbar(
+            Get.context!,
+            StringFile.notaSongVideo,
+            size: SanckBarSize.MEDIUM,
+          ),
         );
       } else if (uri.pathSegments[0] == "watch") {
         final songId = uri.queryParameters['v'];
@@ -85,7 +91,11 @@ mixin ProcessLink {
       }
     } else {
       ScaffoldMessenger.of(Get.context!).showSnackBar(
-        snackbar(Get.context!, "notaValidLink".tr, size: SanckBarSize.MEDIUM),
+        snackbar(
+          Get.context!,
+          StringFile.notaValidLink,
+          size: SanckBarSize.MEDIUM,
+        ),
       );
     }
   }
@@ -131,7 +141,11 @@ mixin ProcessLink {
       );
     } else {
       ScaffoldMessenger.of(Get.context!).showSnackBar(
-        snackbar(Get.context!, "notaSongVideo".tr, size: SanckBarSize.MEDIUM),
+        snackbar(
+          Get.context!,
+          StringFile.notaSongVideo,
+          size: SanckBarSize.MEDIUM,
+        ),
       );
     }
   }

@@ -1,3 +1,5 @@
+import 'package:soul_sync/core/utils/string_file.dart';
+
 import 'package:soul_sync/core/extension/text_style.dart';
 import 'package:soul_sync/custom_view/custom_text_view.dart';
 
@@ -48,7 +50,7 @@ class ContentListWidget extends StatelessWidget {
                           scrresController.viewAllCallback(content.title);
                         },
                         child: CustomTextView(
-                          "viewAll".tr,
+                          StringFile.viewAll,
                           style: Theme.of(Get.context!).textTheme.titleSmall,
                         ),
                       )

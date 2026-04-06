@@ -1,4 +1,3 @@
-
 class Routes {
   String login = '/login';
 

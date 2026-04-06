@@ -1,7 +1,8 @@
+import 'package:soul_sync/core/utils/string_file.dart';
+
 import 'package:soul_sync/core/utils/toast_util.dart';
 
 import '../core/utils/common.dart';
-import '../core/utils/string_file.dart';
 
 abstract class CustomBaseModel {
   bool isEmpty();

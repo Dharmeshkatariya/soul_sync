@@ -1,3 +1,5 @@
+import 'package:soul_sync/core/utils/string_file.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:soul_sync/core/utils/theme_controller.dart';
@@ -27,7 +29,7 @@ class LyricsSwitch extends StatelessWidget {
                 inactiveFgColor: Colors.white,
                 initialLabelIndex: playerController.lyricsMode.value,
                 totalSwitches: 2,
-                labels: ['synced'.tr, 'plain'.tr],
+                labels: [StringFile.synced, StringFile.plain],
                 radiusStyle: true,
                 onToggle: playerController.changeLyricsMode,
               ),

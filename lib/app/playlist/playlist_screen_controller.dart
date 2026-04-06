@@ -1,3 +1,5 @@
+import 'package:soul_sync/core/utils/string_file.dart';
+
 import 'package:soul_sync/core/extension/text_style.dart';
 import 'package:soul_sync/custom_view/custom_text_view.dart';
 
@@ -328,7 +330,11 @@ class PlaylistScreenController extends PlaylistAlbumScreenControllerBase
     if (!await PermissionService.getExtStoragePermission()) {
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          snackbar(context, "permissionDenied".tr, size: SanckBarSize.MEDIUM),
+          snackbar(
+            context,
+            StringFile.permissionDenied,
+            size: SanckBarSize.MEDIUM,
+          ),
         );
       }
       return;
@@ -340,7 +346,7 @@ class PlaylistScreenController extends PlaylistAlbumScreenControllerBase
 
       // Show progress dialog
       if (context.mounted) {
-        _showProgressDialog(context, "exportingPlaylist".tr);
+        _showProgressDialog(context, StringFile.exportingPlaylist);
       }
 
       // Get appropriate directory based on platform
@@ -392,7 +398,7 @@ class PlaylistScreenController extends PlaylistAlbumScreenControllerBase
         ScaffoldMessenger.of(context).showSnackBar(
           snackbar(
             context,
-            "${"playlistExportedMsg".tr}: $locationMsg",
+            "${StringFile.playlistExportedMsg}: $locationMsg",
             size: SanckBarSize.MEDIUM,
           ),
         );
@@ -405,15 +411,15 @@ class PlaylistScreenController extends PlaylistAlbumScreenControllerBase
 
       printERROR("Error exporting playlist: $e");
 
-      String errorMsg = "exportError".tr;
+      String errorMsg = StringFile.exportError;
       if (e is FileSystemException) {
         if (e.osError?.errorCode == 13) {
-          errorMsg = "exportErrorPermission".tr;
+          errorMsg = StringFile.exportErrorPermission;
         } else if (e.osError?.errorCode == 28) {
-          errorMsg = "exportErrorStorage".tr;
+          errorMsg = StringFile.exportErrorStorage;
         }
       } else if (e is FormatException) {
-        errorMsg = "exportErrorFormat".tr;
+        errorMsg = StringFile.exportErrorFormat;
       }
 
       if (context.mounted) {
@@ -431,7 +437,11 @@ class PlaylistScreenController extends PlaylistAlbumScreenControllerBase
     if (!await PermissionService.getExtStoragePermission()) {
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          snackbar(context, "permissionDenied".tr, size: SanckBarSize.MEDIUM),
+          snackbar(
+            context,
+            StringFile.permissionDenied,
+            size: SanckBarSize.MEDIUM,
+          ),
         );
       }
       return;
@@ -443,7 +453,7 @@ class PlaylistScreenController extends PlaylistAlbumScreenControllerBase
 
       // Show progress dialog
       if (context.mounted) {
-        _showProgressDialog(context, "exportingPlaylist".tr);
+        _showProgressDialog(context, StringFile.exportingPlaylist);
       }
 
       // Get appropriate directory based on platform
@@ -490,7 +500,7 @@ class PlaylistScreenController extends PlaylistAlbumScreenControllerBase
         ScaffoldMessenger.of(context).showSnackBar(
           snackbar(
             context,
-            "${"playlistExportedMsg".tr}: $locationMsg",
+            "${StringFile.playlistExportedMsg}: $locationMsg",
             size: SanckBarSize.MEDIUM,
           ),
         );
@@ -503,15 +513,15 @@ class PlaylistScreenController extends PlaylistAlbumScreenControllerBase
 
       printERROR("Error exporting playlist to CSV: $e");
 
-      String errorMsg = "exportError".tr;
+      String errorMsg = StringFile.exportError;
       if (e is FileSystemException) {
         if (e.osError?.errorCode == 13) {
-          errorMsg = "exportErrorPermission".tr;
+          errorMsg = StringFile.exportErrorPermission;
         } else if (e.osError?.errorCode == 28) {
-          errorMsg = "exportErrorStorage".tr;
+          errorMsg = StringFile.exportErrorStorage;
         }
       } else if (e is FormatException) {
-        errorMsg = "exportErrorFormat".tr;
+        errorMsg = StringFile.exportErrorFormat;
       }
 
       if (context.mounted) {

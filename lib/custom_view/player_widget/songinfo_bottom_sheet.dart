@@ -1,3 +1,5 @@
+import 'package:soul_sync/core/utils/string_file.dart';
+
 import 'package:soul_sync/custom_view/custom_text_view.dart';
 
 import 'package:audio_service/audio_service.dart';
@@ -104,7 +106,7 @@ class SongInfoBottomSheet extends StatelessWidget {
             ListTile(
               visualDensity: const VisualDensity(vertical: -1),
               leading: const Icon(Icons.sensors),
-              title: CustomTextView("startRadio".tr),
+              title: CustomTextView(StringFile.startRadio),
               onTap: () {
                 Navigator.of(context).pop();
                 playerController.startRadio(song);
@@ -115,14 +117,14 @@ class SongInfoBottomSheet extends StatelessWidget {
                 : ListTile(
                     visualDensity: const VisualDensity(vertical: -1),
                     leading: const Icon(Icons.playlist_play),
-                    title: CustomTextView("playNext".tr),
+                    title: CustomTextView(StringFile.playNext),
                     onTap: () {
                       Navigator.of(context).pop();
                       playerController.playNext(song);
                       ScaffoldMessenger.of(context).showSnackBar(
                         snackbar(
                           context,
-                          "${"playnextMsg".tr} ${song.title}",
+                          "${StringFile.playnextMsg} ${song.title}",
                           size: SanckBarSize.BIG,
                         ),
                       );
@@ -131,7 +133,7 @@ class SongInfoBottomSheet extends StatelessWidget {
             ListTile(
               visualDensity: const VisualDensity(vertical: -1),
               leading: const Icon(Icons.playlist_add),
-              title: CustomTextView("addToPlaylist".tr),
+              title: CustomTextView(StringFile.addToPlaylist),
               onTap: () {
                 Navigator.of(context).pop();
                 showDialog(
@@ -145,14 +147,14 @@ class SongInfoBottomSheet extends StatelessWidget {
                 : ListTile(
                     visualDensity: const VisualDensity(vertical: -1),
                     leading: const Icon(Icons.merge),
-                    title: CustomTextView("enqueueSong".tr),
+                    title: CustomTextView(StringFile.enqueueSong),
                     onTap: () {
                       playerController.enqueueSong(song).whenComplete(() {
                         if (!context.mounted) return;
                         ScaffoldMessenger.of(context).showSnackBar(
                           snackbar(
                             context,
-                            "songEnqueueAlert".tr,
+                            StringFile.songEnqueueAlert,
                             size: SanckBarSize.MEDIUM,
                           ),
                         );
@@ -164,7 +166,7 @@ class SongInfoBottomSheet extends StatelessWidget {
                 ? ListTile(
                     visualDensity: const VisualDensity(vertical: -1),
                     leading: const Icon(Icons.album),
-                    title: CustomTextView("goToAlbum".tr),
+                    title: CustomTextView(StringFile.goToAlbum),
                     onTap: () {
                       Navigator.of(context).pop();
                       if (calledFromPlayer) {
@@ -190,8 +192,8 @@ class SongInfoBottomSheet extends StatelessWidget {
                     visualDensity: const VisualDensity(vertical: -1),
                     leading: const Icon(Icons.delete),
                     title: playlist!.title == "library Songs"
-                        ? CustomTextView("removeFromLib".tr)
-                        : CustomTextView("removeFromPlaylist".tr),
+                        ? CustomTextView(StringFile.removeFromLib)
+                        : CustomTextView(StringFile.removeFromPlaylist),
                     onTap: () {
                       Navigator.of(context).pop();
                       songInfoController
@@ -213,14 +215,14 @@ class SongInfoBottomSheet extends StatelessWidget {
                 ? ListTile(
                     visualDensity: const VisualDensity(vertical: -1),
                     leading: const Icon(Icons.delete),
-                    title: CustomTextView("removeFromQueue".tr),
+                    title: CustomTextView(StringFile.removeFromQueue),
                     onTap: () {
                       Navigator.of(context).pop();
                       if (playerController.currentSong.value!.id == song.id) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           snackbar(
                             context,
-                            "songRemovedfromQueueCurrSong".tr,
+                            StringFile.songRemovedfromQueueCurrSong,
                             size: SanckBarSize.BIG,
                           ),
                         );
@@ -229,7 +231,7 @@ class SongInfoBottomSheet extends StatelessWidget {
                         ScaffoldMessenger.of(context).showSnackBar(
                           snackbar(
                             context,
-                            "songRemovedfromQueue".tr,
+                            StringFile.songRemovedfromQueue,
                             size: SanckBarSize.MEDIUM,
                           ),
                         );
@@ -246,7 +248,7 @@ class SongInfoBottomSheet extends StatelessWidget {
                       contentPadding: const EdgeInsets.only(left: 15),
                       visualDensity: const VisualDensity(vertical: -1),
                       leading: const Icon(Icons.delete),
-                      title: CustomTextView("deleteDownloadData".tr),
+                      title: CustomTextView(StringFile.deleteDownloadData),
                       onTap: () {
                         Navigator.of(context).pop();
                         final box = Hive.box("SongDownloads");
@@ -269,7 +271,7 @@ class SongInfoBottomSheet extends StatelessWidget {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     snackbar(
                                       context,
-                                      "deleteDownloadedDataAlert".tr,
+                                      StringFile.deleteDownloadedDataAlert,
                                       size: SanckBarSize.BIG,
                                     ),
                                   );
@@ -282,7 +284,7 @@ class SongInfoBottomSheet extends StatelessWidget {
             ),
             ListTile(
               leading: const Icon(Icons.open_with),
-              title: CustomTextView("openIn".tr),
+              title: CustomTextView(StringFile.openIn),
               trailing: SizedBox(
                 width: 200,
                 child: Row(
@@ -317,7 +319,7 @@ class SongInfoBottomSheet extends StatelessWidget {
                 contentPadding: const EdgeInsets.only(left: 15),
                 visualDensity: const VisualDensity(vertical: -1),
                 leading: const Icon(Icons.timer),
-                title: CustomTextView("sleepTimer".tr),
+                title: CustomTextView(StringFile.sleepTimer),
                 onTap: () {
                   Navigator.of(context).pop();
                   showModalBottomSheet(
@@ -339,7 +341,7 @@ class SongInfoBottomSheet extends StatelessWidget {
               contentPadding: const EdgeInsets.only(left: 15),
               visualDensity: const VisualDensity(vertical: -1),
               leading: const Icon(Icons.share),
-              title: CustomTextView("shareSong".tr),
+              title: CustomTextView(StringFile.shareSong),
               onTap: () =>
                   Share.share("https://youtube.com/watch?v=${song.id}"),
             ),
@@ -380,7 +382,9 @@ class SongInfoBottomSheet extends StatelessWidget {
                   },
                   tileColor: Colors.transparent,
                   leading: const Icon(Icons.person),
-                  title: CustomTextView("${"viewArtist".tr} (${e['name']})"),
+                  title: CustomTextView(
+                    "${StringFile.viewArtist} (${e['name']})",
+                  ),
                 ),
               )
               .toList()

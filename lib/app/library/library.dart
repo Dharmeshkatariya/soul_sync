@@ -1,3 +1,5 @@
+import 'package:soul_sync/core/utils/string_file.dart';
+
 import 'package:soul_sync/core/extension/text_style.dart';
 import 'package:soul_sync/custom_view/custom_text_view.dart';
 
@@ -33,7 +35,7 @@ class SongsLibraryWidget extends StatelessWidget {
               : Align(
                   alignment: Alignment.centerLeft,
                   child: CustomTextView(
-                    "libSongs".tr,
+                    StringFile.libSongs,
                     style: context.titleLarge,
                   ),
                 ),
@@ -87,7 +89,7 @@ class SongsLibraryWidget extends StatelessWidget {
                   : Expanded(
                       child: Center(
                         child: CustomTextView(
-                          "noOfflineSong".tr,
+                          StringFile.noOfflineSong,
                           style: context.titleMedium,
                         ),
                       ),
@@ -137,7 +139,9 @@ class PlaylistNAlbumLibraryWidget extends StatelessWidget {
                     : Align(
                         alignment: Alignment.centerLeft,
                         child: CustomTextView(
-                          isAlbumContent ? "libAlbums".tr : "libPlaylists".tr,
+                          isAlbumContent
+                              ? StringFile.libAlbums
+                              : StringFile.libPlaylists,
                           style: context.titleLarge,
                         ),
                       ),
@@ -159,7 +163,7 @@ class PlaylistNAlbumLibraryWidget extends StatelessWidget {
                     isAdditionalOperationRequired: false,
                     isSearchFeatureRequired: true,
                     itemCountTitle:
-                        "${libralbumCntrller.libraryAlbums.length} ${"items".tr}",
+                        "${libralbumCntrller.libraryAlbums.length} ${StringFile.items}",
                     requiredSortTypes: buildSortTypeSet(true),
                     onSort: (type, ascending) {
                       libralbumCntrller.onSort(type, ascending);
@@ -174,7 +178,7 @@ class PlaylistNAlbumLibraryWidget extends StatelessWidget {
                     isAdditionalOperationRequired: false,
                     isSearchFeatureRequired: true,
                     itemCountTitle:
-                        "${librplstCntrller.libraryPlaylists.length} ${"items".tr}",
+                        "${librplstCntrller.libraryPlaylists.length} ${StringFile.items}",
                     requiredSortTypes: buildSortTypeSet(),
                     onSort: (type, ascending) {
                       librplstCntrller.onSort(type, ascending);
@@ -235,7 +239,7 @@ class PlaylistNAlbumLibraryWidget extends StatelessWidget {
                     )
                   : Center(
                       child: CustomTextView(
-                        "noBookmarks".tr,
+                        StringFile.noBookmarks,
                         style: context.titleMedium,
                       ),
                     ),
@@ -267,7 +271,7 @@ class LibraryArtistWidget extends StatelessWidget {
               : Align(
                   alignment: Alignment.centerLeft,
                   child: CustomTextView(
-                    "libArtists".tr,
+                    StringFile.libArtists,
                     style: context.titleLarge,
                   ),
                 ),
@@ -277,7 +281,8 @@ class LibraryArtistWidget extends StatelessWidget {
               screenController: cntrller,
               isAdditionalOperationRequired: false,
               isSearchFeatureRequired: true,
-              itemCountTitle: "${cntrller.libraryArtists.length} ${"items".tr}",
+              itemCountTitle:
+                  "${cntrller.libraryArtists.length} ${StringFile.items}",
               onSort: (type, ascending) {
                 cntrller.onSort(type, ascending);
               },
@@ -292,7 +297,7 @@ class LibraryArtistWidget extends StatelessWidget {
                 : Expanded(
                     child: Center(
                       child: CustomTextView(
-                        "noBookmarks".tr,
+                        StringFile.noBookmarks,
                         style: context.titleMedium,
                       ),
                     ),

@@ -1,3 +1,5 @@
+import 'package:soul_sync/core/utils/string_file.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:soul_sync/core/extension/text_style.dart';
@@ -158,7 +160,7 @@ class Body extends StatelessWidget {
                             Align(
                               alignment: Alignment.topLeft,
                               child: CustomTextView(
-                                "home".tr,
+                                StringFile.home,
                                 style: context.titleLarge,
                               ),
                             ),
@@ -168,7 +170,7 @@ class Body extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     CustomTextView(
-                                      "networkError1".tr,
+                                      StringFile.networkError1,
                                       style: Theme.of(
                                         context,
                                       ).textTheme.titleMedium,
@@ -191,7 +193,7 @@ class Body extends StatelessWidget {
                                               .loadContentFromNetwork();
                                         },
                                         child: CustomTextView(
-                                          "retry".tr,
+                                          StringFile.retry,
                                           style: TextStyle(
                                             color: Theme.of(
                                               context,

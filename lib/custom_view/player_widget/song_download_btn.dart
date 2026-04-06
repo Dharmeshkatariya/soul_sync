@@ -1,3 +1,5 @@
+import 'package:soul_sync/core/utils/string_file.dart';
+
 import 'package:soul_sync/core/extension/text_style.dart';
 import 'package:soul_sync/custom_view/custom_text_view.dart';
 
@@ -79,7 +81,7 @@ class SongDownloadButton extends StatelessWidget {
                     ScaffoldMessenger.of(context).showSnackBar(
                       snackbar(
                         context,
-                        "songAlreadyOfflineAlert".tr,
+                        StringFile.songAlreadyOfflineAlert,
                         size: SanckBarSize.BIG,
                       ),
                     );

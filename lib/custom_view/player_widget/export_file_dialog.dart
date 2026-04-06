@@ -1,3 +1,5 @@
+import 'package:soul_sync/core/utils/string_file.dart';
+
 import 'package:soul_sync/core/extension/text_style.dart';
 import 'package:soul_sync/custom_view/custom_text_view.dart';
 
@@ -34,7 +36,7 @@ class ExportFileDialog extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.only(bottom: 10.0, top: 10),
                   child: CustomTextView(
-                    "exportDowloadedFiles".tr,
+                    StringFile.exportDowloadedFiles,
                     style: context.titleMedium,
                   ),
                 ),
@@ -45,7 +47,7 @@ class ExportFileDialog extends StatelessWidget {
                       () =>
                           exportFileDialogController.exportProgress.toInt() ==
                               exportFileDialogController.filesToExport.length
-                          ? CustomTextView("exportMsg".tr)
+                          ? CustomTextView(StringFile.exportMsg)
                           : exportFileDialogController.exportRunning.isTrue
                           ? Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -55,12 +57,12 @@ class ExportFileDialog extends StatelessWidget {
                                   style: context.titleLarge,
                                 ),
                                 const SizedBox(height: 10),
-                                CustomTextView("exporting".tr),
+                                CustomTextView(StringFile.exporting),
                               ],
                             )
                           : exportFileDialogController.ready.isTrue
                           ? CustomTextView(
-                              "${exportFileDialogController.filesToExport.length} ${"downFilesFound".tr}",
+                              "${exportFileDialogController.filesToExport.length} ${StringFile.downFilesFound}",
                             )
                           : exportFileDialogController.scanning.isTrue
                           ? Column(
@@ -68,7 +70,7 @@ class ExportFileDialog extends StatelessWidget {
                               children: [
                                 const LoadingIndicator(),
                                 const SizedBox(height: 10),
-                                CustomTextView("scanning".tr),
+                                CustomTextView(StringFile.scanning),
                               ],
                             )
                           : const SizedBox(),
@@ -105,8 +107,8 @@ class ExportFileDialog extends StatelessWidget {
                                       exportFileDialogController
                                           .filesToExport
                                           .length
-                                  ? "close".tr
-                                  : "export".tr,
+                                  ? StringFile.close
+                                  : StringFile.export,
                               style: TextStyle(
                                 color: Theme.of(context).canvasColor,
                               ),

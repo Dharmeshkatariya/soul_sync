@@ -1,3 +1,5 @@
+import 'package:soul_sync/core/utils/string_file.dart';
+
 import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
@@ -339,7 +341,7 @@ class SettingsScreenController extends GetxController {
     final box = await Hive.openBox('blacklistedPlaylist');
     box.clear();
     ScaffoldMessenger.of(Get.context!).showSnackBar(
-      snackbar(Get.context!, "unlinkAlert".tr, size: SanckBarSize.MEDIUM),
+      snackbar(Get.context!, StringFile.unlinkAlert, size: SanckBarSize.MEDIUM),
     );
     box.close();
   }

@@ -1,3 +1,5 @@
+import 'package:soul_sync/core/utils/string_file.dart';
+
 // ignore_for_file: constant_identifier_names
 
 import 'package:get/get.dart';
@@ -11,18 +13,18 @@ class PlaylingFrom {
   get typeString {
     switch (type) {
       case PlaylingFromType.ALBUM:
-        return "playingfromAlbum".tr;
+        return StringFile.playingfromAlbum;
       case PlaylingFromType.PLAYLIST:
-        return "playingfromPlaylist".tr;
+        return StringFile.playingfromPlaylist;
       case PlaylingFromType.SELECTION:
-        return "playingfromSelection".tr;
+        return StringFile.playingfromSelection;
       case PlaylingFromType.ARTIST:
-        return "playingfromArtist".tr;
+        return StringFile.playingfromArtist;
     }
   }
 
   get nameString {
-    if (type == PlaylingFromType.SELECTION) return "randomSelection".tr;
+    if (type == PlaylingFromType.SELECTION) return StringFile.randomSelection;
     return name;
   }
 }

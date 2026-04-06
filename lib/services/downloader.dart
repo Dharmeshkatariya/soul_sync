@@ -1,3 +1,5 @@
+import 'package:soul_sync/core/utils/string_file.dart';
+
 import 'dart:async';
 import 'dart:io';
 
@@ -288,7 +290,7 @@ class Downloader extends GetxService {
           ScaffoldMessenger.of(Get.context!).showSnackBar(
             snackbar(
               Get.context!,
-              "downloadError3".tr,
+              StringFile.downloadError3,
               size: SanckBarSize.BIG,
               duration: const Duration(seconds: 2),
               top: !GetPlatform.isDesktop,

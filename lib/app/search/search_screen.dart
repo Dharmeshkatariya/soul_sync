@@ -1,3 +1,5 @@
+import 'package:soul_sync/core/utils/string_file.dart';
+
 import 'package:soul_sync/core/extension/text_style.dart';
 import 'package:soul_sync/custom_view/custom_text_view.dart';
 
@@ -59,7 +61,7 @@ class SearchScreen extends StatelessWidget {
                     Align(
                       alignment: Alignment.centerLeft,
                       child: CustomTextView(
-                        "search".tr,
+                        StringFile.search,
                         style: context.titleLarge,
                       ),
                     ),
@@ -89,7 +91,7 @@ class SearchScreen extends StatelessWidget {
                       decoration: InputDecoration(
                         contentPadding: const EdgeInsets.only(left: 5),
                         focusColor: Colors.white,
-                        hintText: "searchDes".tr,
+                        hintText: StringFile.searchDes,
                         suffix: IconButton(
                           onPressed: searchScreenController.reset,
                           icon: const Icon(Icons.close),
@@ -134,7 +136,7 @@ class SearchScreen extends StatelessWidget {
                                         height: 60,
                                         child: Center(
                                           child: CustomTextView(
-                                            "urlSearchDes".tr,
+                                            StringFile.urlSearchDes,
                                             style: Theme.of(
                                               context,
                                             ).textTheme.titleMedium,

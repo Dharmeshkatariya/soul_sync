@@ -1,3 +1,5 @@
+import 'package:soul_sync/core/utils/string_file.dart';
+
 import 'package:soul_sync/core/extension/text_style.dart';
 import 'package:soul_sync/custom_view/custom_text_view.dart';
 
@@ -44,7 +46,7 @@ class DesktopSearchBar extends StatelessWidget {
             backgroundColor: WidgetStatePropertyAll<Color>(
               Theme.of(context).colorScheme.secondary,
             ),
-            hintText: "searchDes".tr,
+            hintText: StringFile.searchDes,
             leading: IconButton(
               onPressed: () {
                 if (searchScreenController.focusNode.hasFocus) {
@@ -104,7 +106,7 @@ class DesktopSearchBar extends StatelessWidget {
                         height: 50,
                         child: Center(
                           child: CustomTextView(
-                            "urlSearchDes".tr,
+                            StringFile.urlSearchDes,
                             style: context.titleMedium,
                           ),
                         ),

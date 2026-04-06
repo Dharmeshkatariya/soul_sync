@@ -1,3 +1,5 @@
+import 'package:soul_sync/core/utils/string_file.dart';
+
 import 'package:soul_sync/core/extension/text_style.dart';
 import 'package:soul_sync/custom_view/custom_text_view.dart';
 
@@ -28,7 +30,7 @@ class LinkPiped extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              CustomTextView("Piped".tr, style: context.titleLarge),
+              CustomTextView(StringFile.Piped, style: context.titleLarge),
               Padding(
                 padding: const EdgeInsets.only(top: 15.0, bottom: 10),
                 child: Obx(
@@ -56,14 +58,16 @@ class LinkPiped extends StatelessWidget {
                         controller:
                             pipedLinkedController.instApiUrlInputController,
                         cursorColor: context.titleSmall!.color,
-                        decoration: InputDecoration(hintText: "hintApiUrl".tr),
+                        decoration: InputDecoration(
+                          hintText: StringFile.hintApiUrl,
+                        ),
                       )
                     : const SizedBox.shrink(),
               ),
               ModifiedTextField(
                 controller: pipedLinkedController.usernameInputController,
                 cursorColor: context.titleSmall!.color,
-                decoration: InputDecoration(hintText: "username".tr),
+                decoration: InputDecoration(hintText: StringFile.username),
               ),
               const SizedBox(height: 15),
               Obx(
@@ -71,7 +75,7 @@ class LinkPiped extends StatelessWidget {
                   controller: pipedLinkedController.passwordInputController,
                   cursorColor: context.titleSmall!.color,
                   decoration: InputDecoration(
-                    hintText: "password".tr,
+                    hintText: StringFile.password,
                     suffixIcon: IconButton(
                       color: context.titleSmall!.color,
                       icon: pipedLinkedController.passwordVisible.value
@@ -108,7 +112,7 @@ class LinkPiped extends StatelessWidget {
                       vertical: 10,
                     ),
                     child: CustomTextView(
-                      "link".tr,
+                      StringFile.link,
                       style: TextStyle(color: Theme.of(context).canvasColor),
                     ),
                   ),
@@ -127,7 +131,7 @@ class PipedLinkedController extends GetxController {
   final usernameInputController = TextEditingController();
   final passwordInputController = TextEditingController();
   final pipedInstList = <PipedInstance>[
-    PipedInstance(name: "selectAuthIns".tr, apiUrl: ""),
+    PipedInstance(name: StringFile.selectAuthIns, apiUrl: ""),
   ].obs;
   final selectedInst = "".obs;
   final _pipedServices = Get.find<PipedServices>();
@@ -145,13 +149,13 @@ class PipedLinkedController extends GetxController {
       if (res.code == 1) {
         pipedInstList.addAll(
           List<PipedInstance>.from(res.response) +
-              [PipedInstance(name: "customIns".tr, apiUrl: "custom")],
+              [PipedInstance(name: StringFile.customIns, apiUrl: "custom")],
         );
       } else {
         errorText.value =
-            "${res.errorMessage ?? "errorOccuredAlert".tr}! ${"customInsSelectMsg".tr}";
+            "${res.errorMessage ?? StringFile.errorOccuredAlert}! ${StringFile.customInsSelectMsg}";
         pipedInstList.add(
-          PipedInstance(name: "customIns".tr, apiUrl: "custom"),
+          PipedInstance(name: StringFile.customIns, apiUrl: "custom"),
         );
       }
     });
@@ -162,7 +166,7 @@ class PipedLinkedController extends GetxController {
     final userName = usernameInputController.text;
     final password = passwordInputController.text;
     if (selectedInst.isEmpty) {
-      errorText.value = "selectAuthInsMsg".tr;
+      errorText.value = StringFile.selectAuthInsMsg;
       return;
     }
     if (userName.isEmpty ||
@@ -170,7 +174,7 @@ class PipedLinkedController extends GetxController {
         // ignore: invalid_use_of_protected_member
         (instApiUrlInputController.hasListeners &&
             instApiUrlInputController.text.isEmpty)) {
-      errorText.value = "allFieldsReqMsg".tr;
+      errorText.value = StringFile.allFieldsReqMsg;
       return;
     }
     _pipedServices
@@ -187,11 +191,15 @@ class PipedLinkedController extends GetxController {
             Get.find<SettingsScreenController>().isLinkedWithPiped.value = true;
             Navigator.of(Get.context!).pop();
             ScaffoldMessenger.of(Get.context!).showSnackBar(
-              snackbar(Get.context!, "linkAlert".tr, size: SanckBarSize.MEDIUM),
+              snackbar(
+                Get.context!,
+                StringFile.linkAlert,
+                size: SanckBarSize.MEDIUM,
+              ),
             );
             Get.find<LibraryPlaylistsController>().syncPipedPlaylist();
           } else {
-            errorText.value = res.errorMessage ?? "errorOccuredAlert".tr;
+            errorText.value = res.errorMessage ?? StringFile.errorOccuredAlert;
           }
         });
   }

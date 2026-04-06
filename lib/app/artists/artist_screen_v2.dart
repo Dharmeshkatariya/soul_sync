@@ -1,3 +1,5 @@
+import 'package:soul_sync/core/utils/string_file.dart';
+
 import 'package:soul_sync/custom_view/custom_text_view.dart';
 
 import 'package:flutter/material.dart';
@@ -41,11 +43,11 @@ class ArtistScreenBN extends StatelessWidget {
           controller: artistScreenController.tabController!,
           onTap: artistScreenController.onDestinationSelected,
           tabs: [
-            "about".tr,
-            "songs".tr,
-            "videos".tr,
-            "albums".tr,
-            "singles".tr,
+            StringFile.about,
+            StringFile.songs,
+            StringFile.videos,
+            StringFile.albums,
+            StringFile.singles,
           ].map((e) => Tab(text: e)).toList(),
         ),
         title: Obx(

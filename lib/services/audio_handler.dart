@@ -1,3 +1,5 @@
+import 'package:soul_sync/core/utils/string_file.dart';
+
 import 'dart:io';
 import 'dart:isolate';
 import 'dart:math';
@@ -926,10 +928,18 @@ class MediaLibrary {
 
   List<MediaItem> getRoot() {
     return [
-      MediaItem(id: songsRootId, title: "songs".tr, playable: false),
-      MediaItem(id: favoritesRootId, title: "favorites".tr, playable: false),
-      MediaItem(id: albumsRootId, title: "albums".tr, playable: false),
-      MediaItem(id: playlistsRootId, title: "playlists".tr, playable: false),
+      MediaItem(id: songsRootId, title: StringFile.songs, playable: false),
+      MediaItem(
+        id: favoritesRootId,
+        title: StringFile.favorites,
+        playable: false,
+      ),
+      MediaItem(id: albumsRootId, title: StringFile.albums, playable: false),
+      MediaItem(
+        id: playlistsRootId,
+        title: StringFile.playlists,
+        playable: false,
+      ),
     ];
   }
 

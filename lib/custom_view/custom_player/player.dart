@@ -1,3 +1,5 @@
+import 'package:soul_sync/core/utils/string_file.dart';
+
 import 'package:soul_sync/core/extension/text_style.dart';
 import 'package:soul_sync/custom_view/custom_text_view.dart';
 
@@ -118,7 +120,7 @@ class Player extends StatelessWidget {
                               /// number of songs in queue
                               Obx(
                                 () => CustomTextView(
-                                  "${playerController.currentQueue.length} ${"songs".tr}",
+                                  "${playerController.currentQueue.length} ${StringFile.songs}",
                                   style: Theme.of(context).textTheme.titleSmall!
                                       .copyWith(
                                         color: Theme.of(
@@ -149,7 +151,9 @@ class Player extends StatelessWidget {
                                       borderRadius: BorderRadius.circular(20),
                                     ),
                                     child: Center(
-                                      child: CustomTextView("queueLoop".tr),
+                                      child: CustomTextView(
+                                        StringFile.queueLoop,
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -164,7 +168,7 @@ class Player extends StatelessWidget {
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       snackbar(
                                         context,
-                                        "queueShufflingDeniedMsg".tr,
+                                        StringFile.queueShufflingDeniedMsg,
                                         size: SanckBarSize.BIG,
                                       ),
                                     );

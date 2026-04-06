@@ -1,3 +1,5 @@
+import 'package:soul_sync/core/utils/string_file.dart';
+
 import 'package:soul_sync/custom_view/custom_text_view.dart';
 
 import 'package:flutter/material.dart';
@@ -8,7 +10,6 @@ import 'package:soul_sync/core/constants/constants_file.dart';
 import 'package:soul_sync/core/utils/app_text_styles.dart';
 import 'package:soul_sync/core/utils/color_file.dart';
 import 'package:soul_sync/core/utils/globals.dart';
-import 'package:soul_sync/core/utils/string_file.dart';
 import 'custom_edit_text.dart';
 import 'mandatory_indicator_widget.dart';
 

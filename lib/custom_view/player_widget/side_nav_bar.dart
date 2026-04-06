@@ -1,3 +1,5 @@
+import 'package:soul_sync/core/utils/string_file.dart';
+
 import 'package:soul_sync/custom_view/custom_text_view.dart';
 
 import 'package:flutter/material.dart';
@@ -37,27 +39,27 @@ class SideNavBar extends StatelessWidget {
                     //backgroundColor: Colors.green,
                     destinations: <NavigationRailDestination>[
                       railDestination(
-                        "home".tr,
+                        StringFile.home,
                         isMobileOrTabScreen,
                         Icons.home,
                       ),
                       railDestination(
-                        "songs".tr,
+                        StringFile.songs,
                         isMobileOrTabScreen,
                         Icons.art_track,
                       ),
                       railDestination(
-                        "playlists".tr,
+                        StringFile.playlists,
                         isMobileOrTabScreen,
                         Icons.featured_play_list,
                       ),
                       railDestination(
-                        "albums".tr,
+                        StringFile.albums,
                         isMobileOrTabScreen,
                         Icons.album,
                       ),
                       railDestination(
-                        "artists".tr,
+                        StringFile.artists,
                         isMobileOrTabScreen,
                         Icons.people,
                       ),
@@ -92,28 +94,31 @@ class SideNavBar extends StatelessWidget {
                   SideBarItem(
                     iconSelected: Icons.home,
                     iconUnselected: Icons.home_outlined,
-                    text: 'home'.tr,
+                    text: StringFile.home,
                   ),
                   SideBarItem(
                     iconSelected: Icons.audiotrack,
                     iconUnselected: Icons.audiotrack,
-                    text: 'songs'.tr,
+                    text: StringFile.songs,
                   ),
                   SideBarItem(
                     iconSelected: Icons.library_music,
                     iconUnselected: Icons.library_music_outlined,
-                    text: 'playlists'.tr,
+                    text: StringFile.playlists,
                   ),
                   SideBarItem(
                     iconSelected: Icons.album,
                     iconUnselected: Icons.album_outlined,
-                    text: 'albums'.tr,
+                    text: StringFile.albums,
                   ),
-                  SideBarItem(iconSelected: Icons.person, text: 'artists'.tr),
+                  SideBarItem(
+                    iconSelected: Icons.person,
+                    text: StringFile.artists,
+                  ),
                   SideBarItem(
                     iconSelected: Icons.settings,
                     iconUnselected: Icons.settings_outlined,
-                    text: 'settings'.tr,
+                    text: StringFile.settings,
                   ),
                 ],
               ),

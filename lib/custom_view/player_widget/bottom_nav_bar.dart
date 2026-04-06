@@ -1,3 +1,5 @@
+import 'package:soul_sync/core/utils/string_file.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -20,19 +22,19 @@ class BottomNavBar extends StatelessWidget {
           NavigationDestination(
             selectedIcon: const Icon(Icons.home),
             icon: const Icon(Icons.home_outlined),
-            label: modifyNgetlabel('home'.tr),
+            label: modifyNgetlabel(StringFile.home),
           ),
           NavigationDestination(
             icon: const Icon(Icons.search),
-            label: modifyNgetlabel('search'.tr),
+            label: modifyNgetlabel(StringFile.search),
           ),
           NavigationDestination(
             icon: const Icon(Icons.library_music),
-            label: modifyNgetlabel('library'.tr),
+            label: modifyNgetlabel(StringFile.library),
           ),
           NavigationDestination(
             icon: const Icon(Icons.settings),
-            label: modifyNgetlabel('settings'.tr),
+            label: modifyNgetlabel(StringFile.settings),
           ),
         ],
       ),

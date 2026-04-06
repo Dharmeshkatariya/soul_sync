@@ -1,3 +1,5 @@
+import 'package:soul_sync/core/utils/string_file.dart';
+
 import 'package:soul_sync/core/extension/text_style.dart';
 import 'package:soul_sync/custom_view/custom_text_view.dart';
 
@@ -58,15 +60,15 @@ class CombinedLibrary extends StatelessWidget {
           splashFactory: NoSplash.splashFactory,
           controller: tabCon.tabController,
           tabs: [
-            Tab(text: "songs".tr),
-            Tab(text: "playlists".tr),
-            Tab(text: "albums".tr),
-            Tab(text: "artists".tr),
+            Tab(text: StringFile.songs),
+            Tab(text: StringFile.playlists),
+            Tab(text: StringFile.albums),
+            Tab(text: StringFile.artists),
           ],
         ),
         title: Padding(
           padding: const EdgeInsets.only(top: 60.0, left: 5),
-          child: CustomTextView('library'.tr, style: context.titleLarge),
+          child: CustomTextView(StringFile.library, style: context.titleLarge),
         ),
       ),
       body: TabBarView(

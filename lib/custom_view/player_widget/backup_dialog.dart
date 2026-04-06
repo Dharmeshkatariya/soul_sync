@@ -1,3 +1,5 @@
+import 'package:soul_sync/core/utils/string_file.dart';
+
 import 'package:soul_sync/core/extension/text_style.dart';
 import 'package:soul_sync/custom_view/custom_text_view.dart';
 
@@ -41,7 +43,7 @@ class BackupDialog extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.only(bottom: 10.0, top: 10),
                   child: CustomTextView(
-                    "backupAppData".tr,
+                    StringFile.backupAppData,
                     style: context.titleMedium,
                   ),
                 ),
@@ -65,16 +67,16 @@ class BackupDialog extends StatelessWidget {
                               Obx(
                                 () => CustomTextView(
                                   backupDialogController.scanning.isTrue
-                                      ? "scanning".tr
+                                      ? StringFile.scanning
                                       : backupDialogController
                                             .backupRunning
                                             .isTrue
-                                      ? "backupInProgress".tr
+                                      ? StringFile.backupInProgress
                                       : backupDialogController
                                             .isbackupCompleted
                                             .isTrue
-                                      ? "backupMsg".tr
-                                      : "letsStrart".tr,
+                                      ? StringFile.backupMsg
+                                      : StringFile.letsStrart,
                                   textAlign: TextAlign.center,
                                 ),
                               ),
@@ -89,7 +91,7 @@ class BackupDialog extends StatelessWidget {
                                             top: 8.0,
                                           ),
                                           child: CustomTextView(
-                                            "androidBackupWarning".tr,
+                                            StringFile.androidBackupWarning,
                                             textAlign: TextAlign.center,
                                             style: Theme.of(context)
                                                 .textTheme
@@ -138,7 +140,7 @@ class BackupDialog extends StatelessWidget {
                                         value!;
                                   },
                           ),
-                          CustomTextView("includeDownloadedFiles".tr),
+                          CustomTextView(StringFile.includeDownloadedFiles),
                         ],
                       ),
                     ),
@@ -175,8 +177,8 @@ class BackupDialog extends StatelessWidget {
                                   backupDialogController
                                           .isbackupCompleted
                                           .isTrue
-                                      ? "close".tr
-                                      : "backup".tr,
+                                      ? StringFile.close
+                                      : StringFile.backup,
                                   style: TextStyle(
                                     color: Theme.of(context).canvasColor,
                                   ),

@@ -1,3 +1,5 @@
+import 'package:soul_sync/core/utils/string_file.dart';
+
 import 'package:soul_sync/custom_view/custom_text_view.dart';
 
 import 'package:audio_service/audio_service.dart';
@@ -135,7 +137,7 @@ class AlbumScreen extends StatelessWidget {
                         SizedBox(
                           width: 50,
                           child: IconButton(
-                            tooltip: "back".tr,
+                            tooltip: StringFile.back,
                             onPressed: () {
                               Navigator.of(context).pop();
                             },
@@ -199,8 +201,8 @@ class AlbumScreen extends StatelessWidget {
                                                 albumController
                                                     .isAddedToLibrary
                                                     .isFalse
-                                                ? "addToLibrary".tr
-                                                : "removeFromLibrary".tr,
+                                                ? StringFile.addToLibrary
+                                                : StringFile.removeFromLibrary,
                                             splashRadius: 10,
                                             onPressed: () {
                                               final add = albumController
@@ -245,7 +247,7 @@ class AlbumScreen extends StatelessWidget {
                                         ),
                                         // Play button
                                         IconButton(
-                                          tooltip: "play".tr,
+                                          tooltip: StringFile.play,
                                           onPressed: () {
                                             playerController.playPlayListSong(
                                               List<MediaItem>.from(
@@ -270,7 +272,7 @@ class AlbumScreen extends StatelessWidget {
                                         ),
                                         // Enqueue button
                                         IconButton(
-                                          tooltip: "enqueueAlbumSongs".tr,
+                                          tooltip: StringFile.enqueueAlbumSongs,
                                           onPressed: () {
                                             Get.find<PlayerController>()
                                                 .enqueueSongList(
@@ -284,7 +286,8 @@ class AlbumScreen extends StatelessWidget {
                                                     ).showSnackBar(
                                                       snackbar(
                                                         context,
-                                                        "songEnqueueAlert".tr,
+                                                        StringFile
+                                                            .songEnqueueAlert,
                                                         size:
                                                             SanckBarSize.MEDIUM,
                                                       ),
@@ -308,7 +311,8 @@ class AlbumScreen extends StatelessWidget {
                                                 .value
                                                 .browseId;
                                             return IconButton(
-                                              tooltip: "downloadAlbumSongs".tr,
+                                              tooltip:
+                                                  StringFile.downloadAlbumSongs,
                                               onPressed: () {
                                                 if (albumController
                                                     .isDownloaded
@@ -392,7 +396,7 @@ class AlbumScreen extends StatelessWidget {
                                         //       icon: const Icon(
                                         //           Icons.cloud_sync)),
                                         IconButton(
-                                          tooltip: "shareAlbum".tr,
+                                          tooltip: StringFile.shareAlbum,
                                           visualDensity: const VisualDensity(
                                             vertical: -3,
                                           ),
@@ -473,7 +477,7 @@ class AlbumScreen extends StatelessWidget {
                                         albumController.isContentFetched.isFalse
                                         ? const LoadingIndicator()
                                         : CustomTextView(
-                                            "emptyPlaylist".tr,
+                                            StringFile.emptyPlaylist,
                                             style: Theme.of(
                                               context,
                                             ).textTheme.titleSmall,

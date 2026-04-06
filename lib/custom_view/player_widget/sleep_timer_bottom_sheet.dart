@@ -1,3 +1,5 @@
+import 'package:soul_sync/core/utils/string_file.dart';
+
 import 'package:soul_sync/core/extension/text_style.dart';
 import 'package:soul_sync/custom_view/custom_text_view.dart';
 
@@ -21,7 +23,7 @@ class SleepTimerBottomSheet extends StatelessWidget {
           children: [
             ListTile(
               leading: const Icon(Icons.timer),
-              title: CustomTextView("sleepTimer".tr),
+              title: CustomTextView(StringFile.sleepTimer),
             ),
             const Divider(),
             if (playerController.isSleepTimerActive.isTrue)
@@ -77,7 +79,7 @@ class SleepTimerBottomSheet extends StatelessWidget {
                             ).textTheme.titleMedium!.color!,
                           ),
                         ),
-                        child: CustomTextView("add5Minutes".tr),
+                        child: CustomTextView(StringFile.add5Minutes),
                       ),
                     OutlinedButton(
                       onPressed: () {
@@ -89,7 +91,7 @@ class SleepTimerBottomSheet extends StatelessWidget {
                         ScaffoldMessenger.of(context).showSnackBar(
                           snackbar(
                             context,
-                            "cancelTimerAlert".tr,
+                            StringFile.cancelTimerAlert,
                             size: SanckBarSize.BIG,
                           ),
                         );
@@ -98,7 +100,7 @@ class SleepTimerBottomSheet extends StatelessWidget {
                         foregroundColor: context.titleMedium!.color!,
                         side: BorderSide(color: context.titleMedium!.color!),
                       ),
-                      child: CustomTextView("cancelTimer".tr),
+                      child: CustomTextView(StringFile.cancelTimer),
                     ),
                   ],
                 ),
@@ -124,7 +126,7 @@ class SleepTimerBottomSheet extends StatelessWidget {
                 ScaffoldMessenger.of(context).showSnackBar(
                   snackbar(
                     context,
-                    "sleepTimeSetAlert".tr,
+                    StringFile.sleepTimeSetAlert,
                     size: SanckBarSize.BIG,
                   ),
                 );
@@ -132,7 +134,7 @@ class SleepTimerBottomSheet extends StatelessWidget {
               leading: Padding(
                 padding: const EdgeInsets.only(left: 10.0),
                 child: CustomTextView(
-                  "$dur ${'minutes'.tr}",
+                  "$dur ${StringFile.minutes}",
                   style: context.titleMedium,
                 ),
               ),
@@ -148,7 +150,10 @@ class SleepTimerBottomSheet extends StatelessWidget {
         },
         leading: Padding(
           padding: const EdgeInsets.only(left: 10.0),
-          child: CustomTextView("endOfThisSong".tr, style: context.titleMedium),
+          child: CustomTextView(
+            StringFile.endOfThisSong,
+            style: context.titleMedium,
+          ),
         ),
       ),
     );

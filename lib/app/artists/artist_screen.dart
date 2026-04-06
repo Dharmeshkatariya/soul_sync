@@ -1,3 +1,5 @@
+import 'package:soul_sync/core/utils/string_file.dart';
+
 import 'package:soul_sync/custom_view/custom_text_view.dart';
 
 import 'package:flutter/material.dart';
@@ -49,7 +51,7 @@ class ArtistScreen extends StatelessWidget {
                     ScaffoldMessenger.of(context).showSnackBar(
                       snackbar(
                         context,
-                        "radioNotAvailable".tr,
+                        StringFile.radioNotAvailable,
                         size: SanckBarSize.BIG,
                       ),
                     );
@@ -86,11 +88,11 @@ class ArtistScreen extends StatelessWidget {
                               artistScreenController.onDestinationSelected,
                           minWidth: 60,
                           destinations: [
-                            "about".tr,
-                            "songs".tr,
-                            "videos".tr,
-                            "albums".tr,
-                            "singles".tr,
+                            StringFile.about,
+                            StringFile.songs,
+                            StringFile.videos,
+                            StringFile.albums,
+                            StringFile.singles,
                           ].map((e) => railDestination(e)).toList(),
                           leading: Column(
                             children: [
@@ -264,7 +266,8 @@ class AboutArtist extends StatelessWidget {
                                                                 .tr
                                                           : "artistBookmarkRemoveAlert"
                                                                 .tr
-                                                    : "operationFailed".tr,
+                                                    : StringFile
+                                                          .operationFailed,
                                                 size: SanckBarSize.MEDIUM,
                                               ),
                                             );
@@ -319,7 +322,7 @@ class AboutArtist extends StatelessWidget {
                             height: 300,
                             child: Center(
                               child: CustomTextView(
-                                "artistDesNotAvailable".tr,
+                                StringFile.artistDesNotAvailable,
                                 style: context.titleSmall,
                               ),
                             ),

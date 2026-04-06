@@ -1,3 +1,5 @@
+import 'package:soul_sync/core/utils/string_file.dart';
+
 import 'package:soul_sync/core/extension/text_style.dart';
 import 'package:soul_sync/custom_view/custom_text_view.dart';
 
@@ -36,7 +38,7 @@ class ResultWidget extends StatelessWidget {
                         Align(
                           alignment: Alignment.centerLeft,
                           child: CustomTextView(
-                            "searchRes".tr,
+                            StringFile.searchRes,
                             style: context.titleLarge,
                           ),
                         ),
@@ -44,7 +46,7 @@ class ResultWidget extends StatelessWidget {
                         Align(
                           alignment: Alignment.centerLeft,
                           child: CustomTextView(
-                            "${"for1".tr} \"${searchResScrController.queryString.value}\"",
+                            "${StringFile.for1} \"${searchResScrController.queryString.value}\"",
                             style: context.titleMedium,
                           ),
                         ),

@@ -1,9 +1,10 @@
+import 'package:soul_sync/core/utils/string_file.dart';
+
 import 'package:soul_sync/custom_view/custom_text_view.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../core/utils/app_text_styles.dart';
-import '../core/utils/string_file.dart';
 
 class CustomNoDataFoundWidget extends StatelessWidget {
   const CustomNoDataFoundWidget({super.key, this.noDataFoundTitle});

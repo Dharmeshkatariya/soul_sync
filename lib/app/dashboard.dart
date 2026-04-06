@@ -1,3 +1,5 @@
+import 'package:soul_sync/core/utils/string_file.dart';
+
 import 'package:soul_sync/custom_view/custom_text_view.dart';
 
 import 'dart:io';
@@ -21,7 +23,9 @@ import 'Settings/settings_screen_controller.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
+
   static const routeName = '/appHome';
+
   @override
   Widget build(BuildContext context) {
     printINFO("home");
@@ -115,10 +119,10 @@ class Home extends StatelessWidget {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       CustomTextView(
-                                        "${playerController.currentQueue.length} ${"songs".tr}",
+                                        "${playerController.currentQueue.length} ${StringFile.songs}",
                                       ),
                                       CustomTextView(
-                                        "upNext".tr,
+                                        StringFile.upNext,
                                         style: Theme.of(
                                           context,
                                         ).textTheme.titleLarge,
@@ -150,7 +154,7 @@ class Home extends StatelessWidget {
                                                 ),
                                                 child: Center(
                                                   child: CustomTextView(
-                                                    "queueLoop".tr,
+                                                    StringFile.queueLoop,
                                                   ),
                                                 ),
                                               ),

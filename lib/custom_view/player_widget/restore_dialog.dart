@@ -1,3 +1,5 @@
+import 'package:soul_sync/core/utils/string_file.dart';
+
 import 'package:soul_sync/core/extension/text_style.dart';
 import 'package:soul_sync/custom_view/custom_text_view.dart';
 
@@ -39,7 +41,7 @@ class RestoreDialog extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.only(bottom: 10.0, top: 10),
                   child: CustomTextView(
-                    "restoreAppData".tr,
+                    StringFile.restoreAppData,
                     style: context.titleMedium,
                   ),
                 ),
@@ -51,11 +53,11 @@ class RestoreDialog extends StatelessWidget {
                           restoreDialogController.restoreProgress.toInt() ==
                               restoreDialogController.filesToRestore.toInt()
                           ? CustomTextView(
-                              "restoreMsg".tr,
+                              StringFile.restoreMsg,
                               textAlign: TextAlign.center,
                             )
                           : restoreDialogController.processingFiles.isTrue
-                          ? CustomTextView("processFiles".tr)
+                          ? CustomTextView(StringFile.processFiles)
                           : restoreDialogController.restoreRunning.isTrue
                           ? Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -65,10 +67,10 @@ class RestoreDialog extends StatelessWidget {
                                   style: context.titleLarge,
                                 ),
                                 const SizedBox(height: 10),
-                                CustomTextView("restoring".tr),
+                                CustomTextView(StringFile.restoring),
                               ],
                             )
-                          : CustomTextView("letsStrart".tr),
+                          : CustomTextView(StringFile.letsStrart),
                     ),
                   ),
                 ),
@@ -114,8 +116,8 @@ class RestoreDialog extends StatelessWidget {
                                               .toInt() ==
                                           restoreDialogController.filesToRestore
                                               .toInt()
-                                      ? "restartApp".tr
-                                      : "restore".tr,
+                                      ? StringFile.restartApp
+                                      : StringFile.restore,
                                   style: TextStyle(
                                     color: Theme.of(context).canvasColor,
                                   ),

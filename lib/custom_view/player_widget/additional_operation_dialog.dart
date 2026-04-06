@@ -1,3 +1,5 @@
+import 'package:soul_sync/core/utils/string_file.dart';
+
 import 'package:soul_sync/core/extension/text_style.dart';
 import 'package:soul_sync/custom_view/custom_text_view.dart';
 
@@ -34,8 +36,8 @@ class AdditionalOperationDialog extends StatelessWidget {
               child: CustomTextView(
                 operationMode == OperationMode.delete ||
                         operationMode == OperationMode.addToPlaylist
-                    ? "selectSongs".tr
-                    : "reArrangeSongs".tr,
+                    ? StringFile.selectSongs
+                    : StringFile.reArrangeSongs,
                 style: context.titleLarge,
               ),
             ),
@@ -71,7 +73,7 @@ class AdditionalOperationDialog extends StatelessWidget {
                         ),
                         const SizedBox(width: 18),
                         CustomTextView(
-                          "selectAll".tr,
+                          StringFile.selectAll,
                           style: context.titleMedium,
                         ),
                       ],

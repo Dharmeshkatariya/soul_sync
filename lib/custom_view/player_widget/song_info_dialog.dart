@@ -1,3 +1,5 @@
+import 'package:soul_sync/core/utils/string_file.dart';
+
 import 'package:soul_sync/core/extension/text_style.dart';
 import 'package:soul_sync/custom_view/custom_text_view.dart';
 
@@ -22,31 +24,37 @@ class SongInfoDialog extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 10.0),
-              child: CustomTextView("songInfo".tr, style: context.titleLarge),
+              child: CustomTextView(
+                StringFile.songInfo,
+                style: context.titleLarge,
+              ),
             ),
             const Divider(),
             Expanded(
               child: ListView(
                 children: [
-                  InfoItem(title: "id".tr, value: song.id),
-                  InfoItem(title: "title".tr, value: song.title),
-                  InfoItem(title: "album".tr, value: song.album ?? "NA"),
-                  InfoItem(title: "artists".tr, value: song.artist ?? "NA"),
+                  InfoItem(title: StringFile.id, value: song.id),
+                  InfoItem(title: StringFile.title, value: song.title),
+                  InfoItem(title: StringFile.album, value: song.album ?? "NA"),
                   InfoItem(
-                    title: "duration".tr,
+                    title: StringFile.artists,
+                    value: song.artist ?? "NA",
+                  ),
+                  InfoItem(
+                    title: StringFile.duration,
                     value:
                         "${streamInfo["approxDurationMs"] ?? song.duration?.inMilliseconds ?? "NA"} ms",
                   ),
                   InfoItem(
-                    title: "audioCodec".tr,
+                    title: StringFile.audioCodec,
                     value: streamInfo["audioCodec"] ?? "NA",
                   ),
                   InfoItem(
-                    title: "bitrate".tr,
+                    title: StringFile.bitrate,
                     value: "${streamInfo["bitrate"] ?? "NA"}",
                   ),
                   InfoItem(
-                    title: "loudnessDb".tr,
+                    title: StringFile.loudnessDb,
                     value: "${streamInfo["loudnessDb"] ?? "NA"}",
                   ),
                 ],
@@ -66,7 +74,7 @@ class SongInfoDialog extends StatelessWidget {
                       vertical: 10.0,
                       horizontal: 25,
                     ),
-                    child: CustomTextView("close".tr),
+                    child: CustomTextView(StringFile.close),
                   ),
                 ),
               ),

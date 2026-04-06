@@ -1,3 +1,5 @@
+import 'package:soul_sync/core/utils/string_file.dart';
+
 import 'package:soul_sync/core/extension/text_style.dart';
 import 'package:soul_sync/custom_view/custom_text_view.dart';
 
@@ -63,7 +65,7 @@ class SeparateTabItemWidget extends StatelessWidget {
                             searchResController!.viewAllCallback(title);
                           },
                           child: CustomTextView(
-                            "viewAll".tr,
+                            StringFile.viewAll,
                             style: Theme.of(Get.context!).textTheme.titleSmall,
                           ),
                         ),
@@ -81,7 +83,7 @@ class SeparateTabItemWidget extends StatelessWidget {
                     isSearchFeatureRequired: artistController != null,
                     titleLeftPadding: 9,
                     itemCountTitle:
-                        "${isResultWidget ? (searchResController?.separatedResultContent[title] ?? []).length : (artistController?.sepataredContent[title] != null ? artistController?.sepataredContent[title]['results'] : []).length} ${"items".tr}",
+                        "${isResultWidget ? (searchResController?.separatedResultContent[title] ?? []).length : (artistController?.sepataredContent[title] != null ? artistController?.sepataredContent[title]['results'] : []).length} ${StringFile.items}",
                     requiredSortTypes: buildSortTypeSet(
                       title == 'Albums' || title == "Singles",
                       title == "Songs" || title == "Videos",

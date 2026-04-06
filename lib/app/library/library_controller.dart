@@ -1,3 +1,5 @@
+import 'package:soul_sync/core/utils/string_file.dart';
+
 import 'package:soul_sync/core/extension/text_style.dart';
 import 'package:soul_sync/custom_view/custom_text_view.dart';
 
@@ -233,25 +235,25 @@ class LibraryPlaylistsController extends GetxController
   final playlistCreationMode = "local".obs;
   static final initPlst = [
     Playlist(
-      title: "recentlyPlayed".tr,
+      title: StringFile.recentlyPlayed,
       playlistId: "LIBRP",
       thumbnailUrl: Playlist.thumbPlaceholderUrl,
       isCloudPlaylist: false,
     ),
     Playlist(
-      title: "favorites".tr,
+      title: StringFile.favorites,
       playlistId: "LIBFAV",
       thumbnailUrl: Playlist.thumbPlaceholderUrl,
       isCloudPlaylist: false,
     ),
     Playlist(
-      title: "cachedOrOffline".tr,
+      title: StringFile.cachedOrOffline,
       playlistId: "SongsCache",
       thumbnailUrl: Playlist.thumbPlaceholderUrl,
       isCloudPlaylist: false,
     ),
     Playlist(
-      title: "downloads".tr,
+      title: StringFile.downloads,
       playlistId: "SongDownloads",
       thumbnailUrl: Playlist.thumbPlaceholderUrl,
       isCloudPlaylist: false,
@@ -510,7 +512,7 @@ class LibraryPlaylistsController extends GetxController
       final result = await FilePicker.platform.pickFiles(
         type: FileType.custom,
         allowedExtensions: ['json'],
-        dialogTitle: 'importPlaylist'.tr,
+        dialogTitle: StringFile.importPlaylist,
       );
 
       if (result == null || result.files.isEmpty) {
@@ -527,7 +529,7 @@ class LibraryPlaylistsController extends GetxController
 
       final file = File(result.files.single.path!);
       if (!await file.exists()) {
-        throw FileSystemException("fileNotFound".tr);
+        throw FileSystemException(StringFile.fileNotFound);
       }
 
       final jsonString = await file.readAsString();
@@ -539,7 +541,7 @@ class LibraryPlaylistsController extends GetxController
       // Validate JSON structure
       if (!jsonData.containsKey('playlistInfo') ||
           !jsonData.containsKey('songs')) {
-        throw FormatException("invalidPlaylistFile".tr);
+        throw FormatException(StringFile.invalidPlaylistFile);
       }
 
       // Create new playlist ID
@@ -549,7 +551,7 @@ class LibraryPlaylistsController extends GetxController
 
       // Create playlist object
       final newPlaylist = Playlist(
-        title: "${playlistInfo['title']} (${"imported".tr})",
+        title: "${playlistInfo['title']} (${StringFile.imported})",
         playlistId: newPlaylistId,
         thumbnailUrl:
             playlistInfo['thumbnailUrl'] ??
@@ -557,7 +559,7 @@ class LibraryPlaylistsController extends GetxController
                     playlistInfo['thumbnails'].isNotEmpty
                 ? playlistInfo['thumbnails'][0]['url']
                 : Playlist.thumbPlaceholderUrl),
-        description: playlistInfo['description'] ?? "importedPlaylist".tr,
+        description: playlistInfo['description'] ?? StringFile.importedPlaylist,
         isCloudPlaylist: false,
       );
       importProgress.value = 0.6;
@@ -596,7 +598,7 @@ class LibraryPlaylistsController extends GetxController
         ScaffoldMessenger.of(context).showSnackBar(
           snackbar(
             context,
-            "${"playlistImportedMsg".tr}: ${newPlaylist.title}",
+            "${StringFile.playlistImportedMsg}: ${newPlaylist.title}",
             size: SanckBarSize.MEDIUM,
           ),
         );
@@ -609,15 +611,15 @@ class LibraryPlaylistsController extends GetxController
 
       printERROR("Error importing playlist: $e");
 
-      String errorMsg = "importError".tr;
+      String errorMsg = StringFile.importError;
       if (e is FileSystemException) {
-        errorMsg = "importErrorFileAccess".tr;
+        errorMsg = StringFile.importErrorFileAccess;
       } else if (e is FormatException) {
-        errorMsg = "importErrorFormat".tr;
+        errorMsg = StringFile.importErrorFormat;
       } else if (e.toString().contains("invalidPlaylistFile")) {
-        errorMsg = "invalidPlaylistFile".tr;
+        errorMsg = StringFile.invalidPlaylistFile;
       } else if (e is HiveError) {
-        errorMsg = "importErrorDatabase".tr;
+        errorMsg = StringFile.importErrorDatabase;
       }
 
       if (context.mounted) {
@@ -638,7 +640,7 @@ class LibraryPlaylistsController extends GetxController
         backgroundColor: Theme.of(context).cardColor,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         title: CustomTextView(
-          "importingPlaylist".tr,
+          StringFile.importingPlaylist,
           style: context.titleLarge,
         ),
         content: Obx(

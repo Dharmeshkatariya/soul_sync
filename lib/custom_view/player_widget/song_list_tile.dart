@@ -1,3 +1,5 @@
+import 'package:soul_sync/core/utils/string_file.dart';
+
 import 'package:soul_sync/core/extension/text_style.dart';
 import 'package:soul_sync/custom_view/custom_text_view.dart';
 
@@ -94,7 +96,7 @@ class SongListTile extends StatelessWidget with RemoveSongFromPlaylistMixin {
                   ScaffoldMessenger.of(context).showSnackBar(
                     snackbar(
                       context,
-                      "songEnqueueAlert".tr,
+                      StringFile.songEnqueueAlert,
                       size: SanckBarSize.MEDIUM,
                     ),
                   );
@@ -111,7 +113,7 @@ class SongListTile extends StatelessWidget with RemoveSongFromPlaylistMixin {
                 ScaffoldMessenger.of(context).showSnackBar(
                   snackbar(
                     context,
-                    "${"playnextMsg".tr} ${(song).title}",
+                    "${StringFile.playnextMsg} ${(song).title}",
                     size: SanckBarSize.BIG,
                   ),
                 );

@@ -1,3 +1,5 @@
+import 'package:soul_sync/core/utils/string_file.dart';
+
 import 'package:soul_sync/custom_view/custom_text_view.dart';
 
 import 'package:flutter/material.dart';
@@ -9,7 +11,6 @@ import '../core/utils/app_text_styles.dart';
 import '../core/utils/assets_icons.dart';
 import '../core/utils/color_file.dart';
 import '../core/utils/responsive_util.dart';
-import '../core/utils/string_file.dart';
 import 'custom_button.dart';
 
 class CustomEmptyDataView extends StatelessWidget {

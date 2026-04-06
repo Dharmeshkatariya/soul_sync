@@ -1,3 +1,5 @@
+import 'package:soul_sync/core/utils/string_file.dart';
+
 import 'package:soul_sync/core/extension/text_style.dart';
 import 'package:soul_sync/custom_view/custom_text_view.dart';
 
@@ -21,7 +23,7 @@ class NewVersionDialog extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             CustomTextView(
-              "newVersionAvailable".tr,
+              StringFile.newVersionAvailable,
               style: context.titleMedium,
             ),
             Padding(
@@ -58,7 +60,7 @@ class NewVersionDialog extends StatelessWidget {
                       );
                     },
                   ),
-                  CustomTextView("dontShowInfoAgain".tr),
+                  CustomTextView(StringFile.dontShowInfoAgain),
                 ],
               ),
             ),
@@ -74,7 +76,7 @@ class NewVersionDialog extends StatelessWidget {
                     vertical: 10,
                   ),
                   child: CustomTextView(
-                    "dismiss".tr,
+                    StringFile.dismiss,
                     style: TextStyle(color: Theme.of(context).canvasColor),
                   ),
                 ),

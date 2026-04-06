@@ -1,3 +1,5 @@
+import 'package:soul_sync/core/utils/string_file.dart';
+
 import 'package:soul_sync/core/extension/text_style.dart';
 import 'package:soul_sync/custom_view/custom_text_view.dart';
 
@@ -54,8 +56,8 @@ class CreateNRenamePlaylistPopup extends StatelessWidget {
                       id: "createPlaylist",
                       child: CustomTextView(
                         renamePlaylist
-                            ? "renamePlaylist".tr
-                            : "CreateNewPlaylist".tr,
+                            ? StringFile.renamePlaylist
+                            : StringFile.CreateNewPlaylist,
                         style: context.titleMedium,
                       ),
                     ),
@@ -74,7 +76,7 @@ class CreateNRenamePlaylistPopup extends StatelessWidget {
                                   librPlstCntrller.playlistCreationMode.value,
                               onChanged: librPlstCntrller.changeCreationMode,
                             ),
-                            CustomTextView("Piped".tr),
+                            CustomTextView(StringFile.Piped),
                           ],
                         ),
                         const SizedBox(width: 15),
@@ -86,7 +88,7 @@ class CreateNRenamePlaylistPopup extends StatelessWidget {
                                   librPlstCntrller.playlistCreationMode.value,
                               onChanged: librPlstCntrller.changeCreationMode,
                             ),
-                            CustomTextView("local".tr),
+                            CustomTextView(StringFile.local),
                           ],
                         ),
                       ],
@@ -110,7 +112,7 @@ class CreateNRenamePlaylistPopup extends StatelessWidget {
                       InkWell(
                         child: Padding(
                           padding: const EdgeInsets.all(10.0),
-                          child: CustomTextView("cancel".tr),
+                          child: CustomTextView(StringFile.cancel),
                         ),
                         onTap: () => Navigator.of(context).pop(),
                       ),
@@ -127,10 +129,10 @@ class CreateNRenamePlaylistPopup extends StatelessWidget {
                             ),
                             child: CustomTextView(
                               isCreateNadd
-                                  ? "createnAdd".tr
+                                  ? StringFile.createnAdd
                                   : renamePlaylist
-                                  ? "rename".tr
-                                  : "create".tr,
+                                  ? StringFile.rename
+                                  : StringFile.create,
                               style: TextStyle(
                                 color: Theme.of(context).canvasColor,
                               ),
@@ -147,7 +149,7 @@ class CreateNRenamePlaylistPopup extends StatelessWidget {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     snackbar(
                                       context,
-                                      "playlistRenameAlert".tr,
+                                      StringFile.playlistRenameAlert,
                                       size: SanckBarSize.MEDIUM,
                                     ),
                                   );
@@ -170,7 +172,7 @@ class CreateNRenamePlaylistPopup extends StatelessWidget {
                                           isCreateNadd
                                               ? "playlistCreatednsongAddedAlert"
                                                     .tr
-                                              : "playlistCreatedAlert".tr,
+                                              : StringFile.playlistCreatedAlert,
                                           size: SanckBarSize.MEDIUM,
                                         ),
                                       );
@@ -180,7 +182,7 @@ class CreateNRenamePlaylistPopup extends StatelessWidget {
                                       ).showSnackBar(
                                         snackbar(
                                           context,
-                                          "errorOccuredAlert".tr,
+                                          StringFile.errorOccuredAlert,
                                           size: SanckBarSize.MEDIUM,
                                         ),
                                       );

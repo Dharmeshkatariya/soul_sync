@@ -1,3 +1,5 @@
+import 'package:soul_sync/core/utils/string_file.dart';
+
 import 'package:soul_sync/core/extension/text_style.dart';
 import 'package:soul_sync/custom_view/custom_text_view.dart';
 import 'package:flutter/material.dart';
@@ -81,18 +83,21 @@ class SortWidget extends StatelessWidget {
       builder: (context) => AlertDialog(
         backgroundColor: Theme.of(context).cardColor,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-        title: CustomTextView("importPlaylist".tr, style: context.titleLarge),
+        title: CustomTextView(
+          StringFile.importPlaylist,
+          style: context.titleLarge,
+        ),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CustomTextView(
-              "importPlaylistDesc".tr,
+              StringFile.importPlaylistDesc,
               style: Theme.of(context).textTheme.bodyMedium,
             ),
             const SizedBox(height: 12),
             CustomTextView(
-              "importLargeFileNote".tr,
+              StringFile.importLargeFileNote,
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
                 fontStyle: FontStyle.italic,
                 color: Theme.of(context).colorScheme.secondary,
@@ -113,7 +118,7 @@ class SortWidget extends StatelessWidget {
                   ),
                 ),
                 icon: const Icon(Icons.file_open),
-                label: CustomTextView("selectFile".tr),
+                label: CustomTextView(StringFile.selectFile),
                 onPressed: () {
                   Get.find<LibraryPlaylistsController>().importPlaylistFromJson(
                     context,
@@ -131,7 +136,7 @@ class SortWidget extends StatelessWidget {
               foregroundColor: Theme.of(context).colorScheme.secondary,
             ),
             onPressed: () => Navigator.pop(context),
-            child: CustomTextView("close".tr),
+            child: CustomTextView(StringFile.close),
           ),
         ],
       ),
@@ -172,7 +177,7 @@ class SortWidget extends StatelessWidget {
                       () => _customIconButton(
                         isSelected: controller.sortType.value == SortType.Name,
                         icon: Icons.sort_by_alpha,
-                        tooltip: "sortByName".tr,
+                        tooltip: StringFile.sortByName,
                         onPressed: () {
                           controller.onSortByName(onSort);
                         },
@@ -184,7 +189,7 @@ class SortWidget extends StatelessWidget {
                               isSelected:
                                   controller.sortType.value == SortType.Date,
                               icon: Icons.calendar_month,
-                              tooltip: "sortByDate".tr,
+                              tooltip: StringFile.sortByDate,
                               onPressed: () {
                                 controller.onSortByDate(onSort);
                               },
@@ -197,7 +202,7 @@ class SortWidget extends StatelessWidget {
                               isSelected:
                                   controller.sortType.value ==
                                   SortType.Duration,
-                              tooltip: "sortByDuration".tr,
+                              tooltip: StringFile.sortByDuration,
                               icon: Icons.timer,
                               onPressed: () {
                                 controller.onSortByDuration(onSort);
@@ -211,7 +216,7 @@ class SortWidget extends StatelessWidget {
                         icon: controller.isAscending.value
                             ? Icons.arrow_downward
                             : Icons.arrow_upward,
-                        tooltip: "sortAscendNDescend".tr,
+                        tooltip: StringFile.sortAscendNDescend,
                         onPressed: () {
                           controller.onAscendNDescend(onSort);
                         },
@@ -220,13 +225,13 @@ class SortWidget extends StatelessWidget {
                     if (isImportFeatureRequired)
                       _customIconButton(
                         icon: Icons.import_contacts,
-                        tooltip: "importPlaylist".tr,
+                        tooltip: StringFile.importPlaylist,
                         onPressed: () => _showImportDialog(context),
                       ),
                     if (isSearchFeatureRequired)
                       _customIconButton(
                         icon: Icons.search,
-                        tooltip: "search".tr,
+                        tooltip: StringFile.search,
                         onPressed: () {
                           onSearchStart!(tag);
                           controller.toggleSearch();
@@ -253,16 +258,18 @@ class SortWidget extends StatelessWidget {
                           if (isPlaylistRearrageFeatureRequired)
                             PopupMenuItem(
                               value: OperationMode.arrange,
-                              child: CustomTextView("reArrangePlaylist".tr),
+                              child: CustomTextView(
+                                StringFile.reArrangePlaylist,
+                              ),
                             ),
                           if (isSongDeletetioFeatureRequired)
                             PopupMenuItem(
                               value: OperationMode.delete,
-                              child: CustomTextView("removeMultiple".tr),
+                              child: CustomTextView(StringFile.removeMultiple),
                             ),
                           PopupMenuItem(
                             value: OperationMode.addToPlaylist,
-                            child: CustomTextView("addMultipleSongs".tr),
+                            child: CustomTextView(StringFile.addMultipleSongs),
                           ),
                         ],
                       ),
@@ -292,7 +299,7 @@ class SortWidget extends StatelessWidget {
                         contentPadding: const EdgeInsets.all(8),
                         filled: true,
                         border: const OutlineInputBorder(),
-                        hintText: "search".tr,
+                        hintText: StringFile.search,
                         suffixIconColor: Theme.of(
                           context,
                         ).colorScheme.secondary,

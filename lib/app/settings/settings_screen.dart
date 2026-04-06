@@ -1,3 +1,5 @@
+import 'package:soul_sync/core/utils/string_file.dart';
+
 import 'package:soul_sync/core/extension/text_style.dart';
 import 'package:soul_sync/custom_view/custom_text_view.dart';
 
@@ -39,7 +41,10 @@ class SettingsScreen extends StatelessWidget {
         children: [
           Align(
             alignment: Alignment.centerLeft,
-            child: CustomTextView("settings".tr, style: context.titleLarge),
+            child: CustomTextView(
+              StringFile.settings,
+              style: context.titleLarge,
+            ),
           ),
           Expanded(
             child: ListView(
@@ -78,12 +83,14 @@ class SettingsScreen extends StatelessWidget {
                               leading: const CircleAvatar(
                                 child: Icon(Icons.download),
                               ),
-                              title: CustomTextView("newVersionAvailable".tr),
+                              title: CustomTextView(
+                                StringFile.newVersionAvailable,
+                              ),
                               visualDensity: const VisualDensity(
                                 horizontal: -2,
                               ),
                               subtitle: CustomTextView(
-                                "goToDownloadPage".tr,
+                                StringFile.goToDownloadPage,
                                 style: Theme.of(context).textTheme.bodyMedium!
                                     .copyWith(
                                       color: Colors.white70,
@@ -96,24 +103,24 @@ class SettingsScreen extends StatelessWidget {
                       : const SizedBox.shrink(),
                 ),
                 CustomExpansionTile(
-                  title: "personalisation".tr,
+                  title: StringFile.personalisation,
                   icon: Icons.palette,
                   children: [
                     ListTile(
                       contentPadding: const EdgeInsets.only(left: 5, right: 10),
-                      title: CustomTextView("themeMode".tr),
+                      title: CustomTextView(StringFile.themeMode),
                       subtitle: Obx(
                         () => CustomTextView(
                           settingsController.themeModetype.value ==
                                   ThemeType.dynamic
-                              ? "dynamic".tr
+                              ? StringFile.dynamic
                               : settingsController.themeModetype.value ==
                                     ThemeType.system
-                              ? "systemDefault".tr
+                              ? StringFile.systemDefault
                               : settingsController.themeModetype.value ==
                                     ThemeType.dark
-                              ? "dark".tr
-                              : "light".tr,
+                              ? StringFile.dark
+                              : StringFile.light,
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                       ),
@@ -124,9 +131,9 @@ class SettingsScreen extends StatelessWidget {
                     ),
                     ListTile(
                       contentPadding: const EdgeInsets.only(left: 5, right: 10),
-                      title: CustomTextView("language".tr),
+                      title: CustomTextView(StringFile.language),
                       subtitle: CustomTextView(
-                        "languageDes".tr,
+                        StringFile.languageDes,
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
                       trailing: Obx(
@@ -166,9 +173,9 @@ class SettingsScreen extends StatelessWidget {
                           left: 5,
                           right: 10,
                         ),
-                        title: CustomTextView("playerUi".tr),
+                        title: CustomTextView(StringFile.playerUi),
                         subtitle: CustomTextView(
-                          "playerUiDes".tr,
+                          StringFile.playerUiDes,
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                         trailing: Obx(
@@ -179,11 +186,11 @@ class SettingsScreen extends StatelessWidget {
                             items: [
                               DropdownMenuItem(
                                 value: 0,
-                                child: CustomTextView("standard".tr),
+                                child: CustomTextView(StringFile.standard),
                               ),
                               DropdownMenuItem(
                                 value: 1,
-                                child: CustomTextView("gesture".tr),
+                                child: CustomTextView(StringFile.gesture),
                               ),
                             ],
                             onChanged: settingsController.setPlayerUi,
@@ -196,9 +203,9 @@ class SettingsScreen extends StatelessWidget {
                           left: 5,
                           right: 10,
                         ),
-                        title: CustomTextView("enableBottomNav".tr),
+                        title: CustomTextView(StringFile.enableBottomNav),
                         subtitle: CustomTextView(
-                          "enableBottomNavDes".tr,
+                          StringFile.enableBottomNavDes,
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                         trailing: Obx(
@@ -211,9 +218,11 @@ class SettingsScreen extends StatelessWidget {
                       ),
                     ListTile(
                       contentPadding: const EdgeInsets.only(left: 5, right: 10),
-                      title: CustomTextView("disableTransitionAnimation".tr),
+                      title: CustomTextView(
+                        StringFile.disableTransitionAnimation,
+                      ),
                       subtitle: CustomTextView(
-                        "disableTransitionAnimationDes".tr,
+                        StringFile.disableTransitionAnimationDes,
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
                       trailing: Obx(
@@ -228,9 +237,9 @@ class SettingsScreen extends StatelessWidget {
                     ),
                     ListTile(
                       contentPadding: const EdgeInsets.only(left: 5, right: 10),
-                      title: CustomTextView("enableSlidableAction".tr),
+                      title: CustomTextView(StringFile.enableSlidableAction),
                       subtitle: CustomTextView(
-                        "enableSlidableActionDes".tr,
+                        StringFile.enableSlidableActionDes,
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
                       trailing: Obx(
@@ -244,23 +253,23 @@ class SettingsScreen extends StatelessWidget {
                   ],
                 ),
                 CustomExpansionTile(
-                  title: "content".tr,
+                  title: StringFile.content,
                   icon: Icons.music_video,
                   children: [
                     ListTile(
                       contentPadding: const EdgeInsets.only(left: 5, right: 10),
-                      title: CustomTextView("setDiscoverContent".tr),
+                      title: CustomTextView(StringFile.setDiscoverContent),
                       subtitle: Obx(
                         () => CustomTextView(
                           settingsController.discoverContentType.value == "QP"
-                              ? "quickpicks".tr
+                              ? StringFile.quickpicks
                               : settingsController.discoverContentType.value ==
                                     "TMV"
-                              ? "topmusicvideos".tr
+                              ? StringFile.topmusicvideos
                               : settingsController.discoverContentType.value ==
                                     "TR"
-                              ? "trending".tr
-                              : "basedOnLast".tr,
+                              ? StringFile.trending
+                              : StringFile.basedOnLast,
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                       ),
@@ -272,9 +281,9 @@ class SettingsScreen extends StatelessWidget {
                     ),
                     ListTile(
                       contentPadding: const EdgeInsets.only(left: 5, right: 10),
-                      title: CustomTextView("homeContentCount".tr),
+                      title: CustomTextView(StringFile.homeContentCount),
                       subtitle: CustomTextView(
-                        "homeContentCountDes".tr,
+                        StringFile.homeContentCountDes,
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
                       trailing: Obx(
@@ -296,9 +305,9 @@ class SettingsScreen extends StatelessWidget {
                     ),
                     ListTile(
                       contentPadding: const EdgeInsets.only(left: 5, right: 10),
-                      title: CustomTextView("cacheHomeScreenData".tr),
+                      title: CustomTextView(StringFile.cacheHomeScreenData),
                       subtitle: CustomTextView(
-                        "cacheHomeScreenDataDes".tr,
+                        StringFile.cacheHomeScreenDataDes,
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
                       trailing: Obx(
@@ -315,17 +324,17 @@ class SettingsScreen extends StatelessWidget {
                         right: 10,
                         top: 0,
                       ),
-                      title: CustomTextView("Piped".tr),
+                      title: CustomTextView(StringFile.Piped),
                       subtitle: CustomTextView(
-                        "linkPipedDes".tr,
+                        StringFile.linkPipedDes,
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
                       trailing: TextButton(
                         child: Obx(
                           () => CustomTextView(
                             settingsController.isLinkedWithPiped.value
-                                ? "unLink".tr
-                                : "link".tr,
+                                ? StringFile.unLink
+                                : StringFile.link,
                             style: Theme.of(
                               context,
                             ).textTheme.titleMedium!.copyWith(fontSize: 15),
@@ -354,15 +363,15 @@ class SettingsScreen extends StatelessWidget {
                                 top: 0,
                               ),
                               title: CustomTextView(
-                                "resetblacklistedplaylist".tr,
+                                StringFile.resetblacklistedplaylist,
                               ),
                               subtitle: CustomTextView(
-                                "resetblacklistedplaylistDes".tr,
+                                StringFile.resetblacklistedplaylistDes,
                                 style: Theme.of(context).textTheme.bodyMedium,
                               ),
                               trailing: TextButton(
                                 child: CustomTextView(
-                                  "reset".tr,
+                                  StringFile.reset,
                                   style: Theme.of(context)
                                       .textTheme
                                       .titleMedium!
@@ -376,7 +385,7 @@ class SettingsScreen extends StatelessWidget {
                                   ).showSnackBar(
                                     snackbar(
                                       Get.context!,
-                                      "blacklistPlstResetAlert".tr,
+                                      StringFile.blacklistPlstResetAlert,
                                       size: SanckBarSize.MEDIUM,
                                     ),
                                   );
@@ -387,9 +396,9 @@ class SettingsScreen extends StatelessWidget {
                     ),
                     ListTile(
                       contentPadding: const EdgeInsets.only(left: 5, right: 10),
-                      title: CustomTextView("clearImgCache".tr),
+                      title: CustomTextView(StringFile.clearImgCache),
                       subtitle: CustomTextView(
-                        "clearImgCacheDes".tr,
+                        StringFile.clearImgCacheDes,
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
                       isThreeLine: true,
@@ -399,7 +408,7 @@ class SettingsScreen extends StatelessWidget {
                               ScaffoldMessenger.of(Get.context!).showSnackBar(
                                 snackbar(
                                   Get.context!,
-                                  "clearImgCacheAlert".tr,
+                                  StringFile.clearImgCacheAlert,
                                   size: SanckBarSize.BIG,
                                 ),
                               ),
@@ -409,14 +418,14 @@ class SettingsScreen extends StatelessWidget {
                   ],
                 ),
                 CustomExpansionTile(
-                  title: "music&Playback".tr,
+                  title: StringFile.music & Playback,
                   icon: Icons.music_note,
                   children: [
                     ListTile(
                       contentPadding: const EdgeInsets.only(left: 5, right: 10),
-                      title: CustomTextView("streamingQuality".tr),
+                      title: CustomTextView(StringFile.streamingQuality),
                       subtitle: CustomTextView(
-                        "streamingQualityDes".tr,
+                        StringFile.streamingQualityDes,
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
                       trailing: Obx(
@@ -427,11 +436,11 @@ class SettingsScreen extends StatelessWidget {
                           items: [
                             DropdownMenuItem(
                               value: AudioQuality.Low,
-                              child: CustomTextView("low".tr),
+                              child: CustomTextView(StringFile.low),
                             ),
                             DropdownMenuItem(
                               value: AudioQuality.High,
-                              child: CustomTextView("high".tr),
+                              child: CustomTextView(StringFile.high),
                             ),
                           ],
                           onChanged: settingsController.setStreamingQuality,
@@ -444,9 +453,9 @@ class SettingsScreen extends StatelessWidget {
                           left: 5,
                           right: 10,
                         ),
-                        title: CustomTextView("loudnessNormalization".tr),
+                        title: CustomTextView(StringFile.loudnessNormalization),
                         subtitle: CustomTextView(
-                          "loudnessNormalizationDes".tr,
+                          StringFile.loudnessNormalizationDes,
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                         trailing: Obx(
@@ -465,9 +474,9 @@ class SettingsScreen extends StatelessWidget {
                           left: 5,
                           right: 10,
                         ),
-                        title: CustomTextView("cacheSongs".tr),
+                        title: CustomTextView(StringFile.cacheSongs),
                         subtitle: CustomTextView(
-                          "cacheSongsDes".tr,
+                          StringFile.cacheSongsDes,
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                         trailing: Obx(
@@ -484,9 +493,9 @@ class SettingsScreen extends StatelessWidget {
                           left: 5,
                           right: 10,
                         ),
-                        title: CustomTextView("skipSilence".tr),
+                        title: CustomTextView(StringFile.skipSilence),
                         subtitle: CustomTextView(
-                          "skipSilenceDes".tr,
+                          StringFile.skipSilenceDes,
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                         trailing: Obx(
@@ -502,9 +511,9 @@ class SettingsScreen extends StatelessWidget {
                           left: 5,
                           right: 10,
                         ),
-                        title: CustomTextView("backgroundPlay".tr),
+                        title: CustomTextView(StringFile.backgroundPlay),
                         subtitle: CustomTextView(
-                          "backgroundPlayDes".tr,
+                          StringFile.backgroundPlayDes,
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                         trailing: Obx(
@@ -517,9 +526,11 @@ class SettingsScreen extends StatelessWidget {
                       ),
                     ListTile(
                       contentPadding: const EdgeInsets.only(left: 5, right: 10),
-                      title: CustomTextView("keepScreenOnWhilePlaying".tr),
+                      title: CustomTextView(
+                        StringFile.keepScreenOnWhilePlaying,
+                      ),
                       subtitle: CustomTextView(
-                        "keepScreenOnWhilePlayingDes".tr,
+                        StringFile.keepScreenOnWhilePlayingDes,
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
                       trailing: Obx(
@@ -531,9 +542,11 @@ class SettingsScreen extends StatelessWidget {
                     ),
                     ListTile(
                       contentPadding: const EdgeInsets.only(left: 5, right: 10),
-                      title: CustomTextView("restoreLastPlaybackSession".tr),
+                      title: CustomTextView(
+                        StringFile.restoreLastPlaybackSession,
+                      ),
                       subtitle: CustomTextView(
-                        "restoreLastPlaybackSessionDes".tr,
+                        StringFile.restoreLastPlaybackSessionDes,
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
                       trailing: Obx(
@@ -547,9 +560,9 @@ class SettingsScreen extends StatelessWidget {
                     ),
                     ListTile(
                       contentPadding: const EdgeInsets.only(left: 5, right: 10),
-                      title: CustomTextView("autoOpenPlayer".tr),
+                      title: CustomTextView(StringFile.autoOpenPlayer),
                       subtitle: CustomTextView(
-                        "autoOpenPlayerDes".tr,
+                        StringFile.autoOpenPlayerDes,
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
                       trailing: Obx(
@@ -566,9 +579,9 @@ class SettingsScreen extends StatelessWidget {
                           right: 10,
                           top: 0,
                         ),
-                        title: CustomTextView("equalizer".tr),
+                        title: CustomTextView(StringFile.equalizer),
                         subtitle: CustomTextView(
-                          "equalizerDes".tr,
+                          StringFile.equalizerDes,
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                         onTap: () async {
@@ -585,9 +598,9 @@ class SettingsScreen extends StatelessWidget {
                           left: 5,
                           right: 10,
                         ),
-                        title: CustomTextView("stopMusicOnTaskClear".tr),
+                        title: CustomTextView(StringFile.stopMusicOnTaskClear),
                         subtitle: CustomTextView(
-                          "stopMusicOnTaskClearDes".tr,
+                          StringFile.stopMusicOnTaskClearDes,
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                         trailing: Obx(
@@ -607,7 +620,7 @@ class SettingsScreen extends StatelessWidget {
                                 left: 5,
                                 right: 10,
                               ),
-                              title: CustomTextView("ignoreBatOpt".tr),
+                              title: CustomTextView(StringFile.ignoreBatOpt),
                               onTap:
                                   settingsController
                                       .isIgnoringBatteryOptimizations
@@ -619,14 +632,14 @@ class SettingsScreen extends StatelessWidget {
                                 () => RichText(
                                   text: TextSpan(
                                     text:
-                                        "${"status".tr}: ${settingsController.isIgnoringBatteryOptimizations.isTrue ? "enabled".tr : "disabled".tr}\n",
+                                        "${StringFile.status}: ${settingsController.isIgnoringBatteryOptimizations.isTrue ? StringFile.enabled : StringFile.disabled}\n",
                                     style: Theme.of(context)
                                         .textTheme
                                         .bodyMedium!
                                         .copyWith(fontWeight: FontWeight.bold),
                                     children: <TextSpan>[
                                       TextSpan(
-                                        text: "ignoreBatOptDes".tr,
+                                        text: StringFile.ignoreBatOptDes,
                                         style: Theme.of(
                                           context,
                                         ).textTheme.bodyMedium,
@@ -641,14 +654,14 @@ class SettingsScreen extends StatelessWidget {
                   ],
                 ),
                 CustomExpansionTile(
-                  title: "download".tr,
+                  title: StringFile.download,
                   icon: Icons.download,
                   children: [
                     ListTile(
                       contentPadding: const EdgeInsets.only(left: 5, right: 10),
-                      title: CustomTextView("autoDownFavSong".tr),
+                      title: CustomTextView(StringFile.autoDownFavSong),
                       subtitle: CustomTextView(
-                        "autoDownFavSongDes".tr,
+                        StringFile.autoDownFavSongDes,
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
                       trailing: Obx(
@@ -663,9 +676,9 @@ class SettingsScreen extends StatelessWidget {
                     ),
                     ListTile(
                       contentPadding: const EdgeInsets.only(left: 5, right: 10),
-                      title: CustomTextView("downloadingFormat".tr),
+                      title: CustomTextView(StringFile.downloadingFormat),
                       subtitle: CustomTextView(
-                        "downloadingFormatDes".tr,
+                        StringFile.downloadingFormatDes,
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
                       trailing: Obx(
@@ -690,7 +703,7 @@ class SettingsScreen extends StatelessWidget {
                     ListTile(
                       trailing: TextButton(
                         child: CustomTextView(
-                          "reset".tr,
+                          StringFile.reset,
                           style: Theme.of(
                             context,
                           ).textTheme.titleMedium!.copyWith(fontSize: 15),
@@ -704,7 +717,7 @@ class SettingsScreen extends StatelessWidget {
                         right: 10,
                         top: 0,
                       ),
-                      title: CustomTextView("downloadLocation".tr),
+                      title: CustomTextView(StringFile.downloadLocation),
                       subtitle: Obx(
                         () => CustomTextView(
                           settingsController.isCurrentPathsupportDownDir
@@ -723,9 +736,9 @@ class SettingsScreen extends StatelessWidget {
                           left: 5,
                           right: 10,
                         ),
-                        title: CustomTextView("exportDowloadedFiles".tr),
+                        title: CustomTextView(StringFile.exportDowloadedFiles),
                         subtitle: CustomTextView(
-                          "exportDowloadedFilesDes".tr,
+                          StringFile.exportDowloadedFilesDes,
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                         isThreeLine: true,
@@ -744,7 +757,7 @@ class SettingsScreen extends StatelessWidget {
                           right: 10,
                           top: 0,
                         ),
-                        title: CustomTextView("exportedFileLocation".tr),
+                        title: CustomTextView(StringFile.exportedFileLocation),
                         subtitle: Obx(
                           () => CustomTextView(
                             settingsController.exportLocationPath.value,
@@ -758,14 +771,14 @@ class SettingsScreen extends StatelessWidget {
                   ],
                 ),
                 CustomExpansionTile(
-                  title: "${"backup".tr} & ${"restore".tr}",
+                  title: "${StringFile.backup} & ${StringFile.restore}",
                   icon: Icons.restore,
                   children: [
                     ListTile(
                       contentPadding: const EdgeInsets.only(left: 5, right: 10),
-                      title: CustomTextView("backupAppData".tr),
+                      title: CustomTextView(StringFile.backupAppData),
                       subtitle: CustomTextView(
-                        "backupSettingsAndPlaylistsDes".tr,
+                        StringFile.backupSettingsAndPlaylistsDes,
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
                       isThreeLine: true,
@@ -779,9 +792,9 @@ class SettingsScreen extends StatelessWidget {
                     ),
                     ListTile(
                       contentPadding: const EdgeInsets.only(left: 5, right: 10),
-                      title: CustomTextView("restoreAppData".tr),
+                      title: CustomTextView(StringFile.restoreAppData),
                       subtitle: CustomTextView(
-                        "restoreSettingsAndPlaylistsDes".tr,
+                        StringFile.restoreSettingsAndPlaylistsDes,
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
                       isThreeLine: true,
@@ -797,13 +810,13 @@ class SettingsScreen extends StatelessWidget {
                 ),
                 CustomExpansionTile(
                   icon: Icons.miscellaneous_services,
-                  title: "misc".tr,
+                  title: StringFile.misc,
                   children: [
                     ListTile(
                       contentPadding: const EdgeInsets.only(left: 5, right: 10),
-                      title: CustomTextView("resetToDefault".tr),
+                      title: CustomTextView(StringFile.resetToDefault),
                       subtitle: CustomTextView(
-                        "resetToDefaultDes".tr,
+                        StringFile.resetToDefaultDes,
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
                       onTap: () {
@@ -813,7 +826,7 @@ class SettingsScreen extends StatelessWidget {
                           ScaffoldMessenger.of(Get.context!).showSnackBar(
                             snackbar(
                               Get.context!,
-                              "resetToDefaultMsg".tr,
+                              StringFile.resetToDefaultMsg,
                               size: SanckBarSize.BIG,
                               duration: const Duration(seconds: 2),
                             ),
@@ -825,13 +838,13 @@ class SettingsScreen extends StatelessWidget {
                 ),
                 CustomExpansionTile(
                   icon: Icons.info,
-                  title: "appInfo".tr,
+                  title: StringFile.appInfo,
                   children: [
                     ListTile(
                       contentPadding: const EdgeInsets.only(left: 5, right: 10),
-                      title: CustomTextView("github".tr),
+                      title: CustomTextView(StringFile.github),
                       subtitle: CustomTextView(
-                        "${"githubDes".tr}${((Get.find<PlayerController>().playerPanelMinHeight.value) == 0 || !isBottomNavActive) ? "" : "\n\n${settingsController.currentVersion} ${"by".tr} anandnet"}",
+                        "${StringFile.githubDes}${((Get.find<PlayerController>().playerPanelMinHeight.value) == 0 || !isBottomNavActive) ? "" : "\n\n${settingsController.currentVersion} ${StringFile.by} anandnet"}",
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
                       isThreeLine: true,
@@ -867,7 +880,7 @@ class SettingsScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(bottom: 20.0),
             child: CustomTextView(
-              "${settingsController.currentVersion} ${"by".tr} anandnet",
+              "${settingsController.currentVersion} ${StringFile.by} anandnet",
               style: Theme.of(context).textTheme.bodySmall,
             ),
           ),
@@ -895,28 +908,28 @@ class ThemeSelectorDialog extends StatelessWidget {
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: CustomTextView(
-                  "themeMode".tr,
+                  StringFile.themeMode,
                   style: context.titleLarge,
                 ),
               ),
             ),
             radioWidget(
-              label: "dynamic".tr,
+              label: StringFile.dynamic,
               controller: settingsController,
               value: ThemeType.dynamic,
             ),
             radioWidget(
-              label: "systemDefault".tr,
+              label: StringFile.systemDefault,
               controller: settingsController,
               value: ThemeType.system,
             ),
             radioWidget(
-              label: "dark".tr,
+              label: StringFile.dark,
               controller: settingsController,
               value: ThemeType.dark,
             ),
             radioWidget(
-              label: "light".tr,
+              label: StringFile.light,
               controller: settingsController,
               value: ThemeType.light,
             ),
@@ -925,7 +938,7 @@ class ThemeSelectorDialog extends StatelessWidget {
               child: InkWell(
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: CustomTextView("cancel".tr),
+                  child: CustomTextView(StringFile.cancel),
                 ),
                 onTap: () => Navigator.of(context).pop(),
               ),
@@ -955,7 +968,7 @@ class DiscoverContentSelectorDialog extends StatelessWidget {
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: CustomTextView(
-                  "setDiscoverContent".tr,
+                  StringFile.setDiscoverContent,
                   style: context.titleLarge,
                 ),
               ),
@@ -966,22 +979,22 @@ class DiscoverContentSelectorDialog extends StatelessWidget {
                 child: Column(
                   children: [
                     radioWidget(
-                      label: "quickpicks".tr,
+                      label: StringFile.quickpicks,
                       controller: settingsController,
                       value: "QP",
                     ),
                     radioWidget(
-                      label: "topmusicvideos".tr,
+                      label: StringFile.topmusicvideos,
                       controller: settingsController,
                       value: "TMV",
                     ),
                     radioWidget(
-                      label: "trending".tr,
+                      label: StringFile.trending,
                       controller: settingsController,
                       value: "TR",
                     ),
                     radioWidget(
-                      label: "basedOnLast".tr,
+                      label: StringFile.basedOnLast,
                       controller: settingsController,
                       value: "BOLI",
                     ),
@@ -995,7 +1008,7 @@ class DiscoverContentSelectorDialog extends StatelessWidget {
               child: InkWell(
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: CustomTextView("cancel".tr),
+                  child: CustomTextView(StringFile.cancel),
                 ),
                 onTap: () => Navigator.of(context).pop(),
               ),

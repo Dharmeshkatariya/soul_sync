@@ -1,3 +1,5 @@
+import 'package:soul_sync/core/utils/string_file.dart';
+
 import 'package:soul_sync/core/extension/text_style.dart';
 import 'package:soul_sync/custom_view/custom_text_view.dart';
 
@@ -28,7 +30,7 @@ class LyricsWidget extends StatelessWidget {
                     data: Theme.of(context).textSelectionTheme,
                     child: SelectableText(
                       playerController.lyrics["plainLyrics"] == "NA"
-                          ? "lyricsNotAvailable".tr
+                          ? StringFile.lyricsNotAvailable
                           : playerController.lyrics["plainLyrics"],
                       textAlign: TextAlign.center,
                       style: playerController.isDesktopLyricsDialogOpen
@@ -57,7 +59,7 @@ class LyricsWidget extends StatelessWidget {
                     .getModel(),
                 emptyBuilder: () => Center(
                   child: CustomTextView(
-                    "syncedLyricsNotAvailable".tr,
+                    StringFile.syncedLyricsNotAvailable,
                     style: playerController.isDesktopLyricsDialogOpen
                         ? context.titleMedium!
                         : Theme.of(context).textTheme.titleMedium!.copyWith(

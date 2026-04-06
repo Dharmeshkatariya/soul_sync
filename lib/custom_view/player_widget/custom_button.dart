@@ -1,3 +1,5 @@
+import 'package:soul_sync/core/utils/string_file.dart';
+
 import 'package:soul_sync/core/extension/text_style.dart';
 import 'package:soul_sync/custom_view/custom_text_view.dart';
 
@@ -43,7 +45,7 @@ class CancelButton extends StatelessWidget {
     return InkWell(
       child: Padding(
         padding: const EdgeInsets.all(10.0),
-        child: CustomTextView("cancel".tr),
+        child: CustomTextView(StringFile.cancel),
       ),
       onTap: () {
         Navigator.of(context).pop();

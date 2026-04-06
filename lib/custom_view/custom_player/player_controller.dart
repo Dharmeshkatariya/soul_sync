@@ -1,3 +1,5 @@
+import 'package:soul_sync/core/utils/string_file.dart';
+
 import 'dart:async';
 import 'package:flutter_lyric/lyric_ui/ui_netease.dart';
 import 'package:hive/hive.dart';
@@ -340,7 +342,7 @@ class PlayerController extends GetxController
     /// update playing from value
     playinfrom.value = PlaylingFrom(
       type: PlaylingFromType.SELECTION,
-      name: radio ? "randomRadio".tr : "randomSelection".tr,
+      name: radio ? StringFile.randomRadio : StringFile.randomSelection,
     );
 
     /// set global radio mode flag
@@ -650,7 +652,7 @@ class PlayerController extends GetxController
       ScaffoldMessenger.of(Get.context!).showSnackBar(
         snackbar(
           Get.context!,
-          "queueLoopNotDisMsg1".tr,
+          StringFile.queueLoopNotDisMsg1,
           size: SanckBarSize.BIG,
           duration: const Duration(seconds: 2),
         ),
@@ -663,7 +665,7 @@ class PlayerController extends GetxController
       ScaffoldMessenger.of(Get.context!).showSnackBar(
         snackbar(
           Get.context!,
-          "queueLoopNotDisMsg2".tr,
+          StringFile.queueLoopNotDisMsg2,
           size: SanckBarSize.BIG,
           duration: const Duration(seconds: 2),
         ),
