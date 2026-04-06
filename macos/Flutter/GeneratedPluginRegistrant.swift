@@ -16,7 +16,7 @@ import package_info_plus
 import path_provider_foundation
 import screen_retriever_macos
 import share_plus
-import sqflite_darwin
+import sqflite
 import tray_manager
 import url_launcher_macos
 import wakelock_plus

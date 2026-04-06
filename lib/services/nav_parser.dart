@@ -1,6 +1,3 @@
-import 'package:soul_sync/custom_view/custom_text_view.dart';
-
-//navigations
 // ignore_for_file: constant_identifier_names, empty_catches
 
 import 'package:audio_service/audio_service.dart';

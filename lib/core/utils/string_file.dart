@@ -339,4 +339,44 @@ class StringFile {
       "If enabled, the device screen will stay awake while music is playing";
 
   static String somethingWentWrong = "Something went wrong";
+
+  // Add these to your StringFile class:
+
+// Navigation & UI
+  static String back = "Back";
+
+// Library related
+  static String addToLibrary = "Add to library";
+  static String removeFromLibrary = "Remove from library";
+  static String importedList = "Imported list";
+  static String importedPlaylist = "Imported playlist";
+
+// Playlist related
+  static String listBookmarkRemoveAlert = "Playlist bookmark removed!";
+  static String enqueueSongs = "Enqueue songs";
+  static String shuffle = "Shuffle";
+  static String downloadPlaylist = "Download playlist";
+  static String syncPlaylistSongs = "Sync playlist songs";
+  static String blacklistPipedPlaylist = "Blacklist Piped playlist";
+  static String sharePlaylist = "Share playlist";
+  static String playlist = "Playlist";
+
+// Album related
+  static String play = "Play";
+  static String enqueueAlbumSongs = "Enqueue album songs";
+  static String downloadAlbumSongs = "Download album songs";
+  static String shareAlbum = "Share album";
+
+// Permission related
+  static String permissionDenied = "Permission denied";
+
+// Popup/Modal related
+  static String onPopInvokedWithResult = "onPopInvokedWithResult";
+  static String sortByName = "Sort by name";
+  static String sortByDuration = "Sort by duration";
+  static String sortByDate = "Sort by date";
+  static String sortAscendNDescend = "Ascending / Descending";
+  static String music = "Music";
+  static String imported = "Imported";
+  static String createnAdd = "Create & Add"; // if used somewhere
 }

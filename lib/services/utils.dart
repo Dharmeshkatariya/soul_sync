@@ -1,4 +1,3 @@
-import 'package:soul_sync/custom_view/custom_text_view.dart';
 
 import 'dart:math';
 

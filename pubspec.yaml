@@ -6,7 +6,9 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ^3.9.0
+#  sdk: ^3.9.0
+  sdk: ">=3.0.0 <4.0.0"  # Allow any Dart 3.x version
+
 dependencies:
   flutter:
     sdk: flutter
@@ -34,8 +36,9 @@ dependencies:
   mask_text_input_formatter: ^2.7.0
   flutter_screenutil: ^5.9.0
   flutter_svg: ^2.0.10+1
-  toastification: ^3.0.2
-  intl: ^0.20.0
+#  toastification: ^3.0.2
+  toastification: ^2.0.0  # Try 2.x version
+  intl: ^0.19.0  # Changed from ^0.20.0 to ^0.19.0
   flutter_localizations:
     sdk: flutter
 
@@ -43,7 +46,6 @@ dependencies:
   hive_flutter: ^1.1.0
   html: ^0.15.6
   ionicons: ^0.2.2
-  jni: ^0.14.0
   just_audio: ^0.9.46
   just_audio_media_kit:
     git:
@@ -72,6 +74,10 @@ dependencies:
   widget_marquee: ^0.0.8
   marquee: ^2.2.3
   window_manager: ^0.4.2
+  # ... other packages ...
+  jni: ^0.13.0  # Use 0.13.0 instead of 0.14.0
+  # ... rest of packages ...
+
   youtube_explode_dart:
     git:
       url: https://github.com/anandnet/youtube_explode_dart.git
@@ -81,10 +87,11 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  flutter_lints: ^5.0.0
+  flutter_lints: ^4.0.0  # Changed from ^5.0.0
 dependency_overrides:
-  ffi: ^2.0.2
-  win32: ^5.0.0
+  ffi: ^2.1.0  # Changed from ^2.0.2
+  win32: ^5.5.0
+  meta: ^1.15.0  # Add this line to override the pinned version
 flutter:
 
   uses-material-design: true

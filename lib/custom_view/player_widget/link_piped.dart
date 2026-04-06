@@ -30,7 +30,7 @@ class LinkPiped extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              CustomTextView(StringFile.Piped, style: context.titleLarge),
+              CustomTextView(StringFile.piped, style: context.titleLarge),
               Padding(
                 padding: const EdgeInsets.only(top: 15.0, bottom: 10),
                 child: Obx(

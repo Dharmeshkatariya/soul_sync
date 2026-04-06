@@ -559,7 +559,7 @@ class Common {
           ),
         ),
         useMaterial3: false,
-        dialogTheme: DialogThemeData(
+        dialogTheme: DialogTheme(
           backgroundColor: ColorFile.whiteColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(8.r)),

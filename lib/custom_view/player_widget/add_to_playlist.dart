@@ -50,7 +50,7 @@ class AddToPlaylist extends StatelessWidget {
                             id: "createNewPlaylistx",
                             delay: const Duration(milliseconds: 300),
                             child: CustomTextView(
-                              StringFile.CreateNewPlaylist,
+                              StringFile.createNewPlaylist,
                               style: context.titleMedium,
                             ),
                           ),
@@ -87,7 +87,7 @@ class AddToPlaylist extends StatelessWidget {
                               onChanged:
                                   addToPlaylistController.changePlaylistType,
                             ),
-                            CustomTextView(StringFile.Piped),
+                            CustomTextView(StringFile.piped),
                           ],
                         ),
                         const SizedBox(width: 15),

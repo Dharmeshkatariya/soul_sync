@@ -2,7 +2,6 @@ import 'package:soul_sync/core/utils/string_file.dart';
 
 // ignore_for_file: constant_identifier_names
 
-import 'package:get/get.dart';
 
 class PlaylingFrom {
   PlaylingFromType type;

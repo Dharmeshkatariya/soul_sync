@@ -57,7 +57,7 @@ class CreateNRenamePlaylistPopup extends StatelessWidget {
                       child: CustomTextView(
                         renamePlaylist
                             ? StringFile.renamePlaylist
-                            : StringFile.CreateNewPlaylist,
+                            : StringFile.createNewPlaylist,
                         style: context.titleMedium,
                       ),
                     ),
@@ -76,7 +76,7 @@ class CreateNRenamePlaylistPopup extends StatelessWidget {
                                   librPlstCntrller.playlistCreationMode.value,
                               onChanged: librPlstCntrller.changeCreationMode,
                             ),
-                            CustomTextView(StringFile.Piped),
+                            CustomTextView(StringFile.piped),
                           ],
                         ),
                         const SizedBox(width: 15),

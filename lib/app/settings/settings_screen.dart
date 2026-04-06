@@ -324,7 +324,7 @@ class SettingsScreen extends StatelessWidget {
                         right: 10,
                         top: 0,
                       ),
-                      title: CustomTextView(StringFile.Piped),
+                      title: CustomTextView(StringFile.piped),
                       subtitle: CustomTextView(
                         StringFile.linkPipedDes,
                         style: Theme.of(context).textTheme.bodyMedium,
@@ -418,7 +418,7 @@ class SettingsScreen extends StatelessWidget {
                   ],
                 ),
                 CustomExpansionTile(
-                  title: StringFile.music & Playback,
+                  title: StringFile.musicAndPlayback,
                   icon: Icons.music_note,
                   children: [
                     ListTile(
