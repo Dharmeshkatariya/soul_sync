@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 
 import '../../../models/artist.dart';
-import '../../core/utils/player_utils/helper.dart';
 import '../../core/utils/player_utils/song_utils.dart';
 import '../../custom_view/player_widget/add_to_playlist.dart';
 import '../../custom_view/player_widget/sort_widget.dart';
@@ -187,7 +186,9 @@ class ArtistScreenController extends GetxController
       sepataredContent[title]['results'] = songlist;
     } else if (title == "Albums" || title == "Singles") {
       final albumList = sepataredContent[title]['results'].toList();
-      sortAlbumNSingles(albumList, sortType, isAscending);
+      SongUtils. sortAlbumNSingles(
+          albumList:
+          albumList, sortType: sortType,isAscending: isAscending);
       sepataredContent[title]['results'] = albumList;
     }
     sepataredContent.refresh();

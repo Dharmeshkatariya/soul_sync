@@ -3,10 +3,10 @@ import 'dart:io';
 import 'package:get/get.dart';
 import '../../../app/Library/library_controller.dart';
 import '../../../services/utils.dart';
+import '../logger_utils.dart';
 import '/models/media_Item_builder.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
-import 'helper.dart';
 
 void startHouseKeeping() {
   removeExpiredSongsUrlFromDb();
@@ -27,7 +27,7 @@ Future<void> removeExpiredSongsUrlFromDb() async {
       }
     }
   } catch (e) {
-    printERROR("Error in removeExpiredSongsUrlFromDb: $e");
+     LoggerUtil.error("Error in removeExpiredSongsUrlFromDb: $e");
   } finally {
     removeDeletedOfflineSongsFromDb();
   }
@@ -56,6 +56,6 @@ Future<void> removeDeletedOfflineSongsFromDb() async {
       }
     }
   } catch (e) {
-    printERROR("Error in removeDeletedOfflineSongsFromDb: $e");
+     LoggerUtil.error("Error in removeDeletedOfflineSongsFromDb: $e");
   }
 }

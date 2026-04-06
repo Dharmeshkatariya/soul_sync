@@ -13,6 +13,7 @@ import 'package:wakelock_plus/wakelock_plus.dart';
 import '../../app/Home/home_screen_controller.dart';
 import '../../app/Playlist/playlist_screen_controller.dart';
 import '../../app/Settings/settings_screen_controller.dart';
+import '../../core/utils/logger_utils.dart';
 import '../../core/utils/player_utils/helper.dart';
 import '../../models/media_Item_builder.dart';
 import '../../models/playling_from.dart';
@@ -208,16 +209,16 @@ class PlayerController extends GetxController
 
     try {
       if (enable) {
-        printINFO("Enabling wakelock");
+        LoggerUtil.info("Enabling wakelock");
         WakelockPlus.enable();
         _wakelockActive = true;
       } else {
-        printINFO("Disabling wakelock");
+        LoggerUtil.info("Disabling wakelock");
         WakelockPlus.disable();
         _wakelockActive = false;
       }
     } catch (e) {
-      printERROR(e);
+       LoggerUtil.error(e);
     }
   }
 
@@ -270,7 +271,7 @@ class PlayerController extends GetxController
         val.buffered = oldState.buffered;
       });
       if (mediaItem != null) {
-        printINFO(mediaItem.title);
+        LoggerUtil.info(mediaItem.title);
         _newSongFlag = true;
         isCurrentSongBuffered.value = false;
         currentSong.value = mediaItem;
@@ -886,7 +887,7 @@ class PlayerController extends GetxController
     try {
       _setWakelock(false);
     } catch (e) {
-      printERROR(e);
+       LoggerUtil.error(e);
     }
     super.dispose();
   }

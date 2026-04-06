@@ -2,7 +2,7 @@ import 'package:audio_service/audio_service.dart';
 import 'package:dio/dio.dart';
 import 'package:hive/hive.dart';
 
-import '../core/utils/player_utils/helper.dart';
+import '../core/utils/logger_utils.dart';
 
 class SyncedLyricsService {
   static Future<Map<String, dynamic>?> getSyncedLyrics(
@@ -21,7 +21,7 @@ class SyncedLyricsService {
     try {
       final response = (await Dio().get(url)).data;
       if (response["syncedLyrics"] != null) {
-        printINFO("Synced Available");
+        LoggerUtil.info("Synced Available");
         final lyricsData = {
           "synced": response["syncedLyrics"],
           "plainLyrics": response["plainLyrics"],
@@ -30,7 +30,7 @@ class SyncedLyricsService {
         return lyricsData;
       }
     } on DioException catch (e) {
-      printERROR(e.response);
+       LoggerUtil.error(e.response);
     } finally {
       await lyricsBox.close();
     }

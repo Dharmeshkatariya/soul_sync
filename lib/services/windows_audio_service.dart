@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:smtc_windows/smtc_windows.dart';
 
-import '../core/utils/player_utils/helper.dart';
+import '../core/utils/logger_utils.dart';
 import '../custom_view/custom_player/player_controller.dart';
 
 class WindowsAudioService extends GetxService {
@@ -39,7 +39,7 @@ class WindowsAudioService extends GetxService {
         }
       });
     } catch (e) {
-      printERROR("Error: $e");
+       LoggerUtil.error("Error: $e");
     }
 
     playerController.buttonState.listen((state) {

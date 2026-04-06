@@ -5,6 +5,7 @@ import 'package:hive/hive.dart';
 import 'package:soul_sync/core/utils/player_utils/helper.dart';
 import 'package:soul_sync/custom_view/custom_player/player_controller.dart';
 
+import '../../core/utils/logger_utils.dart';
 import '../../core/utils/player_utils/update_check_flag_file.dart';
 import '../../custom_view/player_widget/new_version_dialog.dart';
 import '../settings/settings_screen_controller.dart';
@@ -83,7 +84,7 @@ class HomeScreenController extends GetxController {
           )
           .toList();
       isContentFetched.value = true;
-      printINFO("Loaded from offline db");
+      LoggerUtil.info("Loaded from offline db");
       return true;
     } else {
       return false;
@@ -164,7 +165,7 @@ class HomeScreenController extends GetxController {
             middleContentTemp.addAll(rel);
           }
         } catch (e) {
-          printERROR(
+           LoggerUtil.error(
             "Seems Based on last interaction content currently not available!",
           );
         }
@@ -193,7 +194,7 @@ class HomeScreenController extends GetxController {
       ).put("homeScreenDataTime", DateTime.now().millisecondsSinceEpoch);
       // ignore: unused_catch_stack
     } on NetworkError catch (r, e) {
-      printERROR("home Content not loaded due to ${r.message}");
+       LoggerUtil.error("home Content not loaded due to ${r.message}");
       await Future.delayed(const Duration(seconds: 1));
       networkError.value = !silent;
     }
@@ -245,7 +246,7 @@ class HomeScreenController extends GetxController {
           title: charts[index]["title"],
         );
       } catch (e) {
-        printERROR(
+         LoggerUtil.error(
           "Seems ${val == "TMV" ? "Top music videos" : "Trending songs"} currently not available!",
         );
       }
@@ -381,7 +382,7 @@ class HomeScreenController extends GetxController {
       });
     }
 
-    printINFO("Saved Homescreen data data");
+    LoggerUtil.info("Saved Homescreen data data");
   }
 
   List<Map<String, dynamic>> _getContentDataInJson(

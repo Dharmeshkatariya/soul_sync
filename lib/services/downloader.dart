@@ -16,7 +16,7 @@ import '../app/Album/album_screen_controller.dart';
 import '../app/Library/library_controller.dart';
 import '../app/Playlist/playlist_screen_controller.dart';
 import '../app/settings/settings_screen_controller.dart';
-import '../core/utils/player_utils/helper.dart';
+import '../core/utils/logger_utils.dart';
 import '/services/stream_service.dart';
 import '/services/permission_service.dart';
 import '/models/media_Item_builder.dart';
@@ -165,7 +165,7 @@ class Downloader extends GetxService {
 
     final playerResponse = await StreamProvider.fetch(song.id);
     // if (!playerResponse.playable) {
-    //   printINFO("Network error! Check your network connection.");
+    //   LoggerUtil.info("Network error! Check your network connection.");
     //   ScaffoldMessenger.of(Get.context!).showSnackBar(snackbar(
     //       Get.context!, playerResponse.statusMSG,
     //       size: SanckBarSize.BIG,
@@ -183,7 +183,7 @@ class Downloader extends GetxService {
             : playerResponse.statusMSG,
       );
 
-      printINFO("Requested song is not downloadable. You may try again");
+      LoggerUtil.info("Requested song is not downloadable. You may try again");
       complete.complete();
       return complete.future;
     }
@@ -201,7 +201,7 @@ class Downloader extends GetxService {
     final songTitle = "${song.title.trim()} (${song.artist?.trim()})"
         .replaceAll(invalidChar, "");
     String filePath = "$dirPath/$songTitle.$actualDownformat";
-    printINFO("Downloading filePath: $filePath");
+    LoggerUtil.info("Downloading filePath: $filePath");
     final totalBytes = requiredAudioStream.size;
 
     _dio.download(
@@ -213,7 +213,7 @@ class Downloader extends GetxService {
         songDownloadingProgress.value = ((count / total) * 100).toInt();
       },
     ).then((value) async {
-      printINFO(value.data);
+      LoggerUtil.info(value.data);
 
       String? year;
       try {
@@ -244,7 +244,7 @@ class Downloader extends GetxService {
 
       Hive.box("SongDownloads").put(song.id, songJson);
       Get.find<LibrarySongsController>().librarySongsList.add(song);
-      printINFO("Downloaded successfully");
+      LoggerUtil.info("Downloaded successfully");
 
       final trackDetails = (song.extras?['trackDetails'])?.split("/");
       final int? trackNumber = int.tryParse(trackDetails?[0] ?? "");
@@ -277,7 +277,7 @@ class Downloader extends GetxService {
 
         await AudioTags.write(filePath, tag);
       } catch (e) {
-        printERROR("$e");
+         LoggerUtil.error("$e");
       }
       complete.complete();
     }).onError(
@@ -286,7 +286,7 @@ class Downloader extends GetxService {
           size: ToastSize.big,
           message: StringFile.downloadError3,
         );
-        printINFO(
+        LoggerUtil.info(
           "Downloading failed due to network/stream error! Please try again",
         );
         complete.complete();

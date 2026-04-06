@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 
 import '../../app/Library/library_controller.dart';
 import '../../app/settings/settings_screen_controller.dart';
-import '../../core/utils/player_utils/helper.dart';
+import '../../core/utils/logger_utils.dart';
 import '/services/piped_service.dart';
 import 'common_dialog_widget.dart';
 import 'modified_text_field.dart';
@@ -185,7 +185,7 @@ class PipedLinkedController extends GetxController {
     )
         .then((res) {
       if (res.code == 1) {
-        printINFO("Login Successfull");
+        LoggerUtil.info("Login Successfull");
         Get.find<SettingsScreenController>().isLinkedWithPiped.value = true;
         Navigator.of(Get.context!).pop();
         ToastUtil.successWithSize(

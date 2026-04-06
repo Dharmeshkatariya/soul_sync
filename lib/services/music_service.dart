@@ -6,7 +6,7 @@ import 'package:dio/dio.dart';
 import 'package:get/get.dart' as getx;
 import 'package:hive/hive.dart';
 
-import '../core/utils/player_utils/helper.dart';
+import '../core/utils/logger_utils.dart';
 import '/models/album.dart';
 import '/services/utils.dart';
 import 'constant.dart';
@@ -64,7 +64,7 @@ class MusicServices extends getx.GetxService {
           'id': visitorData['id'],
           'exp': DateTime.now().millisecondsSinceEpoch ~/ 1000 + 2590200,
         });
-        printINFO("Got Visitor id ($visitorData['id']) from Box");
+        LoggerUtil.info("Got Visitor id ($visitorData['id']) from Box");
         return;
       }
     }
@@ -72,7 +72,7 @@ class MusicServices extends getx.GetxService {
     final visitorId = await genrateVisitorId();
     if (visitorId != null) {
       _headers['X-Goog-Visitor-Id'] = visitorId;
-      printINFO("New Visitor id generated ($visitorId)");
+      LoggerUtil.info("New Visitor id generated ($visitorId)");
       appPrefsBox.put("visitorId", {
         'id': visitorId,
         'exp': DateTime.now().millisecondsSinceEpoch ~/ 1000 + 2592000,
@@ -126,7 +126,7 @@ class MusicServices extends getx.GetxService {
         return _sendRequest(action, data, additionalParams: additionalParams);
       }
     } on DioException catch (e) {
-      printINFO("Error $e");
+      LoggerUtil.info("Error $e");
       throw NetworkError();
     }
   }

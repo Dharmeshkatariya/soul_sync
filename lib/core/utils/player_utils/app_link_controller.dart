@@ -12,8 +12,8 @@ import '../../../custom_view/custom_player/player_controller.dart';
 import '../../../custom_view/player_widget/loader.dart';
 import '../../../custom_view/player_widget/songinfo_bottom_sheet.dart';
 import '../../../models/playling_from.dart';
+import '../logger_utils.dart';
 import '/services/music_service.dart';
-import 'helper.dart';
 
 class AppLinksController extends GetxController with ProcessLink {
   late AppLinks _appLinks;
@@ -63,7 +63,7 @@ mixin ProcessLink {
         uri.host == "youtu.be" ||
         uri.host == "www.youtube.com" ||
         uri.host == "m.youtube.com") {
-      printINFO(
+      LoggerUtil.info(
         "pathsegmet: ${uri.pathSegments} params:${uri.queryParameters}",
       );
       if (uri.pathSegments[0] == "playlist" &&

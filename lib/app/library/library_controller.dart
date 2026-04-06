@@ -14,7 +14,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:file_picker/file_picker.dart';
 import 'dart:convert';
 
-import '../../core/utils/player_utils/helper.dart';
+import '../../core/utils/logger_utils.dart';
 import '../../core/utils/player_utils/house_keeping.dart';
 import '../../custom_view/player_widget/add_to_playlist.dart';
 import '../../custom_view/player_widget/sort_widget.dart';
@@ -64,7 +64,7 @@ class LibrarySongsController extends GetxController {
             .whereType<String>()
             .toList(),
       );
-      //printINFO("all files: $downloadedFiles \n $songsList");
+      //LoggerUtil.info("all files: $downloadedFiles \n $songsList");
     }
 
     final box = Hive.box("SongsCache");
@@ -606,7 +606,7 @@ class LibraryPlaylistsController extends GetxController
         Get.back();
       }
 
-      printERROR("Error importing playlist: $e");
+      LoggerUtil.error("Error importing playlist: $e");
 
       String errorMsg = StringFile.importError;
       if (e is FileSystemException) {
@@ -691,7 +691,8 @@ class LibraryAlbumsController extends GetxController {
 
   void onSort(SortType sortType, bool isAscending) {
     final albumList = libraryAlbums.toList();
-    sortAlbumNSingles(albumList, sortType, isAscending);
+    SongUtils.sortAlbumNSingles(
+        albumList: albumList, sortType: sortType, isAscending: isAscending);
     libraryAlbums.value = albumList;
   }
 

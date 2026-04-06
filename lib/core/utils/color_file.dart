@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+
+import 'logger_utils.dart';
 
 class ColorFile {
   static Map<int, Color> color = {
@@ -233,7 +234,7 @@ class ColorFile {
     try {
       return Color(int.parse(code.substring(1, 7), radix: 16) + 0xFF000000);
     } catch (e) {
-      e.printError();
+      LoggerUtil.error(e);
       return const Color(0xff3B1550);
     }
   }

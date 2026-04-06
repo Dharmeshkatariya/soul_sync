@@ -5,7 +5,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive/hive.dart';
 import 'package:palette_generator/palette_generator.dart';
-import 'package:soul_sync/core/utils/player_utils/helper.dart';
+
+import 'logger_utils.dart';
 
 class ThemeController extends GetxController {
   final primaryColor = Colors.deepPurple[400].obs;
@@ -76,7 +77,7 @@ class ThemeController extends GetxController {
         generator.lightVibrantColor;
     primaryColor.value = paletteColor!.color;
     textColor.value = paletteColor.bodyTextColor;
-    // printINFO(paletteColor.color.computeLuminance().toString());0.11 ref
+    // LoggerUtil.info(paletteColor.color.computeLuminance().toString());0.11 ref
     if (paletteColor.color.computeLuminance() > 0.10) {
       primaryColor.value = paletteColor.color.withLightness(0.10);
       textColor.value = Colors.white54;
@@ -401,7 +402,7 @@ class ThemeController extends GetxController {
         }),
       );
     } on PlatformException catch (e) {
-      printERROR("Failed to set title bar color: ${e.message}");
+      LoggerUtil.error("Failed to set title bar color: ${e.message}");
     }
   }
 }

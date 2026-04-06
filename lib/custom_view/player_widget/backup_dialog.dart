@@ -15,7 +15,7 @@ import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 
 import '../../app/Settings/settings_screen_controller.dart';
-import '../../core/utils/player_utils/helper.dart';
+import '../../core/utils/logger_utils.dart';
 import '../../services/permission_service.dart';
 import 'common_dialog_widget.dart';
 import 'loader.dart';
@@ -213,7 +213,7 @@ class BackupDialogController extends GetxController {
           ),
         );
       } catch (e) {
-        printERROR(e);
+         LoggerUtil.error(e);
       }
     }
   }
@@ -249,7 +249,7 @@ class BackupDialogController extends GetxController {
       backupRunning.value = false;
       isbackupCompleted.value = true;
     }).catchError((e) {
-      printERROR('Error during compression: $e');
+       LoggerUtil.error('Error during compression: $e');
     });
   }
 }
@@ -267,7 +267,7 @@ List<String> filePathsToBase64(List<String> filePaths) {
       String base64String = base64Encode(fileData);
       base64Data.add(base64String);
     } catch (e) {
-      printERROR('Error reading file $path: $e');
+       LoggerUtil.error('Error reading file $path: $e');
     }
   }
 
@@ -285,7 +285,7 @@ List<List<int>> filePathsToFileData(List<String> filePaths) {
       List<int> fileData = file.readAsBytesSync();
       filesData.add(fileData);
     } catch (e) {
-      printERROR('Error reading file $path: $e');
+       LoggerUtil.error('Error reading file $path: $e');
     }
   }
 
@@ -323,7 +323,7 @@ Future<void> compressFilesInBackground(
       .map((path) => path.split(GetPlatform.isWindows ? '\\' : '/').last)
       .toList();
 
-  printINFO(fileNames);
+  LoggerUtil.info(fileNames);
   // Use compute to run the compression in the background
   await compute(_compressFiles, {
     'filesData': filesData,

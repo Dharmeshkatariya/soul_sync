@@ -5,7 +5,7 @@ import 'package:hive/hive.dart';
 import 'package:soul_sync/models/album.dart';
 import 'package:soul_sync/models/media_Item_builder.dart';
 
-import '../../core/utils/player_utils/helper.dart';
+import '../../core/utils/logger_utils.dart';
 import '../../models/playlist.dart';
 import '../Library/library_controller.dart';
 import '../home/home_screen_controller.dart';
@@ -90,7 +90,7 @@ class AlbumScreenController extends PlaylistAlbumScreenControllerBase
       isContentFetched.value = true;
     } catch (e) {
       // Handle any errors that occur during the fetch
-      printERROR("Error fetching album details: $e");
+       LoggerUtil.error("Error fetching album details: $e");
     }
   }
 

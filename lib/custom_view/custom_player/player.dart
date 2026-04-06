@@ -12,7 +12,7 @@ import 'package:soul_sync/custom_view/custom_player/widget/gesture_player.dart';
 import 'package:soul_sync/custom_view/custom_player/widget/standard_player.dart';
 
 import '../../app/Settings/settings_screen_controller.dart';
-import '../../core/utils/player_utils/helper.dart';
+import '../../core/utils/logger_utils.dart';
 import '../player_widget/sliding_up_panel.dart';
 import '../player_widget/up_next_queue.dart';
 import 'player_controller.dart';
@@ -26,7 +26,7 @@ class Player extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    printINFO("player");
+    LoggerUtil.info("player");
     final size = MediaQuery.of(context).size;
     final PlayerController playerController = Get.find<PlayerController>();
     final settingsScreenController = Get.find<SettingsScreenController>();

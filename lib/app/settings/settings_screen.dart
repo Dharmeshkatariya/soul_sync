@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../core/enum/toast_duration.dart';
-import '../../core/utils/player_utils/helper.dart';
+import '../../core/utils/logger_utils.dart';
 import '../../core/utils/player_utils/lang_mapping.dart';
 import '../../core/utils/theme_controller.dart';
 import '../../custom_view/custom_player/player_controller.dart';
@@ -582,7 +582,7 @@ class SettingsScreen extends StatelessWidget {
                           try {
                             await Get.find<PlayerController>().openEqualizer();
                           } catch (e) {
-                            printERROR(e);
+                             LoggerUtil.error(e);
                           }
                         },
                       ),

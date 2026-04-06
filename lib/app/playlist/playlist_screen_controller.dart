@@ -18,7 +18,7 @@ import '../../../models/media_Item_builder.dart';
 import '../../../models/playlist.dart';
 import '../../../services/music_service.dart';
 import '../../../services/piped_service.dart';
-import '../../core/utils/player_utils/helper.dart';
+import '../../core/utils/logger_utils.dart';
 import '../../models/thumbnail.dart';
 import '../../services/permission_service.dart';
 import '../home/home_screen_controller.dart';
@@ -131,7 +131,7 @@ class PlaylistScreenController extends PlaylistAlbumScreenControllerBase
       isContentFetched.value = true;
     } catch (e) {
       // Handle any errors that occur during the fetch
-      printERROR("Error fetching playlist details: $e");
+       LoggerUtil.error("Error fetching playlist details: $e");
     }
   }
 
@@ -403,7 +403,7 @@ class PlaylistScreenController extends PlaylistAlbumScreenControllerBase
         Get.back();
       }
 
-      printERROR("Error exporting playlist: $e");
+       LoggerUtil.error("Error exporting playlist: $e");
 
       String errorMsg = StringFile.exportError;
       if (e is FileSystemException) {
@@ -497,7 +497,7 @@ class PlaylistScreenController extends PlaylistAlbumScreenControllerBase
         Get.back();
       }
 
-      printERROR("Error exporting playlist to CSV: $e");
+       LoggerUtil.error("Error exporting playlist to CSV: $e");
 
       String errorMsg = StringFile.exportError;
       if (e is FileSystemException) {

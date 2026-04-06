@@ -6,6 +6,8 @@ import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:soul_sync/core/constants/constants_file.dart';
 import 'package:soul_sync/core/enum/app_language_type.dart';
 
+import 'logger_utils.dart';
+
 class AppLocale extends GetxController {
   AppLocale.initialize();
 
@@ -278,7 +280,7 @@ class AppLocale extends GetxController {
         return outputDate;
       }
     } catch (e) {
-      e.printError();
+      LoggerUtil.error(e);
       return outputDate;
     }
   }

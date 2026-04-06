@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../core/utils/player_utils/helper.dart';
+import '../../core/utils/logger_utils.dart';
 import '../../core/utils/player_utils/song_utils.dart';
 import '../../custom_view/player_widget/sort_widget.dart';
 import '../Home/home_screen_controller.dart';
@@ -71,7 +71,7 @@ class SearchResultScreenController extends GetxController
             additionalParamNext[tabName]['additionalParams'] !=
                 '&ctoken=null&continuation=null') {
           if (!continuationInProgress) {
-            printINFO("Acchhsk");
+            LoggerUtil.info("Acchhsk");
             continuationInProgress = true;
             getContinuationContents();
           }
@@ -171,7 +171,9 @@ class SearchResultScreenController extends GetxController
       separatedResultContent[title] = artistList;
     } else if (title == "Albums") {
       final albumList = separatedResultContent[title].toList();
-      sortAlbumNSingles(albumList, sortType, isAscending);
+      SongUtils. sortAlbumNSingles(
+          albumList:
+          albumList, sortType: sortType,isAscending: isAscending);
       separatedResultContent[title] = albumList;
     }
   }

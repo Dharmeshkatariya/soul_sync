@@ -10,7 +10,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:soul_sync/app/screen_navigation.dart';
 
-import '../core/utils/player_utils/helper.dart';
+import '../core/utils/logger_utils.dart';
 import '../custom_view/custom_player/player.dart';
 import '../custom_view/custom_player/player_controller.dart';
 import '../custom_view/custom_player/widget/mini_player.dart';
@@ -28,7 +28,7 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    printINFO("home");
+    LoggerUtil.info("home");
     final PlayerController playerController = Get.find<PlayerController>();
     final settingsScreenController = Get.find<SettingsScreenController>();
     final homeScreenController = Get.find<HomeScreenController>();

@@ -2,7 +2,6 @@ import 'package:audio_service/audio_service.dart' show MediaItem;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:soul_sync/base_class/playlist_album_screen_con_base.dart';
-import '../core/utils/player_utils/helper.dart';
 import '../core/utils/player_utils/song_utils.dart';
 import '../custom_view/player_widget/add_to_playlist.dart';
 import '../custom_view/player_widget/sort_widget.dart';

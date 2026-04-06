@@ -4,7 +4,7 @@ import 'package:soul_sync/core/utils/string_file.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../app/Library/library_controller.dart';
-import '../../core/utils/player_utils/helper.dart';
+import '../../core/utils/logger_utils.dart';
 
 class PipedSyncWidget extends StatelessWidget {
   const PipedSyncWidget({super.key, required this.padding});
@@ -26,7 +26,7 @@ class PipedSyncWidget extends StatelessWidget {
           // <-- Icon
           onPressed: () async {
             try {
-              //printINFO(librplstCntrller.controller.status);
+              //LoggerUtil.info(librplstCntrller.controller.status);
               librplstCntrller.controller.forward();
               librplstCntrller.controller.repeat();
               await librplstCntrller.syncPipedPlaylist();
@@ -42,7 +42,7 @@ class PipedSyncWidget extends StatelessWidget {
                 message: StringFile.errorOccuredAlert,
               );
 
-              printERROR(e);
+               LoggerUtil.error(e);
             }
           },
         ),

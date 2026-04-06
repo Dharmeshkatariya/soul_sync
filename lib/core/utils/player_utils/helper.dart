@@ -1,24 +1,8 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
 import '../../../app/screen_navigation.dart';
-import '../../../custom_view/player_widget/sort_widget.dart';
 
-void printERROR(dynamic text, {String tag = "Harmony Music"}) {
-  if (kReleaseMode) return;
-  debugPrint("\x1B[31m[$tag]: $text\x1B[0m");
-}
-
-void printWarning(dynamic text, {String tag = 'Harmony Music'}) {
-  if (kReleaseMode) return;
-  debugPrint("\x1B[33m[$tag]: $text\x1B[34m");
-}
-
-void printINFO(dynamic text, {String tag = 'Harmony Music'}) {
-  if (kReleaseMode) return;
-  debugPrint("\x1B[32m[$tag]: $text\x1B[34m");
-}
 
 String? getCurrentRouteName() {
   String? currentPath;

@@ -1,3 +1,4 @@
+import 'package:soul_sync/core/utils/logger_utils.dart';
 import 'package:soul_sync/core/utils/string_file.dart';
 
 import 'package:soul_sync/core/extension/text_style.dart';
@@ -14,7 +15,6 @@ import 'package:path_provider/path_provider.dart';
 import 'package:terminate_restart/terminate_restart.dart';
 
 import '../../app/Settings/settings_screen_controller.dart';
-import '../../core/utils/player_utils/helper.dart';
 import '../../services/permission_service.dart';
 import 'common_dialog_widget.dart';
 
@@ -172,7 +172,7 @@ class RestoreDialogController extends GetxController {
     final supportDirPath = Get.find<SettingsScreenController>().supportDirPath;
     final dbDirPath = await Get.find<SettingsScreenController>().dbDir;
     final Directory dbDir = Directory(dbDirPath);
-    printInfo(info: dbDir.path);
+    LoggerUtil.info( dbDir.path);
     await Get.find<SettingsScreenController>().closeAllDatabases();
 
     //delele all the files with extension .hive
@@ -189,7 +189,7 @@ class RestoreDialogController extends GetxController {
     restoreRunning.value = true;
     for (final file in archive) {
       final filename = file.name;
-      printINFO(filename);
+      LoggerUtil.info(filename);
       if (file.isFile) {
         final data = file.content as List<int>;
         final targetFileDir =

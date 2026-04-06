@@ -15,7 +15,7 @@ import '../../app/Settings/settings_screen_controller.dart';
 import '../../app/library/library_controller.dart';
 import '../../app/playlist/playlist_screen_controller.dart';
 import '../../app/screen_navigation.dart';
-import '../../core/utils/player_utils/helper.dart';
+import '../../core/utils/logger_utils.dart';
 import '../../services/downloader.dart';
 import '../custom_player/player_controller.dart';
 import '/services/piped_service.dart';
@@ -488,7 +488,7 @@ mixin RemoveSongFromPlaylistMixin {
         // ignore: empty_catches
       } catch (e) {}
     } catch (e) {
-      printERROR("Some Error in removeSongFromPlaylist (might irrelavant): $e");
+       LoggerUtil.error("Some Error in removeSongFromPlaylist (might irrelavant): $e");
     }
 
     if (playlist.playlistId == "SongDownloads" ||

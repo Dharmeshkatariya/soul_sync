@@ -18,7 +18,7 @@ import 'package:rxdart/rxdart.dart';
 import '../app/Home/home_screen_controller.dart';
 import '../app/Library/library_controller.dart';
 import '../app/Settings/settings_screen_controller.dart';
-import '../core/utils/player_utils/helper.dart';
+import '../core/utils/logger_utils.dart';
 import '../custom_view/custom_player/player_controller.dart';
 import '/models/album.dart';
 import '../models/playlist.dart';
@@ -118,7 +118,7 @@ class MyAudioHandler extends BaseAudioHandler with GetxServiceMixin {
     try {
       _player.setAudioSource(_playList);
     } catch (r) {
-      printERROR(r.toString());
+       LoggerUtil.error(r.toString());
     }
   }
 
@@ -172,10 +172,10 @@ class MyAudioHandler extends BaseAudioHandler with GetxServiceMixin {
       },
       onError: (Object e, StackTrace st) async {
         if (e is PlayerException) {
-          printERROR('Error code: ${e.code}');
-          printERROR('Error message: ${e.message}');
+           LoggerUtil.error('Error code: ${e.code}');
+           LoggerUtil.error('Error message: ${e.message}');
         } else {
-          printERROR('An error occurred: $e');
+           LoggerUtil.error('An error occurred: $e');
           Duration curPos = _player.position;
           await _player.stop();
 
@@ -293,7 +293,7 @@ class MyAudioHandler extends BaseAudioHandler with GetxServiceMixin {
     if (url.contains('/cache') ||
         (Get.find<SettingsScreenController>().cacheSongs.isTrue &&
             url.contains("http"))) {
-      printINFO("Playing Using LockCaching");
+      LoggerUtil.info("Playing Using LockCaching");
       isPlayingUsingLockCachingSource = true;
       return LockCachingAudioSource(
         Uri.parse(url),
@@ -302,7 +302,7 @@ class MyAudioHandler extends BaseAudioHandler with GetxServiceMixin {
       );
     }
 
-    printINFO("Playing Using AudioSource.uri");
+    LoggerUtil.info("Playing Using AudioSource.uri");
     isPlayingUsingLockCachingSource = false;
     return AudioSource.uri(Uri.tryParse(url)!, tag: mediaItem);
   }
@@ -616,7 +616,7 @@ class MyAudioHandler extends BaseAudioHandler with GetxServiceMixin {
               );
             }
           } catch (e) {
-            printERROR(e);
+             LoggerUtil.error(e);
           }
         }
         break;
@@ -719,7 +719,7 @@ class MyAudioHandler extends BaseAudioHandler with GetxServiceMixin {
     // We use a factor to convert dB difference to a linear scale
     // 10^(difference / 20) converts dB difference to a linear volume factor
     final volumeAdjustment = pow(10.0, loudnessDifference / 20.0);
-    printINFO(
+    LoggerUtil.info(
       "loudness:$currentLoudnessDb Normalized volume: $volumeAdjustment",
     );
     _player.setVolume(volumeAdjustment.toDouble().clamp(0, 1.0));
@@ -743,7 +743,7 @@ class MyAudioHandler extends BaseAudioHandler with GetxServiceMixin {
         "index": currIndex,
       });
       await prevSessionData.close();
-      printINFO("Saved session data");
+      LoggerUtil.info("Saved session data");
     }
   }
 
@@ -799,11 +799,11 @@ class MyAudioHandler extends BaseAudioHandler with GetxServiceMixin {
     bool generateNewUrl = false,
     bool offlineReplacementUrl = false,
   }) async {
-    printINFO("Requested id : $songId");
+    LoggerUtil.info("Requested id : $songId");
     final songDownloadsBox = Hive.box("SongDownloads");
     if (!offlineReplacementUrl &&
         (await Hive.openBox("SongsCache")).containsKey(songId)) {
-      printINFO("Got Song from cachedbox ($songId)");
+      LoggerUtil.info("Got Song from cachedbox ($songId)");
       // if contains stream Info
       final streamInfo = Hive.box("SongsCache").get(songId)["streamInfo"];
       Audio? cacheAudioPlaceholder;
@@ -875,7 +875,7 @@ class MyAudioHandler extends BaseAudioHandler with GetxServiceMixin {
         final streamInfoJson = songsUrlCacheBox.get(songId);
         if (streamInfoJson.runtimeType.toString().contains("Map") &&
             !isExpired(url: (streamInfoJson['lowQualityAudio']['url']))) {
-          printINFO("Got cached Url ($songId)");
+          LoggerUtil.info("Got cached Url ($songId)");
           streamInfo = HMStreamingData.fromJson(streamInfoJson);
         }
       }
