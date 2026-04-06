@@ -846,7 +846,7 @@ class SettingsScreen extends StatelessWidget {
                       child: Column(
                         children: [
                           CustomTextView(
-                            "Harmony Music",
+                            "Soul Sync",
                             style: context.titleLarge,
                           ),
                           CustomTextView(

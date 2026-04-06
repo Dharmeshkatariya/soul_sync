@@ -7475,7 +7475,7 @@ class Languages extends Translations {
           "videos": "Teledyski",
           "viewAll": "Pokaż wszystko",
           "results": "Wyniki",
-          "about": "O Harmony Music",
+          "about": "O Soul Sync",
           "songRemovedfromQueue": "Usunięto z kolejki!",
           "radioNotAvailable": "Radio niedostępne dla tego wykonawcy!",
           "songRemovedfromQueueCurrSong":

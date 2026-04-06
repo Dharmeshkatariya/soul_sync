@@ -49,7 +49,7 @@ class LoggerUtil {
   static void log(
     dynamic message, {
     LogLevel level = LogLevel.debug,
-    String tag = 'Harmony Music',
+    String tag = 'Soul Sync',
     dynamic error,
     StackTrace? stackTrace,
   }) {
@@ -93,35 +93,35 @@ class LoggerUtil {
   }
 
   // Convenience methods
-  static void debug(dynamic text, {String tag = 'Harmony Music'}) {
+  static void debug(dynamic text, {String tag = 'Soul Sync'}) {
     log(text, level: LogLevel.debug, tag: tag);
   }
 
-  static void info(dynamic text, {String tag = 'Harmony Music'}) {
+  static void info(dynamic text, {String tag = 'Soul Sync'}) {
     log(text, level: LogLevel.info, tag: tag);
   }
 
-  static void warning(dynamic text, {String tag = 'Harmony Music'}) {
+  static void warning(dynamic text, {String tag = 'Soul Sync'}) {
     log(text, level: LogLevel.warning, tag: tag);
   }
 
   static void error(dynamic text,
-      {String tag = 'Harmony Music', dynamic error, StackTrace? stackTrace}) {
+      {String tag = 'Soul Sync', dynamic error, StackTrace? stackTrace}) {
     log(text,
         level: LogLevel.error, tag: tag, error: error, stackTrace: stackTrace);
   }
 
-  static void verbose(dynamic text, {String tag = 'Harmony Music'}) {
+  static void verbose(dynamic text, {String tag = 'Soul Sync'}) {
     log(text, level: LogLevel.verbose, tag: tag);
   }
 
   static void wtf(dynamic text,
-      {String tag = 'Harmony Music', dynamic error, StackTrace? stackTrace}) {
+      {String tag = 'Soul Sync', dynamic error, StackTrace? stackTrace}) {
     log(text,
         level: LogLevel.wtf, tag: tag, error: error, stackTrace: stackTrace);
   }
 
-  // Method-specific logs for Harmony Music
+  // Method-specific logs for Soul Sync
   static void logSongPlay(String songTitle, {String tag = 'Player'}) {
     info('🎵 Playing: "$songTitle"', tag: tag);
   }

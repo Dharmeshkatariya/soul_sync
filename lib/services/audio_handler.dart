@@ -1,11 +1,15 @@
-import 'package:soul_sync/core/utils/string_file.dart';
+// ============================================
+// Soul Sync - AUDIO SERVICE IMPLEMENTATION
+// ============================================
+// This file implements the core audio playback service for Soul Sync app.
+// It handles audio streaming, caching, queue management, and background playback.
 
+
+import 'package:soul_sync/core/utils/string_file.dart';
 import 'dart:io';
 import 'dart:isolate';
 import 'dart:math';
-
 import 'package:flutter/services.dart';
-
 import 'package:hive/hive.dart';
 import 'package:get/get.dart';
 import 'package:just_audio/just_audio.dart';
@@ -14,7 +18,6 @@ import 'package:path_provider/path_provider.dart';
 import 'package:audio_service/audio_service.dart';
 // ignore: depend_on_referenced_packages
 import 'package:rxdart/rxdart.dart';
-
 import '../app/Home/home_screen_controller.dart';
 import '../app/Library/library_controller.dart';
 import '../app/Settings/settings_screen_controller.dart';
@@ -32,65 +35,109 @@ import '/services/utils.dart';
 // ignore: unused_import, implementation_imports, depend_on_referenced_packages
 import "package:media_kit/src/player/platform_player.dart" show MPVLogLevel;
 
+// ============================================================================
+// HARMONY MUSIC - AUDIO SERVICE CORE IMPLEMENTATION
+// ============================================================================
+// Author: Harmony Music Team
+// Description: Complete audio playback service with caching, queue management,
+//              Android Auto support, and background playback capabilities
+// ============================================================================
+
 Future<AudioHandler> initAudioService() async {
   return await AudioService.init(
     builder: () => MyAudioHandler(),
     config: const AudioServiceConfig(
       androidNotificationIcon: 'mipmap/ic_launcher_monochrome',
       androidNotificationChannelId: 'com.mycompany.myapp.audio',
-      androidNotificationChannelName: 'Harmony Music Notification',
+      androidNotificationChannelName: 'Soul Sync Notification',
       androidNotificationOngoing: true,
       androidStopForegroundOnPause: true,
     ),
   );
 }
 
+
+// ----------------------------------------------------------------------------
+// MAIN AUDIO HANDLER CLASS
+// ----------------------------------------------------------------------------
+//  * Core audio handler that manages all playback operations
+//  *
+//  * Responsibilities:
+//  * - Playback control (play, pause, seek, skip)
+//  * - Queue management with shuffle and repeat modes
+//  * - Audio caching for offline playback
+//  * - Volume normalization (loudness equalization)
+//  * - Session persistence across app restarts
+//  * - Android Auto integration
+//  * - Equalizer support
+
 class MyAudioHandler extends BaseAudioHandler with GetxServiceMixin {
-  // ignore: prefer_typing_uninitialized_variables
-  late final _cacheDir;
-  late AudioPlayer _player;
-  late MediaLibrary _mediaLibrary;
-  // ignore: prefer_typing_uninitialized_variables
-  dynamic currentIndex;
-  int currentShuffleIndex = 0;
-  late String? currentSongUrl;
-  bool isPlayingUsingLockCachingSource = false;
-  bool loopModeEnabled = false;
-  bool queueLoopModeEnabled = false;
-  bool shuffleModeEnabled = false;
-  bool loudnessNormalizationEnabled = false;
-  // var networkErrorPause = false;
-  bool isSongLoading = true;
+  // ==========================================================================
+  // PROPERTY DECLARATIONS
+  // ==========================================================================
 
-  // list of shuffled queue songs ids
-  List<String> shuffledQueue = [];
+  late final _cacheDir;                           // Cache directory path for offline storage
+  late AudioPlayer _player;                       // JustAudio player instance
+  late MediaLibrary _mediaLibrary;                // Android Auto media browser
+  dynamic currentIndex;                          // Currently playing song index
+  int currentShuffleIndex = 0;                   // Position in shuffled queue
+  late String? currentSongUrl;                   // Active streaming URL
+  bool isPlayingUsingLockCachingSource = false;  // Cache playback flag
+  bool loopModeEnabled = false;                  // Single track repeat
+  bool queueLoopModeEnabled = false;             // Full queue repeat
+  bool shuffleModeEnabled = false;               // Random playback mode
+  bool loudnessNormalizationEnabled = false;     // Volume leveling
+  bool isSongLoading = true;                     // Loading state indicator
 
-  final _playList = ConcatenatingAudioSource(
+  List<String> shuffledQueue = [];               // Shuffled song ID list
+  final _playList = ConcatenatingAudioSource(    // Playlist source
     children: [],
     useLazyPreparation: false,
   );
 
+  // ==========================================================================
+  // CONSTRUCTOR & INITIALIZATION
+  // ==========================================================================
+
+  //**
+  //  * Constructor - Initializes all components and loads user preferences
+  //  *
+  //  * Setup sequence:
+  //  * 1. Platform-specific configuration (Windows/Linux)
+  //  * 2. Audio player with optimized buffering
+  //  * 3. Cache directory creation
+  //  * 4. Event listeners setup
+  //  * 5. User preferences loading
+  //  *//
   MyAudioHandler() {
+    // Platform-specific setup for desktop environments
     if (GetPlatform.isWindows || GetPlatform.isLinux) {
       JustAudioMediaKit.title = 'Harmony music';
       JustAudioMediaKit.protocolWhitelist = const ['http', 'https', 'file'];
     }
+
     _mediaLibrary = MediaLibrary();
+
+    // Initialize player with optimized buffering configuration
     _player = AudioPlayer(
       audioLoadConfiguration: const AudioLoadConfiguration(
         androidLoadControl: AndroidLoadControl(
-          minBufferDuration: Duration(seconds: 50),
-          maxBufferDuration: Duration(seconds: 120),
+          minBufferDuration: Duration(seconds: 50),      // Minimum buffer before playback starts
+          maxBufferDuration: Duration(seconds: 120),     // Maximum buffer size
           bufferForPlaybackDuration: Duration(milliseconds: 50),
           bufferForPlaybackAfterRebufferDuration: Duration(seconds: 2),
         ),
       ),
     );
-    _createCacheDir();
-    _addEmptyList();
-    _notifyAudioHandlerAboutPlaybackEvents();
-    _listenToPlaybackForNextSong();
-    _listenForSequenceStateChanges();
+
+    _createCacheDir();                              // Setup offline storage
+    _addEmptyList();                                // Initialize empty playlist
+    _notifyAudioHandlerAboutPlaybackEvents();       // Monitor playback state
+    _listenToPlaybackForNextSong();                 // Auto-advance tracks
+    _listenForSequenceStateChanges();               // Track sequence changes
+    _listenForDurationChanges();                    // Update duration metadata
+
+    // Load user preferences from local storage
     final appPrefsBox = Hive.box("appPrefs");
     _player.setSkipSilenceEnabled(
       appPrefsBox.get("skipSilenceEnabled") ?? false,
@@ -101,11 +148,13 @@ class MyAudioHandler extends BaseAudioHandler with GetxServiceMixin {
         Hive.box("AppPrefs").get("queueLoopModeEnabled") ?? false;
     loudnessNormalizationEnabled =
         appPrefsBox.get("loudnessNormalizationEnabled") ?? false;
-    _listenForDurationChanges();
+
+    // Android-specific audio session for equalizer
     if (GetPlatform.isAndroid) {
       _listenSessionIdStream();
     }
   }
+
 
   Future<void> _createCacheDir() async {
     _cacheDir = (await getTemporaryDirectory()).path;
@@ -793,6 +842,21 @@ class MyAudioHandler extends BaseAudioHandler with GetxServiceMixin {
     return super.stop();
   }
 
+  // ==========================================================================
+  // STREAM URL FETCHING WITH MULTI-LAYER CACHE
+  // ==========================================================================
+
+  // /**
+  //  * Fetches streaming URL with intelligent caching strategy
+  //  *
+  //  * Cache layers (priority order):
+  //  * 1. Local cache (downloaded offline songs)
+  //  * 2. Downloaded songs from external storage
+  //  * 3. Cached stream URLs (time-limited)
+  //  * 4. Fresh fetch from API
+  //  *
+  //  * Uses Isolate for network operations to prevent UI jank
+  //  */
   // Work around used [useNewInstanceOfExplode = false] to Fix Connection closed before full header was received issue
   Future<HMStreamingData> checkNGetUrl(
     String songId, {
@@ -801,6 +865,8 @@ class MyAudioHandler extends BaseAudioHandler with GetxServiceMixin {
   }) async {
     LoggerUtil.info("Requested id : $songId");
     final songDownloadsBox = Hive.box("SongDownloads");
+
+    // LAYER 1: Local cache (offline storage)
     if (!offlineReplacementUrl &&
         (await Hive.openBox("SongsCache")).containsKey(songId)) {
       LoggerUtil.info("Got Song from cachedbox ($songId)");

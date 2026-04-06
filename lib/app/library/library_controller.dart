@@ -1,3 +1,4 @@
+import 'package:soul_sync/core/utils/player_utils/house_keeping_util.dart';
 import 'package:soul_sync/core/utils/player_utils/song_utils.dart';
 import 'package:soul_sync/core/utils/toast_util.dart';
 import 'package:soul_sync/core/utils/string_file.dart';
@@ -15,7 +16,6 @@ import 'package:file_picker/file_picker.dart';
 import 'dart:convert';
 
 import '../../core/utils/logger_utils.dart';
-import '../../core/utils/player_utils/house_keeping.dart';
 import '../../custom_view/player_widget/add_to_playlist.dart';
 import '../../custom_view/player_widget/sort_widget.dart';
 import '../Settings/settings_screen_controller.dart';
@@ -89,7 +89,7 @@ class LibrarySongsController extends GetxController {
     isSongFetched.value = true;
 
     //Remove deleted songs and expired songUrl from database
-    startHouseKeeping();
+    HousekeepingUtil.startHouseKeeping();
   }
 
   void onSort(SortType sortType, bool isAscending) {
