@@ -1,3 +1,4 @@
+﻿import 'package:soul_sync/core/utils/toast_util.dart';
 import 'package:soul_sync/core/utils/string_file.dart';
 
 import 'package:soul_sync/core/extension/text_style.dart';
@@ -11,7 +12,6 @@ import 'package:html/parser.dart' as html_parser;
 
 import '../../app/playlist/playlist_screen_controller.dart';
 import 'common_dialog_widget.dart';
-import 'snackbar.dart';
 
 class PlaylistExportDialog extends StatelessWidget {
   const PlaylistExportDialog({
@@ -134,12 +134,9 @@ class PlaylistExportDialog extends StatelessWidget {
 
     Clipboard.setData(ClipboardData(text: ytmUrl ?? url)).then((_) {
       if (parentContext.mounted) {
-        ScaffoldMessenger.of(parentContext).showSnackBar(
-          snackbar(
-            parentContext,
-            StringFile.linkCopied,
-            size: SanckBarSize.MEDIUM,
-          ),
+        ToastUtil.successWithSize(
+          size: ToastSize.medium,
+          message: StringFile.linkCopied,
         );
       }
     });

@@ -1,4 +1,4 @@
-// import 'package:get/get.dart';
+﻿// import 'package:get/get.dart';
 // import 'package:soul_sync/core/routes/routes.dart';
 //
 // class AuthService {

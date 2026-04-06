@@ -1,3 +1,4 @@
+﻿import 'package:soul_sync/core/utils/toast_util.dart';
 import 'package:soul_sync/core/utils/string_file.dart';
 
 import 'package:soul_sync/core/extension/text_style.dart';
@@ -14,7 +15,6 @@ import '/models/media_Item_builder.dart';
 import '../../models/playlist.dart';
 import 'common_dialog_widget.dart';
 import 'create_playlist_dialog.dart';
-import 'snackbar.dart';
 
 class AddToPlaylist extends StatelessWidget {
   const AddToPlaylist(this.songItems, {super.key});
@@ -134,26 +134,19 @@ class AddToPlaylist extends StatelessWidget {
                                     .then((value) {
                                   if (!context.mounted) return;
                                   if (value) {
-                                    ScaffoldMessenger.of(
-                                      context,
-                                    ).showSnackBar(
-                                      snackbar(
-                                        context,
-                                        StringFile.songAddedToPlaylistAlert,
-                                        size: SanckBarSize.MEDIUM,
-                                      ),
+                                    ToastUtil.successWithSize(
+                                      size: ToastSize.medium,
+                                      message:
+                                          StringFile.songAddedToPlaylistAlert,
                                     );
+
                                     Navigator.of(context).pop();
                                   } else {
-                                    ScaffoldMessenger.of(
-                                      context,
-                                    ).showSnackBar(
-                                      snackbar(
-                                        context,
-                                        StringFile.songAlreadyExists,
-                                        size: SanckBarSize.MEDIUM,
-                                      ),
+                                    ToastUtil.successWithSize(
+                                      size: ToastSize.medium,
+                                      message: StringFile.songAlreadyExists,
                                     );
+
                                     Navigator.of(context).pop();
                                   }
                                 });
@@ -261,25 +254,25 @@ class AddToPlaylistController extends GetxController {
     }
   }
 
-  // Future<bool> addSongToPlaylist(
-  //     MediaItem song, String playlistId, BuildContext context) async {
-  //   if (playlistType.value == "local") {
-  //     final plstBox = await Hive.openBox(playlistId);
-  //     if (!plstBox.containsKey(song.id)) {
-  //       plstBox.put(song.id, MediaItemBuilder.toJson(song));
-  //       plstBox.close();
-  //       return true;
-  //     } else {
-  //       plstBox.close();
-  //       return false;
-  //     }
-  //   } else {
-  //     additionInProgress.value = true;
+// Future<bool> addSongToPlaylist(
+//     MediaItem song, String playlistId, BuildContext context) async {
+//   if (playlistType.value == "local") {
+//     final plstBox = await Hive.openBox(playlistId);
+//     if (!plstBox.containsKey(song.id)) {
+//       plstBox.put(song.id, MediaItemBuilder.toJson(song));
+//       plstBox.close();
+//       return true;
+//     } else {
+//       plstBox.close();
+//       return false;
+//     }
+//   } else {
+//     additionInProgress.value = true;
 
-  //     final res =
-  //         await Get.find<PipedServices>().addToPlaylist(playlistId, song.id);
-  //     additionInProgress.value = false;
-  //     return (res.code == 1);
-  //   }
-  // }
+//     final res =
+//         await Get.find<PipedServices>().addToPlaylist(playlistId, song.id);
+//     additionInProgress.value = false;
+//     return (res.code == 1);
+//   }
+// }
 }

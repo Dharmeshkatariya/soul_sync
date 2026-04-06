@@ -59,6 +59,6 @@ class CustomListView extends StatelessWidget {
   }
 
   Widget _divider() {
-    return CustomDivider();
+    return const CustomDivider();
   }
 }

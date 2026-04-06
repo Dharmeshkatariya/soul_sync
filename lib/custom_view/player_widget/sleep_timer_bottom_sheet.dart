@@ -1,3 +1,4 @@
+﻿import 'package:soul_sync/core/utils/toast_util.dart';
 import 'package:soul_sync/core/utils/string_file.dart';
 
 import 'package:soul_sync/core/extension/text_style.dart';
@@ -7,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../custom_player/player_controller.dart';
-import 'snackbar.dart';
 
 class SleepTimerBottomSheet extends StatelessWidget {
   const SleepTimerBottomSheet({super.key});
@@ -88,12 +88,9 @@ class SleepTimerBottomSheet extends StatelessWidget {
                           playerController.cancelSleepTimer,
                         );
                         Navigator.of(context).pop();
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          snackbar(
-                            context,
-                            StringFile.cancelTimerAlert,
-                            size: SanckBarSize.BIG,
-                          ),
+                        ToastUtil.infoWithSize(
+                          size: ToastSize.big,
+                          message: StringFile.cancelTimerAlert,
                         );
                       },
                       style: OutlinedButton.styleFrom(
@@ -123,13 +120,11 @@ class SleepTimerBottomSheet extends StatelessWidget {
                 Future.delayed(const Duration(milliseconds: 200), () {
                   playerController.startSleepTimer(dur);
                 });
-                ScaffoldMessenger.of(context).showSnackBar(
-                  snackbar(
-                    context,
-                    StringFile.sleepTimeSetAlert,
-                    size: SanckBarSize.BIG,
-                  ),
+                ToastUtil.successWithSize(
+                  size: ToastSize.big,
+                  message: StringFile.sleepTimeSetAlert,
                 );
+
               },
               leading: Padding(
                 padding: const EdgeInsets.only(left: 10.0),

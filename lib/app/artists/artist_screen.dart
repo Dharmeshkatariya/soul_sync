@@ -1,3 +1,4 @@
+﻿import 'package:soul_sync/core/utils/toast_util.dart';
 import 'package:soul_sync/core/utils/string_file.dart';
 
 import 'package:soul_sync/custom_view/custom_text_view.dart';
@@ -12,7 +13,6 @@ import '../../custom_view/player_widget/animated_screen_transition.dart';
 import '../../custom_view/player_widget/image_widget.dart';
 import '../../custom_view/player_widget/loader.dart';
 import '../../custom_view/player_widget/separate_tab_item_widget.dart';
-import '../../custom_view/player_widget/snackbar.dart';
 import '../Settings/settings_screen_controller.dart';
 import '../screen_navigation.dart';
 import 'artist_screen_controller.dart';
@@ -48,13 +48,11 @@ class ArtistScreen extends StatelessWidget {
                 onPressed: () async {
                   final radioId = artistScreenController.artist_.radioId;
                   if (radioId == null) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      snackbar(
-                        context,
-                        StringFile.radioNotAvailable,
-                        size: SanckBarSize.BIG,
-                      ),
+                    ToastUtil.successWithSize(
+                      size: ToastSize.big,
+                      message: StringFile.radioNotAvailable,
                     );
+
                     return;
                   }
                   playerController.startRadio(
@@ -215,6 +213,7 @@ class AboutArtist extends StatelessWidget {
     required this.artistScreenController,
     this.padding = const EdgeInsets.only(bottom: 90, top: 70),
   });
+
   final EdgeInsetsGeometry padding;
   final ArtistScreenController artistScreenController;
 
@@ -251,25 +250,22 @@ class AboutArtist extends StatelessWidget {
                                         .isAddedToLibrary.isFalse;
                                     artistScreenController
                                         .addNremoveFromLibrary(add: add)
-                                        .then((value) {
-                                      if (context.mounted) {
-                                        ScaffoldMessenger.of(
-                                          context,
-                                        ).showSnackBar(
-                                          snackbar(
-                                            context,
-                                            value
+                                        .then(
+                                      (value) {
+                                        if (context.mounted) {
+                                          ToastUtil.infoWithSize(
+                                            size: ToastSize.medium,
+                                            message: value
                                                 ? add
-                                                    ? "artistBookmarkAddAlert"
-                                                        .tr
-                                                    : "artistBookmarkRemoveAlert"
-                                                        .tr
+                                                    ? StringFile
+                                                        .artistBookmarkAddAlert
+                                                    : StringFile
+                                                        .artistBookmarkRemoveAlert
                                                 : StringFile.operationFailed,
-                                            size: SanckBarSize.MEDIUM,
-                                          ),
-                                        );
-                                      }
-                                    });
+                                          );
+                                        }
+                                      },
+                                    );
                                   },
                                   child: Obx(
                                     () => artistScreenController

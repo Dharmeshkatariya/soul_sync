@@ -1,4 +1,5 @@
 enum ToastDuration {
+  twoSecond(2),
   short(3),
   medium((6)),
   long(12),

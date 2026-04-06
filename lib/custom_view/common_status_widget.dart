@@ -82,7 +82,7 @@ class CommonStatusWidget extends StatelessWidget {
         backgroundColor: ColorFile.darkBlueColor.withOpacity(0.1),
       );
     } else if (normalizedStatus == ConstantStatus.draft) {
-      return StatusModel(
+      return const StatusModel(
         backgroundColor: ColorFile.grayDDColor,
         textColor: ColorFile.blackColor,
       );
@@ -96,7 +96,7 @@ class CommonStatusWidget extends StatelessWidget {
         textColor: ColorFile.webThemeColor,
       );
     } else {
-      return StatusModel(
+      return const StatusModel(
         textColor: ColorFile.blackColor,
         backgroundColor: ColorFile.grayDDColor,
       );

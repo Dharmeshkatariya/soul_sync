@@ -1,13 +1,14 @@
+﻿import 'package:soul_sync/core/utils/toast_util.dart';
 import 'package:soul_sync/core/utils/string_file.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../app/Library/library_controller.dart';
 import '../../core/utils/player_utils/helper.dart';
-import 'snackbar.dart';
 
 class PipedSyncWidget extends StatelessWidget {
   const PipedSyncWidget({super.key, required this.padding});
+
   final EdgeInsets padding;
 
   @override
@@ -21,7 +22,8 @@ class PipedSyncWidget extends StatelessWidget {
           splashRadius: 20,
           iconSize: 20,
           visualDensity: const VisualDensity(vertical: -4),
-          icon: const Icon(Icons.sync), // <-- Icon
+          icon: const Icon(Icons.sync),
+          // <-- Icon
           onPressed: () async {
             try {
               //printINFO(librplstCntrller.controller.status);
@@ -30,21 +32,16 @@ class PipedSyncWidget extends StatelessWidget {
               await librplstCntrller.syncPipedPlaylist();
               librplstCntrller.controller.stop();
               librplstCntrller.controller.reset();
-              ScaffoldMessenger.of(Get.context!).showSnackBar(
-                snackbar(
-                  Get.context!,
-                  StringFile.pipedplstSyncAlert,
-                  size: SanckBarSize.MEDIUM,
-                ),
+              ToastUtil.infoWithSize(
+                size: ToastSize.medium,
+                message: StringFile.pipedplstSyncAlert,
               );
             } catch (e) {
-              ScaffoldMessenger.of(Get.context!).showSnackBar(
-                snackbar(
-                  Get.context!,
-                  StringFile.errorOccuredAlert,
-                  size: SanckBarSize.BIG,
-                ),
+              ToastUtil.errorWithSize(
+                size: ToastSize.big,
+                message: StringFile.errorOccuredAlert,
               );
+
               printERROR(e);
             }
           },

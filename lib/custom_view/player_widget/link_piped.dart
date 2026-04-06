@@ -1,3 +1,4 @@
+﻿import 'package:soul_sync/core/utils/toast_util.dart';
 import 'package:soul_sync/core/utils/string_file.dart';
 
 import 'package:soul_sync/core/extension/text_style.dart';
@@ -12,7 +13,6 @@ import '../../core/utils/player_utils/helper.dart';
 import '/services/piped_service.dart';
 import 'common_dialog_widget.dart';
 import 'modified_text_field.dart';
-import 'snackbar.dart';
 
 class LinkPiped extends StatelessWidget {
   const LinkPiped({super.key});
@@ -188,13 +188,11 @@ class PipedLinkedController extends GetxController {
         printINFO("Login Successfull");
         Get.find<SettingsScreenController>().isLinkedWithPiped.value = true;
         Navigator.of(Get.context!).pop();
-        ScaffoldMessenger.of(Get.context!).showSnackBar(
-          snackbar(
-            Get.context!,
-            StringFile.linkAlert,
-            size: SanckBarSize.MEDIUM,
-          ),
+        ToastUtil.successWithSize(
+          size: ToastSize.medium,
+          message: StringFile.linkAlert,
         );
+
         Get.find<LibraryPlaylistsController>().syncPipedPlaylist();
       } else {
         errorText.value = res.errorMessage ?? StringFile.errorOccuredAlert;

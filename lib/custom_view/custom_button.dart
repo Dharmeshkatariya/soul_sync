@@ -153,7 +153,7 @@ class CustomButton extends StatelessWidget {
       return TextButton(
         onPressed: (isLoading) ? null : onTap,
         style: TextButton.styleFrom(
-          textStyle: TextStyle(
+          textStyle: const TextStyle(
             color: ColorFile.webThemeColor,
             decoration: TextDecoration.underline,
           ),
@@ -174,7 +174,7 @@ class CustomButton extends StatelessWidget {
                 asset!,
                 width: 24.w,
                 height: 24.h,
-                colorFilter: ColorFilter.mode(
+                colorFilter: const ColorFilter.mode(
                   ColorFile.webThemeColor,
                   BlendMode.srcIn,
                 ),

@@ -122,7 +122,7 @@ class CustomListingWidgetWeb extends StatelessWidget {
                                       : BorderRadius.zero,
                                   border: isShowBorder!
                                       ? Border.all(color: ColorFile.grayDDColor)
-                                      : Border(
+                                      : const Border(
                                           bottom: BorderSide(
                                             color: ColorFile.grayDDColor,
                                           ),
@@ -132,7 +132,7 @@ class CustomListingWidgetWeb extends StatelessWidget {
                               : BoxDecoration(
                                   border: isShowBorder!
                                       ? Border.all(color: ColorFile.grayDDColor)
-                                      : Border(
+                                      : const Border(
                                           bottom: BorderSide(
                                             color: ColorFile.grayDDColor,
                                           ),
@@ -196,7 +196,7 @@ class CustomListingWidgetWeb extends StatelessWidget {
                 : Container(
                     width: Get.width,
                     height: 1,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: ColorFile.webBorderGrayColor,
                     ),
                   );
@@ -223,7 +223,7 @@ class CustomListingWidgetWeb extends StatelessWidget {
                         : BorderRadius.zero,
                     border: isShowBorder!
                         ? Border.all(color: ColorFile.grayDDColor)
-                        : Border(
+                        : const Border(
                             bottom: BorderSide(color: ColorFile.grayDDColor),
                           ),
                     color: ColorFile.whiteColor,
@@ -231,7 +231,7 @@ class CustomListingWidgetWeb extends StatelessWidget {
                 : BoxDecoration(
                     border: isShowBorder!
                         ? Border.all(color: ColorFile.grayDDColor)
-                        : Border(
+                        : const Border(
                             bottom: BorderSide(color: ColorFile.grayDDColor),
                           ),
                     color: ColorFile.whiteColor,

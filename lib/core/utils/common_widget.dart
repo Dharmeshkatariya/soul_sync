@@ -48,7 +48,7 @@ class CommonWidget {
           onTapEdit: onTapEdit,
           verticalSubWidget: verticalSubWidget,
         ),
-        CustomDivider(),
+        const CustomDivider(),
       ],
     );
   }
@@ -398,7 +398,7 @@ class CommonWidget {
       },
       asset: asset ?? AssetsIcons.icAdd,
       hasBorder: true,
-      assetColorFilter: ColorFilter.mode(ColorFile.whiteColor, BlendMode.srcIn),
+      assetColorFilter: const ColorFilter.mode(ColorFile.whiteColor, BlendMode.srcIn),
       bgColor: ColorFile.webThemeColor,
       textColor: ColorFile.whiteColor,
     );

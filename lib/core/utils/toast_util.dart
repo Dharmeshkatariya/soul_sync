@@ -141,7 +141,11 @@ class ToastConfig {
     borderRadius: 0,
   );
 }
-
+enum ToastSize {
+  small,
+  medium,
+  big,
+}
 class ToastUtil {
   static final Map<String, ToastificationItem> _activeToasts = {};
 
@@ -307,6 +311,207 @@ class ToastUtil {
       onTap: onTap,
     );
   }
+
+
+
+
+  // Success toast with size and position
+  static void successWithSize({
+    required String message,
+    ToastSize size = ToastSize.medium,
+    ToastPosition position = ToastPosition.topCenter,
+    ToastDuration duration = ToastDuration.short,
+    ToastConfig? config,
+    String? title,
+    VoidCallback? onTap,
+  }) {
+    // Customize config based on size and position
+    ToastConfig? sizeConfig;
+
+    switch (size) {
+      case ToastSize.small:
+        sizeConfig = ToastConfig.compact;
+        break;
+      case ToastSize.medium:
+        sizeConfig = const ToastConfig();
+        break;
+      case ToastSize.big:
+        sizeConfig = ToastConfig.large;
+        break;
+    }
+
+    // Override position if provided
+    if (position != ToastPosition.topCenter) {
+      sizeConfig = sizeConfig.copyWith(position: position);
+    }
+
+    show(
+      message: message,
+      type: ToastificationType.success,
+      autoCloseDuration: duration,
+      config: sizeConfig,
+      title: title,
+      onTap: onTap,
+    );
+  }
+
+// Info toast with size and position
+  static void infoWithSize({
+    required String message,
+    ToastSize size = ToastSize.medium,
+    ToastPosition position = ToastPosition.topCenter,
+    ToastDuration duration = ToastDuration.short,
+    ToastConfig? config,
+    String? title,
+    VoidCallback? onTap,
+  }) {
+    ToastConfig? sizeConfig;
+
+    switch (size) {
+      case ToastSize.small:
+        sizeConfig = ToastConfig.compact;
+        break;
+      case ToastSize.medium:
+        sizeConfig = const ToastConfig();
+        break;
+      case ToastSize.big:
+        sizeConfig = ToastConfig.large;
+        break;
+    }
+
+    // Override position if provided
+    if (position != ToastPosition.topCenter) {
+      sizeConfig = sizeConfig.copyWith(position: position);
+    }
+
+    show(
+      message: message,
+      type: ToastificationType.info,
+      autoCloseDuration: duration,
+      config: sizeConfig,
+      title: title,
+      onTap: onTap,
+    );
+  }
+
+// Error toast with size and position
+  static void errorWithSize({
+    required String message,
+    ToastSize size = ToastSize.medium,
+    ToastPosition position = ToastPosition.topCenter,
+    ToastDuration duration = ToastDuration.medium,
+    ToastConfig? config,
+    String? title,
+    VoidCallback? onTap,
+  }) {
+    ToastConfig? sizeConfig;
+
+    switch (size) {
+      case ToastSize.small:
+        sizeConfig = ToastConfig.compact;
+        break;
+      case ToastSize.medium:
+        sizeConfig = const ToastConfig();
+        break;
+      case ToastSize.big:
+        sizeConfig = ToastConfig.large;
+        break;
+    }
+
+    // Override position if provided
+    if (position != ToastPosition.topCenter) {
+      sizeConfig = sizeConfig.copyWith(position: position);
+    }
+
+    show(
+      message: message,
+      type: ToastificationType.error,
+      autoCloseDuration: duration,
+      config: sizeConfig,
+      title: title,
+      onTap: onTap,
+    );
+  }
+
+// Warning toast with size and position
+  static void warningWithSize({
+    required String message,
+    ToastSize size = ToastSize.medium,
+    ToastPosition position = ToastPosition.topCenter,
+    ToastDuration duration = ToastDuration.medium,
+    ToastConfig? config,
+    String? title,
+    VoidCallback? onTap,
+  }) {
+    ToastConfig? sizeConfig;
+
+    switch (size) {
+      case ToastSize.small:
+        sizeConfig = ToastConfig.compact;
+        break;
+      case ToastSize.medium:
+        sizeConfig = const ToastConfig();
+        break;
+      case ToastSize.big:
+        sizeConfig = ToastConfig.large;
+        break;
+    }
+
+    // Override position if provided
+    if (position != ToastPosition.topCenter) {
+      sizeConfig = sizeConfig.copyWith(position: position);
+    }
+
+    show(
+      message: message,
+      type: ToastificationType.warning,
+      autoCloseDuration: duration,
+      config: sizeConfig,
+      title: title,
+      onTap: onTap,
+    );
+  }
+
+// Generic method for any toast type with size and position
+  static void showWithSizeAndPosition({
+    required String message,
+    required ToastificationType type,
+    ToastSize size = ToastSize.medium,
+    ToastPosition position = ToastPosition.topCenter,
+    ToastDuration duration = ToastDuration.medium,
+    ToastConfig? config,
+    String? title,
+    VoidCallback? onTap,
+  }) {
+    ToastConfig? sizeConfig;
+
+    switch (size) {
+      case ToastSize.small:
+        sizeConfig = ToastConfig.compact;
+        break;
+      case ToastSize.medium:
+        sizeConfig = const ToastConfig();
+        break;
+      case ToastSize.big:
+        sizeConfig = ToastConfig.large;
+        break;
+    }
+
+    // Override position if provided
+    if (position != ToastPosition.topCenter) {
+      sizeConfig = sizeConfig.copyWith(position: position);
+    }
+
+    show(
+      message: message,
+      type: type,
+      autoCloseDuration: duration,
+      config: sizeConfig,
+      title: title,
+      onTap: onTap,
+    );
+  }
+
 
   // Loading toast (doesn't auto-dismiss)
   static ToastificationItem loading({

@@ -1,3 +1,5 @@
+﻿import 'package:soul_sync/core/enum/toast_duration.dart';
+import 'package:soul_sync/core/utils/toast_util.dart';
 import 'package:soul_sync/core/utils/string_file.dart';
 
 import 'dart:async';
@@ -18,7 +20,6 @@ import '../../services/downloader.dart';
 import '../../services/synced_lyrics_service.dart';
 import '../../services/windows_audio_service.dart';
 import '../player_widget/sliding_up_panel.dart';
-import '../player_widget/snackbar.dart';
 import '/models/durationstate.dart';
 import '/services/music_service.dart';
 
@@ -67,6 +68,7 @@ class PlayerController extends GetxController
   final isLyricsLoading = false.obs;
   final lyricsMode = 0.obs;
   bool isDesktopLyricsDialogOpen = false;
+
   // 0 for play, 1 for pause, 2 for blank
   final gesturePlayerVisibleState = 2.obs;
   final lyricUi = UINetease(
@@ -649,26 +651,20 @@ class PlayerController extends GetxController
   Future<void> toggleQueueLoopMode({bool showMessage = true}) async {
     if (isShuffleModeEnabled.isTrue && isQueueLoopModeEnabled.isTrue) {
       if (!showMessage) return;
-      ScaffoldMessenger.of(Get.context!).showSnackBar(
-        snackbar(
-          Get.context!,
-          StringFile.queueLoopNotDisMsg1,
-          size: SanckBarSize.BIG,
-          duration: const Duration(seconds: 2),
-        ),
+      ToastUtil.errorWithSize(
+        size: ToastSize.big,
+        duration: ToastDuration.twoSecond,
+        message: StringFile.queueLoopNotDisMsg1,
       );
       return;
     }
 
     if (isRadioModeOn && isQueueLoopModeEnabled.isFalse) {
       if (!showMessage) return;
-      ScaffoldMessenger.of(Get.context!).showSnackBar(
-        snackbar(
-          Get.context!,
-          StringFile.queueLoopNotDisMsg2,
-          size: SanckBarSize.BIG,
-          duration: const Duration(seconds: 2),
-        ),
+      ToastUtil.errorWithSize(
+        size: ToastSize.big,
+        duration: ToastDuration.twoSecond,
+        message: StringFile.queueLoopNotDisMsg2,
       );
       return;
     }
@@ -870,12 +866,9 @@ class PlayerController extends GetxController
   /// Called from audio handler in case audio is not playable
   /// or returned streamInfo null due to network error
   void notifyPlayError(String message) {
-    ScaffoldMessenger.of(Get.context!).showSnackBar(
-      snackbar(
-        Get.context!,
-        message == "networkError" ? message.tr : message,
-        size: SanckBarSize.MEDIUM,
-      ),
+    ToastUtil.errorWithSize(
+      size: ToastSize.medium,
+      message: message == "networkError" ? message : message,
     );
   }
 

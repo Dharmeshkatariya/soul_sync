@@ -1,3 +1,4 @@
+﻿import 'package:soul_sync/core/utils/toast_util.dart';
 import 'package:soul_sync/core/utils/string_file.dart';
 
 import 'package:soul_sync/custom_view/custom_text_view.dart';
@@ -16,7 +17,6 @@ import '../custom_view/custom_player/widget/mini_player.dart';
 import '../custom_view/player_widget/bottom_nav_bar.dart';
 import '../custom_view/player_widget/scroll_to_hide.dart';
 import '../custom_view/player_widget/sliding_up_panel.dart';
-import '../custom_view/player_widget/snackbar.dart';
 import '../custom_view/player_widget/up_next_queue.dart';
 import 'Home/home_screen_controller.dart';
 import 'Settings/settings_screen_controller.dart';
@@ -165,16 +165,11 @@ class Home extends StatelessWidget {
                                               if (playerController
                                                   .isShuffleModeEnabled
                                                   .isTrue) {
-                                                ScaffoldMessenger.of(
-                                                  context,
-                                                ).showSnackBar(
-                                                  snackbar(
-                                                    context,
-                                                    "queueShufflingDeniedMsg"
-                                                        .tr,
-                                                    size: SanckBarSize.BIG,
-                                                  ),
-                                                );
+                                                ToastUtil.infoWithSize(
+                                                    size: ToastSize.big,
+                                                    message: StringFile
+                                                        .queueShufflingDeniedMsg);
+
                                                 return;
                                               }
                                               playerController.shuffleQueue();

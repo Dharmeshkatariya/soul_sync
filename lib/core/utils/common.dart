@@ -1,4 +1,4 @@
-import 'package:soul_sync/core/utils/string_file.dart';
+﻿import 'package:soul_sync/core/utils/string_file.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -100,7 +100,7 @@ class Common {
 
   static void showProgressDialog({bool dismissible = true}) {
     Get.dialog(
-      Center(child: CircularProgressIndicator(color: ColorFile.webThemeColor)),
+      const Center(child: CircularProgressIndicator(color: ColorFile.webThemeColor)),
       barrierDismissible: dismissible,
     );
   }
@@ -548,7 +548,7 @@ class Common {
   datePickerTheme(context, child) {
     return Theme(
       data: Theme.of(context).copyWith(
-        colorScheme: ColorScheme.light(
+        colorScheme: const ColorScheme.light(
           primary: ColorFile.webThemeColor,
           onPrimary: Colors.white,
           onSurface: Colors.black,

@@ -12,7 +12,7 @@ class CustomCenterProgress extends StatelessWidget {
     return SizedBox(
       height: height ?? Get.height,
       width: width,
-      child: Center(
+      child: const Center(
         child: CircularProgressIndicator(color: ColorFile.webThemeColor),
       ),
     );

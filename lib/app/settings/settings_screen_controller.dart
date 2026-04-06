@@ -1,3 +1,4 @@
+﻿import 'package:soul_sync/core/utils/toast_util.dart';
 import 'package:soul_sync/core/utils/string_file.dart';
 
 import 'dart:io';
@@ -13,7 +14,6 @@ import '../../core/utils/player_utils/helper.dart';
 import '../../core/utils/player_utils/update_check_flag_file.dart';
 import '../../core/utils/theme_controller.dart';
 import '../../custom_view/custom_player/player_controller.dart';
-import '../../custom_view/player_widget/snackbar.dart';
 import '../../services/permission_service.dart';
 import '/services/piped_service.dart';
 import '../Library/library_controller.dart';
@@ -337,8 +337,9 @@ class SettingsScreenController extends GetxController {
     Get.find<LibraryPlaylistsController>().removePipedPlaylists();
     final box = await Hive.openBox('blacklistedPlaylist');
     box.clear();
-    ScaffoldMessenger.of(Get.context!).showSnackBar(
-      snackbar(Get.context!, StringFile.unlinkAlert, size: SanckBarSize.MEDIUM),
+    ToastUtil.successWithSize(
+      size: ToastSize.medium,
+      message: StringFile.unlinkAlert,
     );
     box.close();
   }

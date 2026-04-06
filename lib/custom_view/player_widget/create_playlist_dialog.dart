@@ -1,6 +1,7 @@
-import 'package:soul_sync/core/utils/string_file.dart';
+﻿import 'package:soul_sync/core/utils/string_file.dart';
 
 import 'package:soul_sync/core/extension/text_style.dart';
+import 'package:soul_sync/core/utils/toast_util.dart';
 import 'package:soul_sync/custom_view/custom_text_view.dart';
 
 import 'package:audio_service/audio_service.dart';
@@ -13,7 +14,6 @@ import '/services/piped_service.dart';
 import '../../models/playlist.dart';
 import 'common_dialog_widget.dart';
 import 'modified_text_field.dart';
-import 'snackbar.dart';
 
 class CreateNRenamePlaylistPopup extends StatelessWidget {
   const CreateNRenamePlaylistPopup({
@@ -23,6 +23,7 @@ class CreateNRenamePlaylistPopup extends StatelessWidget {
     this.renamePlaylist = false,
     this.playlist,
   });
+
   final bool isCreateNadd;
   final bool renamePlaylist;
   final List<MediaItem>? songItems;
@@ -146,12 +147,9 @@ class CreateNRenamePlaylistPopup extends StatelessWidget {
                                 if (value) {
                                   if (!context.mounted) return;
                                   Navigator.of(context).pop();
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    snackbar(
-                                      context,
-                                      StringFile.playlistRenameAlert,
-                                      size: SanckBarSize.MEDIUM,
-                                    ),
+                                  ToastUtil.successWithSize(
+                                    size: ToastSize.medium,
+                                    message: StringFile.playlistRenameAlert,
                                   );
                                 }
                               });
@@ -161,33 +159,26 @@ class CreateNRenamePlaylistPopup extends StatelessWidget {
                                 createPlaylistNaddSong: isCreateNadd,
                                 songItems: songItems,
                               )
-                                  .then((value) {
-                                if (!context.mounted) return;
-                                if (value) {
-                                  ScaffoldMessenger.of(
-                                    context,
-                                  ).showSnackBar(
-                                    snackbar(
-                                      context,
-                                      isCreateNadd
-                                          ? "playlistCreatednsongAddedAlert".tr
+                                  .then(
+                                (value) {
+                                  if (!context.mounted) return;
+                                  if (value) {
+                                    ToastUtil.successWithSize(
+                                      size: ToastSize.medium,
+                                      message: isCreateNadd
+                                          ? StringFile
+                                              .playlistCreatednsongAddedAlert
                                           : StringFile.playlistCreatedAlert,
-                                      size: SanckBarSize.MEDIUM,
-                                    ),
-                                  );
-                                } else {
-                                  ScaffoldMessenger.of(
-                                    context,
-                                  ).showSnackBar(
-                                    snackbar(
-                                      context,
-                                      StringFile.errorOccuredAlert,
-                                      size: SanckBarSize.MEDIUM,
-                                    ),
-                                  );
-                                }
-                                Navigator.of(context).pop();
-                              });
+                                    );
+                                  } else {
+                                    ToastUtil.errorWithSize(
+                                      size: ToastSize.medium,
+                                      message: StringFile.errorOccuredAlert,
+                                    );
+                                  }
+                                  Navigator.of(context).pop();
+                                },
+                              );
                             }
                           },
                         ),

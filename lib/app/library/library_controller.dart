@@ -1,3 +1,4 @@
+﻿import 'package:soul_sync/core/utils/toast_util.dart';
 import 'package:soul_sync/core/utils/string_file.dart';
 
 import 'package:soul_sync/core/extension/text_style.dart';
@@ -15,7 +16,6 @@ import 'dart:convert';
 import '../../core/utils/player_utils/helper.dart';
 import '../../core/utils/player_utils/house_keeping.dart';
 import '../../custom_view/player_widget/add_to_playlist.dart';
-import '../../custom_view/player_widget/snackbar.dart';
 import '../../custom_view/player_widget/sort_widget.dart';
 import '../Settings/settings_screen_controller.dart';
 import '/services/piped_service.dart';
@@ -590,15 +590,11 @@ class LibraryPlaylistsController extends GetxController
 
       // Refresh library to show the new playlist
       refreshLib();
-
       // Show success message
       if (context.mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          snackbar(
-            context,
-            "${StringFile.playlistImportedMsg}: ${newPlaylist.title}",
-            size: SanckBarSize.MEDIUM,
-          ),
+        ToastUtil.successWithSize(
+          size: ToastSize.medium,
+          message: "${StringFile.playlistImportedMsg}: ${newPlaylist.title}",
         );
       }
     } catch (e) {
@@ -621,9 +617,7 @@ class LibraryPlaylistsController extends GetxController
       }
 
       if (context.mounted) {
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(snackbar(context, errorMsg, size: SanckBarSize.MEDIUM));
+        ToastUtil.errorWithSize(size: ToastSize.medium, message: errorMsg);
       }
     } finally {
       isImporting.value = false;

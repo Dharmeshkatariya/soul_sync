@@ -1,3 +1,4 @@
+﻿import 'package:soul_sync/core/utils/toast_util.dart';
 import 'package:soul_sync/core/utils/string_file.dart';
 
 import 'package:soul_sync/core/extension/text_style.dart';
@@ -18,7 +19,6 @@ import '../../../models/playlist.dart';
 import '../../../services/music_service.dart';
 import '../../../services/piped_service.dart';
 import '../../core/utils/player_utils/helper.dart';
-import '../../custom_view/player_widget/snackbar.dart';
 import '../../models/thumbnail.dart';
 import '../../services/permission_service.dart';
 import '../home/home_screen_controller.dart';
@@ -329,12 +329,9 @@ class PlaylistScreenController extends PlaylistAlbumScreenControllerBase
   Future<void> exportPlaylistToJson(BuildContext context) async {
     if (!await PermissionService.getExtStoragePermission()) {
       if (context.mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          snackbar(
-            context,
-            StringFile.permissionDenied,
-            size: SanckBarSize.MEDIUM,
-          ),
+        ToastUtil.errorWithSize(
+          size: ToastSize.medium,
+          message: StringFile.permissionDenied,
         );
       }
       return;
@@ -395,13 +392,12 @@ class PlaylistScreenController extends PlaylistAlbumScreenControllerBase
       // Show success message with platform-specific path info
       String locationMsg = _getLocationMessage(exportDir.path);
       if (context.mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          snackbar(
-            context,
-            "${StringFile.playlistExportedMsg}: $locationMsg",
-            size: SanckBarSize.MEDIUM,
-          ),
+
+        ToastUtil.successWithSize(
+          size: ToastSize.medium,
+          message: "${StringFile.playlistExportedMsg}: $locationMsg",
         );
+
       }
     } catch (e) {
       // Close progress dialog if it's still open
@@ -423,9 +419,8 @@ class PlaylistScreenController extends PlaylistAlbumScreenControllerBase
       }
 
       if (context.mounted) {
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(snackbar(context, errorMsg, size: SanckBarSize.MEDIUM));
+        ToastUtil.successWithSize(
+            size: ToastSize.medium, message: errorMsg);
       }
     } finally {
       isExporting.value = false;
@@ -436,12 +431,9 @@ class PlaylistScreenController extends PlaylistAlbumScreenControllerBase
   Future<void> exportPlaylistToCsv(BuildContext context) async {
     if (!await PermissionService.getExtStoragePermission()) {
       if (context.mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          snackbar(
-            context,
-            StringFile.permissionDenied,
-            size: SanckBarSize.MEDIUM,
-          ),
+        ToastUtil.successWithSize(
+          size: ToastSize.medium,
+          message: StringFile.permissionDenied,
         );
       }
       return;
@@ -497,13 +489,13 @@ class PlaylistScreenController extends PlaylistAlbumScreenControllerBase
       // Show success message with platform-specific path info
       String locationMsg = _getLocationMessage(exportDir.path);
       if (context.mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          snackbar(
-            context,
-            "${StringFile.playlistExportedMsg}: $locationMsg",
-            size: SanckBarSize.MEDIUM,
-          ),
+
+        ToastUtil.successWithSize(
+          message:    "${StringFile.playlistExportedMsg}: $locationMsg",
+          size: ToastSize.medium,
         );
+
+
       }
     } catch (e) {
       // Close progress dialog if it's still open
@@ -525,9 +517,8 @@ class PlaylistScreenController extends PlaylistAlbumScreenControllerBase
       }
 
       if (context.mounted) {
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(snackbar(context, errorMsg, size: SanckBarSize.MEDIUM));
+        ToastUtil.successWithSize(
+            size: ToastSize.medium, message: errorMsg);
       }
     } finally {
       isExporting.value = false;

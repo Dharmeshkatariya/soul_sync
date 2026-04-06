@@ -1,3 +1,4 @@
+﻿import 'package:soul_sync/core/utils/toast_util.dart';
 import 'package:soul_sync/core/utils/string_file.dart';
 
 import 'dart:async';
@@ -16,7 +17,6 @@ import '../app/Library/library_controller.dart';
 import '../app/Playlist/playlist_screen_controller.dart';
 import '../app/settings/settings_screen_controller.dart';
 import '../core/utils/player_utils/helper.dart';
-import '../custom_view/player_widget/snackbar.dart';
 import '/services/stream_service.dart';
 import '/services/permission_service.dart';
 import '/models/media_Item_builder.dart';
@@ -176,17 +176,13 @@ class Downloader extends GetxService {
     // }
 
     if (!playerResponse.playable) {
-      ScaffoldMessenger.of(Get.context!).showSnackBar(
-        snackbar(
-          Get.context!,
-          playerResponse.statusMSG == "networkError"
-              ? playerResponse.statusMSG.tr
-              : playerResponse.statusMSG,
-          size: SanckBarSize.BIG,
-          duration: const Duration(seconds: 2),
-          top: !GetPlatform.isDesktop,
-        ),
+      ToastUtil.errorWithSize(
+        size: ToastSize.big,
+        message: playerResponse.statusMSG == "networkError"
+            ? playerResponse.statusMSG.tr
+            : playerResponse.statusMSG,
       );
+
       printINFO("Requested song is not downloadable. You may try again");
       complete.complete();
       return complete.future;
@@ -284,21 +280,18 @@ class Downloader extends GetxService {
         printERROR("$e");
       }
       complete.complete();
-    }).onError((error, stackTrace) {
-      ScaffoldMessenger.of(Get.context!).showSnackBar(
-        snackbar(
-          Get.context!,
-          StringFile.downloadError3,
-          size: SanckBarSize.BIG,
-          duration: const Duration(seconds: 2),
-          top: !GetPlatform.isDesktop,
-        ),
-      );
-      printINFO(
-        "Downloading failed due to network/stream error! Please try again",
-      );
-      complete.complete();
-    });
+    }).onError(
+      (error, stackTrace) {
+        ToastUtil.errorWithSize(
+          size: ToastSize.big,
+          message: StringFile.downloadError3,
+        );
+        printINFO(
+          "Downloading failed due to network/stream error! Please try again",
+        );
+        complete.complete();
+      },
+    );
 
     return complete.future;
   }

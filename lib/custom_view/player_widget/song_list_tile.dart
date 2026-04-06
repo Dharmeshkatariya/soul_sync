@@ -1,3 +1,4 @@
+﻿import 'package:soul_sync/core/utils/toast_util.dart';
 import 'package:soul_sync/core/utils/string_file.dart';
 
 import 'package:soul_sync/core/extension/text_style.dart';
@@ -15,7 +16,6 @@ import '../../models/playlist.dart';
 import '../custom_player/player_controller.dart';
 import 'add_to_playlist.dart';
 import 'image_widget.dart';
-import 'snackbar.dart';
 import 'songinfo_bottom_sheet.dart';
 
 class SongListTile extends StatelessWidget with RemoveSongFromPlaylistMixin {
@@ -93,13 +93,14 @@ class SongListTile extends StatelessWidget with RemoveSongFromPlaylistMixin {
               onPressed: (context) {
                 playerController.enqueueSong(song).whenComplete(() {
                   if (!context.mounted) return;
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    snackbar(
-                      context,
-                      StringFile.songEnqueueAlert,
-                      size: SanckBarSize.MEDIUM,
-                    ),
+
+
+                  ToastUtil.errorWithSize(
+                    size: ToastSize.medium,
+                    message:  StringFile.songEnqueueAlert,
                   );
+
+
                 });
               },
               backgroundColor: Theme.of(context).colorScheme.secondary,
@@ -110,13 +111,11 @@ class SongListTile extends StatelessWidget with RemoveSongFromPlaylistMixin {
             SlidableAction(
               onPressed: (context) {
                 playerController.playNext(song);
-                ScaffoldMessenger.of(context).showSnackBar(
-                  snackbar(
-                    context,
-                    "${StringFile.playnextMsg} ${(song).title}",
-                    size: SanckBarSize.BIG,
-                  ),
+                ToastUtil.infoWithSize(
+                  message:  "${StringFile.playnextMsg} ${(song).title}",
+                  size: ToastSize.big,
                 );
+
               },
               backgroundColor: Theme.of(context).colorScheme.secondary,
               foregroundColor: context.titleMedium!.color,

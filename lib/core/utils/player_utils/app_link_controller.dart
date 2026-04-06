@@ -1,3 +1,4 @@
+﻿import 'package:soul_sync/core/utils/toast_util.dart';
 import 'package:soul_sync/core/utils/string_file.dart';
 
 import 'dart:async';
@@ -9,7 +10,6 @@ import 'package:get/get.dart';
 import '../../../app/screen_navigation.dart';
 import '../../../custom_view/custom_player/player_controller.dart';
 import '../../../custom_view/player_widget/loader.dart';
-import '../../../custom_view/player_widget/snackbar.dart';
 import '../../../custom_view/player_widget/songinfo_bottom_sheet.dart';
 import '../../../models/playling_from.dart';
 import '/services/music_service.dart';
@@ -71,13 +71,11 @@ mixin ProcessLink {
         final browseId = uri.queryParameters['list'];
         await openPlaylistOrAlbum(browseId!);
       } else if (uri.pathSegments[0] == "shorts") {
-        ScaffoldMessenger.of(Get.context!).showSnackBar(
-          snackbar(
-            Get.context!,
-            StringFile.notaSongVideo,
-            size: SanckBarSize.MEDIUM,
-          ),
+        ToastUtil.successWithSize(
+          size: ToastSize.medium,
+          message: StringFile.notaSongVideo,
         );
+
       } else if (uri.pathSegments[0] == "watch") {
         final songId = uri.queryParameters['v'];
         await playSong(songId!);
@@ -90,13 +88,11 @@ mixin ProcessLink {
         await playSong(songId);
       }
     } else {
-      ScaffoldMessenger.of(Get.context!).showSnackBar(
-        snackbar(
-          Get.context!,
-          StringFile.notaValidLink,
-          size: SanckBarSize.MEDIUM,
-        ),
+      ToastUtil.infoWithSize(
+        message:  StringFile.notaValidLink,
+        size: ToastSize.medium,
       );
+
     }
   }
 
@@ -140,13 +136,12 @@ mixin ProcessLink {
         playfrom: PlaylingFrom(type: PlaylingFromType.SELECTION),
       );
     } else {
-      ScaffoldMessenger.of(Get.context!).showSnackBar(
-        snackbar(
-          Get.context!,
-          StringFile.notaSongVideo,
-          size: SanckBarSize.MEDIUM,
-        ),
+
+      ToastUtil.infoWithSize(
+        message: StringFile.notaSongVideo,
+        size: ToastSize.medium,
       );
+
     }
   }
 }

@@ -24,7 +24,7 @@ class LogoWidget extends StatelessWidget {
       },
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 0.h),
-        child: CustomAssetImage(path: AssetsIcons.icAppLogo),
+        child: const CustomAssetImage(path: AssetsIcons.icAppLogo),
       ),
     );
   }

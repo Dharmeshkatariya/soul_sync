@@ -1,3 +1,4 @@
+﻿import 'package:soul_sync/core/utils/toast_util.dart';
 import 'package:soul_sync/core/utils/string_file.dart';
 
 import 'package:soul_sync/custom_view/custom_text_view.dart';
@@ -22,7 +23,6 @@ import '../../models/media_Item_builder.dart';
 import '../../models/playlist.dart';
 import 'add_to_playlist.dart';
 import 'sleep_timer_bottom_sheet.dart';
-import 'snackbar.dart';
 import 'song_download_btn.dart';
 import 'image_widget.dart';
 import 'song_info_dialog.dart';
@@ -35,6 +35,7 @@ class SongInfoBottomSheet extends StatelessWidget {
     this.calledFromPlayer = false,
     this.calledFromQueue = false,
   });
+
   final MediaItem song;
   final Playlist? playlist;
   final bool calledFromPlayer;
@@ -121,12 +122,10 @@ class SongInfoBottomSheet extends StatelessWidget {
                     onTap: () {
                       Navigator.of(context).pop();
                       playerController.playNext(song);
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        snackbar(
-                          context,
-                          "${StringFile.playnextMsg} ${song.title}",
-                          size: SanckBarSize.BIG,
-                        ),
+
+                      ToastUtil.infoWithSize(
+                        size: ToastSize.big,
+                        message: "${StringFile.playnextMsg} ${song.title}",
                       );
                     },
                   ),
@@ -149,16 +148,15 @@ class SongInfoBottomSheet extends StatelessWidget {
                     leading: const Icon(Icons.merge),
                     title: CustomTextView(StringFile.enqueueSong),
                     onTap: () {
-                      playerController.enqueueSong(song).whenComplete(() {
-                        if (!context.mounted) return;
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          snackbar(
-                            context,
-                            StringFile.songEnqueueAlert,
-                            size: SanckBarSize.MEDIUM,
-                          ),
-                        );
-                      });
+                      playerController.enqueueSong(song).whenComplete(
+                        () {
+                          if (!context.mounted) return;
+                          ToastUtil.infoWithSize(
+                            message: StringFile.songEnqueueAlert,
+                            size: ToastSize.medium,
+                          );
+                        },
+                      );
                       Navigator.of(context).pop();
                     },
                   ),
@@ -199,13 +197,9 @@ class SongInfoBottomSheet extends StatelessWidget {
                       songInfoController
                           .removeSongFromPlaylist(song, playlist!)
                           .whenComplete(
-                            () =>
-                                ScaffoldMessenger.of(Get.context!).showSnackBar(
-                              snackbar(
-                                Get.context!,
-                                "Removed from ${playlist!.title}",
-                                size: SanckBarSize.MEDIUM,
-                              ),
+                            () => ToastUtil.successWithSize(
+                              message: "Removed from ${playlist!.title}",
+                              size: ToastSize.medium,
                             ),
                           );
                     },
@@ -219,21 +213,15 @@ class SongInfoBottomSheet extends StatelessWidget {
                     onTap: () {
                       Navigator.of(context).pop();
                       if (playerController.currentSong.value!.id == song.id) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          snackbar(
-                            context,
-                            StringFile.songRemovedfromQueueCurrSong,
-                            size: SanckBarSize.BIG,
-                          ),
+                        ToastUtil.infoWithSize(
+                          message: StringFile.songRemovedfromQueueCurrSong,
+                          size: ToastSize.big,
                         );
                       } else {
                         playerController.removeFromQueue(song);
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          snackbar(
-                            context,
-                            StringFile.songRemovedfromQueue,
-                            size: SanckBarSize.MEDIUM,
-                          ),
+                        ToastUtil.infoWithSize(
+                          message: StringFile.songRemovedfromQueue,
+                          size: ToastSize.medium,
                         );
                       }
                     },
@@ -257,26 +245,28 @@ class SongInfoBottomSheet extends StatelessWidget {
                           true,
                           url: box.get(song.id)['url'],
                         )
-                            .then((value) async {
-                          box.delete(song.id).then((value) {
-                            if (playlist != null) {
-                              Get.find<PlaylistScreenController>(
-                                tag: Key(
-                                  playlist!.playlistId,
-                                ).hashCode.toString(),
-                              ).checkDownloadStatus();
-                            }
-                            if (context.mounted) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                snackbar(
-                                  context,
-                                  StringFile.deleteDownloadedDataAlert,
-                                  size: SanckBarSize.BIG,
-                                ),
-                              );
-                            }
-                          });
-                        });
+                            .then(
+                          (value) async {
+                            box.delete(song.id).then(
+                              (value) {
+                                if (playlist != null) {
+                                  Get.find<PlaylistScreenController>(
+                                    tag: Key(
+                                      playlist!.playlistId,
+                                    ).hashCode.toString(),
+                                  ).checkDownloadStatus();
+                                }
+                                if (context.mounted) {
+                                  ToastUtil.infoWithSize(
+                                    message:
+                                        StringFile.deleteDownloadedDataAlert,
+                                    size: ToastSize.big,
+                                  );
+                                }
+                              },
+                            );
+                          },
+                        );
                       },
                     )
                   : const SizedBox.shrink(),
@@ -397,9 +387,11 @@ class SongInfoController extends GetxController
   final bool calledFromPlayer;
   List artistList = [].obs;
   final isDownloaded = false.obs;
+
   SongInfoController(this.song, this.calledFromPlayer) {
     _setInitStatus(song);
   }
+
   _setInitStatus(MediaItem song) async {
     isDownloaded.value = Hive.box("SongDownloads").containsKey(song.id);
     isCurrentSongFav.value = (await Hive.openBox(

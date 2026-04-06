@@ -26,7 +26,7 @@ class ColorFile {
   static Color whiteColorOpaque80 = const Color(0xCCFFFFFF);
   static Color whiteColorOpaque30 = const Color(0x4DFFFFFF);
   static Color whiteColorOpaque10 = const Color(0x1AFFFFFF);
-  static const Color blackColor = const Color(0xFF000000);
+  static const Color blackColor = Color(0xFF000000);
   static Color blackColorOpaque80 = const Color(0xCC000000);
   static Color blackColorOpaque60 = const Color(0x99000000);
   static Color blackColorOpaque50 = const Color(0x80000000);
@@ -89,7 +89,7 @@ class ColorFile {
   static Color webThemeColorOpaque15 = const Color(0x263B1550);
   static Color webThemeColorOpaque10 = const Color(0x1A3B1550);
   static const Color webThemeColorOpaque10Copy = Color(0x1A3B1550);
-  static const Color webThemeColor = const Color(0xFF3B1550);
+  static const Color webThemeColor = Color(0xFF3B1550);
   static Color webThemeColorOpaque80 = const Color(0xCC3B1550); // 80% opacity
   static Color webThemeColorOpaque60 = const Color(0x993B1550); // 60% opacity
   static Color webThemeColorOpaque40 = const Color(0x663B1550); // 40% opacity
@@ -107,7 +107,7 @@ class ColorFile {
   static Color lineColor = const Color(0xFFD8D8D8);
   static Color lightPinkColor = const Color(0xFFFFF9FF);
   static Color grayC9Color = const Color(0xFFC9C9C9);
-  static const Color grayDDColor = const Color(0xFFDDDDDD);
+  static const Color grayDDColor = Color(0xFFDDDDDD);
   static Color grayEEColor = const Color(0xFFEEEEEE);
   static Color gray7979Color = const Color(0xFF797979);
   static Color popularDoctorBGColor = const Color(0xFFD4D2E3);
@@ -128,7 +128,7 @@ class ColorFile {
   static Color stepProgressColor = const Color(0xFF008069);
   static Color redColor = const Color(0xFFFF0000);
   static Color statusRedColor = const Color(0xFFC91409);
-  static const Color webBorderGrayColor = const Color(0xFFDDDDDD);
+  static const Color webBorderGrayColor = Color(0xFFDDDDDD);
   static Color webLightCancellationColor = const Color(0xFFf4E3E7);
   static Color dashboardBGColor = const Color(0xFFF3F1F4);
   static Color activeColor = const Color(0xFF008069);

@@ -1,4 +1,4 @@
-enum GeneralListingTypes {
+﻿enum GeneralListingTypes {
   all(''),
   internal('INT'),
   external('EXT');

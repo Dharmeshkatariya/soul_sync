@@ -1,12 +1,14 @@
-import 'package:soul_sync/core/utils/string_file.dart';
+﻿import 'package:soul_sync/core/utils/string_file.dart';
 
 import 'package:soul_sync/core/extension/text_style.dart';
+import 'package:soul_sync/core/utils/toast_util.dart';
 import 'package:soul_sync/custom_view/custom_text_view.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../core/enum/toast_duration.dart';
 import '../../core/utils/player_utils/helper.dart';
 import '../../core/utils/player_utils/lang_mapping.dart';
 import '../../core/utils/theme_controller.dart';
@@ -17,7 +19,6 @@ import '../../custom_view/player_widget/cust_switch.dart';
 import '../../custom_view/player_widget/export_file_dialog.dart';
 import '../../custom_view/player_widget/link_piped.dart';
 import '../../custom_view/player_widget/restore_dialog.dart';
-import '../../custom_view/player_widget/snackbar.dart';
 import '../Library/library_controller.dart';
 import '/services/music_service.dart';
 import 'components/custom_expansion_tile.dart';
@@ -25,6 +26,7 @@ import 'settings_screen_controller.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key, this.isBottomNavActive = false});
+
   final bool isBottomNavActive;
 
   @override
@@ -382,14 +384,9 @@ class SettingsScreen extends StatelessWidget {
                                 onPressed: () async {
                                   await Get.find<LibraryPlaylistsController>()
                                       .resetBlacklistedPlaylist();
-                                  ScaffoldMessenger.of(
-                                    Get.context!,
-                                  ).showSnackBar(
-                                    snackbar(
-                                      Get.context!,
-                                      StringFile.blacklistPlstResetAlert,
-                                      size: SanckBarSize.MEDIUM,
-                                    ),
+                                  ToastUtil.successWithSize(
+                                    size: ToastSize.medium,
+                                    message: StringFile.blacklistPlstResetAlert,
                                   );
                                 },
                               ),
@@ -406,13 +403,9 @@ class SettingsScreen extends StatelessWidget {
                       isThreeLine: true,
                       onTap: () {
                         settingsController.clearImagesCache().then(
-                              (value) => ScaffoldMessenger.of(Get.context!)
-                                  .showSnackBar(
-                                snackbar(
-                                  Get.context!,
-                                  StringFile.clearImgCacheAlert,
-                                  size: SanckBarSize.BIG,
-                                ),
+                              (value) => ToastUtil.successWithSize(
+                                size: ToastSize.big,
+                                message: StringFile.clearImgCacheAlert,
                               ),
                             );
                       },
@@ -817,13 +810,10 @@ class SettingsScreen extends StatelessWidget {
                         settingsController.resetAppSettingsToDefault().then((
                           _,
                         ) {
-                          ScaffoldMessenger.of(Get.context!).showSnackBar(
-                            snackbar(
-                              Get.context!,
-                              StringFile.resetToDefaultMsg,
-                              size: SanckBarSize.BIG,
-                              duration: const Duration(seconds: 2),
-                            ),
+                          ToastUtil.successWithSize(
+                            size: ToastSize.big,
+                            duration: ToastDuration.twoSecond,
+                            message: StringFile.resetToDefaultMsg,
                           );
                         });
                       },

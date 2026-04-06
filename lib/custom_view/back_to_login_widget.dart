@@ -16,7 +16,7 @@ class BackToLoginWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        CustomTextView("Back to login"),
+        const CustomTextView("Back to login"),
         SizedBox(width: 10.w),
         CustomGestureDetector(
           onTap: onClick ??

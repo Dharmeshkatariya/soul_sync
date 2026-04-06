@@ -1,3 +1,4 @@
+﻿import 'package:soul_sync/core/utils/toast_util.dart';
 import 'package:soul_sync/core/utils/string_file.dart';
 
 import 'package:soul_sync/core/extension/text_style.dart';
@@ -13,7 +14,6 @@ import 'package:soul_sync/custom_view/custom_player/widget/standard_player.dart'
 import '../../app/Settings/settings_screen_controller.dart';
 import '../../core/utils/player_utils/helper.dart';
 import '../player_widget/sliding_up_panel.dart';
-import '../player_widget/snackbar.dart';
 import '../player_widget/up_next_queue.dart';
 import 'player_controller.dart';
 
@@ -164,13 +164,12 @@ class Player extends StatelessWidget {
                                 onTap: () {
                                   if (playerController
                                       .isShuffleModeEnabled.isTrue) {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      snackbar(
-                                        context,
-                                        StringFile.queueShufflingDeniedMsg,
-                                        size: SanckBarSize.BIG,
-                                      ),
+
+                                    ToastUtil.infoWithSize(
+                                      message:  StringFile.queueShufflingDeniedMsg,
+                                      size: ToastSize.big,
                                     );
+
                                     return;
                                   }
                                   playerController.shuffleQueue();

@@ -1,3 +1,4 @@
+﻿import 'package:soul_sync/core/utils/toast_util.dart';
 import 'package:soul_sync/core/utils/string_file.dart';
 
 import 'package:soul_sync/custom_view/custom_text_view.dart';
@@ -8,7 +9,6 @@ import 'package:widget_marquee/widget_marquee.dart';
 
 import '../custom_player/player_controller.dart';
 import 'image_widget.dart';
-import 'snackbar.dart';
 import 'songinfo_bottom_sheet.dart';
 
 class UpNextQueue extends StatelessWidget {
@@ -34,13 +34,11 @@ class UpNextQueue extends StatelessWidget {
               isQueueInSlidePanel ? playerController.scrollController : null,
           onReorder: (int oldIndex, int newIndex) {
             if (playerController.isShuffleModeEnabled.isTrue) {
-              ScaffoldMessenger.of(Get.context!).showSnackBar(
-                snackbar(
-                  Get.context!,
-                  StringFile.queuerearrangingDeniedMsg,
-                  size: SanckBarSize.BIG,
-                ),
+              ToastUtil.successWithSize(
+                size: ToastSize.big,
+                message: StringFile.queuerearrangingDeniedMsg,
               );
+
               return;
             }
             playerController.onReorder(oldIndex, newIndex);
@@ -111,13 +109,12 @@ class UpNextQueue extends StatelessWidget {
                             onPressed: () {
                               if (playerController.currentSongIndex.value ==
                                   index) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  snackbar(
-                                    context,
-                                    StringFile.songRemovedfromQueueCurrSong,
-                                    size: SanckBarSize.BIG,
-                                  ),
+
+                                ToastUtil.successWithSize(
+                                  size: ToastSize.big,
+                                  message: StringFile.songRemovedfromQueueCurrSong,
                                 );
+
                               } else {
                                 playerController.removeFromQueue(
                                   playerController.currentQueue[index],

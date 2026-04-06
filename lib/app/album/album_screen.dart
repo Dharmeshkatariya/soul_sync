@@ -1,3 +1,4 @@
+﻿import 'package:soul_sync/core/utils/toast_util.dart';
 import 'package:soul_sync/core/utils/string_file.dart';
 
 import 'package:soul_sync/custom_view/custom_text_view.dart';
@@ -14,7 +15,6 @@ import '../../../services/downloader.dart';
 import '../../custom_view/custom_player/player_controller.dart';
 import '../../custom_view/player_widget/loader.dart';
 import '../../custom_view/player_widget/playlist_album_scroll_behaviour.dart';
-import '../../custom_view/player_widget/snackbar.dart';
 import '../../custom_view/player_widget/song_list_tile.dart';
 import '../../custom_view/player_widget/songinfo_bottom_sheet.dart';
 import '../../custom_view/player_widget/sort_widget.dart';
@@ -210,22 +210,16 @@ class AlbumScreen extends StatelessWidget {
                                               )
                                                   .then((value) {
                                                 if (!context.mounted) return;
-
-                                                ScaffoldMessenger.of(
-                                                  context,
-                                                ).showSnackBar(
-                                                  snackbar(
-                                                    context,
-                                                    value
+                                                ToastUtil.successWithSize(
+                                                    size: ToastSize.medium,
+                                                    message: value
                                                         ? add
-                                                            ? "albumBookmarkAddAlert"
-                                                                .tr
-                                                            : "albumBookmarkRemoveAlert"
-                                                                .tr
-                                                        : "operationFailed".tr,
-                                                    size: SanckBarSize.MEDIUM,
-                                                  ),
-                                                );
+                                                            ? StringFile
+                                                                .albumBookmarkAddAlert
+                                                            : StringFile
+                                                                .albumBookmarkRemoveAlert
+                                                        : StringFile
+                                                            .operationFailed);
                                               });
                                             },
                                             icon: Icon(
@@ -267,19 +261,17 @@ class AlbumScreen extends StatelessWidget {
                                                 .enqueueSongList(
                                               albumController.songList.toList(),
                                             )
-                                                .whenComplete(() {
-                                              if (context.mounted) {
-                                                ScaffoldMessenger.of(
-                                                  context,
-                                                ).showSnackBar(
-                                                  snackbar(
-                                                    context,
-                                                    StringFile.songEnqueueAlert,
-                                                    size: SanckBarSize.MEDIUM,
-                                                  ),
-                                                );
-                                              }
-                                            });
+                                                .whenComplete(
+                                              () {
+                                                if (context.mounted) {
+                                                  ToastUtil.infoWithSize(
+                                                    size: ToastSize.medium,
+                                                    message: StringFile
+                                                        .songEnqueueAlert,
+                                                  );
+                                                }
+                                              },
+                                            );
                                           },
                                           icon: Icon(
                                             Icons.merge,
