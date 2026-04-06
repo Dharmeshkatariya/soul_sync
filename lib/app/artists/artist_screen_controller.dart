@@ -5,6 +5,7 @@ import 'package:hive/hive.dart';
 
 import '../../../models/artist.dart';
 import '../../core/utils/player_utils/helper.dart';
+import '../../core/utils/player_utils/song_utils.dart';
 import '../../custom_view/player_widget/add_to_playlist.dart';
 import '../../custom_view/player_widget/sort_widget.dart';
 import '../Home/home_screen_controller.dart';
@@ -181,7 +182,9 @@ class ArtistScreenController extends GetxController
     }
     if (title == "Songs" || title == "Videos") {
       final songlist = sepataredContent[title]['results'].toList();
-      sortSongsNVideos(songlist, sortType, isAscending);
+      SongUtils.sortSongsNVideos(
+          songlist:
+          songlist,sortType:  sortType,isAscending:  isAscending);
       sepataredContent[title]['results'] = songlist;
     } else if (title == "Albums" || title == "Singles") {
       final albumList = sepataredContent[title]['results'].toList();

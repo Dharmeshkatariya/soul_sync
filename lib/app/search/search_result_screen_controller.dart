@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../core/utils/player_utils/helper.dart';
+import '../../core/utils/player_utils/song_utils.dart';
 import '../../custom_view/player_widget/sort_widget.dart';
 import '../Home/home_screen_controller.dart';
 import '../Settings/settings_screen_controller.dart';
@@ -155,15 +156,20 @@ class SearchResultScreenController extends GetxController
   void onSort(SortType sortType, bool isAscending, String title) {
     if (title == "Songs" || title == "Videos") {
       final songList = separatedResultContent[title].toList();
-      sortSongsNVideos(songList, sortType, isAscending);
+      SongUtils.sortSongsNVideos(
+          songlist:
+          songList,sortType:  sortType,isAscending:  isAscending);
       separatedResultContent[title] = songList;
     } else if (title.contains('playlists')) {
       final playlists = separatedResultContent[title].toList();
-      sortPlayLists(playlists, sortType, isAscending);
+      SongUtils.sortPlayLists(
+          playlists: playlists, sortType: sortType, isAscending: isAscending);
       separatedResultContent[title] = playlists;
     } else if (title == "artists") {
       final artistList = separatedResultContent[title].toList();
-      sortArtist(artistList, sortType, isAscending);
+      SongUtils.sortArtist(
+          artistList:
+          artistList, sortType: sortType, isAscending: isAscending);
       separatedResultContent[title] = artistList;
     } else if (title == "Albums") {
       final albumList = separatedResultContent[title].toList();

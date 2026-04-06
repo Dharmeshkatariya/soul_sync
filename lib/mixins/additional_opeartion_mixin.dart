@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:soul_sync/base_class/playlist_album_screen_con_base.dart';
 import '../core/utils/player_utils/helper.dart';
+import '../core/utils/player_utils/song_utils.dart';
 import '../custom_view/player_widget/add_to_playlist.dart';
 import '../custom_view/player_widget/sort_widget.dart';
 
@@ -16,7 +17,9 @@ mixin AdditionalOpeartionMixin on PlaylistAlbumScreenControllerBase {
 
   void onSort(SortType sortType, bool isAscending) {
     final songlist_ = songList.toList();
-    sortSongsNVideos(songlist_, sortType, isAscending);
+    SongUtils.sortSongsNVideos(
+        songlist:
+        songlist_,sortType:  sortType,isAscending:  isAscending);
     songList.value = songlist_;
   }
 

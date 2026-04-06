@@ -13,6 +13,7 @@ import 'package:soul_sync/core/utils/globals.dart';
 import 'custom_edit_text.dart';
 import 'mandatory_indicator_widget.dart';
 
+@immutable
 class MobileFieldWidget extends StatelessWidget {
   MobileFieldWidget({
     super.key,
